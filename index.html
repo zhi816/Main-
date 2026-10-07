@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#05080d">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='12' fill='%2305080d' stroke='%23b1d8e0'/%3E%3Cellipse cx='20' cy='20' rx='19' ry='7' fill='none' stroke='%23b1d8e0' transform='rotate(-38 20 20)'/%3E%3C/svg%3E">
-  <meta name="description" content="Cosmic Drift 宇宙漂移 — 從一個人的心跳，走進無垠星海。四萬顆粒子構成的互動視聽旅程。">
-  <title>Cosmic Drift — 宇宙漂移</title>
+  <meta name="description" content="Cosmic Drift 宇宙漂移 — 從台灣的一次心跳，後撤至宇宙邊際。從台灣、地月與太陽系，到可觀測宇宙的連續視聽旅程。">
+  <title>Cosmic Drift — 從家園到宇宙邊際</title>
   <style>
     :root { color-scheme: dark; --paper:#e9e6df; --muted:#8b959e; --line:rgba(215,230,239,.16); --ice:#b1d8e0; --glass:rgba(10,15,25,.4); --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace; --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif; }
     * { box-sizing:border-box; }
@@ -124,11 +124,15 @@
     @media (max-height:560px) { h1 { font-size:58px; margin:20px 0 15px; } .intro-content { padding:35px 0 0; } .intro-description { font-size:10px; } .begin { margin-top:18px; padding:12px 20px; } .intro-bottom { bottom:18px; } .headphone { display:none; } .chapter { top:100px; } .ruler { height:240px; } .ruler button { top:calc(16px + var(--at) * 208px); } .bottom-hud { bottom:18px; } }
     @media (pointer:coarse) { #cursor { display:none !important; } }
     @media (prefers-reduced-motion:reduce) { #grain { animation:none; } *,*::before,*::after { scroll-behavior:auto !important; } .begin:hover { transform:none; } }
+
+    /* v3: actual logarithmic distance, a complete route, and fixed-world labels. */
+.ruler{height:min(72vh,660px);width:142px;top:51%}.ruler button{top:calc(16px + var(--at) * (100% - 32px));width:142px;min-height:44px}.ruler button[aria-current="step"]::before{display:none}.ruler-caption{display:none}.distance-readout{display:block;color:#95adb8;font:11px var(--mono);letter-spacing:.05em;margin:4px 0}#display-distance{color:#d1e1e4}.icon-button{width:44px;height:44px}.drift-button{min-height:44px}.transport{padding:5px;gap:2px}.chapter{max-width:410px}.stage-detail{flex-wrap:wrap}.coordinates{min-width:190px}.shortcut-hint{min-width:190px}#world-labels{position:fixed;inset:0;pointer-events:none;z-index:8}.world-label{position:absolute;left:0;top:0;white-space:nowrap;font:8px var(--mono);letter-spacing:.13em;color:#b6dbe1;will-change:transform;opacity:0}.world-label::before{content:"";position:absolute;left:-5px;top:-3px;width:5px;height:5px;border:1px solid #b4e0eb;border-radius:50%;box-shadow:0 0 9px #74aeb766}.world-label span{display:block;margin:7px 0 0 6px;padding:4px 7px;background:#05091099;border-radius:3px}.world-label.secondary{color:#869fad}.world-label.secondary::before{width:3px;height:3px;border-color:#b3a886}.world-label.secondary span{font-size:7px}#route-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}#route-list button{min-height:46px;padding:12px;text-align:left;background:#18253188;border:1px solid #56738533;border-radius:7px;font:9px var(--mono);letter-spacing:.1em}#route-list button span{color:#76939e;margin-right:9px}#route-list button:hover,#route-list button[aria-current="step"]{background:#283b48;color:#eef8f7;border-color:#76939e}.credits{max-height:25vh;overflow:auto}dialog{max-height:calc(100% - 36px);overflow:auto}#canvas-help{pointer-events:none}
+@media(max-width:900px){.coordinates{min-width:0}.shortcut-hint{display:none}.ruler{right:23px}.topbar{gap:10px}}@media(max-width:650px),(max-height:820px){.ruler{height:40vh;width:16px;right:18px;top:51%}.ruler button{display:none}.ruler-track,.ruler-ticks{bottom:16px}.ruler::after{content:"";position:absolute;right:5px;top:16px;bottom:16px;width:1px;background:#7895a522}}@media(max-width:650px){.bottom-hud{flex-direction:column;align-items:stretch;gap:10px;left:20px;right:20px;bottom:max(18px,env(safe-area-inset-bottom))}.transport{justify-content:space-around;align-self:center;min-width:270px;max-width:100%}.coordinates{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:8px}.coordinates br{display:none}.coordinates .distance-readout{display:inline;font-size:9px;margin:0 0 0 auto}#loop-label{width:100%;font-size:7px}.drift-button{min-width:111px;padding:10px 8px}.icon-button{width:44px;height:44px}.chapter{top:110px;max-width:280px}#chapter-title{font-size:24px}.stage-detail{max-width:245px}.intro-content{max-width:100%}#intro{padding-left:26px;padding-right:26px}.intro-description{max-width:300px}.world-label span{font-size:7px;padding:3px 5px}.world-label.secondary span{display:none}.sound{min-height:44px}#warp-label{top:36%}#whisper{bottom:27%}}
   </style>
 </head>
 <body>
-  <canvas id="universe" tabindex="0" aria-label="互動宇宙：拖曳環視、滾輪或雙指縮放；方向鍵切換尺度，空白鍵切換漫遊。" aria-describedby="canvas-help"></canvas>
-  <p id="canvas-help" class="sr-only">從房間、大氣層、地球、太陽系、銀河到宇宙纖維。可用右側六個尺度按鈕或鍵盤上下鍵探索。M 切換音效，G 切換膠卷噪點，H 開啟操作說明。</p>
+  <canvas id="universe" tabindex="0" aria-label="互動宇宙：拖曳環視、滾輪或雙指前後移動；方向鍵切換尺度，空白鍵切換漫遊。" aria-describedby="canvas-help"></canvas>
+  <p id="canvas-help" class="sr-only">從房間、台灣、大氣層出發，經過地球、月球、太陽系、奧爾特雲、鄰近恆星、銀河、本星系群、拉尼亞凱亞，到 CMB。使用尺度路線或方向鍵探索。M 切換音效，G 切換膠卷噪點，H 開啟操作說明。</p>
   <div class="vignette" aria-hidden="true"></div>
   <div id="grain" aria-hidden="true"></div>
   <header class="topbar hud">
@@ -150,7 +154,7 @@
       <h1>Everything.<br><em>Within you.</em></h1>
       <p class="intro-description">從一個人的心跳，走進無垠星海。<br>在渺小與浩瀚之間，重新找到自己。</p>
       <button id="begin" class="begin" disabled><span>開啟宇宙旅程</span><svg viewBox="0 0 24 16" fill="none" aria-hidden="true"><path d="M1 8h20M15 2l6 6-6 6" stroke="currentColor" stroke-width="1.2"/></svg></button>
-      <p id="load-status" role="status">正在點亮 40,000 顆星塵…</p>
+      <p id="load-status" role="status">正在建立連續的宇宙…</p>
     </div>
     <div class="intro-bottom">
       <div class="headphone"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 12V9a7 7 0 0114 0v3M3 10H2v6h4v-6H3zm14 0h1v6h-4v-6h3z" stroke="currentColor" stroke-width="1.2"/></svg>戴上耳機，留一點時間給宇宙。</div>
@@ -159,35 +163,43 @@
   </main>
 
   <section class="chapter hud journey-ui" inert aria-label="目前尺度">
-    <div class="chapter-index"><span id="chapter-number">01</span><span class="line"></span><span id="chapter-english">THE QUIET ROOM</span></div>
+    <div class="chapter-index"><span id="chapter-number">A</span><span class="line"></span><span id="chapter-english">THE QUIET ROOM</span></div>
     <h2 id="chapter-title">一切，始於心跳。</h2>
-    <p id="chapter-description">一間安靜的房間。<br>一個夢，正準備無限延伸。</p>
-    <div class="stage-detail"><span>OBSERVATION <b id="observation">01 / 06</b></span><span id="scale-value">10⁰ m</span></div>
+    <p id="chapter-description">一間安靜的房間。<br>一個夢，從台灣開始延伸。</p>
+    <div class="stage-detail"><span>OBSERVATION <b id="observation">PROLOGUE</b></span><span id="scale-value">10⁰ m</span></div>
   </section>
 
   <nav class="ruler hud journey-ui" inert aria-label="宇宙尺度">
     <div class="ruler-track" aria-hidden="true"></div><div class="ruler-ticks" aria-hidden="true"></div>
-    <button style="--at:0" data-stage="0" aria-label="房間，10 的 0 次方公尺" aria-current="step">ROOM</button>
-    <button style="--at:.2" data-stage="1" aria-label="大氣層，10 的 5 次方公尺">ATMOS</button>
-    <button style="--at:.4" data-stage="2" aria-label="地球，10 的 7 次方公尺">EARTH</button>
-    <button style="--at:.6" data-stage="3" aria-label="太陽系，10 的 12 次方公尺">SOLAR</button>
-    <button style="--at:.8" data-stage="4" aria-label="銀河，10 的 21 次方公尺">GALAXY</button>
-    <button style="--at:1" data-stage="5" aria-label="宇宙纖維，10 的 26 次方公尺">COSMOS</button>
+    <button style="--at:0" data-stage="0" aria-label="前往 ROOM" aria-current="step">ROOM</button>
+    <button style="--at:0.0882875499958108" data-stage="1" aria-label="前往 TAIWAN">TAIWAN</button>
+    <button style="--at:0.17127060921631182" data-stage="2" aria-label="前往 ATMOS">ATMOS</button>
+    <button style="--at:0.266820065692835" data-stage="3" aria-label="前往 EARTH">EARTH</button>
+    <button style="--at:0.3579212456781287" data-stage="4" aria-label="前往 MOON">MOON</button>
+    <button style="--at:0.520352006451181" data-stage="5" aria-label="前往 SOLAR">SOLAR</button>
+    <button style="--at:0.6102332543505172" data-stage="6" aria-label="前往 OORT">OORT</button>
+    <button style="--at:0.689160769558377" data-stage="7" aria-label="前往 STARS">STARS</button>
+    <button style="--at:0.7689374663108071" data-stage="8" aria-label="前往 MILKY WAY">MILKY WAY</button>
+    <button style="--at:0.8509287909607217" data-stage="9" aria-label="前往 LOCAL GROUP">LOCAL GROUP</button>
+    <button style="--at:0.9256437307424096" data-stage="10" aria-label="前往 LANIAKEA">LANIAKEA</button>
+    <button style="--at:1.0000000000000002" data-stage="11" aria-label="前往 CMB">CMB</button>
     <div id="ruler-marker" aria-hidden="true"></div><div class="ruler-caption" aria-hidden="true">SCALE OF EXISTENCE</div>
   </nav>
 
   <footer class="bottom-hud hud journey-ui" inert>
-    <div class="coordinates"><span class="dot">●</span><strong id="journey-mode">EXPLORING</strong><br><span id="loop-label">ORIGIN 00 · P <span id="progress-value">0.000</span></span></div>
+    <div class="coordinates"><span class="dot">●</span><strong id="journey-mode">EXPLORING</strong><span class="distance-readout"><span id="display-distance">5.00</span> DU</span><br><span id="loop-label">VOYAGE <span id="loop-count">01</span> · <span id="flight-phase">OUTBOUND</span></span></div>
     <div class="transport pill" aria-label="旅程控制">
       <button id="drift-toggle" class="drift-button" aria-label="開始自動漫遊（空白鍵）" aria-pressed="false"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path id="drift-icon" d="M5 3l8 5-8 5z" stroke="currentColor" stroke-width="1.2"/></svg><span id="drift-label">AUTO DRIFT</span></button>
       <div class="separator"></div>
+      <button id="route-toggle" class="icon-button" aria-label="完整宇宙路線" title="十二個觀景節點"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="4" cy="3" r="1.4"/><circle cx="12" cy="13" r="1.4"/><path d="M5.5 3h5a3 3 0 010 6h-5a2 2 0 000 4h5"/></svg></button>
       <button id="grain-toggle" class="icon-button" aria-label="關閉膠卷噪點（G）" aria-pressed="true" title="膠卷噪點 · G"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="13" rx="3"/><path d="M5 4v1m4 0v1m3 3v1M4 9v1m4 1v1m3-9v1M7 7v1" stroke-width="1.5"/></svg></button>
       <button id="help-toggle" class="icon-button" aria-label="操作說明（H）" title="操作說明 · H"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 5.7a1.8 1.8 0 013.5.5c0 1.2-1.8 1.4-1.8 2.8m0 1.6v.7"/></svg></button>
     </div>
     <div class="shortcut-hint"><span>SCROLL</span> TO TRAVEL &nbsp; <span>DRAG</span> TO ORBIT<br><span>SPACE</span> DRIFT &nbsp; <span>M</span> SOUND &nbsp; <span>G</span> GRAIN</div>
   </footer>
+  <div id="world-labels" aria-hidden="true"></div>
   <div id="warp-label" aria-hidden="true">LEAVING THE ATMOSPHERE</div>
-  <p id="whisper" aria-hidden="true">The universe was always within you.</p>
+  <p id="whisper" aria-hidden="true">Every distance leads us home.</p>
   <div id="toast" class="pill" role="status" aria-live="polite"></div>
   <div id="cursor" aria-hidden="true"><span id="cursor-label"></span></div>
   <div id="stage-announcement" class="sr-only" aria-live="polite"></div>
@@ -201,395 +213,988 @@
     <div class="help-row"><span>自動漫遊</span><kbd>Space</kbd></div>
     <div class="help-row"><span>音效 / 膠卷質感 / 說明</span><span><kbd>M</kbd> <kbd>G</kbd> <kbd>H</kbd></span></div>
     <div class="help-row"><span>回到起點</span><span>左上角標誌 · <kbd>Home</kbd></span></div>
-    <p class="credits">40,000 顆粒子，六個尺度，一場無限循環。<br>CHOPIN · BALLADE NO. 4, OP. 52 · INTRODUCTION<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>編寫音符，以程序鋼琴演繹。<br>首次開啟需連網載入 Three.js；無外部圖片、模型或音訊。</p>
+<p class="credits">跨尺度距離經展示壓縮；天體位置與宇宙結構為示意。DU 是固定的展示世界單位，與天文尺度分開標示。微光定位點不代表天體大小。<br><br>奧爾特雲為推定結構；CMB 的程序斑駁與顏色為視覺轉譯，球面表現觀測視界，並非宇宙的實體外牆或實測貼圖。<br><a href="https://science.nasa.gov/solar-system/oort-cloud/facts/" target="_blank" rel="noopener noreferrer">NASA · Oort Cloud</a> · <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background" target="_blank" rel="noopener noreferrer">ESA · CMB</a><br><br>CHOPIN · BALLADE NO. 4, OP. 52<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>內嵌音符，以程序鋼琴演繹。首次需連網載入 Three.js；無外部圖片、模型或音訊。</p>
   </dialog>
 
+  <dialog id="route-dialog" aria-labelledby="route-title"><button id="route-close" class="icon-button dialog-close" aria-label="關閉路線">×</button><h2 id="route-title">Our place in everything.</h2><p class="dialog-subtitle">三段序章，九層宇宙。每一站，都與家園相連。</p><div id="route-list"><button data-route="0"><span>0A</span>ROOM</button><button data-route="1"><span>0B</span>TAIWAN</button><button data-route="2"><span>0C</span>ATMOS</button><button data-route="3"><span>01</span>EARTH</button><button data-route="4"><span>02</span>MOON</button><button data-route="5"><span>03</span>SOLAR</button><button data-route="6"><span>04</span>OORT</button><button data-route="7"><span>05</span>STARS</button><button data-route="8"><span>06</span>MILKY WAY</button><button data-route="9"><span>07</span>LOCAL GROUP</button><button data-route="10"><span>08</span>LANIAKEA</button><button data-route="11"><span>09</span>CMB</button></div><p class="credits">點選後，攝影機將沿連續航線前往該尺度。<br>跨尺度距離經展示壓縮；天體與宇宙結構為示意。</p></dialog>
   <div id="error-panel" hidden role="alert">
     <div class="error-content"><div class="eyebrow">A MOMENT OF STILLNESS</div><h2>星光暫時還未抵達。</h2><p id="error-message"></p><button class="begin" id="retry">重新載入 <span aria-hidden="true">↗</span></button></div>
   </div>
   <noscript><div style="position:fixed;inset:0;z-index:200;background:#080d15;display:grid;place-items:center;padding:32px;color:#ddd">這段宇宙旅程需要 JavaScript。請在瀏覽器啟用 JavaScript 後重新整理。</div></noscript>
 
-  <script id="particle-vertex" type="x-shader/x-vertex">
+  <!-- v3.0: independent fixed geometry; only the camera and render origin travel. -->
+  <script id="stars-vs" type="x-shader/x-vertex">
     precision highp float;
-    attribute vec3 aFrom;
-    attribute vec3 aTo;
-    attribute vec3 cFrom;
-    attribute vec3 cTo;
-    attribute vec4 aSeed;
-    attribute float aOrbit;
-    uniform float uMix;
-    uniform float uTime;
-    uniform float uFrom;
-    uniform float uTo;
-    uniform float uWarp;
-    uniform float uPixelRatio;
-    uniform float uIntro;
-    uniform float uReduced;
+    attribute vec3 color;
+    attribute float aSize;
+    uniform float uSize, uHeight, uDPR, uOpacity, uWarp, uTime, uPulse, uMaxPoint;
     varying vec3 vColor;
-    varying float vAlpha;
-    varying float vWarp;
+    varying float vOpacity, vStretch;
     varying vec2 vDirection;
-    mat2 rotate2d(float a) { return mat2(cos(a),-sin(a),sin(a),cos(a)); }
-    vec3 animateShape(vec3 p, float stage) {
-      if (stage > 1.5 && stage < 2.5 && aSeed.w < 0.5) {
-        p.xz = rotate2d(uTime * 0.045 * (1.0-uReduced)) * p.xz;
-        p.xy = rotate2d(-0.410152) * p.xy;
-      } else if (stage > 2.5 && stage < 3.5 && aSeed.w < 0.5) {
-        float radius = aOrbit;
-        float speed = 0.24 / (1.0 + radius * 0.035);
-        p.xz = rotate2d(uTime * speed * (1.0-uReduced)) * p.xz;
-      } else if (stage > 3.5 && stage < 4.5 && aSeed.w < 0.5) {
-        p.xz = rotate2d(uTime * 0.014 * (1.0-uReduced)) * p.xz;
-        p.yz = rotate2d(-0.24) * p.yz;
-      }
-      if (stage < 0.5 && aSeed.z > 0.5) {
-        float pulse = pow(0.5+0.5*sin(uTime*6.283185-0.7),14.0);
-        p = vec3(-1.6,5.6,-7.0) + (p-vec3(-1.6,5.6,-7.0))*(1.0+0.13*pulse);
-      }
-      return p;
-    }
-    void main() {
-      vec3 source = animateShape(aFrom,uFrom);
-      vec3 target = animateShape(aTo,uTo);
-      vec3 p = mix(source,target,uMix);
-      p += sin(vec3(aSeed.y*24.0)+uTime*0.32) * 0.16 * (1.0-uReduced);
-      vec4 view = modelViewMatrix * vec4(p,1.0);
-      vec4 clip = projectionMatrix * view;
-      clip.x += uIntro * 0.33 * clip.w;
-      gl_Position = clip;
-      vec2 radial = clip.xy / max(clip.w,0.01);
-      vDirection = normalize(radial + vec2(0.0001));
-      float pulse = pow(0.5+0.5*sin(uTime*6.283185-0.7),14.0);
-      float room = mix(1.0-step(0.5,uFrom),1.0-step(0.5,uTo),uMix);
-      float heart = room*aSeed.z;
-      float twinkle = 0.86+0.14*sin(uTime*(0.5+aSeed.y)+aSeed.y*62.0);
-      float earth = mix(1.0-step(0.1,abs(uFrom-2.0)),1.0-step(0.1,abs(uTo-2.0)),uMix);
-      float deep = mix(step(3.9,uFrom)*(1.0-step(5.5,uFrom)),step(3.9,uTo)*(1.0-step(5.5,uTo)),uMix);
-      vColor = mix(cFrom,cTo,uMix) * (1.0+earth*1.7+deep*0.35) * twinkle * (1.0 + heart*pulse*1.7);
-      vColor = mix(vColor,vec3(0.52,0.77,1.0),uWarp*0.4);
-      vAlpha = smoothstep(2.0,15.0,-view.z);
-      vWarp = uWarp*(1.0-uReduced)*(0.15+0.85*step(0.82,aSeed.y));
-      float diameter = aSeed.x * (240.0/max(40.0,-view.z)) * uPixelRatio;
-      diameter *= (1.0+heart*0.6+earth*0.6+deep*0.5);
-      gl_PointSize = clamp(diameter*(1.0+vWarp*15.0),1.0,80.0*uPixelRatio);
+    void main(){
+      vec4 mv=modelViewMatrix*vec4(position,1.0);
+      vec4 clip=projectionMatrix*mv;
+      gl_Position=clip;
+      float pulse=pow(.5+.5*sin(uTime*6.283185-.7),14.0);
+      float size=clamp(aSize*uSize*uHeight/max(.001,-mv.z),.85*uDPR,uMaxPoint*uDPR);
+      vStretch=uWarp*(.15+.85*step(1.42,aSize));
+      gl_PointSize=clamp(size*(1.0+vStretch*13.0)*(1.0+uPulse*pulse*.2),.7,96.0*uDPR);
+      vColor=color*(1.0+uPulse*pulse*1.2);
+      vOpacity=uOpacity*smoothstep(0.0,.05,-mv.z);
+      vDirection=normalize(clip.xy/max(abs(clip.w),.001)+vec2(.0001));
     }
   </script>
-  <script id="particle-fragment" type="x-shader/x-fragment">
+  <script id="stars-fs" type="x-shader/x-fragment">
     precision mediump float;
     uniform sampler2D uSprite;
     varying vec3 vColor;
-    varying float vAlpha;
-    varying float vWarp;
+    varying float vOpacity,vStretch;
     varying vec2 vDirection;
-    void main() {
-      vec2 uv = gl_PointCoord - 0.5;
-      vec2 direction = vec2(vDirection.x,-vDirection.y);
-      vec2 aligned = vec2(dot(uv,direction),dot(uv,vec2(-direction.y,direction.x)));
-      vec2 point = mix(uv,aligned,step(0.001,vWarp));
-      point.y *= 1.0 + vWarp*15.0;
-      float intensity = texture2D(uSprite,point+0.5).a;
-      if (abs(point.y)>0.5 || intensity<0.012) discard;
-      gl_FragColor = vec4(vColor,intensity*vAlpha);
+    void main(){
+      vec2 p=gl_PointCoord-.5;
+      vec2 d=vec2(vDirection.x,-vDirection.y);
+      if(vStretch>.001)p=vec2(dot(p,d),dot(p,vec2(-d.y,d.x))*(1.0+vStretch*13.0));
+      if(abs(p.y)>.5)discard;
+      float a=texture2D(uSprite,p+.5).a*vOpacity;
+      if(a<.008)discard;
+      gl_FragColor=vec4(vColor,a);
+    }
+  </script>
+  <script id="orbit-vs" type="x-shader/x-vertex">
+    precision highp float;
+    attribute vec3 aEnd;
+    attribute vec3 color;
+    attribute float aT,aSide;
+    uniform vec2 uViewport;
+    uniform float uDPR,uWidth;
+    varying vec3 vColor;
+    varying float vSide;
+    void main(){
+      vec4 start=projectionMatrix*modelViewMatrix*vec4(position,1.0);
+      vec4 finish=projectionMatrix*modelViewMatrix*vec4(aEnd,1.0);
+      vec2 a=start.xy/max(.00001,abs(start.w));
+      vec2 b=finish.xy/max(.00001,abs(finish.w));
+      vec2 tangent=normalize((b-a)*uViewport+vec2(.00001));
+      vec2 normal=vec2(-tangent.y,tangent.x);
+      vec4 clip=mix(start,finish,aT);
+      clip.xy+=normal*aSide*uWidth*uDPR/uViewport*clip.w;
+      gl_Position=clip;vColor=color;vSide=aSide;
+    }
+  </script>
+  <script id="orbit-fs" type="x-shader/x-fragment">
+    precision mediump float;
+    uniform float uOpacity;
+    varying vec3 vColor;
+    varying float vSide;
+    void main(){gl_FragColor=vec4(vColor,uOpacity*(1.0-smoothstep(.5,1.0,abs(vSide))));}
+  </script>
+  <script id="surface-vs" type="x-shader/x-vertex">
+    varying vec3 vNormal,vLocal,vView;
+    varying vec2 vUv;
+    void main(){
+      vec4 mv=modelViewMatrix*vec4(position,1.0);
+      vNormal=normalize(normalMatrix*normal);vLocal=normalize(position);vView=normalize(-mv.xyz);vUv=uv;
+      gl_Position=projectionMatrix*mv;
+    }
+  </script>
+  <script id="surface-fs" type="x-shader/x-fragment">
+    precision highp float;
+    uniform vec3 uColor,uLight;
+    uniform float uKind,uOpacity;
+    uniform sampler2D uMap;
+    varying vec3 vNormal,vLocal,vView;
+    varying vec2 vUv;
+    float hash(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
+    float noise(vec3 p){
+      vec3 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);
+      return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),
+                 mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);
+    }
+    void main(){
+      float n=.5;
+      if(uKind>.5&&uKind<4.5)n=noise(vLocal*18.0)*.65+noise(vLocal*51.0)*.35;
+      float light=.3+.7*max(dot(normalize(vNormal),uLight),0.0);
+      vec3 c=uColor*(.66+.55*n);
+      if(uKind<.5){
+        c=texture2D(uMap,vUv).rgb;
+        light=.42+.58*max(dot(normalize(vNormal),uLight),0.0);
+        float rim=pow(1.0-max(0.0,dot(normalize(vNormal),vView)),3.0);
+        c=c*light+vec3(.08,.35,.75)*rim*.6;
+      }else if(uKind<1.5){
+        float bands=sin(vLocal.y*65.0+noise(vLocal*9.0)*3.0);
+        c=uColor*(.65+.22*bands+.28*n);
+      }else if(uKind>3.5&&uKind<4.5){
+        c=mix(vec3(.88,.12,.012),vec3(1.0,.82,.25),.4+.6*n);
+        light=1.0;
+      }else if(uKind>4.5){
+        c=texture2D(uMap,vUv).rgb;
+        light=1.0;
+      }
+      gl_FragColor=vec4(c*(uKind<.5?1.0:light),uOpacity);
     }
   </script>
   <script>
   'use strict';
   (() => {
-    const $ = (id) => document.getElementById(id);
-    const TAU = Math.PI * 2;
-    const COUNT = 40000;
-    const STAR_START = 37500;
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const stages = [
-      { name:'THE QUIET ROOM', title:'一切，始於心跳。', description:'一間安靜的房間。<br>一個夢，正準備無限延伸。', scale:'10⁰ m', p:0 },
-      { name:'THE ATMOSPHERE', title:'越過，世界的邊緣。', description:'萬家燈火漸漸遠去。<br>我們曾以為的世界，只是開始。', scale:'10⁵ m', p:1.58 },
-      { name:'OUR PALE BLUE HOME', title:'所有故事，同一個家。', description:'每一次相遇、每一個明天。<br>都在這顆溫柔的藍色星球上。', scale:'10⁷ m', p:2.35 },
-      { name:'THE SOLAR SYSTEM', title:'在光的引力之中。', description:'八個世界，繞著同一束光。<br>時間，沿著軌道緩慢流淌。', scale:'10¹² m', p:3.24 },
-      { name:'THE MILKY WAY', title:'我們，都是星塵。', description:'千億顆恆星織成旋臂。<br>而你，也是其中一段光。', scale:'10²¹ m', p:4.36 },
-      { name:'THE COSMIC WEB', title:'無限，與你相連。', description:'星系交織成宇宙的脈絡。<br>最遙遠的地方，竟如此熟悉。', scale:'10²⁶ m', p:5.2 }
+    const $=id=>document.getElementById(id);
+    const TAU=Math.PI*2, MIN_DISTANCE=5, MAX_DISTANCE=10000000;
+    const LOG_MIN=Math.log(MIN_DISTANCE),LOG_MAX=Math.log(MAX_DISTANCE),LOG_SPAN=LOG_MAX-LOG_MIN;
+    const PARTICLE_BUDGET=40000;
+    const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+    const lerp=(a,b,t)=>a+(b-a)*t;
+    const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t);};
+    let randomSeed=8024107;
+    function random(){randomSeed|=0;randomSeed=randomSeed+0x6D2B79F5|0;let v=Math.imul(randomSeed^randomSeed>>>15,1|randomSeed);v=v+Math.imul(v^v>>>7,61|v)^v;return ((v^v>>>14)>>>0)/4294967296;}
+    const rand=(a,b)=>a+(b-a)*random();
+    function sphere(r=1){const y=rand(-1,1),a=rand(0,TAU),d=Math.sqrt(1-y*y);return [Math.cos(a)*d*r,y*r,Math.sin(a)*d*r];}
+    function ellipsoid(c,r,fill=false){const p=sphere(fill?Math.cbrt(random()):1);return p.map((v,j)=>v*r[j]+c[j]);}
+    function along(a,b,jitter=0){const t=random();return a.map((v,j)=>lerp(v,b[j],t)+rand(-jitter,jitter));}
+
+    const stages=[
+      {id:'room',name:'THE QUIET ROOM',short:'ROOM',title:'一切，始於心跳。',description:'一間台灣的房間。<br>我們的宇宙，從這裡出發。',astro:'人體尺度 · 公尺',distance:5,edge:5},
+      {id:'taiwan',name:'OUR ISLAND HOME',short:'TAIWAN',title:'家，有一個位置。',description:'沿著海岸，萬家燈火。<br>剛才的房間，仍在島上的微光裡。',astro:'台灣 · 23.7° N / 121° E',distance:18,edge:10},
+      {id:'atmosphere',name:'ABOVE THE ATMOSPHERE',short:'ATMOS',title:'越過，世界的邊緣。',description:'地表開始彎曲，薄藍漸漸展開。<br>每一步遠行，都能回望來處。',astro:'地表與大氣 · 百公里尺度',distance:60,edge:30},
+      {id:'earth',name:'OUR PALE BLUE HOME',short:'EARTH',title:'所有故事，同一個家。',description:'台灣仍在那裡。<br>海洋、陸地與雲，包裹我們的日常。',astro:'地球赤道直徑 ≈ 12,756 km',distance:240,edge:120},
+      {id:'moon',name:'EARTH AND ITS COMPANION',short:'MOON',title:'與月光，保持聯繫。',description:'地球與月球，同時留在視野。<br>一圈微光，描出彼此的距離。',astro:'平均地月距離 ≈ 384,400 km',distance:900,edge:500},
+      {id:'solar',name:'THE SOLAR SYSTEM',short:'SOLAR',title:'在光的引力之中。',description:'八個世界，圍繞同一顆太陽。<br>第三條軌道的淡藍點，是家園。',astro:'海王星軌道 ≈ 30 AU',distance:9500,edge:1800},
+      {id:'oort',name:'THE OORT CLOUD',short:'OORT',title:'太陽最遙遠的擁抱。',description:'稀疏的冰晶球殼，包裹行星盤面。<br>奧爾特雲是推定結構；此處為示意。',astro:'推定彗星儲庫 · 數萬 AU',distance:35000,edge:10000},
+      {id:'stars',name:'THE INTERSTELLAR NEIGHBOURHOOD',short:'STARS',title:'太陽，也成為一點光。',description:'恆星有了前後，也有了視差。<br>固定星野為示意，微光仍指向太陽。',astro:'星際空間 · 光年尺度',distance:110000,edge:60000},
+      {id:'milky-way',name:'THE MILKY WAY',short:'MILKY WAY',title:'我們，在獵戶臂上。',description:'盤面、暗帶與旋臂，逐漸完整。<br>太陽位於獵戶臂，並不在銀河中央。',astro:'銀河直徑 ≈ 100,000 ly',distance:350000,edge:200000},
+      {id:'local-group',name:'THE LOCAL GROUP',short:'LOCAL GROUP',title:'銀河，也有鄰居。',description:'銀河與仙女座，各自傾斜、各自發光。<br>更小的星系，在它們之間相伴。',astro:'本星系群 · 百萬光年尺度',distance:1150000,edge:800000},
+      {id:'laniakea',name:'LANIAKEA',short:'LANIAKEA',title:'沿著，更大的河流。',description:'羽狀流線匯向密集的星系團。<br>本星系群的位置，仍能追溯。',astro:'超星系團 · 億光年尺度',distance:3400000,edge:2000000},
+      {id:'cmb',name:'THE OBSERVABLE HORIZON',short:'CMB',title:'最古老的光，抵達此刻。',description:'暗紅與橙金，是 CMB 的程序示意。<br>這是觀測視界的表現，並非宇宙外牆。',astro:'CMB · 早期宇宙之光',distance:10000000,edge:5000000}
     ];
-    const state = { ready:false, started:false, auto:false, muted:false, grain:true, p:0, target:0, loops:0, stage:0, warp:null, warpCount:0, hidden:false, contextLost:false, elapsed:0, fps:60, disposed:false };
-    let renderer, camera, scene, controls, geometry, material, cloud, sprite, shapes, seeds, solarMotion;
-    let frameId=0, lastFrame=0, lastHUD=0, frameSum=0, frameCount=0, hudTimer=0, toastTimer=0;
-    let segmentKey='', introAmount=1, pendingSound=null, audio=null, pointerActive=false, zoomUntil=0;
-    const ui = { bars:[...document.querySelectorAll('.eq i')], nodes:[...document.querySelectorAll('[data-stage]')], canvas:$('universe'), cursor:$('cursor') };
-    let rngState = 72419;
-    function random() { rngState |= 0; rngState = rngState + 0x6D2B79F5 | 0; let n=Math.imul(rngState ^ rngState>>>15,1|rngState); n=n+Math.imul(n^n>>>7,61|n)^n; return ((n^n>>>14)>>>0)/4294967296; }
-    const rand = (a,b) => a+(b-a)*random();
-    const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
-    const smooth = (t) => { t=clamp(t,0,1); return t*t*(3-2*t); };
-    const lerp = (a,b,t) => a+(b-a)*t;
-    function sphere(radius=1) { const y=rand(-1,1), a=rand(0,TAU), r=Math.sqrt(1-y*y); return [Math.cos(a)*r*radius,y*radius,Math.sin(a)*r*radius]; }
-    function ellipsoid(center,axes,filled=false) { const p=sphere(filled?Math.cbrt(random()):1); return p.map((v,j)=>center[j]+v*axes[j]); }
-    function line(a,b,noise=.1) { const t=random(); return a.map((v,j)=>lerp(v,b[j],t)+rand(-noise,noise)); }
-    function put(shape,i,p,c,brightness=1) { const at=i*3; for(let j=0;j<3;j++){ shape.position[at+j]=p[j]; shape.color[at+j]=c[j]*brightness; } }
-    function showError(message) { $('error-message').textContent=message; $('error-panel').hidden=false; $('begin').disabled=true; document.body.classList.remove('has-mouse'); }
-    function toast(message) { $('toast').textContent=message; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2300); }
-    function wakeHUD(delay=2000) {
+    const flightKeys=[
+      [0,5],[8,18],[16,60],[25,240],[32,900],[37,900],[51,9500],[56,9500],
+      [66,35000],[76,110000],[88,350000],[93,350000],[101,1150000],[109,3400000],[115,10000000],
+      [123,10000000],[165,5],[170,5]
+    ].map(([time,distance])=>({time,log:Math.log(distance)}));
+    const state={ready:false,started:false,auto:false,muted:false,grain:true,logDistance:LOG_MIN,targetLogDistance:LOG_MIN,distance:5,stage:0,
+      flightTime:0,loops:0,phase:'OUTBOUND',warp:null,warpCount:0,warpIntensity:0,hidden:document.hidden,contextLost:false,disposed:false,
+      elapsed:0,fps:60,visibleParticles:0,drawCalls:0,quality:1,glowQuality:1,dpr:1,degradations:[],slowWindows:0,fastWindows:0,returning:false};
+    const world=new Map(),renderables=[],particleClouds=[],labels=[],resources={geometries:new Set(),materials:new Set(),textures:new Set()};
+    const warpGates=[{distance:120,armed:true,text:'LEAVING THE ATMOSPHERE'},{distance:10000,armed:true,text:'BEYOND THE PLANETARY ORBITS'}];
+    const performanceLog=[];
+    let renderer,camera,scene,orbitCamera,controls,sprite,earthMap;
+    let earthQ,solarQ,galaxyQ,homeCenter,sunCenter,earthCenter,milkyCenter,groupCenter,laniakeaCenter;
+    let logicalCamera,anchor,renderOrigin,direction,frustum,projectionView,boundSphere,tempVector,lightDirection;
+    let frameId=0,lastFrame=0,frameSum=0,frameCount=0,lastHUD=0,lastMetric=0,lastQuality=0;
+    let hudTimer=0,toastTimer=0,segment=0,introAmount=1,audio=null,pendingSound=null,pointerActive=false,zoomUntil=0;
+    let mouseX=-100,mouseY=-100,cursorX=-100,cursorY=-100,cursorTarget=null;
+    const ui={canvas:$('universe'),cursor:$('cursor'),bars:[...document.querySelectorAll('.eq i')],nodes:[...document.querySelectorAll('[data-stage]')],routeNodes:[...document.querySelectorAll('[data-route]')]};
+
+    function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2500);}
+    const dialogOpen=()=>$('help-dialog').open||$('route-dialog').open;
+    function wakeHUD(delay=2000){
       if(!state.started)return;
-      document.body.classList.remove('hud-idle'); clearTimeout(hudTimer);
-      hudTimer=setTimeout(()=>{if(!document.activeElement.closest('.hud')&&!$('help-dialog').open)document.body.classList.add('hud-idle');},delay);
+      document.body.classList.remove('hud-idle');clearTimeout(hudTimer);
+      hudTimer=setTimeout(()=>{if(!document.activeElement.closest('.hud')&&!dialogOpen())document.body.classList.add('hud-idle');},delay);
     }
-    function loadScript(url) {
+    function showError(message){$('error-message').textContent=message;$('error-panel').hidden=false;$('begin').disabled=true;$('intro').inert=true;document.querySelector('.topbar').inert=true;document.body.classList.remove('has-mouse');$('retry').focus();}
+    function loadScript(url){
       return new Promise((resolve,reject)=>{
-        const script=document.createElement('script'); let done=false;
+        const script=document.createElement('script');let done=false;
         const timer=setTimeout(()=>finish(new Error('載入逾時')),15000);
-        function finish(error){if(done)return;done=true;clearTimeout(timer);script.onload=script.onerror=null;error?reject(error):resolve();}
-        script.src=url; script.crossOrigin='anonymous'; script.onload=()=>finish();script.onerror=()=>finish(new Error('CDN 無法連線'));document.head.appendChild(script);
+        function finish(error){if(done)return;done=true;clearTimeout(timer);script.onload=script.onerror=null;if(error){script.remove();reject(error);}else resolve();}
+        script.src=url;script.crossOrigin='anonymous';script.onload=()=>finish();script.onerror=()=>finish(new Error('CDN 無法連線'));document.head.appendChild(script);
       });
     }
-    async function loadDependencies() {
+    async function loadDependencies(){
       for(const base of ['https://cdn.jsdelivr.net/npm/three@0.128.0/','https://unpkg.com/three@0.128.0/']){
-        try {
-          if(!window.THREE) await loadScript(base+'build/three.min.js');
-          if(!window.THREE.OrbitControls) await loadScript(base+'examples/js/controls/OrbitControls.js');
-          return;
-        } catch(error) { console.warn('Cosmic Drift:',error.message); }
+        try{if(!window.THREE)await loadScript(base+'build/three.min.js');if(!THREE.OrbitControls)await loadScript(base+'examples/js/controls/OrbitControls.js');return;}
+        catch(error){console.warn('Cosmic Drift:',error.message);}
       }
-      throw new Error('無法載入 3D 引擎。首次開啟需要網路連線，請確認可連線至 jsDelivr 或 unpkg 後再試一次。');
+      throw new Error('無法載入 3D 引擎。首次開啟需要網路連線；請確認可連線至 jsDelivr 或 unpkg 後重試。');
     }
-
-    function makeShapes() {
-      const result=Array.from({length:7},()=>({position:new Float32Array(COUNT*3),color:new Float32Array(COUNT*3)}));
-      seeds=new Float32Array(COUNT*4);
-      solarMotion=new Float32Array(COUNT);
-      const warm=[.92,.71,.46], moon=[.63,.78,.82], teal=[.12,.32,.38];
-      const roomEdges=[
-        [[-62,-16,-53],[62,-16,-53]], [[62,-16,-53],[62,-16,57]], [[62,-16,57],[-62,-16,57]], [[-62,-16,57],[-62,-16,-53]],
-        [[-62,-16,-53],[-62,61,-53]], [[62,-16,-53],[62,61,-53]], [[-62,61,-53],[62,61,-53]],
-        [[-62,61,-53],[-62,61,57]], [[-62,61,57],[-62,-16,57]],
-        [[-18,-3,-32],[18,-3,-32]], [[18,-3,-32],[18,-3,42]], [[18,-3,42],[-18,-3,42]], [[-18,-3,42],[-18,-3,-32]],
-        [[-18,-3,-32],[-18,13,-32]], [[18,-3,-32],[18,13,-32]], [[-18,13,-32],[18,13,-32]],
-        [[-17,-3,-29],[-17,-16,-29]], [[17,-3,-29],[17,-16,-29]], [[-17,-3,39],[-17,-16,39]], [[17,-3,39],[17,-16,39]],
-        [[28,0,-27],[47,0,-27]], [[47,0,-27],[47,0,-9]], [[47,0,-9],[28,0,-9]], [[28,0,-9],[28,0,-27]],
-        [[28,0,-27],[28,-16,-27]], [[47,0,-9],[47,-16,-9]],
-        [[-44,17,-52.7],[-11,17,-52.7]], [[-11,17,-52.7],[-11,49,-52.7]], [[-11,49,-52.7],[-44,49,-52.7]], [[-44,49,-52.7],[-44,17,-52.7]],
-        [[-27.5,17,-52.7],[-27.5,49,-52.7]], [[-44,33,-52.7],[-11,33,-52.7]]
-      ];
-      const continents=[
-        [[-168,70],[-140,72],[-123,60],[-110,54],[-82,55],[-58,47],[-76,27],[-96,15],[-108,24],[-118,31],[-128,49],[-158,57]],
-        [[-81,12],[-67,10],[-48,-1],[-35,-8],[-40,-22],[-54,-37],[-69,-55],[-75,-39],[-80,-9]],
-        [[-18,34],[1,37],[15,33],[33,31],[44,12],[51,10],[42,-12],[31,-34],[17,-35],[10,-20],[0,4],[-16,13]],
-        [[-10,36],[-10,44],[4,49],[7,57],[25,71],[56,68],[80,74],[114,72],[149,60],[178,64],[160,48],[139,36],[122,20],[109,1],[99,6],[79,8],[65,25],[44,29],[36,40],[23,37]],
-        [[112,-12],[132,-11],[144,-17],[154,-28],[142,-39],[119,-34],[112,-22]],
-        [[-54,59],[-43,59],[-22,77],[-42,83],[-62,76]],
-        [[46,-13],[50,-16],[48,-26],[44,-23]],
-        [[129,31],[140,44],[145,43],[137,33]],
-        [[-180,-76],[-120,-70],[-50,-76],[0,-70],[70,-73],[130,-69],[180,-76],[180,-90],[-180,-90]]
-      ];
-      function isLand(lon,lat) {
-        return continents.some(poly=>{
-          let inside=false;
-          for(let j=0,k=poly.length-1;j<poly.length;k=j++){
-            const a=poly[j],b=poly[k];
-            if((a[1]>lat)!==(b[1]>lat)&&lon<(b[0]-a[0])*(lat-a[1])/(b[1]-a[1])+a[0])inside=!inside;
-          }
-          return inside;
-        });
-      }
-      const nodes=Array.from({length:74},()=>[rand(-113,113),rand(-74,74),rand(-105,105)]);
-      const edges=[];
-      const edgeSet=new Set();
-      nodes.forEach((a,i)=>{
-        const nearest=nodes.map((b,j)=>({j,d:(a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2})).filter(n=>n.j!==i).sort((a,b)=>a.d-b.d).slice(0,3);
-        nearest.forEach(({j})=>{const key=Math.min(i,j)+':'+Math.max(i,j);if(!edgeSet.has(key)){edgeSet.add(key);edges.push([a,nodes[j]]);}});
-      });
-      const planetRadius=[16,24,33,43,60,79,98,116];
-      const planetSize=[.75,1.2,1.35,.95,4.2,3.4,2.2,2.1];
-      const planetColor=[[.68,.58,.46],[.9,.67,.38],[.25,.66,1],[.85,.37,.22],[.86,.68,.44],[.82,.74,.5],[.39,.83,.88],[.22,.45,.97]];
-      const planetPhase=[.1,2.2,4.3,1.1,3.5,5.65,.9,3.0];
-      const limbs=[
-        [[-5.8,3,-10],[-9,1,11],1.7], [[5.8,3,-10],[8,1,11],1.7],
-        [[-3.4,2,11],[-4.2,.8,34],2.6], [[3.4,2,11],[4.8,.8,34],2.6]
-      ];
-      for(let i=0;i<COUNT;i++){
-        seeds[i*4]=rand(1.15,2.7);
-        seeds[i*4+1]=random();
-        seeds[i*4+2]=i<950?1:0;
-        seeds[i*4+3]=i>=STAR_START?1:0;
-        if(i>=STAR_START){
-          const star=sphere(rand(210,360)); const value=random()<.04?1.1:rand(.09,.32);
-          for(let s=0;s<7;s++)put(result[s],i,star,[.6,.75,.88],value);
-          seeds[i*4]=random()<.03?4:rand(1.2,2.5);
-          continue;
-        }
-        let p,c,b=1;
-        // ROOM: a sleeping figure, a pulsing heart, a bed, and an open-sided room.
-        if(i<950){p=ellipsoid([-1.6,5.6,-7],[1.35,1.5,1.3],true);c=[1,.3,.12];b=rand(.5,1.1);seeds[i*4]=rand(1.8,3.6);}
-        else if(i<7200){
-          const part=random();
-          if(part<.22)p=ellipsoid([0,5.2,-22],[4.5,4.1,5.2]);
-          else if(part<.61)p=ellipsoid([0,3.1,-4],[6.1,3.3,12.7]);
-          else {const limb=limbs[Math.floor(random()*limbs.length)];p=line(limb[0],limb[1],0);const ring=rand(0,TAU);p[0]+=Math.cos(ring)*limb[2];p[1]+=Math.sin(ring)*limb[2]*.75;}
-          c=random()<.6?warm:moon;b=rand(.28,.7);
-        } else if(i<14000){
-          if(i<11900){p=[rand(-17,17),-1.6+rand(-.3,.3),rand(-30,41)];c=[.18,.31,.35];b=.8;}
-          else {p=ellipsoid([0,1.2,-25],[11.2,2,7.1]);c=moon;b=.25;}
-        } else if(i<22500){
-          const step=Math.floor(rand(-7,8))*9;
-          p=random()<.5?[step,-16,rand(-53,57)]:[rand(-62,62),-16,step*.8];
-          p[0]+=rand(-.18,.18);p[2]+=rand(-.18,.18);c=[.15,.27,.31];b=rand(.16,.4);
-        } else if(i<30500){
-          const edge=roomEdges[Math.floor(random()*roomEdges.length)];p=line(edge[0],edge[1],.085);c=teal;b=rand(.4,1.15);
-        } else if(i<33300){
-          const t=random();p=[rand(-43,-12)+t*27,lerp(46,-15,t),lerp(-51,32,t)+rand(-2,2)];c=[.36,.53,.63];b=.1+random()*.18;
-        } else if(i<34600){
-          const angle=rand(0,TAU),r=rand(2,7);
-          p=[37+Math.cos(angle)*r,18+(7-r)*.8,-18+Math.sin(angle)*r];c=warm;b=.55;
-        } else {p=[rand(-63,63),rand(-14,59),rand(-51,57)];c=moon;b=.07+random()*.16;}
-        put(result[0],i,p,c,b);
-        // ATMOSPHERE: a gently curved city grid, cyclonic clouds, and the blue limb.
-        if(i<24000){
-          let x,z;
-          if(i<18000){const grid=Math.floor(rand(-15,16))*7.5;x=random()<.5?grid+rand(-.6,.6):rand(-113,113);z=Math.abs(x-grid)<1?rand(-105,105):grid+rand(-.6,.6);}
-          else {const a=rand(0,TAU),r=rand(4,40),cx=[-55,12,65][i%3],cz=[-22,42,-29][i%3];x=cx+Math.cos(a)*r;z=cz+Math.sin(a)*r*.7;}
-          p=[x,-27-(x*x+z*z)*.0032,z];c=i%4===0?[1,.62,.23]:[.7,.32,.08];b=rand(.18,.65);
-        } else if(i<33700){
-          const a=rand(0,Math.PI*5),r=5*Math.exp(.18*a),arm=i%2*Math.PI;
-          p=[Math.cos(a+arm)*r,12+Math.sin(a*.7)*8+rand(-2.5,2.5),Math.sin(a+arm)*r];c=[.33,.53,.72];b=rand(.15,.43);
-        } else {
-          const a=rand(0,TAU),r=rand(105,110);p=[Math.cos(a)*r,-2+rand(-2,3),Math.sin(a)*r];c=i%3===0?[.48,.3,.74]:[.12,.5,.9];b=rand(.3,.8);
-        }
-        put(result[1],i,p,c,b);
-        // EARTH: spherical sampling plus procedural continent polygons, clouds, and atmosphere.
-        const normal=sphere(),lat=Math.asin(normal[1])*180/Math.PI,lon=Math.atan2(normal[0],normal[2])*180/Math.PI;
-        const land=isLand(lon,lat);
-        const cloudBand=Math.sin(lon*.09+Math.sin(lat*.12)*3)+Math.cos(lat*.17-lon*.045);
-        let radius=60;
-        const day=clamp(normal[0]*-.35+normal[1]*.45+normal[2]*.82,.18,1);
-        if(i>34500){radius=rand(62,63.6);c=[.22,.53,.94];b=.33;}
-        else if(i%5===0&&cloudBand>.05){radius=61.1;c=[.83,.9,.92];b=rand(.45,.8);}
-        else if(Math.abs(lat)>72){c=[.56,.8,.84];b=.68;}
-        else if(land){c=[.25,.68,.47];b=rand(.4,.9);}
-        else {c=[.08,.32,.7];b=rand(.26,.7);}
-        put(result[2],i,normal.map(v=>v*radius),c,b*day);
-        // SOLAR SYSTEM: one sun, eight distinct orbits and eight planetary point clusters.
-        if(i<7200){
-          p=sphere(Math.cbrt(random())*8.3);c=[1,.58+random()*.25,.17];b=rand(.5,1.2);if(i<950)seeds[i*4]=Math.max(seeds[i*4],2.6);
-        } else if(i<26800){
-          const planet=(i-7200)%8,a=rand(0,TAU),r=planetRadius[planet]+rand(-.08,.08);
-          solarMotion[i]=planetRadius[planet];
-          p=[Math.cos(a)*r,rand(-.12,.12),Math.sin(a)*r*.89];c=[.3,.55,.65];b=rand(.21,.42);
-        } else if(i<33200){
-          const planet=(i-26800)%8,a=planetPhase[planet],r=planetRadius[planet],q=sphere(planetSize[planet]);
-          solarMotion[i]=r;
-          p=[Math.cos(a)*r+q[0],q[1],Math.sin(a)*r*.89+q[2]];c=planetColor[planet];b=rand(.5,1);
-        } else if(i<34500){
-          const a=rand(0,TAU),r=rand(4.4,6.2),phase=planetPhase[5],orbit=planetRadius[5];
-          solarMotion[i]=orbit;
-          p=[Math.cos(phase)*orbit+Math.cos(a)*r,rand(-.15,.15),Math.sin(phase)*orbit*.89+Math.sin(a)*r*.55];c=[.73,.64,.44];b=.44;
-        } else {solarMotion[i]=51;const a=rand(0,TAU),r=rand(48,54);p=[Math.cos(a)*r,rand(-1,1),Math.sin(a)*r*.89];c=[.31,.35,.38];b=rand(.18,.45);}
-        put(result[3],i,p,c,b);
-        // GALAXY: two logarithmic arms, a central bulge, and a sparse galactic halo.
-        if(i<8200){
-          const r=Math.pow(random(),1.7)*22;
-          p=ellipsoid([0,0,0],[r,r*.3,r]);c=[.94,.65,.51];b=rand(.35,1);
-        } else if(i<34600){
-          const theta=rand(0,7.6),r=9*Math.exp(.328*theta),a=theta+(i%2)*Math.PI;
-          const scatter=rand(-1,1)*(4+r*.15);
-          p=[Math.cos(a)*r+Math.sin(a)*scatter,rand(-3,3)*(1-r/155),Math.sin(a)*r-Math.cos(a)*scatter];
-          c=random()<.08?[.87,.34,.62]:[.28+r*.0018,.38+r*.0023,.86];b=rand(.36,.95);
-        } else {p=ellipsoid([0,0,0],[rand(20,108),rand(3,14),rand(20,108)]);c=[.3,.4,.62];b=rand(.1,.3);}
-        put(result[4],i,p,c,b);
-        // COSMIC WEB: nearest-neighbour gravitational nodes connected by curved filaments.
-        if(i<29800){
-          const pair=edges[Math.floor(random()*edges.length)],t=random(),curve=Math.sin(t*Math.PI);
-          p=pair[0].map((v,j)=>lerp(v,pair[1][j],t)+Math.sin(t*TAU+j*2)*curve*2.7+rand(-1.3,1.3)*(1+curve));
-          c=i%3===0?[.48,.32,.65]:[.19,.56,.64];b=rand(.28,.76);
-        } else {
-          const node=nodes[Math.floor(random()*nodes.length)],r=Math.pow(random(),1.7)*7;
-          p=ellipsoid(node,[r,r*.8,r]);c=[.71,.64,.85];b=rand(.35,.95);
-        }
-        put(result[5],i,p.map(v=>v*.8),c,b);
-        // The same particles condense into the original anatomical heart, then unfold into the room.
-        const core=ellipsoid([-1.6,5.6,-7],[1.3,1.5,1.3],true);
-        put(result[6],i,core,[.95,.32,.12],i<950?.55:.011);
-      }
-      for(const shape of result){
-        shape.positionAttribute=new THREE.BufferAttribute(shape.position,3);
-        shape.colorAttribute=new THREE.BufferAttribute(shape.color,3);
-      }
-      return result;
+    const geo=g=>(resources.geometries.add(g),g),mat=m=>(resources.materials.add(m),m),tex=t=>(resources.textures.add(t),t);
+    const vector=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
+    function ll(lat,lon,r){lat*=Math.PI/180;lon*=Math.PI/180;return vector(Math.cos(lat)*Math.cos(lon)*r,Math.sin(lat)*r,-Math.cos(lat)*Math.sin(lon)*r);}
+    function register(id,parent,center,radius,kind,metadata={},quaternion=new THREE.Quaternion()){
+      const p=parent?world.get(parent):null;
+      const localCenter=center.clone(),localRotation=quaternion.clone();
+      if(p){localCenter.sub(p.center).applyQuaternion(p.quaternion.clone().invert());localRotation.premultiply(p.quaternion.clone().invert());}
+      const body={id,parent,center:center.clone(),radius,kind,quaternion:quaternion.clone(),localCenter,localRotation,metadata:Object.freeze({...metadata})};
+      world.set(id,body);return body;
     }
-
-    function makeSprite() {
+    function attach(mesh,body,options={}){
+      mesh.quaternion.copy(body.quaternion);mesh.frustumCulled=false;
+      scene.add(mesh);
+      const entry={mesh,body,radius:options.radius||body.radius,type:options.type||'solid',opacity:options.opacity??1,priority:options.priority??1,minPixels:options.minPixels??.45,screenRadius:0,candidate:false,...options};
+      renderables.push(entry);return entry;
+    }
+    function buildSprite(){
       const canvas=document.createElement('canvas');canvas.width=64;canvas.height=64;
-      const ctx=canvas.getContext('2d');
-      const glow=ctx.createRadialGradient(32,32,0,32,32,32);
-      glow.addColorStop(0,'rgba(255,255,255,1)');glow.addColorStop(.1,'rgba(255,255,255,.92)');
-      glow.addColorStop(.24,'rgba(255,255,255,.43)');glow.addColorStop(.5,'rgba(255,255,255,.1)');glow.addColorStop(1,'rgba(255,255,255,0)');
-      ctx.fillStyle=glow;ctx.fillRect(0,0,64,64);
-      const texture=new THREE.CanvasTexture(canvas);texture.generateMipmaps=false;texture.minFilter=THREE.LinearFilter;return texture;
+      const c=canvas.getContext('2d'),g=c.createRadialGradient(32,32,0,32,32,32);
+      g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.15,'rgba(255,255,255,.9)');g.addColorStop(.37,'rgba(255,255,255,.28)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,0,64,64);
+      const t=tex(new THREE.CanvasTexture(canvas));t.generateMipmaps=false;t.minFilter=THREE.LinearFilter;return t;
     }
-
-    // Bind two precomputed buffers only at a keyframe boundary; interpolation stays on the GPU.
-    function morphAt(p) {
-      if(p<.65)return [0,0,0];
-      if(p<1.5)return [0,1,smooth((p-.65)/.85)];
-      if(p<1.72)return [1,1,0];
-      if(p<2.22)return [1,2,smooth((p-1.72)/.5)];
-      if(p<2.72)return [2,2,0];
-      if(p<3.12)return [2,3,smooth((p-2.72)/.4)];
-      if(p<3.5)return [3,3,0];
-      if(p<4.12)return [3,4,smooth((p-3.5)/.62)];
-      if(p<4.65)return [4,4,0];
-      if(p<5.1)return [4,5,smooth((p-4.65)/.45)];
-      if(p<5.45)return [5,5,0];
-      if(p<5.8)return [5,6,smooth((p-5.45)/.35)];
-      return [6,0,smooth((p-5.8)/.2)];
+    function cloud(body,count,generate,options={}){
+      const p=new Float32Array(count*3),c=new Float32Array(count*3),sizes=new Float32Array(count);
+      for(let i=0;i<count;i++){const point=generate(i);for(let j=0;j<3;j++){p[i*3+j]=point.p[j];c[i*3+j]=point.c[j]*(point.b??1);}sizes[i]=point.size??rand(.7,1.7);}
+      const g=geo(new THREE.BufferGeometry());g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('color',new THREE.BufferAttribute(c,3));g.setAttribute('aSize',new THREE.BufferAttribute(sizes,1));
+      g.computeBoundingSphere();
+      const m=mat(new THREE.ShaderMaterial({
+        uniforms:{uMaxPoint:{value:options.largeGlow?72:4.5},uSize:{value:options.pointSize??1},uHeight:{value:innerHeight},uDPR:{value:1},uOpacity:{value:1},uWarp:{value:0},uTime:{value:0},uPulse:{value:options.pulse?1:0},uSprite:{value:sprite}},
+        vertexShader:$('stars-vs').textContent,fragmentShader:$('stars-fs').textContent,
+        transparent:true,depthWrite:false,depthTest:true,blending:THREE.AdditiveBlending
+      }));
+      const entry=attach(new THREE.Points(g,m),body,{type:'points',count,pointSize:options.pointSize??1,warpable:!!options.warpable,minPixels:1,...options});
+      particleClouds.push(entry);return entry;
     }
-    function updateMorph() {
-      const [from,to,mix]=morphAt(state.p),key=from+':'+to;
-      if(key!==segmentKey){
-        geometry.setAttribute('aFrom',shapes[from].positionAttribute);
-        geometry.setAttribute('aTo',shapes[to].positionAttribute);
-        geometry.setAttribute('cFrom',shapes[from].colorAttribute);
-        geometry.setAttribute('cTo',shapes[to].colorAttribute);
-        material.uniforms.uFrom.value=from;material.uniforms.uTo.value=to;segmentKey=key;
+    function surface(body,color,kind=2,options={}){
+      const g=geo(new THREE.SphereGeometry(body.radius,options.segments||56,options.rings||36));
+      const m=mat(new THREE.ShaderMaterial({
+        uniforms:{uColor:{value:new THREE.Color(color)},uLight:{value:vector(.25,.5,1).normalize()},uKind:{value:kind},uOpacity:{value:options.opacity??1},uMap:{value:earthMap}},
+        vertexShader:$('surface-vs').textContent,fragmentShader:$('surface-fs').textContent,
+        transparent:options.transparent||false,depthWrite:options.depthWrite??true,side:options.side||THREE.FrontSide
+      }));
+      return attach(new THREE.Mesh(g,m),body,{type:kind===5?'cmb':'solid',...options});
+    }
+    function ribbons(body,paths,options={}){
+      const p=[],end=[],side=[],t=[],colors=[];
+      for(const path of paths){
+        for(let i=0;i<path.points.length-1;i++){
+          const a=path.points[i],b=path.points[i+1],color=path.color||[.4,.65,.75];
+          for(const [at,s] of [[0,-1],[1,-1],[0,1],[0,1],[1,-1],[1,1]]){
+            p.push(...a);end.push(...b);t.push(at);side.push(s);colors.push(...color);
+          }
+        }
       }
-      material.uniforms.uMix.value=mix;
+      const g=geo(new THREE.BufferGeometry());
+      g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));g.setAttribute('aEnd',new THREE.Float32BufferAttribute(end,3));
+      g.setAttribute('aSide',new THREE.Float32BufferAttribute(side,1));g.setAttribute('aT',new THREE.Float32BufferAttribute(t,1));g.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
+      const m=mat(new THREE.ShaderMaterial({uniforms:{uViewport:{value:new THREE.Vector2(innerWidth,innerHeight)},uDPR:{value:1},uWidth:{value:options.width||1.05},uOpacity:{value:options.opacity??.4}},vertexShader:$('orbit-vs').textContent,fragmentShader:$('orbit-fs').textContent,transparent:true,depthWrite:false,depthTest:true,side:THREE.DoubleSide}));
+      const mesh=new THREE.Mesh(g,m);mesh.renderOrder=3;return attach(mesh,body,{type:'line',minPixels:2,...options});
+    }
+    function ellipse(radius,ecc=.96,tilt=0,steps=240){
+      return Array.from({length:steps+1},(_,i)=>{const a=i/steps*TAU;return [Math.cos(a)*radius,Math.sin(a)*radius*ecc*Math.sin(tilt),Math.sin(a)*radius*ecc*Math.cos(tilt)];});
     }
 
-    function initScene() {
-      try {renderer=new THREE.WebGLRenderer({canvas:ui.canvas,antialias:false,alpha:false,powerPreference:'high-performance'});}
-      catch(error){throw new Error('瀏覽器目前無法啟用 WebGL。請開啟硬體加速，或使用支援 WebGL 的 Chrome、Edge、Safari 或 Firefox。');}
-      renderer.setClearColor(0x05080d,1);
-      renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
-      renderer.setSize(innerWidth,innerHeight);
-      scene=new THREE.Scene();
-      camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,1,900);
-      camera.position.set(130,98,192);
-      controls=new THREE.OrbitControls(camera,ui.canvas);
-      controls.enableDamping=true;controls.dampingFactor=.06;controls.enableZoom=false;controls.enablePan=true;
-      controls.panSpeed=.3;controls.rotateSpeed=.42;controls.screenSpacePanning=true;
-      controls.minPolarAngle=.025;controls.maxPolarAngle=Math.PI-.025;
-      controls.autoRotateSpeed=.573;controls.target.set(0,1,0);controls.enabled=false;
-      controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_PAN;
-      shapes=makeShapes();sprite=makeSprite();geometry=new THREE.BufferGeometry();
-      geometry.setAttribute('position',shapes[0].positionAttribute);
-      geometry.setAttribute('aSeed',new THREE.BufferAttribute(seeds,4));
-      geometry.setAttribute('aOrbit',new THREE.BufferAttribute(solarMotion,1));
-      geometry.setDrawRange(0,COUNT);
-      material=new THREE.ShaderMaterial({
-        uniforms:{uMix:{value:0},uTime:{value:0},uFrom:{value:0},uTo:{value:0},uWarp:{value:0},uPixelRatio:{value:renderer.getPixelRatio()},uIntro:{value:1},uReduced:{value:reducedMotion?1:0},uSprite:{value:sprite}},
-        vertexShader:$('particle-vertex').textContent,fragmentShader:$('particle-fragment').textContent,
-        transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending
+    const continents=[
+      [[-168,70],[-140,72],[-123,60],[-110,54],[-82,55],[-58,47],[-76,27],[-96,15],[-108,24],[-118,31],[-128,49],[-158,57]],
+      [[-81,12],[-67,10],[-48,-1],[-35,-8],[-40,-22],[-54,-37],[-69,-55],[-75,-39],[-80,-9]],
+      [[-18,34],[1,37],[15,33],[33,31],[44,12],[51,10],[42,-12],[31,-34],[17,-35],[10,-20],[0,4],[-16,13]],
+      [[-10,36],[-10,44],[4,49],[7,57],[25,71],[56,68],[80,74],[114,72],[149,60],[178,64],[160,48],[144,50],[140,43],[131,43],[130,39],[125,40],[121,39],[122,36],[120,34],[122,31],[121,29],[119,26],[118,24],[114,22],[109,21],[107,17],[109,12],[106,9],[104,1],[99,4],[99,6],[92,19],[88,22],[80,20],[79,10],[76,8],[73,17],[65,25],[44,29],[36,40],[23,37]],
+      [[112,-12],[132,-11],[144,-17],[154,-28],[142,-39],[119,-34],[112,-22]],
+      [[-54,59],[-43,59],[-22,77],[-42,83],[-62,76]],[[46,-13],[50,-16],[48,-26],[44,-23]],
+      [[129,31],[140,44],[145,43],[137,33]],
+      [[-180,-76],[-120,-70],[-50,-76],[0,-70],[70,-73],[130,-69],[180,-76],[180,-90],[-180,-90]]
+    ];
+    const taiwanOutline=[[121.56,25.3],[121.89,25.1],[121.98,24.87],[121.82,24.6],[121.75,24.24],[121.64,23.86],[121.52,23.44],[121.39,23.1],[121.17,22.75],[120.98,22.52],[120.85,22.13],[120.84,21.91],[120.72,21.92],[120.65,22.28],[120.33,22.55],[120.15,22.96],[120.1,23.45],[120.24,23.79],[120.54,24.2],[120.78,24.6],[121.05,25],[121.4,25.19],[121.56,25.3]];
+    function buildEarthMap(){
+      const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=512;
+      const ctx=canvas.getContext('2d');
+      const ocean=ctx.createLinearGradient(0,0,0,512);ocean.addColorStop(0,'#395c77');ocean.addColorStop(.25,'#0c4172');ocean.addColorStop(.55,'#092c5a');ocean.addColorStop(1,'#51758b');ctx.fillStyle=ocean;ctx.fillRect(0,0,1024,512);
+      const xy=(lon,lat)=>[(180+lon)/360*1024,(90-lat)/180*512];
+      for(const polygon of continents){
+        ctx.beginPath();polygon.forEach(([lon,lat],i)=>{const p=xy(lon,lat);i?ctx.lineTo(...p):ctx.moveTo(...p);});ctx.closePath();ctx.fillStyle='#497960';ctx.fill();ctx.strokeStyle='#86ac80';ctx.lineWidth=1;ctx.stroke();
+      }
+      ctx.beginPath();taiwanOutline.forEach(([lon,lat],i)=>{const p=xy(lon,lat);i?ctx.lineTo(...p):ctx.moveTo(...p);});ctx.fillStyle='#79b394';ctx.fill();
+      // Soft, broken procedural cloud systems; this is an illustration, not satellite imagery.
+      for(let i=0;i<82;i++){
+        const x=rand(-40,1064),y=rand(25,487),span=rand(10,65),bend=rand(-15,15);
+        for(let j=0;j<9;j++){
+          const t=j/8,cx=x+t*span,cy=y+Math.sin(t*Math.PI)*bend,r=rand(2,8);
+          const gradient=ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+          gradient.addColorStop(0,'rgba(232,241,243,'+rand(.10,.38)+')');gradient.addColorStop(1,'rgba(232,241,243,0)');
+          ctx.fillStyle=gradient;ctx.fillRect(cx-r,cy-r,r*2,r*2);
+        }
+      }
+      ctx.fillStyle='#aecdd1';ctx.fillRect(0,0,1024,12);ctx.fillRect(0,499,1024,13);
+      const t=tex(new THREE.CanvasTexture(canvas));t.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());return t;
+    }
+    function buildCMBMap(){
+      const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;
+      const ctx=canvas.getContext('2d'),pixels=ctx.createImageData(512,256);
+      function field(x,y,f){
+        const px=x*f,py=y*f,ix=Math.floor(px),iy=Math.floor(py),fx=smooth(px-ix),fy=smooth(py-iy);
+        const hash=(a,b)=>{a=(a%f+f)%f;const k=Math.sin(a*127.1+b*311.7+18.4)*43758.5453;return k-Math.floor(k);};
+        return lerp(lerp(hash(ix,iy),hash(ix+1,iy),fx),lerp(hash(ix,iy+1),hash(ix+1,iy+1),fx),fy);
+      }
+      for(let y=0;y<256;y++)for(let x=0;x<512;x++){
+        const n=field(x/512,y/256,9)*.48+field(x/512,y/256,23)*.32+field(x/512,y/256,51)*.2;
+        const t=smooth((n-.22)/.57),k=(y*512+x)*4;
+        pixels.data[k]=lerp(8,119,t);pixels.data[k+1]=lerp(2,62,Math.pow(t,1.55));pixels.data[k+2]=lerp(6,22,t);pixels.data[k+3]=255;
+      }
+      ctx.putImageData(pixels,0,0);return tex(new THREE.CanvasTexture(canvas));
+    }
+
+    function buildWorld(){
+      const origin=vector(),earthTilt=new THREE.Quaternion().setFromAxisAngle(vector(0,0,1),23.5*Math.PI/180);
+      const earthSpin=new THREE.Quaternion().setFromAxisAngle(vector(0,1,0),-121*Math.PI/180);
+      const earthOrientation=earthTilt.clone().multiply(earthSpin);
+      const taiwanNormal=ll(23.7,121,1).applyQuaternion(earthOrientation);
+      const align=new THREE.Quaternion().setFromUnitVectors(taiwanNormal,vector(0,0,1));
+      const north=ll(23.701,121,1).sub(ll(23.7,121,1)).normalize().applyQuaternion(earthOrientation).applyQuaternion(align);
+      const roll=new THREE.Quaternion().setFromAxisAngle(vector(0,0,1),Math.atan2(north.x,north.y));
+      solarQ=roll.multiply(align);earthQ=solarQ.clone().multiply(earthOrientation);
+      galaxyQ=new THREE.Quaternion().setFromEuler(new THREE.Euler(.86,.15,-.18));
+      earthCenter=vector(0,0,-80.09);homeCenter=origin.clone();
+      const earthOrbit=vector(Math.cos(.7)*960,0,Math.sin(.7)*960*.96);
+      sunCenter=earthCenter.clone().sub(earthOrbit.clone().applyQuaternion(solarQ));
+      const orionRadius=76000,orionAngle=Math.log(orionRadius/7800)/.55+.20;
+      const orion=vector(Math.cos(orionAngle)*orionRadius,240,Math.sin(orionAngle)*orionRadius);
+      milkyCenter=sunCenter.clone().sub(orion.clone().applyQuaternion(galaxyQ));
+      groupCenter=milkyCenter.clone().add(vector(180000,26000,-40000));
+      laniakeaCenter=vector(650000,-180000,-360000);
+      register('universe',null,origin,5000000,'cosmic-web',{compression:'Fixed at initialization; display units are not metres or light-years.'});
+      register('laniakea','universe',laniakeaCenter,1450000,'supercluster',{schematic:true});
+      register('local-group','laniakea',groupCenter,750000,'galaxy-group',{schematic:true});
+      const mw=register('milky-way','local-group',milkyCenter,130000,'galaxy',{astronomicalDiameter:'approximately 100000 light-years',source:'https://imagine.gsfc.nasa.gov/features/cosmic/milkyway_info.html'},galaxyQ);
+      const sun=register('sun','milky-way',sunCenter,245,'star',{galacticLocation:'Orion Spur',source:'https://science.nasa.gov/resource/the-milky-way-galaxy/'},solarQ);
+      const earth=register('earth','sun',earthCenter,80,'planet',{orbitIndex:3,orbitRadius:960,axisTiltDegrees:23.5,equatorialDiameterKm:12756,source:'https://science.nasa.gov/earth/facts/'},earthQ);
+      const islandCenter=earthCenter.clone().add(ll(23.7,121,80.03).applyQuaternion(earthQ));
+      const taiwan=register('taiwan','earth',islandCenter,5.5,'surface-region',{latitude:23.7,longitude:121,schematic:true},earthQ);
+      const room=register('room','taiwan',homeCenter,1.65*.62,'room',{anchor:'Taiwan surface; the same fixed room throughout every round trip.'});
+      const heart=register('heart','room',vector(-.055,.17,.23).multiplyScalar(.62),.025*.62,'heart',{frequencyHz:1});
+      const atmosphere=register('atmosphere','earth',earthCenter,81.1,'atmosphere',{},earthQ);
+      const moonOffset=vector(Math.cos(2.3)*320,Math.sin(2.3)*320*Math.sin(.28),Math.sin(2.3)*320*Math.cos(.28)).applyQuaternion(solarQ);
+      const moon=register('moon','earth',earthCenter.clone().add(moonOffset),21.8,'moon',{orbitCenter:'earth',orbitRadius:320,meanDistanceKm:384400,source:'https://science.nasa.gov/earth/facts/'},solarQ);
+
+      buildRoom(room,heart);
+      buildTaiwan(taiwan);
+      surface(earth,0x34658b,0,{segments:128,rings:96,priority:10});
+      const atmosphericMaterial=mat(new THREE.ShaderMaterial({
+        vertexShader:$('surface-vs').textContent,
+        fragmentShader:'precision mediump float;varying vec3 vNormal,vView;uniform float uOpacity;void main(){float rim=pow(1.0-max(0.0,dot(normalize(vNormal),normalize(vView))),3.4);gl_FragColor=vec4(.12,.46,.91,rim*.48*uOpacity);}',
+        uniforms:{uOpacity:{value:1}},transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.FrontSide
+      }));
+      attach(new THREE.Mesh(geo(new THREE.SphereGeometry(81.1,96,64)),atmosphericMaterial),atmosphere,{type:'halo',priority:4});
+      surface(moon,0xb6b5ac,3,{priority:9});
+      const moonOrbit=register('moon-orbit','earth',earthCenter,320,'orbit',{centerId:'earth',radius:320,tilt:.28},solarQ);
+      ribbons(moonOrbit,[{points:ellipse(320,1,.28),color:[.55,.72,.83]}],{opacity:.42,priority:9});
+
+      surface(sun,0xffa54c,4,{priority:10});
+      const haloBody=register('sun-glow','sun',sunCenter,600,'local-glow',{},solarQ);
+      cloud(haloBody,1,()=>({p:[0,0,0],c:[1,.45,.1],size:1}),{pointSize:300,opacity:.19,type:'glow',radius:600,priority:4,largeGlow:true});
+      const orbitRadii=[460,680,960,1350,2000,2700,3400,4100];
+      const planetNames=['mercury','venus','earth','mars','jupiter','saturn','uranus','neptune'];
+      const planetSizes=[28,74,80,42,145,122,90,87];
+      const planetColors=[0x938c81,0xc7a978,0x488ac0,0xc4663f,0xbda37e,0xc3b787,0x69bec4,0x3a69cb];
+      const phases=[2.4,4.8,.7,3.5,5.4,1.8,4.2,2.9];
+      const paths=[];
+      for(let i=0;i<8;i++){
+        const tilt=i===2?0:(i-3)*.016;
+        paths.push({points:ellipse(orbitRadii[i],.96,tilt,240),color:i===2?[.38,.75,1]:[.37,.49,.57]});
+        if(i===2)continue;
+        const r=orbitRadii[i],a=phases[i],p=vector(Math.cos(a)*r,Math.sin(a)*r*.96*Math.sin(tilt),Math.sin(a)*r*.96*Math.cos(tilt)).applyQuaternion(solarQ).add(sunCenter);
+        const planet=register(planetNames[i],'sun',p,planetSizes[i],'planet',{orbitIndex:i+1,orbitRadius:r,orbitCenter:'sun'},solarQ);
+        surface(planet,planetColors[i],i>=4?1:2,{priority:8});
+        if(i===5){
+          const ringBody=register('saturn-rings','saturn',p,211,'planetary-rings',{},solarQ);
+          const ringGeo=geo(new THREE.RingGeometry(148,211,96,3));ringGeo.rotateX(Math.PI/2+.3);
+          const ringMat=mat(new THREE.MeshBasicMaterial({color:0xb6a67d,transparent:true,opacity:.48,side:THREE.DoubleSide,depthWrite:false}));
+          attach(new THREE.Mesh(ringGeo,ringMat),ringBody,{opacity:.48});
+        }
+      }
+      for(const radius of [4420,5050])paths.push({points:ellipse(radius,.97,.015,320),color:[.23,.31,.4]});
+      const orbitBody=register('planet-orbits','sun',sunCenter,5080,'orbit-system',{centerId:'sun',planetRadii:orbitRadii.slice(),kuiperRange:[4420,5050]},solarQ);
+      ribbons(orbitBody,paths,{opacity:.40,width:1.05,priority:10});
+      const belt=register('asteroid-belt','sun',sunCenter,1730,'asteroid-belt',{innerRadius:1520,outerRadius:1730},solarQ);
+      cloud(belt,3400,()=>{const a=rand(0,TAU),r=rand(1520,1730);return {p:[Math.cos(a)*r,rand(-22,22),Math.sin(a)*r*.96],c:[.51,.46,.38],b:rand(.2,.5)};},{pointSize:1.2,warpable:true,opacity:.7,priority:2});
+      const kuiper=register('kuiper-belt','sun',sunCenter,5150,'kuiper-belt',{innerRadius:4400,outerRadius:5150},solarQ);
+      cloud(kuiper,5800,()=>{const a=rand(0,TAU),r=rand(4400,5150);return {p:[Math.cos(a)*r,rand(-130,130),Math.sin(a)*r*.97],c:[.34,.55,.67],b:rand(.25,.65)};},{pointSize:5,warpable:true,opacity:.8,priority:2});
+      const oort=register('oort','sun',sunCenter,27000,'thick-spherical-shell',{innerRadius:9200,outerRadius:27000,inferred:true,source:'https://science.nasa.gov/solar-system/oort-cloud/facts/'});
+      cloud(oort,15000,()=>({p:sphere(9200+Math.pow(random(),.65)*17800),c:[.48,.68,.79],b:rand(.25,.72)}),{pointSize:19,warpable:true,opacity:.54,priority:2});
+      const stars=register('stars','sun',sunCenter,180000,'stellar-neighbourhood',{fixedSeed:8024107,names:'Unnamed schematic stars; no invented astrometry.'});
+      cloud(stars,14000,()=>{const p=sphere(rand(28000,180000)),warm=random()<.28;return {p,c:warm?[.92,.67,.42]:[.56,.74,.95],b:rand(.35,.85),size:random()<.04?2:rand(.7,1.5)};},{pointSize:85,warpable:true,opacity:.72,priority:2});
+      buildGalaxy(mw,40000);
+      const andromedaQ=new THREE.Quaternion().setFromEuler(new THREE.Euler(.31,-.16,.51));
+      const andromeda=register('andromeda','local-group',milkyCenter.clone().add(vector(440000,95000,-135000)),155000,'galaxy',{schematicPosition:true,distinctFrom:'milky-way'},andromedaQ);
+      buildGalaxy(andromeda,26000);
+      for(let i=0;i<6;i++){
+        const p=(i<3?milkyCenter:andromeda.center).clone().add(vector(rand(-140000,140000),rand(-75000,75000),rand(-95000,95000)));
+        const dwarf=register('companion-'+i,'local-group',p,rand(10000,23000),'companion-galaxy',{schematic:true});
+        cloud(dwarf,1700,()=>({p:ellipsoid([0,0,0],[dwarf.radius,dwarf.radius*.38,dwarf.radius*.65],true),c:[.73,.71,.65],b:rand(.15,.58)}),{pointSize:90,opacity:.6,priority:2});
+      }
+      buildLaniakea(world.get('laniakea'));
+      buildWeb(world.get('universe'));
+      const cmb=register('cmb','universe',homeCenter,18000000,'observational-horizon',{centerId:'room',procedural:true,isPhysicalWall:false,source:'https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background'});
+      const cmbEntry=surface(cmb,0x57240f,5,{segments:80,rings:48,side:THREE.BackSide,transparent:true,depthWrite:false,priority:1});
+      cmbEntry.mesh.material.uniforms.uMap.value=buildCMBMap();cmbEntry.mesh.renderOrder=-100;
+      buildLabels();
+    }
+
+    function buildRoom(room,heart){
+      const edges=[
+        [[-.9,-1.05,.01],[.9,-1.05,.01]],[[.9,-1.05,.01],[.9,1.05,.01]],[[.9,1.05,.01],[-.9,1.05,.01]],[[-.9,1.05,.01],[-.9,-1.05,.01]],
+        [[-.9,1.05,.01],[-.9,1.05,.8]],[[.9,1.05,.01],[.9,1.05,.8]],[[-.9,1.05,.8],[.9,1.05,.8]],
+        [[.9,1.05,.8],[.9,-1.05,.8]],[[.9,-1.05,.8],[.9,-1.05,.01]],
+        [[-.29,-.65,.065],[.29,-.65,.065]],[[.29,-.65,.065],[.29,.65,.065]],[[.29,.65,.065],[-.29,.65,.065]],[[-.29,.65,.065],[-.29,-.65,.065]],
+        [[-.29,.65,.065],[-.29,.65,.35]],[[.29,.65,.065],[.29,.65,.35]],[[-.29,.65,.35],[.29,.65,.35]],
+        [[.5,.3,.22],[.83,.3,.22]],[[.83,.3,.22],[.83,.66,.22]],[[.83,.66,.22],[.5,.66,.22]],[[.5,.66,.22],[.5,.3,.22]],
+        [[-.7,1.045,.28],[-.18,1.045,.28]],[[-.18,1.045,.28],[-.18,1.045,.7]],[[-.18,1.045,.7],[-.7,1.045,.7]],[[-.7,1.045,.7],[-.7,1.045,.28]]
+      ];
+      const floor=register('room-floor','room',vector(0,0,.012*.62),1.45*.62,'room-floor');
+      attach(new THREE.Mesh(geo(new THREE.PlaneGeometry(1.8*.62,2.1*.62)),mat(new THREE.MeshBasicMaterial({color:0x0a1d23,side:THREE.DoubleSide}))),floor,{priority:8});
+      ribbons(room,edges.map(points=>({points:points.map(p=>p.map(v=>v*.62)),color:[.25,.5,.54]})),{opacity:.72,width:.9,priority:8,radius:1.7*.62});
+      cloud(room,6800,()=>{
+        const part=random();let p,c=[.63,.75,.75],b=.7;
+        if(part<.15){p=ellipsoid([0,.45,.16],[.11,.125,.082]);c=[.97,.77,.48];}
+        else if(part<.4){p=ellipsoid([0,.12,.145],[.17,.265,.07]);c=[.89,.74,.53];}
+        else if(part<.6){const sign=random()<.5?-1:1;p=along([sign*.08,-.08,.135],[sign*.1,-.55,.115]);const a=rand(0,TAU);p[0]+=Math.cos(a)*.044;p[2]+=Math.sin(a)*.032;c=[.75,.71,.57];}
+        else if(part<.7){const sign=random()<.5?-1:1;p=along([sign*.16,.3,.135],[sign*.23,-.08,.12],.019);c=[.86,.76,.58];}
+        else if(part<.8){p=ellipsoid([0,.51,.082],[.24,.145,.033]);b=.38;}
+        else if(part<.9){p=[rand(-.28,.28),rand(-.64,.64),.065];c=[.2,.37,.41];}
+        else{const e=edges[Math.floor(random()*edges.length)];p=along(e[0],e[1],.002);c=[.2,.44,.51];}
+        return {p:p.map(v=>v*.62),c,b};
+      },{pointSize:.006*.62,priority:10,radius:1.7*.62});
+      cloud(heart,150,()=>({p:sphere(Math.cbrt(random())*.025*.62),c:[1,.25,.055],b:rand(.15,.38)}),{pointSize:.008*.62,pulse:true,priority:12});
+    }
+    function buildTaiwan(taiwan){
+      const localOrigin=ll(23.7,121,80.03);
+      const shape=new THREE.Shape();taiwanOutline.forEach(([lon,lat],i)=>i?shape.lineTo(lon,lat):shape.moveTo(lon,lat));
+      const g=geo(new THREE.ShapeGeometry(shape)),p=g.attributes.position;
+      for(let i=0;i<p.count;i++){const v=ll(p.getY(i),p.getX(i),80.035).sub(localOrigin);p.setXYZ(i,v.x,v.y,v.z);}p.needsUpdate=true;g.computeVertexNormals();
+      const m=mat(new THREE.MeshBasicMaterial({color:0x214f43,side:THREE.DoubleSide}));
+      attach(new THREE.Mesh(g,m),taiwan,{priority:9});
+      const coast=taiwanOutline.map(([lon,lat])=>ll(lat,lon,80.07).sub(localOrigin).toArray());
+      ribbons(taiwan,[{points:coast,color:[.41,.8,.75]}],{opacity:.83,width:1.15,priority:9,radius:5.5});
+      cloud(taiwan,2400,()=>{
+        const lat=rand(22.15,25.05),lon=120.3+(lat-22.5)*.30+rand(-.12,.08),v=ll(lat,lon,80.1).sub(localOrigin);
+        return {p:v.toArray(),c:[1,.61,.23],b:rand(.14,.62)};
+      },{pointSize:.012,priority:7});
+    }
+    function buildGalaxy(body,count){
+      const R=body.radius;
+      cloud(body,count,()=>{
+        const f=random();let p,c,b;
+        if(f<.22){const r=R*.14*Math.pow(random(),1.6);p=ellipsoid([0,0,0],[r,r*.58,r]);c=[.94,.73,.51];b=rand(.35,.95);}
+        else if(f<.29){p=ellipsoid([0,0,0],[R*.23,R*.022,R*.055],true);c=[.88,.69,.5];b=rand(.2,.62);}
+        else{
+          const r=R*(.045+.955*Math.pow(random(),.74));
+          const arm=Math.floor(rand(0,4));
+          const disk=f>.86;
+          const angle=disk?rand(0,TAU):Math.log(r/(R*.06))/.55+arm*Math.PI/2+rand(-.22,.22);
+          const y=(random()+random()+random()-1.5)*R*.022*(1-r/R+.25);
+          p=[Math.cos(angle)*r,y,Math.sin(angle)*r];
+          const darkLane=!disk&&Math.sin(angle*4+r/R*11)>.83;
+          c=random()<.1?[.69,.31,.52]:[.36,.53,.88];
+          b=(disk?.30:darkLane?.18:1.25)*rand(.45,1);
+        }
+        return {p,c,b,size:rand(.65,1.65)};
+      },{pointSize:R*.0028,priority:4,opacity:.9});
+    }
+    function buildLaniakea(body){
+      const paths=[],curves=[];
+      function curve(start,control,end,t){const a=(1-t)*(1-t),b=2*t*(1-t),c=t*t;return start.map((v,j)=>v*a+control[j]*b+end[j]*c);}
+      for(let i=0;i<32;i++){
+        const side=i%2?1:-1,row=Math.floor(i/2)/15;
+        const start=[-1150000+row*850000,side*(260000+row*470000),Math.sin(row*TAU+side)*400000];
+        const control=[-70000+row*160000,side*(120000+row*80000),Math.cos(row*4)*180000];
+        const end=[600000+rand(-65000,65000),-65000+rand(-75000,75000),-90000+rand(-60000,60000)];
+        const points=Array.from({length:81},(_,j)=>curve(start,control,end,j/80));curves.push({start,control,end});
+        paths.push({points,color:[.18,.4,.48]});
+        for(const t of [.43,.72]){
+          const tip=vector(...curve(start,control,end,t)),back=vector(...curve(start,control,end,t-.022)),dir=tip.clone().sub(back).normalize(),perp=vector(-dir.y,dir.x,.1).normalize().multiplyScalar(17000);
+          const root=tip.clone().addScaledVector(dir,-35000);
+          paths.push({points:[root.clone().add(perp).toArray(),tip.toArray(),root.clone().sub(perp).toArray()],color:[.35,.61,.65]});
+        }
+      }
+      ribbons(body,paths,{opacity:.26,width:1.0,priority:2});
+      const homeNode=groupCenter.clone().sub(body.center).toArray();
+      cloud(body,27000,()=>{
+        let p;const f=random();
+        if(f<.08)p=ellipsoid(homeNode,[30000,26000,26000],true);
+        else if(f<.21)p=ellipsoid([600000,-65000,-90000],[115000,100000,85000],true);
+        else{const c=curves[Math.floor(random()*curves.length)],t=random();p=curve(c.start,c.control,c.end,t);const width=18000*(1-t)+5000;p=p.map(v=>v+rand(-width,width));}
+        return {p,c:random()<.22?[.72,.52,.65]:[.28,.64,.73],b:rand(.22,.83)};
+      },{pointSize:620,priority:4,opacity:.85});
+    }
+    function buildWeb(body){
+      const nodes=[laniakeaCenter.toArray()],voids=[[1400000,1100000,-600000],[-1600000,-800000,800000],[300000,-1800000,-1700000]];
+      while(nodes.length<76){
+        const p=[rand(-3100000,3100000),rand(-2200000,2200000),rand(-2700000,2700000)];
+        if(voids.every(v=>Math.hypot(p[0]-v[0],p[1]-v[1],p[2]-v[2])>850000))nodes.push(p);
+      }
+      const edges=[],seen=new Set();
+      nodes.forEach((p,i)=>{
+        nodes.map((q,j)=>({j,d:Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2])})).filter(n=>n.j!==i).sort((a,b)=>a.d-b.d).slice(0,3).forEach(({j})=>{
+          const key=Math.min(i,j)+':'+Math.max(i,j);if(!seen.has(key)){seen.add(key);edges.push([p,nodes[j]]);}
+        });
       });
-      updateMorph();cloud=new THREE.Points(geometry,material);cloud.frustumCulled=false;scene.add(cloud);
-      controls.update();renderer.compile(scene,camera);
-      renderer.render(scene,camera);
-      const programs=renderer.info.programs||[];
-      if(programs.some(program=>program.diagnostics&&!program.diagnostics.runnable))throw new Error('顯示卡無法編譯粒子效果。請更新瀏覽器或顯示卡驅動程式後重試。');
+      cloud(body,40000,()=>{
+        let p,c;
+        if(random()<.24){const node=nodes[Math.floor(random()*nodes.length)],r=Math.pow(random(),1.6)*100000;p=ellipsoid(node,[r,r*.8,r]);c=[.68,.54,.77];}
+        else{const pair=edges[Math.floor(random()*edges.length)],t=random(),spread=Math.sin(t*Math.PI);p=pair[0].map((v,j)=>lerp(v,pair[1][j],t)+Math.sin(t*TAU+j*2)*spread*42000+rand(-22000,22000));c=[.23,.48,.63];}
+        return {p,c,b:rand(.25,.82)};
+      },{pointSize:1900,priority:3,opacity:.83});
+    }
+
+    function buildLabels(){
+      const definitions=[
+        {key:'home',id:'room',text:'ROOM · 起點',home:true},
+        {key:'earth',id:'earth',text:'EARTH · 第三軌道',home:true},
+        {key:'sun',id:'sun',text:'SUN · ORION SPUR',home:true},
+        {key:'milky',id:'milky-way',text:'MILKY WAY · 我們的銀河',home:true},
+        {key:'group',id:'local-group',text:'LOCAL GROUP · 家園所在',home:true},
+        {key:'laniakea',id:'laniakea',text:'LANIAKEA · 本地結構',home:true},
+        {key:'moon-label',id:'moon',text:'MOON',range:[360,2400]},
+        {key:'sun-label',id:'sun',text:'SUN',range:[1600,15000]},
+        {key:'andromeda-label',id:'andromeda',text:'ANDROMEDA · 仙女座',range:[350000,2500000]},
+        ...['mercury','venus','mars','jupiter','saturn','uranus','neptune'].map(id=>({key:id+'-label',id,text:id.toUpperCase(),range:[3500,19000]}))
+      ];
+      for(const info of definitions){
+        const element=document.createElement('div');element.className='world-label'+(info.home?'':' secondary');
+        const span=document.createElement('span');span.textContent=info.text;element.appendChild(span);
+        $('world-labels').appendChild(element);labels.push({...info,element,span});
+      }
+    }
+    function navigationAnchor(distance,out){
+      const keys=[
+        [5,homeCenter],[35,homeCenter],[250,earthCenter],[1050,earthCenter],[9000,sunCenter],
+        [105000,sunCenter],[440000,milkyCenter],[1350000,groupCenter],[3600000,laniakeaCenter],[10000000,homeCenter]
+      ];
+      const log=Math.log(distance);
+      for(let i=0;i<keys.length-1;i++){
+        if(distance<=keys[i+1][0]){
+          const t=smooth((log-Math.log(keys[i][0]))/(Math.log(keys[i+1][0])-Math.log(keys[i][0])));
+          return out.copy(keys[i][1]).lerp(keys[i+1][1],t);
+        }
+      }
+      return out.copy(homeCenter);
+    }
+    function updateCamera(){
+      // OrbitControls only drives this unit-radius proxy. It never writes the rendering camera.
+      controls.update();
+      controls.target.clampLength(0,.12);
+      direction.copy(orbitCamera.position).sub(controls.target).normalize();
+      navigationAnchor(state.distance,anchor);
+      anchor.addScaledVector(controls.target,state.distance);
+      anchor.x-=1.1*introAmount;
+      logicalCamera.copy(anchor).addScaledVector(direction,state.distance);
+      // All logical coordinates remain unchanged. Subtraction happens in JS double precision.
+      renderOrigin.copy(logicalCamera);
+      camera.position.set(0,0,0);
+      camera.up.copy(orbitCamera.up);
+      tempVector.copy(direction).multiplyScalar(-1);
+      camera.lookAt(tempVector);
+      camera.near=Math.max(.002,state.distance*.0003);
+      camera.far=Math.min(45000000,Math.max(1000,state.distance*14));
+      camera.updateProjectionMatrix();camera.updateMatrixWorld(true);
+      projectionView.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);
+      frustum.setFromProjectionMatrix(projectionView);
+      lightDirection.copy(sunCenter).sub(earthCenter).normalize().transformDirection(camera.matrixWorldInverse);
+    }
+    const preferredDistances={
+      'room':5,'heart':5,'taiwan':18,'asteroid-belt':7500,'kuiper-belt':10000,'oort':35000,'stars':110000,
+      'milky-way':350000,'andromeda':1150000,'laniakea':3400000,'universe':10000000
+    };
+    function updateRendering(){
+      const focal=innerHeight/(2*Math.tan(camera.fov*Math.PI/360));
+      const active=[];let demand=0;
+      for(const entry of renderables){
+        const {mesh,body}=entry;
+        mesh.position.copy(body.center).sub(renderOrigin);
+        mesh.updateMatrixWorld(true);
+        const distance=body.center.distanceTo(logicalCamera);
+        entry.distance=distance;entry.screenRadius=entry.radius*focal/Math.max(camera.near,distance);
+        boundSphere.center.copy(mesh.position);boundSphere.radius=entry.radius;
+        entry.candidate=entry.screenRadius>=entry.minPixels&&frustum.intersectsSphere(boundSphere);
+        let opacity=entry.opacity*smooth((entry.screenRadius-entry.minPixels)/Math.max(1,entry.minPixels*2));
+        if(entry.type==='cmb'){
+          opacity=smooth((state.logDistance-Math.log(2700000))/(LOG_MAX-Math.log(2700000)))*.62;
+          entry.candidate=opacity>.001;
+        }
+        if(entry.type==='halo'||entry.type==='glow')opacity*=state.glowQuality;
+        if(entry.type==='line'){
+          opacity*=smooth((entry.screenRadius-2)/10);
+          if(body.kind==='supercluster')opacity*=1-smooth((entry.screenRadius-innerHeight*.6)/(innerHeight*.9));
+        }
+        if(mesh.material.uniforms){
+          const u=mesh.material.uniforms;
+          if(u.uOpacity)u.uOpacity.value=opacity;
+          if(u.uTime)u.uTime.value=state.elapsed;
+          if(u.uWarp)u.uWarp.value=entry.warpable?state.warpIntensity:0;
+          if(u.uLight)u.uLight.value.copy(lightDirection);
+          if(u.uDPR)u.uDPR.value=state.dpr;
+          if(u.uHeight)u.uHeight.value=focal*state.dpr;
+          if(u.uViewport)u.uViewport.value.set(innerWidth*state.dpr,innerHeight*state.dpr);
+        }
+        mesh.visible=entry.candidate&&opacity>.001;
+        if(entry.count){
+          entry.desired=0;entry.allocation=0;
+          if(!mesh.visible)continue;
+          const inside=distance<entry.radius*.95;
+          const coverage=inside?.14:Math.min(1,Math.pow(entry.screenRadius/155,1.35));
+          entry.desired=Math.max(1,Math.floor(entry.count*coverage*state.quality));
+          if(entry.count<200)entry.desired=entry.count;
+          const preferred=preferredDistances[body.id]||1150000;
+          const activity=.18+Math.exp(-Math.pow((state.logDistance-Math.log(preferred))/1.5,2));
+          entry.weight=entry.desired*entry.priority*activity;
+          demand+=entry.desired;active.push(entry);
+        }
+      }
+      // Only immutable prefixes of each object's own geometry are submitted; particles never change owners.
+      if(demand<=PARTICLE_BUDGET){for(const entry of active)entry.allocation=entry.desired;}
+      else{
+        let left=PARTICLE_BUDGET,pending=active.slice();
+        for(let pass=0;pass<active.length&&pending.length&&left>0;pass++){
+          const weight=pending.reduce((sum,entry)=>sum+entry.weight,0),next=[];
+          let used=0;
+          for(const entry of pending){
+            const share=Math.max(1,Math.floor(left*entry.weight/weight));
+            const n=Math.min(entry.desired-entry.allocation,share);
+            entry.allocation+=n;used+=n;
+            if(entry.allocation<entry.desired)next.push(entry);
+          }
+          left-=used;pending=next;
+        }
+      }
+      state.visibleParticles=0;
+      let remaining=PARTICLE_BUDGET;
+      for(const entry of active){
+        const count=Math.min(remaining,entry.allocation);
+        entry.mesh.geometry.setDrawRange(0,count);entry.mesh.visible=count>0;remaining-=count;state.visibleParticles+=count;
+      }
+    }
+    function updateLabels(){
+      if(!state.started){for(const label of labels)label.element.style.opacity='0';return;}
+      const d=state.distance;
+      const homeKeys=['home','earth','sun','milky','group','laniakea'];
+      const handoffs=[520,50000,750000,1800000,6000000];
+      for(const label of labels){
+        let opacity=0;
+        if(label.home){
+          const index=homeKeys.indexOf(label.key);
+          const fadeIn=index===0?1:smooth((state.logDistance-Math.log(handoffs[index-1])+.09)/.18);
+          const fadeOut=index===homeKeys.length-1?1:1-smooth((state.logDistance-Math.log(handoffs[index])+.09)/.18);
+          opacity=.83*fadeIn*fadeOut;
+        }
+        else if(label.range){
+          const log=state.logDistance,min=Math.log(label.range[0]),max=Math.log(label.range[1]);
+          opacity=smooth((log-min)/.25)*smooth((max-log)/.25)*.72;
+        }
+        if(label.key==='home'){
+          label.span.textContent=d<10?'ROOM · 起點':'TAIWAN · 起點';
+          if(d>40&&vector(0,0,1).dot(tempVector.copy(logicalCamera).sub(earthCenter))<0)opacity=0;
+        }
+        if(opacity<=.001){label.element.style.opacity='0';continue;}
+        const body=world.get(label.id);
+        tempVector.copy(body.center).sub(renderOrigin);
+        const cameraSpace=tempVector.clone().applyMatrix4(camera.matrixWorldInverse);
+        tempVector.project(camera);
+        if(cameraSpace.z>=0||Math.abs(tempVector.x)>.92||Math.abs(tempVector.y)>.82||tempVector.z>1){label.element.style.opacity='0';continue;}
+        const x=(tempVector.x*.5+.5)*innerWidth,y=(-tempVector.y*.5+.5)*innerHeight;
+        label.element.style.transform='translate3d('+x.toFixed(2)+'px,'+y.toFixed(2)+'px,0)';
+        label.element.style.opacity=String(opacity);
+      }
+    }
+
+    function flightLog(time){
+      for(let i=0;i<flightKeys.length-1;i++){
+        const a=flightKeys[i],b=flightKeys[i+1];
+        if(time<=b.time)return lerp(a.log,b.log,smooth((time-a.time)/(b.time-a.time)));
+      }
+      return LOG_MIN;
+    }
+    function stopWarp(){state.warp=null;state.warpIntensity=0;$('warp-label').classList.remove('visible');}
+    function triggerWarp(gate){
+      gate.armed=false;
+      if(reducedMotion)return;
+      state.warpCount++;
+      state.warp={elapsed:0,duration:1.5};
+      $('warp-label').textContent=gate.text;$('warp-label').classList.add('visible');audio?.warp();
+    }
+    function advance(dt){
+      const previous=state.logDistance;
+      if(state.auto){
+        const acceleration=state.flightTime<115&&!reducedMotion?1+state.warpIntensity*.85:1;
+        state.flightTime+=dt*acceleration;
+        if(state.flightTime>=170){
+          state.flightTime-=170;state.loops++;audio?.restartTheme();
+        }
+        state.phase=state.flightTime<115?'OUTBOUND':state.flightTime<123?'AT THE HORIZON':state.flightTime<165?'HOMEWARD':'AT HOME';
+        state.returning=state.flightTime>=123&&state.flightTime<165;
+        state.targetLogDistance=flightLog(state.flightTime);
+      }else{
+        state.returning=state.targetLogDistance<state.logDistance-.001;
+        state.phase=state.returning?'HOMEWARD':'EXPLORING';
+      }
+      const alpha=1-Math.pow(.94,dt*60);
+      const boost=reducedMotion?1:1+state.warpIntensity*.65;
+      const step=clamp((state.targetLogDistance-state.logDistance)*alpha*boost,-2.3*dt,2.3*dt);
+      state.logDistance=clamp(state.logDistance+step,LOG_MIN,LOG_MAX);
+      if(Math.abs(state.targetLogDistance-state.logDistance)<1e-7)state.logDistance=state.targetLogDistance;
+      state.distance=clamp(Math.exp(state.logDistance),MIN_DISTANCE,MAX_DISTANCE);
+      if(state.warp){
+        state.warp.elapsed=Math.min(1.5,state.warp.elapsed+dt);
+        state.warpIntensity=Math.sin(Math.PI*state.warp.elapsed/1.5)**1.35;
+        if(state.warp.elapsed>1.5-.000001)stopWarp();
+      }
+      for(const gate of warpGates){
+        if(state.distance<gate.distance*.73)gate.armed=true;
+        if(gate.armed&&previous<Math.log(gate.distance)&&state.logDistance>=Math.log(gate.distance)&&!state.warp)triggerWarp(gate);
+      }
+    }
+    function stageIndex(distance){let i=0;while(i<stages.length-1&&distance>=stages[i+1].edge)i++;return i;}
+    function syncSoundButton(){
+      const enabled=!!audio&&!state.muted;
+      $('sound-toggle').setAttribute('aria-pressed',String(enabled));
+      $('sound-toggle').setAttribute('aria-label',(enabled?'關閉':'開啟')+'音效（M）');
+    }
+    function ensureAudio(){
+      try{if(!audio)audio=new Soundscape();audio.setMuted(state.muted);audio.resume().catch(()=>toast('請再按一次音效按鈕以啟動音訊'));syncSoundButton();}
+      catch(error){state.muted=true;syncSoundButton();toast('此裝置無法啟用 Web Audio；仍可探索連續宇宙。');}
+    }
+    function toggleSound(){
+      if(!state.started){pendingSound=audio?state.muted:true;state.muted=!pendingSound;ensureAudio();return;}
+      state.muted=audio?!state.muted:false;ensureAudio();wakeHUD();toast(state.muted?'音效已關閉':'鋼琴與宇宙回音已開啟');
+    }
+    function setAuto(enabled,announce=true){
+      if(enabled&&!state.auto){
+        // Rejoin the same continuous route at the current distance and direction; no camera reset.
+        const start=state.returning?123:0,end=state.returning?165:115;
+        let nearest=start,error=Infinity;
+        for(let time=start;time<=end;time+=.1){const e=Math.abs(flightLog(time)-state.logDistance);if(e<error){nearest=time;error=e;}}
+        state.flightTime=nearest;
+      }
+      state.auto=enabled;
+      $('drift-toggle').setAttribute('aria-pressed',String(enabled));$('drift-toggle').setAttribute('aria-label',(enabled?'暫停':'開始')+'自動漫遊（空白鍵）');
+      $('drift-icon').setAttribute('d',enabled?'M5 3v10M11 3v10':'M5 3l8 5-8 5z');$('drift-label').textContent=enabled?'DRIFTING':'AUTO DRIFT';
+      $('journey-mode').textContent=enabled?'DRIFTING':'EXPLORING';
+      if(announce)toast(enabled?'自動漫遊已啟動 · 完整往返約 170 秒':'已接管航行 · 相機保持目前位置');
+      wakeHUD();
+    }
+    function begin(){
+      if(!state.ready||state.started)return;
+      state.started=true;state.muted=pendingSound===false;document.body.classList.add('started');
+      document.querySelectorAll('.journey-ui').forEach(element=>element.removeAttribute('inert'));
+      $('intro').classList.add('leaving');$('intro').inert=true;controls.enabled=true;
+      ensureAudio();setAuto(!reducedMotion,false);ui.canvas.focus({preventScroll:true});wakeHUD(3000);
+      $('stage-announcement').textContent='旅程已啟動，從台灣的房間出發。';
+      if(reducedMotion)toast('已停用急速躍遷與自動播放，可使用路線節點探索。');
+    }
+    function jumpTo(index){
+      if(!state.started)return;
+      setAuto(false,false);
+      state.targetLogDistance=Math.log(stages[clamp(index,0,stages.length-1)].distance);
+      if(state.targetLogDistance<state.logDistance)stopWarp();
+      wakeHUD(3000);
+    }
+    function travel(delta){
+      if(!state.started||dialogOpen())return;
+      setAuto(false,false);
+      state.targetLogDistance=clamp(state.targetLogDistance+delta,LOG_MIN,LOG_MAX);
+      if(delta<0)stopWarp();
+      wakeHUD();zoomUntil=performance.now()+650;ui.cursor.classList.add('zooming');$('cursor-label').textContent='[ DOLLY ]';
+    }
+    function updateHUD(now){
+      if(now-lastHUD<90)return;lastHUD=now;
+      const index=stageIndex(state.distance),s=stages[index];
+      if(index!==state.stage||!$('chapter-title').dataset.initialized){
+        state.stage=index;$('chapter-title').dataset.initialized='true';
+        $('chapter-number').textContent=index<3?['A','B','C'][index]:String(index-2).padStart(2,'0');
+        $('chapter-english').textContent=s.name;$('chapter-title').textContent=s.title;$('chapter-description').innerHTML=s.description;
+        $('scale-value').textContent=s.astro;$('observation').textContent=index<3?'PROLOGUE':String(index-2).padStart(2,'0')+' / 09';
+        [...ui.nodes,...ui.routeNodes].forEach(node=>Number(node.dataset.stage??node.dataset.route)===index?node.setAttribute('aria-current','step'):node.removeAttribute('aria-current'));
+        $('stage-announcement').textContent=s.title+' '+s.astro;
+      }
+      const normalized=(state.logDistance-LOG_MIN)/LOG_SPAN,ruler=document.querySelector('.ruler');
+      $('ruler-marker').style.top=(16+(ruler.clientHeight-32)*normalized)+'px';
+      $('display-distance').textContent=state.distance<100?state.distance.toFixed(2):state.distance.toLocaleString('en-US',{maximumFractionDigits:0});
+      $('loop-count').textContent=String(state.loops+1).padStart(2,'0');$('flight-phase').textContent=state.phase;
+      $('whisper').classList.toggle('visible',state.auto&&state.flightTime>158&&state.flightTime<168);
+      if(audio){
+        audio.update(normalized);audio.analyser.getByteFrequencyData(audio.frequency);
+        ui.bars.forEach((bar,i)=>{const a=[1,4,9,18][i],b=[4,9,18,42][i];let sum=0;for(let j=a;j<b;j++)sum+=audio.frequency[j];bar.style.transform='scaleY('+(state.muted?.13:clamp(sum/(b-a)/150,.13,1))+')';});
+      }
+    }
+    function updateCursor(dt,now){
+      if(!document.body.classList.contains('has-mouse'))return;
+      let x=mouseX,y=mouseY;
+      if(cursorTarget){const rect=cursorTarget.getBoundingClientRect();x=lerp(x,rect.left+rect.width/2,.22);y=lerp(y,rect.top+rect.height/2,.22);}
+      const follow=1-Math.pow(.7,dt*60);cursorX=lerp(cursorX,x,follow);cursorY=lerp(cursorY,y,follow);
+      ui.cursor.style.transform='translate3d('+cursorX+'px,'+cursorY+'px,0) translate(-50%,-50%)';
+      if(now>zoomUntil){ui.cursor.classList.remove('zooming');if(!pointerActive)$('cursor-label').textContent='';}
+    }
+    function adjustQuality(now){
+      if(now-lastQuality<4000||state.elapsed<8)return;lastQuality=now;
+      if(state.fps<53){state.slowWindows++;state.fastWindows=0;}else{state.slowWindows=0;state.fastWindows++;}
+      if(state.slowWindows<2)return;
+      let reason='';
+      if(state.dpr>.8){state.dpr=Math.max(.8,state.dpr-.2);reason='DPR reduced to '+state.dpr.toFixed(2);renderer.setPixelRatio(state.dpr);renderer.setSize(innerWidth,innerHeight);}
+      else if(state.glowQuality>.5){state.glowQuality=.5;reason='Optional glow opacity reduced';}
+      else if(state.quality>.4){state.quality=Math.max(.4,state.quality-.15);reason='Detail density reduced to '+state.quality.toFixed(2);}
+      if(reason){state.degradations.push({time:state.elapsed,reason});state.slowWindows=0;}
+    }
+    function scheduleFrame(){
+      cancelAnimationFrame(frameId);
+      if(state.ready&&!state.hidden&&!state.contextLost&&!state.disposed){lastFrame=0;frameId=requestAnimationFrame(animate);}
+    }
+    function animate(now){
+      if(state.disposed||state.hidden||state.contextLost)return;
+      const raw=lastFrame?(now-lastFrame)/1000:1/60,dt=Math.min(.1,raw);lastFrame=now;state.elapsed+=dt;
+      frameSum+=raw;frameCount++;
+      if(frameSum>=1){state.fps=frameCount/frameSum;frameSum=0;frameCount=0;}
+      if(state.started&&!dialogOpen())advance(dt);
+      introAmount=lerp(introAmount,state.started?0:1,1-Math.pow(.94,dt*60));
+      updateCamera();updateRendering();renderer.render(scene,camera);
+      state.drawCalls=renderer.info.render.calls;
+      updateHUD(now);updateLabels();updateCursor(dt,now);adjustQuality(now);
+      if(now-lastMetric>1000){
+        lastMetric=now;performanceLog.push({time:+state.elapsed.toFixed(2),fps:+state.fps.toFixed(1),distance:Math.round(state.distance),stage:state.stage,phase:state.phase,warp:!!state.warp,particles:state.visibleParticles,drawCalls:state.drawCalls,dpr:state.dpr,quality:state.quality,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,audioSources:audio?.sources.size||0});
+        if(performanceLog.length>900)performanceLog.shift();
+      }
+      frameId=requestAnimationFrame(animate);
+    }
+    function resize(){
+      if(!renderer)return;
+      state.dpr=Math.min(state.dpr||devicePixelRatio,devicePixelRatio,1.5);
+      renderer.setPixelRatio(state.dpr);renderer.setSize(innerWidth,innerHeight);
+      camera.aspect=innerWidth/innerHeight;
+      // Responsive field of view is changed only on resize, never as a navigation effect.
+      camera.fov=Math.min(112,2*Math.atan(Math.tan(55*Math.PI/360)/Math.min(1,camera.aspect))*180/Math.PI);
+      camera.updateProjectionMatrix();orbitCamera.aspect=camera.aspect;orbitCamera.updateProjectionMatrix();
+    }
+    function initScene(){
+      try{renderer=new THREE.WebGLRenderer({canvas:ui.canvas,antialias:false,alpha:false,powerPreference:'high-performance'});}
+      catch(error){throw new Error('無法啟用 WebGL。請確認瀏覽器硬體加速已開啟，或改用支援 WebGL 的瀏覽器。');}
+      renderer.setClearColor(0x05080d,1);state.dpr=Math.min(devicePixelRatio,1.5);
+      scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.002,1000);
+      orbitCamera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.01,10);orbitCamera.position.set(0,0,1);
+      controls=new THREE.OrbitControls(orbitCamera,ui.canvas);controls.enableZoom=false;controls.enableDamping=true;controls.dampingFactor=.06;
+      controls.rotateSpeed=.45;controls.panSpeed=.3;controls.screenSpacePanning=true;controls.enabled=false;controls.autoRotate=false;
+      controls.minPolarAngle=.001;controls.maxPolarAngle=Math.PI-.001;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_PAN;
+      logicalCamera=vector();anchor=vector();renderOrigin=vector();direction=vector(0,0,1);tempVector=vector();lightDirection=vector();
+      frustum=new THREE.Frustum();projectionView=new THREE.Matrix4();boundSphere=new THREE.Sphere();
+      sprite=buildSprite();earthMap=buildEarthMap();buildWorld();resize();updateCamera();
+      // Compile all materials and upload every geometry before enabling navigation.
+      renderer.compile(scene,camera);
+      const warmup=new THREE.WebGLRenderTarget(1,1);renderer.setRenderTarget(warmup);renderer.render(scene,camera);renderer.setRenderTarget(null);warmup.dispose();
+      updateRendering();renderer.render(scene,camera);
+      if((renderer.info.programs||[]).some(program=>program.diagnostics&&!program.diagnostics.runnable))throw new Error('顯示卡無法編譯宇宙材質，請更新瀏覽器或顯示卡驅動程式後重試。');
       controls.addEventListener('start',()=>{pointerActive=true;wakeHUD();});
       controls.addEventListener('end',()=>{pointerActive=false;ui.cursor.classList.remove('dragging');$('cursor-label').textContent='';wakeHUD();});
-      ui.canvas.addEventListener('webglcontextlost',(event)=>{event.preventDefault();state.contextLost=true;cancelAnimationFrame(frameId);audio?.suspend();toast('顯示裝置暫停，正在等待恢復…');});
-      ui.canvas.addEventListener('webglcontextrestored',()=>{state.contextLost=false;lastFrame=0;resize();if(!state.hidden){audio?.resume().catch(()=>{});cancelAnimationFrame(frameId);frameId=requestAnimationFrame(animate);}toast('星光已恢復');});
-      resize();
+      ui.canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();state.contextLost=true;cancelAnimationFrame(frameId);audio?.suspend();toast('顯示裝置暫停，等待恢復…');});
+      ui.canvas.addEventListener('webglcontextrestored',()=>{state.contextLost=false;resize();audio?.resume().catch(()=>{});scheduleFrame();toast('星光已恢復');});
     }
 
-    // Public-domain source: Chopin Op. 52, introduction, bars 1–7.
-    // https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4.ly
-    // Sixteenth-note offsets preserve the 6/8 melody and the interleaved inner voice.
+    function bindEvents(){
+      $('begin').addEventListener('click',begin);
+      $('intro').addEventListener('click',event=>{if(!event.target.closest('a'))begin();});
+      $('sound-toggle').addEventListener('click',toggleSound);
+      $('home-link').addEventListener('click',event=>{event.preventDefault();state.started?jumpTo(0):begin();});
+      $('drift-toggle').addEventListener('click',()=>setAuto(!state.auto));
+      function toggleGrain(){
+        state.grain=!state.grain;$('grain').hidden=!state.grain;
+        $('grain-toggle').setAttribute('aria-pressed',String(state.grain));$('grain-toggle').setAttribute('aria-label',(state.grain?'關閉':'開啟')+'膠卷噪點（G）');wakeHUD();
+      }
+      function toggleHelp(){
+        if($('help-dialog').open)$('help-dialog').close();
+        else{$('route-dialog').close();$('help-dialog').showModal();wakeHUD();}
+      }
+      $('grain-toggle').addEventListener('click',toggleGrain);
+      $('help-toggle').addEventListener('click',toggleHelp);$('help-close').addEventListener('click',()=>$('help-dialog').close());
+      $('route-toggle').addEventListener('click',()=>{if($('route-dialog').open)$('route-dialog').close();else{$('help-dialog').close();$('route-dialog').showModal();wakeHUD();}});
+      $('route-close').addEventListener('click',()=>$('route-dialog').close());
+      for(const dialog of [$('help-dialog'),$('route-dialog')]){
+        dialog.addEventListener('close',()=>wakeHUD());
+        dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
+      }
+      ui.nodes.forEach(node=>node.addEventListener('click',()=>jumpTo(Number(node.dataset.stage))));
+      ui.routeNodes.forEach(node=>node.addEventListener('click',()=>{jumpTo(Number(node.dataset.route));$('route-dialog').close();}));
+      window.addEventListener('wheel',event=>{
+        if(!state.started||dialogOpen()||event.ctrlKey)return;
+        event.preventDefault();const multiplier=event.deltaMode===1?18:event.deltaMode===2?innerHeight:1;
+        travel(clamp(event.deltaY*multiplier,-220,220)*.0017);
+      },{passive:false});
+      window.addEventListener('keydown',event=>{
+        if(event.repeat||event.altKey||event.ctrlKey||event.metaKey)return;
+        if(['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)||event.target.isContentEditable)return;
+        const key=event.key.toLowerCase();
+        if(!state.started){if(key==='enter'||key===' '){event.preventDefault();begin();}return;}
+        if(dialogOpen()){if(key==='h'){event.preventDefault();$('help-dialog').close();$('route-dialog').close();}return;}
+        if(key===' '){event.preventDefault();setAuto(!state.auto);}
+        else if(key==='m'){event.preventDefault();toggleSound();}
+        else if(key==='g'){event.preventDefault();toggleGrain();}
+        else if(key==='h'||key==='?'){event.preventDefault();toggleHelp();}
+        else if(key==='home'){event.preventDefault();jumpTo(0);}
+        else if(key==='end'){event.preventDefault();jumpTo(11);}
+        else if(key==='arrowdown'||key==='arrowright'){event.preventDefault();jumpTo(stageIndex(Math.exp(state.targetLogDistance))+1);}
+        else if(key==='arrowup'||key==='arrowleft'){event.preventDefault();jumpTo(stageIndex(Math.exp(state.targetLogDistance))-1);}
+        wakeHUD();
+      });
+      const touches=new Map();let pinchDistance=0;
+      ui.canvas.addEventListener('pointerdown',event=>{
+        wakeHUD();
+        if(event.pointerType==='touch'){
+          touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+          if(touches.size===2){const [a,b]=[...touches.values()];pinchDistance=Math.hypot(a.x-b.x,a.y-b.y);}
+        }else{ui.cursor.classList.add('dragging');$('cursor-label').textContent='[ ROTATE ]';}
+      });
+      ui.canvas.addEventListener('pointermove',event=>{
+        if(event.pointerType!=='touch'||!touches.has(event.pointerId))return;
+        touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+        if(touches.size===2){
+          const [a,b]=[...touches.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);
+          if(pinchDistance>0&&distance>0)travel(Math.log(pinchDistance/distance)*1.5);
+          pinchDistance=distance;
+        }
+      });
+      function release(event){touches.delete(event.pointerId);if(touches.size<2)pinchDistance=0;pointerActive=false;ui.cursor.classList.remove('dragging');$('cursor-label').textContent='';}
+      window.addEventListener('pointerup',release);window.addEventListener('pointercancel',release);
+      document.addEventListener('pointermove',event=>{
+        if(event.pointerType==='mouse'&&matchMedia('(pointer:fine)').matches){
+          document.body.classList.add('has-mouse');ui.cursor.style.opacity='1';mouseX=event.clientX;mouseY=event.clientY;
+          cursorTarget=event.target.closest('button,a');ui.cursor.classList.toggle('over-button',!!cursorTarget);
+        }
+        wakeHUD();
+      },{passive:true});
+      document.addEventListener('pointerdown',()=>wakeHUD(),{passive:true});document.addEventListener('focusin',()=>wakeHUD(3000));
+      document.documentElement.addEventListener('pointerleave',()=>{ui.cursor.style.opacity='0';});
+      window.addEventListener('resize',resize);
+      document.addEventListener('visibilitychange',()=>{
+        state.hidden=document.hidden;
+        if(state.hidden){cancelAnimationFrame(frameId);audio?.suspend();}
+        else{audio?.resume().catch(()=>{});scheduleFrame();}
+      });
+      window.addEventListener('pagehide',event=>{
+        cancelAnimationFrame(frameId);audio?.suspend();
+        if(!event.persisted){
+          state.disposed=true;audio?.dispose();controls?.dispose();
+          for(const g of resources.geometries)g.dispose();for(const m of resources.materials)m.dispose();for(const t of resources.textures)t.dispose();
+          renderer?.dispose();clearTimeout(hudTimer);clearTimeout(toastTimer);
+        }
+      });
+      window.addEventListener('pageshow',event=>{if(event.persisted){state.hidden=document.hidden;audio?.resume().catch(()=>{});scheduleFrame();}});
+      $('retry').addEventListener('click',()=>location.reload());
+    }
+
+    // Read-only diagnostics. "visibleParticles" counts particles submitted to WebGL after object culling / LOD.
+    function snapshot(){
+      const gl=renderer?.getContext(),debug=gl?.getExtension('WEBGL_debug_renderer_info');
+      return {
+        version:'3.0',ready:state.ready,started:state.started,distance:state.distance,logDistance:state.logDistance,targetDistance:Math.exp(state.targetLogDistance),
+        stage:state.stage,stageName:stages[state.stage].short,auto:state.auto,phase:state.phase,flightTime:state.flightTime,loops:state.loops,warp:!!state.warp,warpCount:state.warpCount,
+        cameraPosition:logicalCamera?.toArray(),navigationAnchor:anchor?.toArray(),orbitDirection:direction?.toArray(),renderOrigin:renderOrigin?.toArray(),
+        cameraRelativePosition:camera?.position.toArray(),fov:camera?.fov,zoom:camera?.zoom,near:camera?.near,far:camera?.far,
+        particleBudget:PARTICLE_BUDGET,visibleParticles:state.visibleParticles,drawCalls:state.drawCalls,fps:Math.round(state.fps),pixelRatio:state.dpr,detailDensity:state.quality,
+        geometries:renderer?.info.memory.geometries||0,textures:renderer?.info.memory.textures||0,logicalObjects:world.size,
+        audioState:audio?.ctx.state||'locked',activeAudioSources:audio?.sources.size||0,audioSchedulers:audio?.timer?1:0,muted:state.muted,grain:state.grain,reducedMotion,
+        viewport:[innerWidth,innerHeight],nativeDPR:devicePixelRatio,browser:navigator.userAgent,gpu:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):'unavailable',
+        degradations:state.degradations.map(item=>({...item}))
+      };
+    }
+    Object.defineProperty(window,'cosmicDrift',{value:Object.freeze({
+      getState:snapshot,
+      getWorld:()=>[...world.values()].map(body=>({id:body.id,parent:body.parent,kind:body.kind,center:body.center.toArray(),localCenter:body.localCenter.toArray(),radius:body.radius,rotation:body.quaternion.toArray(),localRotation:body.localRotation.toArray(),metadata:body.metadata})),
+      getPerformance:()=>performanceLog.map(item=>({...item})),
+      getProjection:id=>{
+        const body=world.get(id);if(!body||!camera)return null;
+        const relative=body.center.clone().sub(renderOrigin),v=relative.clone().project(camera);
+        return {id,worldCenter:body.center.toArray(),worldRadius:body.radius,distance:body.center.distanceTo(logicalCamera),projectedDiameter:body.radius*innerHeight/(Math.tan(camera.fov*Math.PI/360)*body.center.distanceTo(logicalCamera)),screen:[(v.x*.5+.5)*innerWidth,(-v.y*.5+.5)*innerHeight]};
+      }
+    }),writable:false});
+
+    async function boot(){
+      bindEvents();
+      try{
+        await loadDependencies();await new Promise(resolve=>requestAnimationFrame(resolve));
+        initScene();state.ready=true;$('begin').disabled=false;$('load-status').textContent='點擊任意處啟程 · CLICK TO ENTER';scheduleFrame();
+      }catch(error){console.error('Cosmic Drift initialization failed:',error);showError(error.message||'宇宙未能順利載入，請重新整理後再試一次。');}
+    }
     function introductionScore() {
       const events=[];
       function add(t,notes,length=2,velocity=.7){for(const note of notes)events.push({beat:t,midi:note,length,velocity});}
@@ -696,15 +1301,15 @@
           if(this.noteIndex>=this.notes.length){this.noteIndex=0;this.phraseStart+=this.phraseLength;}
         }
         if(this.heartTime<now)this.heartTime=now+.02;
-        if(this.heartTime<now+.14){const proximity=state.p<1?1-smooth(state.p):state.p>5.5?smooth((state.p-5.5)/.5):0;if(proximity>.02)this.heartbeat(this.heartTime,.13*proximity);this.heartTime+=1;}
+        if(this.heartTime<now+.14){const proximity=1-smooth((state.logDistance-LOG_MIN)/Math.log(5));if(proximity>.02)this.heartbeat(this.heartTime,.13*proximity);this.heartTime+=1;}
       }
       setMuted(muted) {
         this.enabled=!muted;
         const now=this.ctx.currentTime;this.master.gain.cancelScheduledValues(now);this.master.gain.setTargetAtTime(muted?0:.7,now,.06);
         if(!muted){this.phraseStart=now+.1;this.noteIndex=0;}
       }
-      update(p) {
-        const cosmic=p>5.45?1-smooth((p-5.45)/.5):clamp(p/5,0,1),now=this.ctx.currentTime;
+      update(s) {
+        const cosmic=clamp(s,0,1),now=this.ctx.currentTime;
         this.dry.gain.setTargetAtTime(.9-.75*cosmic,now,.2);this.wet.gain.setTargetAtTime(.1+.75*cosmic,now,.2);
         this.feedback.gain.setTargetAtTime(.16+.24*cosmic,now,.2);this.echo.gain.setTargetAtTime(.08+.2*cosmic,now,.2);
       }
@@ -718,244 +1323,7 @@
       dispose(){clearInterval(this.timer);this.timer=0;for(const source of this.sources){try{source.stop();}catch(error){/* already ended */}}this.sources.clear();if(this.ctx.state!=='closed')this.ctx.close().catch(()=>{});}
     }
 
-    function syncSoundButton() {
-      const enabled=audio&&!state.muted;
-      $('sound-toggle').setAttribute('aria-pressed',String(!!enabled));
-      $('sound-toggle').setAttribute('aria-label',(enabled?'關閉':'開啟')+'音效（M）');
-    }
-    function ensureAudio() {
-      try {
-        if(!audio)audio=new Soundscape();
-        audio.setMuted(state.muted);
-        audio.resume().catch(()=>{toast('音效尚未啟動，請再按一次音效按鈕');});
-        syncSoundButton();
-      } catch(error){state.muted=true;syncSoundButton();toast('此裝置無法啟用音效，仍可探索粒子宇宙。');}
-    }
-    function toggleSound() {
-      if(!state.started){pendingSound=audio?state.muted:true;state.muted=!pendingSound;ensureAudio();return;}
-      state.muted=audio?!state.muted:false;ensureAudio();wakeHUD();toast(state.muted?'音效已關閉':'鋼琴與宇宙回音已開啟');
-    }
 
-    function setAuto(enabled,announce=true) {
-      state.auto=enabled;
-      $('drift-toggle').setAttribute('aria-pressed',String(enabled));
-      $('drift-toggle').setAttribute('aria-label',(enabled?'暫停':'開始')+'自動漫遊（空白鍵）');
-      $('drift-icon').setAttribute('d',enabled?'M5 3v10M11 3v10':'M5 3l8 5-8 5z');
-      $('drift-label').textContent=enabled?'DRIFTING':'AUTO DRIFT';
-      $('journey-mode').textContent=enabled?'DRIFTING':'EXPLORING';
-      if(announce)toast(enabled?'自動漫遊已啟動 · 滾動即可接管':'漫遊已暫停 · 自由探索');
-      wakeHUD();
-    }
-
-    function begin() {
-      if(!state.ready||state.started)return;
-      state.started=true;state.muted=pendingSound===false;document.body.classList.add('started');
-      document.querySelectorAll('.journey-ui').forEach(element=>element.removeAttribute('inert'));
-      $('intro').classList.add('leaving');$('intro').setAttribute('inert','');controls.enabled=true;
-      ensureAudio();setAuto(!reducedMotion,false);ui.canvas.focus({preventScroll:true});wakeHUD(3000);
-      if(reducedMotion)toast('已依減少動態效果偏好暫停漫遊，可使用尺度按鈕探索。');
-      $('stage-announcement').textContent='旅程已啟動。第一站：房間。';
-    }
-
-    function jumpTo(index) {
-      if(!state.started)return;
-      setAuto(false,false);state.target=stages[clamp(index,0,5)].p;
-      wakeHUD(3000);
-    }
-    function travel(delta) {
-      if(!state.started||$('help-dialog').open)return;
-      setAuto(false,false);
-      state.target=clamp(state.target+delta,0,6.65);
-      wakeHUD();zoomUntil=performance.now()+650;ui.cursor.classList.add('zooming');$('cursor-label').textContent='[ ZOOM ]';
-    }
-
-    function startWarp(boundary,direction) {
-      if(direction>0)state.target=Math.max(state.target,boundary+.5);
-      else state.target=Math.min(state.target,boundary);
-      state.warp={start:state.p,end:direction>0?boundary+.5:boundary,elapsed:0,duration:1.5,direction};
-      state.warpCount++;
-      $('warp-label').textContent=boundary===1?(direction>0?'LEAVING THE ATMOSPHERE':'RETURNING TO THE BLUE'):(direction>0?'BEYOND THE SOLAR SYSTEM':'RETURNING TO OUR STAR');
-      $('warp-label').classList.add('visible');audio?.warp();
-    }
-    function advance(dt) {
-      if(state.auto)state.target+=.048*dt;
-      if(state.warp){
-        const warp=state.warp;warp.elapsed=Math.min(warp.duration,warp.elapsed+dt);
-        if(warp.duration-warp.elapsed<0.000001)warp.elapsed=warp.duration;
-        const t=warp.elapsed/warp.duration;state.p=lerp(warp.start,warp.end,smooth(t));
-        material.uniforms.uWarp.value=Math.sin(t*Math.PI)**1.35;
-        if(t>=1){state.warp=null;material.uniforms.uWarp.value=0;$('warp-label').classList.remove('visible');}
-      } else {
-        // Equivalent to the specified 0.06 spring factor at 60 Hz, independent of refresh rate.
-        const proposed=lerp(state.p,state.target,1-Math.pow(.94,dt*60));
-        let triggered=false;
-        for(const boundary of [1,3.5]){
-          if(state.p<boundary&&proposed>=boundary&&state.target>=boundary){startWarp(boundary,1);triggered=true;break;}
-          if(state.p>boundary+.5&&proposed<=boundary+.5&&state.target<boundary){startWarp(boundary,-1);triggered=true;break;}
-        }
-        if(!triggered)state.p=proposed;
-      }
-      if(state.p>=6){
-        state.p-=6;state.target=Math.max(0,state.target-6);state.loops++;audio?.restartTheme();
-        $('loop-label').innerHTML='ORIGIN '+String(state.loops).padStart(2,'0')+' · P <span id="progress-value">0.000</span>';
-      }
-      state.p=clamp(state.p,0,5.999999);
-    }
-
-    function currentStage(p) {return p>=5?5:p>=4?4:p>=3?3:p>=2?2:p>=1.48?1:0;}
-    function updateHUD(now) {
-      if(now-lastHUD<80)return;lastHUD=now;
-      const index=currentStage(state.p);
-      if(index!==state.stage){
-        state.stage=index;const stage=stages[index];
-        $('chapter-number').textContent=String(index+1).padStart(2,'0');
-        $('chapter-english').textContent=stage.name;$('chapter-title').textContent=stage.title;
-        $('chapter-description').innerHTML=stage.description;$('scale-value').textContent=stage.scale;
-        $('observation').textContent=String(index+1).padStart(2,'0')+' / 06';
-        ui.nodes.forEach((node,j)=>j===index?node.setAttribute('aria-current','step'):node.removeAttribute('aria-current'));
-        $('stage-announcement').textContent=stage.title+' '+stage.scale;
-      }
-      let fraction=0;
-      if(state.p>=stages[5].p)fraction=state.p>5.8?1-smooth((state.p-5.8)/.2):1;
-      else for(let i=0;i<5;i++){if(state.p>=stages[i].p&&state.p<stages[i+1].p){fraction=(i+(state.p-stages[i].p)/(stages[i+1].p-stages[i].p))/5;break;}}
-      const height=document.querySelector('.ruler').clientHeight-32;
-      $('ruler-marker').style.top=(16+height*fraction)+'px';
-      $('progress-value').textContent=state.p.toFixed(3);
-      $('whisper').classList.toggle('visible',state.p>5.48&&state.p<5.9);
-      if(audio){
-        audio.update(state.p);audio.analyser.getByteFrequencyData(audio.frequency);
-        ui.bars.forEach((bar,i)=>{
-          const first=[1,4,9,18][i],last=[4,9,18,42][i];let energy=0;
-          for(let j=first;j<last;j++)energy+=audio.frequency[j];
-          const amplitude=energy/(last-first)/150;
-          bar.style.transform='scaleY('+(state.muted?.13:clamp(amplitude,.13,1))+')';
-        });
-      }
-    }
-
-    let mouseX=-100,mouseY=-100,cursorX=-100,cursorY=-100,cursorTarget=null;
-    function updateCursor(dt,now) {
-      if(!document.body.classList.contains('has-mouse'))return;
-      let x=mouseX,y=mouseY;
-      if(cursorTarget){const rect=cursorTarget.getBoundingClientRect();x=lerp(mouseX,rect.left+rect.width/2,.22);y=lerp(mouseY,rect.top+rect.height/2,.22);}
-      const follow=1-Math.pow(.7,dt*60);cursorX=lerp(cursorX,x,follow);cursorY=lerp(cursorY,y,follow);
-      ui.cursor.style.transform='translate3d('+cursorX+'px,'+cursorY+'px,0) translate(-50%,-50%)';
-      if(now>zoomUntil){ui.cursor.classList.remove('zooming');if(!pointerActive)$('cursor-label').textContent='';}
-    }
-
-    function animate(now) {
-      if(state.disposed||state.hidden||state.contextLost)return;
-      const raw=lastFrame?(now-lastFrame)/1000:1/60,dt=Math.min(.05,raw);lastFrame=now;
-      frameSum+=raw;frameCount++;
-      if(frameSum>=1){state.fps=frameCount/frameSum;frameSum=0;frameCount=0;}
-      state.elapsed+=dt;
-      if(state.started&&!$('help-dialog').open)advance(dt);
-      introAmount=lerp(introAmount,state.started?0:1,1-Math.pow(.96,dt*60));
-      material.uniforms.uTime.value=state.elapsed;material.uniforms.uIntro.value=introAmount;
-      updateMorph();
-      controls.autoRotate=state.started&&state.auto&&!pointerActive&&!reducedMotion&&!$('help-dialog').open;
-      controls.autoRotateSpeed=.573*dt*60;
-      controls.target.clampLength(0,38);controls.update();
-      const fov=48+material.uniforms.uWarp.value*(reducedMotion?0:16);
-      const zoom=lerp(Math.min(1,camera.aspect/1.2),innerWidth<650?.76:innerWidth<950?.9:1,introAmount);
-      if(Math.abs(camera.fov-fov)>.015||Math.abs(camera.zoom-zoom)>.001){camera.fov=fov;camera.zoom=zoom;camera.updateProjectionMatrix();}
-      renderer.render(scene,camera);
-      updateHUD(now);updateCursor(dt,now);
-      frameId=requestAnimationFrame(animate);
-    }
-    function resize() {
-      if(!renderer)return;
-      const ratio=Math.min(devicePixelRatio,innerWidth<650?1.35:1.6);
-      renderer.setPixelRatio(ratio);renderer.setSize(innerWidth,innerHeight);
-      material.uniforms.uPixelRatio.value=ratio;camera.aspect=innerWidth/innerHeight;
-      camera.zoom=lerp(Math.min(1,camera.aspect/1.2),innerWidth<650?.76:innerWidth<950?.9:1,introAmount);camera.updateProjectionMatrix();
-    }
-
-    function bindEvents() {
-      $('begin').addEventListener('click',begin);
-      $('intro').addEventListener('click',event=>{if(!event.target.closest('a'))begin();});
-      $('sound-toggle').addEventListener('click',toggleSound);
-      $('home-link').addEventListener('click',event=>{event.preventDefault();if(state.started)jumpTo(0);else begin();});
-      $('drift-toggle').addEventListener('click',()=>setAuto(!state.auto));
-      function toggleGrain(){state.grain=!state.grain;$('grain').hidden=!state.grain;$('grain-toggle').setAttribute('aria-pressed',String(state.grain));$('grain-toggle').setAttribute('aria-label',(state.grain?'關閉':'開啟')+'膠卷噪點（G）');wakeHUD();toast(state.grain?'膠卷質感已開啟':'純淨星光');}
-      $('grain-toggle').addEventListener('click',toggleGrain);
-      function toggleHelp(){if($('help-dialog').open)$('help-dialog').close();else{$('help-dialog').showModal();wakeHUD();}}
-      $('help-toggle').addEventListener('click',toggleHelp);$('help-close').addEventListener('click',()=>$('help-dialog').close());
-      $('help-dialog').addEventListener('click',event=>{if(event.target===$('help-dialog')){const rect=event.target.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)event.target.close();}});
-      $('help-dialog').addEventListener('close',()=>wakeHUD());
-      ui.nodes.forEach(node=>node.addEventListener('click',()=>jumpTo(Number(node.dataset.stage))));
-      window.addEventListener('wheel',event=>{
-        if(!state.started||$('help-dialog').open||event.ctrlKey)return;
-        event.preventDefault();const scale=event.deltaMode===1?18:event.deltaMode===2?innerHeight:1;
-        travel(clamp(event.deltaY*scale,-180,180)*.0019);
-      },{passive:false});
-      window.addEventListener('keydown',event=>{
-        if(event.repeat||event.altKey||event.ctrlKey||event.metaKey)return;
-        const tag=event.target.tagName;if(['INPUT','TEXTAREA','SELECT'].includes(tag)||event.target.isContentEditable)return;
-        const key=event.key.toLowerCase();
-        if(!state.started){if(key==='enter'||key===' '){event.preventDefault();begin();}return;}
-        if($('help-dialog').open){if(key==='h'){event.preventDefault();$('help-dialog').close();}return;}
-        if(key===' '){event.preventDefault();setAuto(!state.auto);}
-        else if(key==='m'){event.preventDefault();toggleSound();}
-        else if(key==='g'){event.preventDefault();toggleGrain();}
-        else if(key==='h'||key==='?'){event.preventDefault();toggleHelp();}
-        else if(key==='arrowdown'||key==='arrowright'){event.preventDefault();jumpTo(state.stage+1);}
-        else if(key==='arrowup'||key==='arrowleft'){event.preventDefault();jumpTo(state.stage-1);}
-        else if(key==='home'){event.preventDefault();jumpTo(0);}
-        else if(key==='end'){event.preventDefault();jumpTo(5);}
-        wakeHUD();
-      });
-      const touches=new Map();let pinchDistance=0;
-      ui.canvas.addEventListener('pointerdown',event=>{
-        wakeHUD();if(event.pointerType==='touch'){touches.set(event.pointerId,{x:event.clientX,y:event.clientY});if(touches.size===2){const [a,b]=[...touches.values()];pinchDistance=Math.hypot(a.x-b.x,a.y-b.y);}}
-        else {ui.cursor.classList.add('dragging');$('cursor-label').textContent='[ ROTATE ]';}
-      });
-      ui.canvas.addEventListener('pointermove',event=>{
-        if(event.pointerType!=='touch'||!touches.has(event.pointerId))return;
-        touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
-        if(touches.size===2){const [a,b]=[...touches.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(pinchDistance>0)travel((pinchDistance-distance)*.005);pinchDistance=distance;}
-      });
-      function releasePointer(event){touches.delete(event.pointerId);if(touches.size<2)pinchDistance=0;pointerActive=false;ui.cursor.classList.remove('dragging');$('cursor-label').textContent='';}
-      window.addEventListener('pointerup',releasePointer);window.addEventListener('pointercancel',releasePointer);
-      document.addEventListener('pointermove',event=>{
-        if(event.pointerType==='mouse'&&matchMedia('(pointer:fine)').matches){
-          document.body.classList.add('has-mouse');ui.cursor.style.opacity='1';mouseX=event.clientX;mouseY=event.clientY;
-          cursorTarget=event.target.closest('button,a');ui.cursor.classList.toggle('over-button',!!cursorTarget);
-        }
-        wakeHUD();
-      },{passive:true});
-      document.addEventListener('pointerdown',()=>wakeHUD(),{passive:true});
-      document.addEventListener('focusin',()=>wakeHUD(3000));
-      document.documentElement.addEventListener('pointerleave',()=>{ui.cursor.style.opacity='0';});
-      window.addEventListener('resize',resize);
-      document.addEventListener('visibilitychange',()=>{
-        state.hidden=document.hidden;
-        if(state.hidden){cancelAnimationFrame(frameId);audio?.suspend();}
-        else if(state.ready&&!state.contextLost&&!state.disposed){lastFrame=0;audio?.resume().catch(()=>{});cancelAnimationFrame(frameId);frameId=requestAnimationFrame(animate);}
-      });
-      window.addEventListener('pagehide',event=>{
-        cancelAnimationFrame(frameId);audio?.suspend();
-        if(!event.persisted){state.disposed=true;audio?.dispose();controls?.dispose();geometry?.dispose();material?.dispose();sprite?.dispose();renderer?.dispose();clearTimeout(hudTimer);clearTimeout(toastTimer);}
-      });
-      window.addEventListener('pageshow',event=>{if(event.persisted){state.hidden=document.hidden;lastFrame=0;audio?.resume().catch(()=>{});if(!state.hidden){cancelAnimationFrame(frameId);frameId=requestAnimationFrame(animate);}}});
-      $('retry').addEventListener('click',()=>location.reload());
-    }
-
-    // Read-only diagnostics for frame-rate, draw-call, lifecycle, and soak-test inspection.
-    Object.defineProperty(window,'cosmicDrift',{value:Object.freeze({
-      getState:()=>Object.freeze({ready:state.ready,started:state.started,progress:state.p,target:state.target,stage:state.stage,auto:state.auto,muted:state.muted,grain:state.grain,loops:state.loops,warp:!!state.warp,warpCount:state.warpCount,particles:COUNT,drawCalls:renderer?.info.render.calls||0,fps:Math.round(state.fps),audioState:audio?.ctx.state||'locked',activeAudioSources:audio?.sources.size||0,geometries:renderer?.info.memory.geometries||0,textures:renderer?.info.memory.textures||0,reducedMotion,cameraPosition:camera?.position.toArray(),cameraTarget:controls?.target.toArray(),pixelRatio:renderer?.getPixelRatio()}),
-    }),writable:false});
-
-    async function boot() {
-      bindEvents();
-      try {
-        await loadDependencies();
-        await new Promise(resolve=>requestAnimationFrame(resolve));
-        initScene();state.ready=true;$('begin').disabled=false;
-        $('load-status').textContent='點擊任意處啟程 · CLICK TO ENTER';
-        frameId=requestAnimationFrame(animate);
-      } catch(error){console.error('Cosmic Drift initialization failed:',error);showError(error.message||'星塵未能順利載入，請重新整理後再試一次。');}
-    }
     boot();
   })();
   </script>
