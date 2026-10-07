@@ -128,6 +128,19 @@
     /* v3: actual logarithmic distance, a complete route, and fixed-world labels. */
 .ruler{height:min(72vh,660px);width:142px;top:51%}.ruler button{top:calc(16px + var(--at) * (100% - 32px));width:142px;min-height:44px}.ruler button[aria-current="step"]::before{display:none}.ruler-caption{display:none}.distance-readout{display:block;color:#95adb8;font:11px var(--mono);letter-spacing:.05em;margin:4px 0}#display-distance{color:#d1e1e4}.icon-button{width:44px;height:44px}.drift-button{min-height:44px}.transport{padding:5px;gap:2px}.chapter{max-width:410px}.stage-detail{flex-wrap:wrap}.coordinates{min-width:190px}.shortcut-hint{min-width:190px}#world-labels{position:fixed;inset:0;pointer-events:none;z-index:8}.world-label{position:absolute;left:0;top:0;white-space:nowrap;font:8px var(--mono);letter-spacing:.13em;color:#b6dbe1;will-change:transform;opacity:0}.world-label::before{content:"";position:absolute;left:-5px;top:-3px;width:5px;height:5px;border:1px solid #b4e0eb;border-radius:50%;box-shadow:0 0 9px #74aeb766}.world-label span{display:block;margin:7px 0 0 6px;padding:4px 7px;background:#05091099;border-radius:3px}.world-label.secondary{color:#869fad}.world-label.secondary::before{width:3px;height:3px;border-color:#b3a886}.world-label.secondary span{font-size:7px}#route-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}#route-list button{min-height:46px;padding:12px;text-align:left;background:#18253188;border:1px solid #56738533;border-radius:7px;font:9px var(--mono);letter-spacing:.1em}#route-list button span{color:#76939e;margin-right:9px}#route-list button:hover,#route-list button[aria-current="step"]{background:#283b48;color:#eef8f7;border-color:#76939e}.credits{max-height:25vh;overflow:auto}dialog{max-height:calc(100% - 36px);overflow:auto}#canvas-help{pointer-events:none}
 @media(max-width:900px){.coordinates{min-width:0}.shortcut-hint{display:none}.ruler{right:23px}.topbar{gap:10px}}@media(max-width:650px),(max-height:820px){.ruler{height:40vh;width:16px;right:18px;top:51%}.ruler button{display:none}.ruler-track,.ruler-ticks{bottom:16px}.ruler::after{content:"";position:absolute;right:5px;top:16px;bottom:16px;width:1px;background:#7895a522}}@media(max-width:650px){.bottom-hud{flex-direction:column;align-items:stretch;gap:10px;left:20px;right:20px;bottom:max(18px,env(safe-area-inset-bottom))}.transport{justify-content:space-around;align-self:center;min-width:270px;max-width:100%}.coordinates{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:8px}.coordinates br{display:none}.coordinates .distance-readout{display:inline;font-size:9px;margin:0 0 0 auto}#loop-label{width:100%;font-size:7px}.drift-button{min-width:111px;padding:10px 8px}.icon-button{width:44px;height:44px}.chapter{top:110px;max-width:280px}#chapter-title{font-size:24px}.stage-detail{max-width:245px}.intro-content{max-width:100%}#intro{padding-left:26px;padding-right:26px}.intro-description{max-width:300px}.world-label span{font-size:7px;padding:3px 5px}.world-label.secondary span{display:none}.sound{min-height:44px}#warp-label{top:36%}#whisper{bottom:27%}}
+    .ruler-links{position:absolute;inset:0;pointer-events:none;overflow:visible}.ruler-links line{stroke:#8fadb6;stroke-width:.75;opacity:.27}.ruler button{padding-right:30px}.ruler button::after{right:24px;width:4px}
+    /* v3.1: the bed is the opening subject; title and controls occupy separate areas. */
+    #intro{background:linear-gradient(90deg,rgba(4,9,14,.90),rgba(4,9,14,.45) 34%,transparent 65%)}
+    .intro-content{max-width:430px}h1{font-size:clamp(58px,5.6vw,84px)}
+    @media(max-width:650px){
+      #intro{align-items:flex-start;padding:99px 26px 100px;background:linear-gradient(180deg,rgba(4,9,14,.8),rgba(4,9,14,.08) 34%,transparent 68%,rgba(4,9,14,.76))}
+      .intro-content{padding:0;width:100%;max-width:100%}.eyebrow{font-size:8px}h1{font-size:39px;margin:18px 0 13px;line-height:1.03}.intro-description{font-size:10px;line-height:1.9;letter-spacing:.06em;max-width:290px}
+      .begin{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);margin:0;padding:14px 20px;white-space:nowrap}.begin:hover{transform:translateX(-50%)}
+      #load-status{position:absolute;bottom:48px;left:20px;right:20px;text-align:center;margin:0;font-size:8px}.intro-bottom{bottom:22px;left:26px;right:26px}.headphone{font-size:8px}
+      .chapter{max-width:255px}#chapter-title{font-size:23px}
+    }
+    @media(max-width:650px) and (max-height:720px){#intro{padding-top:90px}h1{font-size:32px;margin:12px 0 8px}.begin{bottom:40px}#load-status{bottom:13px}.intro-bottom{display:none}}
+    @media(max-height:560px) and (min-width:651px){#intro{align-items:flex-start;padding:87px 25px 35px}.intro-content{width:32%;max-width:285px;padding:0}h1{font-size:34px;margin:15px 0 12px}.intro-description{font-size:9px}.begin{font-size:10px;padding:11px 15px;margin-top:15px;gap:15px}#load-status{font-size:8px;margin-top:10px}.intro-bottom{display:none}}
   </style>
 </head>
 <body>
@@ -213,7 +226,7 @@
     <div class="help-row"><span>自動漫遊</span><kbd>Space</kbd></div>
     <div class="help-row"><span>音效 / 膠卷質感 / 說明</span><span><kbd>M</kbd> <kbd>G</kbd> <kbd>H</kbd></span></div>
     <div class="help-row"><span>回到起點</span><span>左上角標誌 · <kbd>Home</kbd></span></div>
-<p class="credits">跨尺度距離經展示壓縮；天體位置與宇宙結構為示意。DU 是固定的展示世界單位，與天文尺度分開標示。微光定位點不代表天體大小。<br><br>奧爾特雲為推定結構；CMB 的程序斑駁與顏色為視覺轉譯，球面表現觀測視界，並非宇宙的實體外牆或實測貼圖。<br><a href="https://science.nasa.gov/solar-system/oort-cloud/facts/" target="_blank" rel="noopener noreferrer">NASA · Oort Cloud</a> · <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background" target="_blank" rel="noopener noreferrer">ESA · CMB</a><br><br>CHOPIN · BALLADE NO. 4, OP. 52<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>內嵌音符，以程序鋼琴演繹。首次需連網載入 Three.js；無外部圖片、模型或音訊。</p>
+<p class="credits">地表比例保持一致；跨天文尺度距離經展示壓縮，天體位置與宇宙結構為示意。DU 是固定的展示世界單位，與天文尺度分開標示。微光定位點不代表天體大小。<br><br>奧爾特雲為推定結構；CMB 的程序斑駁與顏色為視覺轉譯，球面表現觀測視界，並非宇宙的實體外牆或實測貼圖。<br><a href="https://science.nasa.gov/solar-system/oort-cloud/facts/" target="_blank" rel="noopener noreferrer">NASA · Oort Cloud</a> · <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background" target="_blank" rel="noopener noreferrer">ESA · CMB</a><br><br>CHOPIN · BALLADE NO. 4, OP. 52<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>內嵌音符，以程序鋼琴演繹。首次需連網載入 Three.js；無外部圖片、模型或音訊。</p>
   </dialog>
 
   <dialog id="route-dialog" aria-labelledby="route-title"><button id="route-close" class="icon-button dialog-close" aria-label="關閉路線">×</button><h2 id="route-title">Our place in everything.</h2><p class="dialog-subtitle">三段序章，九層宇宙。每一站，都與家園相連。</p><div id="route-list"><button data-route="0"><span>0A</span>ROOM</button><button data-route="1"><span>0B</span>TAIWAN</button><button data-route="2"><span>0C</span>ATMOS</button><button data-route="3"><span>01</span>EARTH</button><button data-route="4"><span>02</span>MOON</button><button data-route="5"><span>03</span>SOLAR</button><button data-route="6"><span>04</span>OORT</button><button data-route="7"><span>05</span>STARS</button><button data-route="8"><span>06</span>MILKY WAY</button><button data-route="9"><span>07</span>LOCAL GROUP</button><button data-route="10"><span>08</span>LANIAKEA</button><button data-route="11"><span>09</span>CMB</button></div><p class="credits">點選後，攝影機將沿連續航線前往該尺度。<br>跨尺度距離經展示壓縮；天體與宇宙結構為示意。</p></dialog>
@@ -222,7 +235,7 @@
   </div>
   <noscript><div style="position:fixed;inset:0;z-index:200;background:#080d15;display:grid;place-items:center;padding:32px;color:#ddd">這段宇宙旅程需要 JavaScript。請在瀏覽器啟用 JavaScript 後重新整理。</div></noscript>
 
-  <!-- v3.0: independent fixed geometry; only the camera and render origin travel. -->
+  <!-- v3.1: fixed metre-scale home, independent universe geometry, and a travelling camera. -->
   <script id="stars-vs" type="x-shader/x-vertex">
     precision highp float;
     attribute vec3 color;
@@ -236,11 +249,11 @@
       vec4 clip=projectionMatrix*mv;
       gl_Position=clip;
       float pulse=pow(.5+.5*sin(uTime*6.283185-.7),14.0);
-      float size=clamp(aSize*uSize*uHeight/max(.001,-mv.z),.85*uDPR,uMaxPoint*uDPR);
+      float size=clamp(aSize*uSize*uHeight/max(.00000001,-mv.z),.85*uDPR,uMaxPoint*uDPR);
       vStretch=uWarp*(.15+.85*step(1.42,aSize));
       gl_PointSize=clamp(size*(1.0+vStretch*13.0)*(1.0+uPulse*pulse*.2),.7,96.0*uDPR);
       vColor=color*(1.0+uPulse*pulse*1.2);
-      vOpacity=uOpacity*smoothstep(0.0,.05,-mv.z);
+      vOpacity=uOpacity*step(0.0,-mv.z);
       vDirection=normalize(clip.xy/max(abs(clip.w),.001)+vec2(.0001));
     }
   </script>
@@ -337,7 +350,9 @@
   'use strict';
   (() => {
     const $=id=>document.getElementById(id);
-    const TAU=Math.PI*2, MIN_DISTANCE=5, MAX_DISTANCE=10000000;
+    // Fixed surface scale: Earth equatorial radius 80 DU = 6,378,000 m.
+    const METRE=80/6378000;
+    const TAU=Math.PI*2, MIN_DISTANCE=3.8*METRE, MAX_DISTANCE=10000000;
     const LOG_MIN=Math.log(MIN_DISTANCE),LOG_MAX=Math.log(MAX_DISTANCE),LOG_SPAN=LOG_MAX-LOG_MIN;
     const PARTICLE_BUDGET=40000;
     const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -352,8 +367,8 @@
     function along(a,b,jitter=0){const t=random();return a.map((v,j)=>lerp(v,b[j],t)+rand(-jitter,jitter));}
 
     const stages=[
-      {id:'room',name:'THE QUIET ROOM',short:'ROOM',title:'一切，始於心跳。',description:'一間台灣的房間。<br>我們的宇宙，從這裡出發。',astro:'人體尺度 · 公尺',distance:5,edge:5},
-      {id:'taiwan',name:'OUR ISLAND HOME',short:'TAIWAN',title:'家，有一個位置。',description:'沿著海岸，萬家燈火。<br>剛才的房間，仍在島上的微光裡。',astro:'台灣 · 23.7° N / 121° E',distance:18,edge:10},
+      {id:'room',name:'THE QUIET ROOM',short:'ROOM',title:'一切，始於心跳。',description:'一間台灣的房間。<br>我們的宇宙，從這裡出發。',astro:'人體尺度 · 公尺',distance:MIN_DISTANCE,edge:MIN_DISTANCE},
+      {id:'taiwan',name:'OUR ISLAND HOME',short:'TAIWAN',title:'家，有一個位置。',description:'房屋、街道，逐漸成為地景。<br>沿著海岸，找到我們的島嶼。',astro:'台灣 · 23.7° N / 121° E',distance:18,edge:30*METRE},
       {id:'atmosphere',name:'ABOVE THE ATMOSPHERE',short:'ATMOS',title:'越過，世界的邊緣。',description:'地表開始彎曲，薄藍漸漸展開。<br>每一步遠行，都能回望來處。',astro:'地表與大氣 · 百公里尺度',distance:60,edge:30},
       {id:'earth',name:'OUR PALE BLUE HOME',short:'EARTH',title:'所有故事，同一個家。',description:'台灣仍在那裡。<br>海洋、陸地與雲，包裹我們的日常。',astro:'地球赤道直徑 ≈ 12,756 km',distance:240,edge:120},
       {id:'moon',name:'EARTH AND ITS COMPANION',short:'MOON',title:'與月光，保持聯繫。',description:'地球與月球，同時留在視野。<br>一圈微光，描出彼此的距離。',astro:'平均地月距離 ≈ 384,400 km',distance:900,edge:500},
@@ -366,18 +381,20 @@
       {id:'cmb',name:'THE OBSERVABLE HORIZON',short:'CMB',title:'最古老的光，抵達此刻。',description:'暗紅與橙金，是 CMB 的程序示意。<br>這是觀測視界的表現，並非宇宙外牆。',astro:'CMB · 早期宇宙之光',distance:10000000,edge:5000000}
     ];
     const flightKeys=[
-      [0,5],[8,18],[16,60],[25,240],[32,900],[37,900],[51,9500],[56,9500],
-      [66,35000],[76,110000],[88,350000],[93,350000],[101,1150000],[109,3400000],[115,10000000],
-      [123,10000000],[165,5],[170,5]
+      [0,MIN_DISTANCE],[4,MIN_DISTANCE],[10,14*METRE],[14,75*METRE],[18,500*METRE],[20,6000*METRE],
+      [24,18],[28,60],[34,240],[40,900],[44,900],[56,9500],[60,9500],[70,35000],[78,110000],
+      [89,350000],[94,350000],[102,1150000],[109,3400000],[115,10000000],
+      [123,10000000],[165,MIN_DISTANCE],[170,MIN_DISTANCE]
     ].map(([time,distance])=>({time,log:Math.log(distance)}));
-    const state={ready:false,started:false,auto:false,muted:false,grain:true,logDistance:LOG_MIN,targetLogDistance:LOG_MIN,distance:5,stage:0,
+    const state={ready:false,started:false,auto:false,muted:false,grain:true,logDistance:LOG_MIN,targetLogDistance:LOG_MIN,distance:MIN_DISTANCE,stage:0,
       flightTime:0,loops:0,phase:'OUTBOUND',warp:null,warpCount:0,warpIntensity:0,hidden:document.hidden,contextLost:false,disposed:false,
-      elapsed:0,fps:60,visibleParticles:0,drawCalls:0,quality:1,glowQuality:1,dpr:1,degradations:[],slowWindows:0,fastWindows:0,returning:false};
+      elapsed:0,fps:60,visibleParticles:0,drawCalls:0,quality:1,glowQuality:1,dpr:1,degradations:[],slowWindows:0,fastWindows:0,returning:false,angleTaken:false};
     const world=new Map(),renderables=[],particleClouds=[],labels=[],resources={geometries:new Set(),materials:new Set(),textures:new Set()};
     const warpGates=[{distance:120,armed:true,text:'LEAVING THE ATMOSPHERE'},{distance:10000,armed:true,text:'BEYOND THE PLANETARY ORBITS'}];
     const performanceLog=[];
     let renderer,camera,scene,orbitCamera,controls,sprite,earthMap;
     let earthQ,solarQ,galaxyQ,homeCenter,sunCenter,earthCenter,milkyCenter,groupCenter,laniakeaCenter;
+    let bedCenter,openingAnchor,initialDirection;
     let logicalCamera,anchor,renderOrigin,direction,frustum,projectionView,boundSphere,tempVector,lightDirection;
     let frameId=0,lastFrame=0,frameSum=0,frameCount=0,lastHUD=0,lastMetric=0,lastQuality=0;
     let hudTimer=0,toastTimer=0,segment=0,introAmount=1,audio=null,pendingSound=null,pointerActive=false,zoomUntil=0;
@@ -530,7 +547,7 @@
       const roll=new THREE.Quaternion().setFromAxisAngle(vector(0,0,1),Math.atan2(north.x,north.y));
       solarQ=roll.multiply(align);earthQ=solarQ.clone().multiply(earthOrientation);
       galaxyQ=new THREE.Quaternion().setFromEuler(new THREE.Euler(.86,.15,-.18));
-      earthCenter=vector(0,0,-80.09);homeCenter=origin.clone();
+      earthCenter=vector(0,0,-80);homeCenter=origin.clone();
       const earthOrbit=vector(Math.cos(.7)*960,0,Math.sin(.7)*960*.96);
       sunCenter=earthCenter.clone().sub(earthOrbit.clone().applyQuaternion(solarQ));
       const orionRadius=76000,orionAngle=Math.log(orionRadius/7800)/.55+.20;
@@ -538,23 +555,30 @@
       milkyCenter=sunCenter.clone().sub(orion.clone().applyQuaternion(galaxyQ));
       groupCenter=milkyCenter.clone().add(vector(180000,26000,-40000));
       laniakeaCenter=vector(650000,-180000,-360000);
-      register('universe',null,origin,5000000,'cosmic-web',{compression:'Fixed at initialization; display units are not metres or light-years.'});
+      register('universe',null,origin,5000000,'cosmic-web',{compression:'Surface uses one metre conversion. Astronomical bodies and separations use fixed display compression.',metresToDisplayUnits:METRE,distanceLimits:[MIN_DISTANCE,MAX_DISTANCE]});
       register('laniakea','universe',laniakeaCenter,1450000,'supercluster',{schematic:true});
       register('local-group','laniakea',groupCenter,750000,'galaxy-group',{schematic:true});
       const mw=register('milky-way','local-group',milkyCenter,130000,'galaxy',{astronomicalDiameter:'approximately 100000 light-years',source:'https://imagine.gsfc.nasa.gov/features/cosmic/milkyway_info.html'},galaxyQ);
       const sun=register('sun','milky-way',sunCenter,245,'star',{galacticLocation:'Orion Spur',source:'https://science.nasa.gov/resource/the-milky-way-galaxy/'},solarQ);
-      const earth=register('earth','sun',earthCenter,80,'planet',{orbitIndex:3,orbitRadius:960,axisTiltDegrees:23.5,equatorialDiameterKm:12756,source:'https://science.nasa.gov/earth/facts/'},earthQ);
-      const islandCenter=earthCenter.clone().add(ll(23.7,121,80.03).applyQuaternion(earthQ));
-      const taiwan=register('taiwan','earth',islandCenter,5.5,'surface-region',{latitude:23.7,longitude:121,schematic:true},earthQ);
-      const room=register('room','taiwan',homeCenter,1.65*.62,'room',{anchor:'Taiwan surface; the same fixed room throughout every round trip.'});
-      const heart=register('heart','room',vector(-.055,.17,.23).multiplyScalar(.62),.025*.62,'heart',{frequencyHz:1});
+      const earth=register('earth','sun',earthCenter,80,'planet',{orbitIndex:3,orbitRadius:960,axisTiltDegrees:23.5,equatorialDiameterKm:12756,metresToDisplayUnits:METRE,source:'https://science.nasa.gov/earth/facts/'},earthQ);
+      const islandCenter=earthCenter.clone().add(ll(23.7,121,80).applyQuaternion(earthQ));
+      const taiwan=register('taiwan','earth',islandCenter,5.5,'surface-region',{latitude:23.7,longitude:121,metresToDisplayUnits:METRE,schematic:true},earthQ);
+      const terrain=register('local-terrain','taiwan',homeCenter,18000*METRE,'surface-detail',{metresToDisplayUnits:METRE,schematic:true,alignedTo:'earth'});
+      const neighbourhood=register('neighbourhood','local-terrain',homeCenter,550*METRE,'residential-area',{schematic:true});
+      const house=register('house','neighbourhood',homeCenter,5.5*METRE,'house',{dimensionsMetres:[5.2,6.2,3.50]});
+      const room=register('room','house',homeCenter,5.2*METRE,'room',{dimensionsMetres:[4.8,5.8,3.40],metresToDisplayUnits:METRE,visualStyle:'Blue-violet gaming-room diorama, reconstructed procedurally from the supplied reference.'});
+      bedCenter=vector(-1.10*METRE,.20*METRE,.73*METRE);openingAnchor=vector((innerWidth/innerHeight<.8?-1.0:-.35)*METRE,.75*METRE,.80*METRE);
+      const bed=register('bed','room',bedCenter,1.4*METRE,'bed',{dimensionsMetres:[1.3,2.2,.73]});
+      register('sleeper','bed',vector(-1.10*METRE,.28*METRE,.86*METRE),.9*METRE,'person',{pose:'lying on back',heightMetres:1.67});
+      const heart=register('heart','sleeper',vector(-1.165,.47,.867).multiplyScalar(METRE),.03*METRE,'heart',{frequencyHz:1});
       const atmosphere=register('atmosphere','earth',earthCenter,81.1,'atmosphere',{},earthQ);
       const moonOffset=vector(Math.cos(2.3)*320,Math.sin(2.3)*320*Math.sin(.28),Math.sin(2.3)*320*Math.cos(.28)).applyQuaternion(solarQ);
       const moon=register('moon','earth',earthCenter.clone().add(moonOffset),21.8,'moon',{orbitCenter:'earth',orbitRadius:320,meanDistanceKm:384400,source:'https://science.nasa.gov/earth/facts/'},solarQ);
 
       buildRoom(room,heart);
+      buildLandscape(terrain,neighbourhood,house);
       buildTaiwan(taiwan);
-      surface(earth,0x34658b,0,{segments:128,rings:96,priority:10});
+      surface(earth,0x34658b,0,{segments:256,rings:192,priority:10,transparent:true});
       const atmosphericMaterial=mat(new THREE.ShaderMaterial({
         vertexShader:$('surface-vs').textContent,
         fragmentShader:'precision mediump float;varying vec3 vNormal,vView;uniform float uOpacity;void main(){float rim=pow(1.0-max(0.0,dot(normalize(vNormal),normalize(vView))),3.4);gl_FragColor=vec4(.12,.46,.91,rim*.48*uOpacity);}',
@@ -616,46 +640,197 @@
       buildLabels();
     }
 
+    // Metre-based meshes are baked once into immutable local geometry.
+    function meshBatch(){return {p:[],n:[],c:[],e:[]};}
+    function batchShape(batch,geometry,center,scale,color,emission=0){
+      const g=geometry.index?geometry.toNonIndexed():geometry,positions=g.attributes.position,normals=g.attributes.normal,c=new THREE.Color(color);
+      for(let i=0;i<positions.count;i++){
+        batch.p.push((positions.getX(i)*scale[0]+center[0])*METRE,(positions.getY(i)*scale[1]+center[1])*METRE,(positions.getZ(i)*scale[2]+center[2])*METRE);
+        const normal=vector(normals.getX(i)/scale[0],normals.getY(i)/scale[1],normals.getZ(i)/scale[2]).normalize();batch.n.push(normal.x,normal.y,normal.z);batch.c.push(c.r,c.g,c.b);batch.e.push(emission);
+      }
+      if(g!==geometry)g.dispose();geometry.dispose();
+    }
+    function box(batch,center,size,color,emission=0){batchShape(batch,new THREE.BoxGeometry(...size),center,[1,1,1],color,emission);}
+    function oval(batch,center,size,color,emission=0){batchShape(batch,new THREE.SphereGeometry(1,32,20),center,size,color,emission);}
+    function finishBatch(batch,body,options={}){
+      const g=geo(new THREE.BufferGeometry());g.setAttribute('position',new THREE.Float32BufferAttribute(batch.p,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(batch.n,3));g.setAttribute('color',new THREE.Float32BufferAttribute(batch.c,3));g.setAttribute('aEmission',new THREE.Float32BufferAttribute(batch.e,1));g.computeBoundingSphere();
+      const m=mat(new THREE.ShaderMaterial({
+        uniforms:{uOpacity:{value:1},uTime:{value:0},uRoomMood:{value:options.roomMood?1:0}},transparent:true,depthWrite:true,side:THREE.DoubleSide,
+        vertexShader:'attribute vec3 color;attribute float aEmission;varying vec3 vColor,vNormal,vLocal;varying float vEmission;void main(){vColor=color;vNormal=normal;vLocal=position;vEmission=aEmission;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+        fragmentShader:'precision highp float;uniform float uOpacity,uTime,uRoomMood;varying vec3 vColor,vNormal,vLocal;varying float vEmission;void main(){vec3 n=normalize(vNormal);float light=.34+.66*max(0.0,dot(n,normalize(vec3(.38,-.45,.82))));vec2 room=vLocal.xy/0.0000125431;float violet=exp(-length((room-vec2(1.0,2.7))*vec2(.38,.42)));vec3 tint=mix(vec3(.65,.73,1.20),vec3(1.05,.57,1.22),violet);vec3 c=vColor*light*mix(vec3(1.0),tint,uRoomMood);c=mix(c,vColor,vEmission);gl_FragColor=vec4(c,uOpacity);}'
+      }));
+      return attach(new THREE.Mesh(g,m),body,{type:'surface-detail',priority:10,...options});
+    }
     function buildRoom(room,heart){
-      const edges=[
-        [[-.9,-1.05,.01],[.9,-1.05,.01]],[[.9,-1.05,.01],[.9,1.05,.01]],[[.9,1.05,.01],[-.9,1.05,.01]],[[-.9,1.05,.01],[-.9,-1.05,.01]],
-        [[-.9,1.05,.01],[-.9,1.05,.8]],[[.9,1.05,.01],[.9,1.05,.8]],[[-.9,1.05,.8],[.9,1.05,.8]],
-        [[.9,1.05,.8],[.9,-1.05,.8]],[[.9,-1.05,.8],[.9,-1.05,.01]],
-        [[-.29,-.65,.065],[.29,-.65,.065]],[[.29,-.65,.065],[.29,.65,.065]],[[.29,.65,.065],[-.29,.65,.065]],[[-.29,.65,.065],[-.29,-.65,.065]],
-        [[-.29,.65,.065],[-.29,.65,.35]],[[.29,.65,.065],[.29,.65,.35]],[[-.29,.65,.35],[.29,.65,.35]],
-        [[.5,.3,.22],[.83,.3,.22]],[[.83,.3,.22],[.83,.66,.22]],[[.83,.66,.22],[.5,.66,.22]],[[.5,.66,.22],[.5,.3,.22]],
-        [[-.7,1.045,.28],[-.18,1.045,.28]],[[-.18,1.045,.28],[-.18,1.045,.7]],[[-.18,1.045,.7],[-.7,1.045,.7]],[[-.7,1.045,.7],[-.7,1.045,.28]]
-      ];
-      const floor=register('room-floor','room',vector(0,0,.012*.62),1.45*.62,'room-floor');
-      attach(new THREE.Mesh(geo(new THREE.PlaneGeometry(1.8*.62,2.1*.62)),mat(new THREE.MeshBasicMaterial({color:0x0a1d23,side:THREE.DoubleSide}))),floor,{priority:8});
-      ribbons(room,edges.map(points=>({points:points.map(p=>p.map(v=>v*.62)),color:[.25,.5,.54]})),{opacity:.72,width:.9,priority:8,radius:1.7*.62});
-      cloud(room,6800,()=>{
-        const part=random();let p,c=[.63,.75,.75],b=.7;
-        if(part<.15){p=ellipsoid([0,.45,.16],[.11,.125,.082]);c=[.97,.77,.48];}
-        else if(part<.4){p=ellipsoid([0,.12,.145],[.17,.265,.07]);c=[.89,.74,.53];}
-        else if(part<.6){const sign=random()<.5?-1:1;p=along([sign*.08,-.08,.135],[sign*.1,-.55,.115]);const a=rand(0,TAU);p[0]+=Math.cos(a)*.044;p[2]+=Math.sin(a)*.032;c=[.75,.71,.57];}
-        else if(part<.7){const sign=random()<.5?-1:1;p=along([sign*.16,.3,.135],[sign*.23,-.08,.12],.019);c=[.86,.76,.58];}
-        else if(part<.8){p=ellipsoid([0,.51,.082],[.24,.145,.033]);b=.38;}
-        else if(part<.9){p=[rand(-.28,.28),rand(-.64,.64),.065];c=[.2,.37,.41];}
-        else{const e=edges[Math.floor(random()*edges.length)];p=along(e[0],e[1],.002);c=[.2,.44,.51];}
-        return {p:p.map(v=>v*.62),c,b};
-      },{pointSize:.006*.62,priority:10,radius:1.7*.62});
-      cloud(heart,150,()=>({p:sphere(Math.cbrt(random())*.025*.62),c:[1,.25,.055],b:rand(.15,.38)}),{pointSize:.008*.62,pulse:true,priority:12});
+      const floor=meshBatch(),sleeping=meshBatch(),furniture=meshBatch(),back=meshBatch(),window=meshBatch(),leftDecor=meshBatch(),backDecor=meshBatch(),leds=meshBatch();
+      const bx=bedCenter.x/METRE,by=bedCenter.y/METRE;
+      const tube=(batch,a,b,r,color,emission=1)=>{
+        const av=vector(...a),bv=vector(...b),delta=bv.clone().sub(av);
+        const g=new THREE.CylinderGeometry(r,r,delta.length(),8,1);g.applyMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(vector(0,1,0),delta.normalize())));
+        batchShape(batch,g,av.add(bv).multiplyScalar(.5).toArray(),[1,1,1],color,emission);
+      };
+      const loop=(batch,points,r,color)=>{for(let i=0;i<points.length-1;i++)tube(batch,points[i],points[i+1],r,color);};
+      const pot=(x,y,z)=>{
+        batchShape(furniture,new THREE.CylinderGeometry(.10,.13,.19,16).rotateX(Math.PI/2),[x,y,z+.095],[1,1,1],0x33244f);
+        for(let i=0;i<7;i++){
+          const a=i/7*TAU,g=new THREE.SphereGeometry(1,12,8);g.scale(.035,.045,.16);g.rotateY(Math.cos(a)*.52);g.rotateX(Math.sin(a)*.52);
+          batchShape(furniture,g,[x+Math.cos(a)*.06,y+Math.sin(a)*.06,z+.29],[1,1,1],i%2?0x28767d:0x314676);
+        }
+      };
+      // A shallow solid foundation and individual hexagonal floor tiles share the same ground scale.
+      box(floor,[0,0,-.022],[4.8,5.8,.132],0x21163f);
+      const hex=.29;
+      for(let row=-7;row<=7;row++)for(let col=-6;col<=6;col++){
+        const x=Math.sqrt(3)*hex*(col+(Math.abs(row)%2)*.5),y=row*hex*1.5;
+        if(Math.abs(x)>2.12||Math.abs(y)>2.55)continue;
+        const color=new THREE.Color((row+col)%3?0x6260a7:0x7063ad);
+        for(let k=0;k<6;k++){
+          const a=k*TAU/6+Math.PI/6,b=(k+1)*TAU/6+Math.PI/6;
+          for(const p of [[x,y,.051],[x+Math.cos(a)*(hex-.006),y+Math.sin(a)*(hex-.006),.051],[x+Math.cos(b)*(hex-.006),y+Math.sin(b)*(hex-.006),.051]]){
+            floor.p.push(...p.map(v=>v*METRE));floor.n.push(0,0,1);floor.c.push(color.r,color.g,color.b);floor.e.push(0);
+          }
+        }
+      }
+      box(floor,[.15,-1.86,.064],[2.36,1.23,.026],0x171528);
+      // The sleeper and all bedding stay fixed in a metre-sized bed, offset to the left of the room.
+      box(sleeping,[0,0,.31],[1.30,2.20,.26],0x2c1d44);
+      box(sleeping,[0,1.12,.65],[1.35,.13,1.02],0x41345e);
+      for(const x of [-.51,.51])for(const y of [-.9,.9])box(sleeping,[x,y,.15],[.11,.11,.30],0x211735);
+      box(sleeping,[0,0,.53],[1.24,2.10,.19],0x9a8cba);
+      oval(sleeping,[0,.72,.655],[.48,.29,.095],0xc5b4db);
+      const duvet=new THREE.BoxGeometry(1.16,1.58,.20,18,24,4),dp=duvet.attributes.position;
+      for(let i=0;i<dp.count;i++){
+        const v=vector(dp.getX(i),dp.getY(i),dp.getZ(i)),core=v.clone().clamp(vector(-.51,-.72,-.03),vector(.51,.72,.03)),delta=v.clone().sub(core);
+        if(delta.lengthSq()>0)v.copy(core).add(delta.normalize().multiplyScalar(.07));
+        if(v.z>0)v.z+=.007*Math.sin(v.x*25+v.y*4)*Math.cos(v.y*13)+.024*(Math.exp(-Math.pow((v.x-.2)/.17,2)-Math.pow((v.y+.28)/.42,2))+Math.exp(-Math.pow((v.x+.2)/.17,2)-Math.pow((v.y+.28)/.42,2)));
+        dp.setXYZ(i,v.x,v.y,v.z);
+      }
+      duvet.computeVertexNormals();batchShape(sleeping,duvet,[0,-.30,.72],[1,1,1],0x4a366e);
+      oval(sleeping,[0,.37,.735],[.245,.25,.085],0x5c5182);
+      oval(sleeping,[0,.505,.76],[.055,.09,.04],0xbfa48c);
+      oval(sleeping,[0,.69,.78],[.135,.162,.112],0xc7ad97,.20);
+      oval(sleeping,[0,.775,.795],[.137,.102,.111],0x292437);
+      oval(sleeping,[0,.67,.879],[.025,.035,.018],0xb49b86);
+      for(const sign of [-1,1]){
+        oval(sleeping,[sign*.28,.29,.80],[.062,.23,.055],0x5c5182);
+        oval(sleeping,[sign*.35,.095,.828],[.064,.19,.052],0x655587);
+        oval(sleeping,[sign*.385,-.065,.847],[.050,.090,.026],0xbba28d,.20);
+        oval(sleeping,[sign*.050,.685,.881],[.026,.005,.003],0x635a58);
+      }
+      box(sleeping,[0,-1.04,.761],[1.08,.035,.018],0x79608f);
+      for(let i=0;i<sleeping.p.length;i+=3){sleeping.p[i]+=bx*METRE;sleeping.p[i+1]+=by*METRE;}
+      loop(leds,[[bx-.69,by-1.14,.18],[bx+.69,by-1.14,.18],[bx+.69,by+1.14,.18],[bx-.69,by+1.14,.18],[bx-.69,by-1.14,.18]],.011,0xc38dff);
+      // Bedside lamp and a cyan-lit computer desk on the far wall.
+      box(furniture,[-2.02,.88,.275],[.46,.47,.45],0x3e3265);box(furniture,[-2.02,.88,.511],[.49,.50,.027],0x766497);
+      tube(furniture,[-2.02,.88,.54],[-2.02,.88,.71],.017,0x8090b9,0);
+      batchShape(furniture,new THREE.ConeGeometry(.135,.19,20).rotateX(Math.PI/2),[-2.02,.88,.78],[1,1,1],0x92acda,.2);
+      box(furniture,[.78,2.10,.82],[1.94,.70,.075],0xb1aad5);
+      for(const x of [-.12,1.66])for(const y of [1.85,2.35])box(furniture,[x,y,.43],[.045,.045,.76],0x403164);
+      for(const x of [.29,1.26]){
+        box(furniture,[x,2.28,1.20],[.87,.062,.51],0x17152d);
+        box(furniture,[x,2.27,.99],[.044,.035,.25],0x434a70);box(furniture,[x,2.17,.89],[.31,.19,.035],0x283153);
+      }
+      box(furniture,[.73,1.93,.887],[.57,.18,.032],0x1c1b33);
+      for(let row=0;row<3;row++)for(let col=0;col<12;col++)box(furniture,[.48+col*.044,1.878+row*.045,.908],[.029,.024,.008],col%4===0?0xf479cb:0x5bc3de,.68);
+      oval(furniture,[1.22,1.92,.90],[.043,.065,.025],0x7498ca,.15);
+      box(furniture,[.06,2.02,.89],[.17,.26,.018],0x5d86af);box(furniture,[.06,2.02,.903],[.13,.20,.009],0x86eeec,.8);
+      batchShape(furniture,new THREE.CylinderGeometry(.045,.046,.24,12).rotateX(Math.PI/2),[-.03,2.40,1.00],[1,1,1],0x84b3d0,.1);
+      // Rounded gaming chair with its stem, five feet and wheels touching the floor.
+      oval(furniture,[.80,1.23,.48],[.29,.27,.062],0x514179);
+      oval(furniture,[.80,.985,.80],[.28,.075,.34],0x71609d);
+      tube(furniture,[.80,1.23,.16],[.80,1.23,.46],.034,0x28203f,0);
+      for(let i=0;i<5;i++){
+        const a=i/5*TAU,end=[.80+Math.cos(a)*.29,1.23+Math.sin(a)*.29,.11];tube(furniture,[.80,1.23,.16],end,.02,0x353056,0);oval(furniture,end,[.049,.049,.045],0x191a2d);
+      }
+      for(const x of [.47,1.13]){tube(furniture,[x,1.23,.49],[x,1.23,.70],.018,0x373055,0);box(furniture,[x,1.23,.71],[.085,.23,.025],0x746394);}
+      // Black-framed warm glass cabinet, with six softly luminous compartments.
+      box(furniture,[1.89,.12,1.19],[.91,.67,2.28],0x1c153b);box(furniture,[1.89,.12,2.36],[1.02,.74,.10],0x15102b);
+      for(const x of [1.67,2.11])for(let i=0;i<3;i++)box(furniture,[x,-.223,.45+i*.64],[.36,.012,.54],i===0?0xe78683:i===1?0xee739f:0xb969ed,.88);
+      for(const x of [1.43,1.89,2.35])box(furniture,[x,-.247,1.20],[.047,.041,2.20],0x20143e);
+      for(const z of [.12,.76,1.40,2.04,2.30])box(furniture,[1.89,-.248,z],[.94,.04,.04],0x20143e);
+      pot(1.38,-.55,.07);pot(-.12,2.39,.87);
+      box(furniture,[-1.77,2.10,1.10],[.86,.29,.044],0x302449);
+      oval(furniture,[-1.73,2.12,1.21],[.13,.10,.08],0x191728);oval(furniture,[-1.62,2.12,1.26],[.065,.055,.09],0x8784ba);
+      // Two far boundaries, a small blue window, space posters and a fixed Saturn neon tube.
+      box(back,[0,2.88,.775],[4.8,.12,1.55],0x43358a);box(back,[0,2.88,2.785],[4.8,.12,1.23],0x43358a);
+      box(back,[-2.10,2.88,1.86],[.60,.12,.62],0x43358a);box(back,[.79,2.88,1.86],[3.22,.12,.62],0x43358a);
+      for(const x of [-1.82,-.80])box(window,[x,2.79,1.86],[.052,.12,.69],0x8e83b2);
+      for(const z of [1.53,2.19])box(window,[-1.31,2.79,z],[1.07,.12,.045],0x8e83b2);
+      box(window,[-1.31,2.83,1.86],[.023,.035,.62],0x8378ae);box(window,[-1.31,2.855,1.86],[.98,.014,.62],0x408ece,.58);
+      for(const [y,z,c] of [[1.52,1.80,0x71b4e8],[.61,1.74,0xc173e4],[-.28,1.76,0x8c7eda]]){
+        box(leftDecor,[-2.318,y,z],[.055,.66,.93],0x161328);box(leftDecor,[-2.282,y,z],[.012,.57,.84],0x231e4a,.1);
+        oval(leftDecor,[-2.265,y,z+.08],[.014,.19,.19],c,.55);
+        const points=Array.from({length:49},(_,i)=>{const a=i/48*TAU;return [-2.246,y+Math.cos(a)*.235,z+.08+Math.sin(a)*.105];});loop(leftDecor,points,.008,0x78bce0);
+        for(let i=0;i<5;i++)box(leftDecor,[-2.249,y-.18+i*.085,z-.24],[.01,.035,.06+i*.018],0x73b2b5,.66);
+      }
+      const planet=Array.from({length:65},(_,i)=>{const a=i/64*TAU;return [1.01+Math.cos(a)*.235,2.781,2.06+Math.sin(a)*.235];});loop(backDecor,planet,.014,0xe4b5ff);
+      const ring=Array.from({length:65},(_,i)=>{const a=i/64*TAU,u=Math.cos(a)*.49,v=Math.sin(a)*.13;return [1.01+u*.87-v*.49,2.757,2.06+u*.49+v*.87];});loop(backDecor,ring,.012,0xe8c3ff);
+      loop(leds,[[-2.32,-2.80,.105],[-2.32,2.80,.105],[2.32,2.80,.105]],.012,0x8794ff);
+      const roomOptions={roomMood:true,maxDistance:130*METRE};
+      finishBatch(floor,room,roomOptions);finishBatch(sleeping,room,roomOptions);finishBatch(furniture,room,roomOptions);finishBatch(leds,room,roomOptions);
+      finishBatch(back,room,{...roomOptions,wallNormal:vector(0,1,0),cutaway:true});finishBatch(window,room,{...roomOptions,wallNormal:vector(0,1,0),cutaway:true});
+      finishBatch(backDecor,room,{...roomOptions,wallNormal:vector(0,1,0),cutaway:true});finishBatch(leftDecor,room,{...roomOptions,wallNormal:vector(-1,0,0),cutaway:true});
+      for(const [center,size,normal,color] of [[[-2.4,0,1.70],[.12,5.8,3.40],vector(-1,0,0),0x59358f],[[2.4,0,1.70],[.12,5.8,3.40],vector(1,0,0),0x283779],[[0,-2.9,1.70],[4.8,.12,3.40],vector(0,-1,0),0x353164]]){
+        const wall=meshBatch();box(wall,center,size,color);box(wall,[center[0],center[1],.07],[size[0]+.035,size[1]+.035,.14],0x28204b);finishBatch(wall,room,{...roomOptions,wallNormal:normal,cutaway:true});
+      }
+      const roof=meshBatch();box(roof,[0,0,3.46],[5.2,6.2,.15],0x334c54);finishBatch(roof,world.get('house'),{roof:true});
+      const monitorMaterial=mat(new THREE.ShaderMaterial({transparent:true,depthWrite:true,uniforms:{uOpacity:{value:1}},vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'precision highp float;uniform float uOpacity;varying vec2 vUv;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}void main(){vec2 p=vUv;float mist=.0;float amp=.54;vec2 q=p*vec2(5.2,3.7);for(int i=0;i<4;i++){vec2 cell=floor(q),f=fract(q);f=f*f*(3.0-2.0*f);float n=mix(mix(hash(cell),hash(cell+vec2(1,0)),f.x),mix(hash(cell+vec2(0,1)),hash(cell+vec2(1,1)),f.x),f.y);mist+=n*amp;q=mat2(1.6,1.2,-1.2,1.6)*q+vec2(13.1,7.4);amp*=.5;}mist=smoothstep(.24,.77,mist);vec3 c=mix(vec3(.015,.09,.18),vec3(.20,.79,.94),mist);c+=vec3(.34,.34,.38)*pow(mist,3.0);c+=step(.993,hash(floor(p*vec2(150.0,95.0))))*.7;gl_FragColor=vec4(c,uOpacity);}'}));
+      for(const x of [.29,1.26]){const g=geo(new THREE.PlaneGeometry(.81*METRE,.45*METRE));g.rotateX(Math.PI/2);g.translate(x*METRE,2.244*METRE,1.20*METRE);attach(new THREE.Mesh(g,monitorMaterial),room,{type:'surface-detail',maxDistance:130*METRE});}
+      const pools=[[[bx,by,.057],[2.10,2.75],[.42,.13,1.0],.22],[[.77,1.62,.057],[2.15,1.50],[.05,.43,1.0],.18],[[1.84,-.50,.057],[1.4,1.6],[1.0,.12,.47],.18],[[1.01,2.745,2.06],[1.60,1.05],[.65,.15,1.0],.25]];
+      for(let i=0;i<pools.length;i++){
+        const [center,size,color,opacity]=pools[i],g=geo(new THREE.PlaneGeometry(size[0]*METRE,size[1]*METRE));if(i===3)g.rotateX(Math.PI/2);g.translate(...center.map(v=>v*METRE));
+        const m=mat(new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:{uOpacity:{value:opacity},uColor:{value:new THREE.Color(...color)}},vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'precision mediump float;uniform float uOpacity;uniform vec3 uColor;varying vec2 vUv;void main(){float a=exp(-dot(vUv-.5,vUv-.5)*10.0)*smoothstep(.51,.23,max(abs(vUv.x-.5),abs(vUv.y-.5)));gl_FragColor=vec4(uColor,a*uOpacity);}'}));
+        attach(new THREE.Mesh(g,m),room,{type:'glow',opacity,maxDistance:100*METRE,...(i===3?{wallNormal:vector(0,1,0),cutaway:true}:{})});
+      }
+      cloud(room,120,()=>({p:[rand(-2.2,2.2)*METRE,rand(-2.4,2.4)*METRE,rand(.5,2.6)*METRE],c:[.65,.57,.9],b:rand(.06,.13)}),{pointSize:.003*METRE,minPixels:0,priority:1,maxDistance:20*METRE,opacity:.24});
+      cloud(heart,40,()=>({p:sphere(Math.cbrt(random())*.026*METRE),c:[1,.38,.14],b:rand(.13,.35)}),{pointSize:.016*METRE,pulse:true,priority:12,minPixels:0,opacity:.82,maxDistance:80*METRE});
     }
+
+    function terrainHeight(x,y){const r=Math.hypot(x,y),blend=smooth((r-500)/600);return blend*(18+13*Math.sin(x/320)*Math.cos(y/390)+11*Math.sin((x+y)/710))-(x*x+y*y)*METRE/160;}
+    function buildLandscape(terrain,neighbourhood,house){
+      const land=meshBatch(),town=meshBatch(),roads=meshBatch();
+      const segments=112,extent=12500;
+      for(let y=0;y<segments;y++)for(let x=0;x<segments;x++){
+        const coords=[[x,y],[x+1,y],[x,y+1],[x,y+1],[x+1,y],[x+1,y+1]];
+        const shade=.95+.10*Math.sin(x*.37)*Math.cos(y*.29),color=new THREE.Color(0x0e1727).multiplyScalar(shade);
+        const vertices=coords.map(([a,b])=>vector((a/segments*2-1)*extent,(b/segments*2-1)*extent,0));vertices.forEach(v=>v.z=terrainHeight(v.x,v.y));
+        for(let k=0;k<6;k+=3){const n=vertices[k+1].clone().sub(vertices[k]).cross(vertices[k+2].clone().sub(vertices[k])).normalize();for(let j=0;j<3;j++){const v=vertices[k+j];land.p.push(v.x*METRE,v.y*METRE,v.z*METRE);land.n.push(n.x,n.y,n.z);land.c.push(color.r,color.g,color.b);land.e.push(0);}}
+      }
+      finishBatch(land,terrain,{terrain:true,minPixels:0,priority:8});
+      // A finer shared ground patch keeps the room, pavement and building bases coincident.
+      box(roads,[0,0,-.075],[520,520,.16],0x162333);
+      for(let i=-5;i<=5;i++){
+        box(roads,[i*40+18,0,.014],[6,480,.025],0x26333b);box(roads,[0,i*40+18,.018],[480,6,.025],0x26333b);
+        for(let j=-5;j<=5;j++){
+          const px=i*40-9+rand(-3,3),py=j*40-8+rand(-3,3);if(Math.hypot(px,py)<15)continue;
+          const sx=rand(8,17),sy=rand(10,20),height=rand(3.1,8.2);
+          box(town,[px,py,height/2],[sx,sy,height],random()<.5?0x34434a:0x454b49);
+          box(town,[px,py,height+.16],[sx+.4,sy+.4,.32],0x283b40);
+          for(const side of [-1,1])for(let k=0;k<3;k++)if(random()<.6)box(town,[px+side*(sx/2+.01),py+(k-1)*sy*.24,1.9],[.025,1.2,1.05],0xc0a474,.82);
+        }
+      }
+      box(roads,[0,0,-.01],[6.0,7.0,.03],0x1b2238);box(roads,[0,-7,.014],[1.6,8,.025],0x263047);
+      finishBatch(roads,neighbourhood,{maxDistance:2500*METRE,priority:8});finishBatch(town,neighbourhood,{maxDistance:2500*METRE,priority:8});
+      const lights=register('streetlights','neighbourhood',homeCenter,450*METRE,'city-lights',{schematic:true});
+      cloud(lights,150,()=>({p:[rand(-240,240)*METRE,rand(-240,240)*METRE,3.5*METRE],c:[1,.66,.30],b:rand(.15,.45)}),{pointSize:.14*METRE,opacity:.55,priority:2,maxDistance:5000*METRE});
+    }
+
     function buildTaiwan(taiwan){
-      const localOrigin=ll(23.7,121,80.03);
-      const shape=new THREE.Shape();taiwanOutline.forEach(([lon,lat],i)=>i?shape.lineTo(lon,lat):shape.moveTo(lon,lat));
-      const g=geo(new THREE.ShapeGeometry(shape)),p=g.attributes.position;
-      for(let i=0;i<p.count;i++){const v=ll(p.getY(i),p.getX(i),80.035).sub(localOrigin);p.setXYZ(i,v.x,v.y,v.z);}p.needsUpdate=true;g.computeVertexNormals();
-      const m=mat(new THREE.MeshBasicMaterial({color:0x214f43,side:THREE.DoubleSide}));
-      attach(new THREE.Mesh(g,m),taiwan,{priority:9});
-      const coast=taiwanOutline.map(([lon,lat])=>ll(lat,lon,80.07).sub(localOrigin).toArray());
-      ribbons(taiwan,[{points:coast,color:[.41,.8,.75]}],{opacity:.83,width:1.15,priority:9,radius:5.5});
-      cloud(taiwan,2400,()=>{
-        const lat=rand(22.15,25.05),lon=120.3+(lat-22.5)*.30+rand(-.12,.08),v=ll(lat,lon,80.1).sub(localOrigin);
-        return {p:v.toArray(),c:[1,.61,.23],b:rand(.14,.62)};
-      },{pointSize:.012,priority:7});
+      const localOrigin=ll(23.7,121,80),positions=[],colors=[];
+      const contains=(lon,lat)=>{let inside=false;for(let i=0,j=taiwanOutline.length-1;i<taiwanOutline.length;j=i++){const a=taiwanOutline[i],b=taiwanOutline[j];if((a[1]>lat)!==(b[1]>lat)&&lon<(b[0]-a[0])*(lat-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;};
+      const nx=96,ny=160;
+      for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+        const lon=120.08+x/nx*2.0,lat=21.87+y/ny*3.48,dx=2/nx,dy=3.48/ny;if(!contains(lon+dx/2,lat+dy/2))continue;
+        const ridge=.5+.5*Math.sin(lat*6+lon*7),color=new THREE.Color(0x28523f).multiplyScalar(.85+ridge*.22);
+        for(const [a,b] of [[0,0],[1,0],[0,1],[0,1],[1,0],[1,1]]){const v=ll(lat+b*dy,lon+a*dx,80+5*METRE).sub(localOrigin);positions.push(v.x,v.y,v.z);colors.push(color.r,color.g,color.b);}
+      }
+      const g=geo(new THREE.BufferGeometry());g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));g.computeVertexNormals();
+      const m=mat(new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));attach(new THREE.Mesh(g,m),taiwan,{type:'island-surface',priority:9});
+      const coast=taiwanOutline.map(([lon,lat])=>ll(lat,lon,80+7*METRE).sub(localOrigin).toArray());
+      ribbons(taiwan,[{points:coast,color:[.31,.57,.56]}],{opacity:.46,width:.9,priority:9,radius:5.5,islandCoast:true});
+      cloud(taiwan,2400,()=>{let lat,lon;do{lat=rand(22.15,25.05);lon=120.3+(lat-22.5)*.30+rand(-.12,.08);}while(!contains(lon,lat));const v=ll(lat,lon,80+12*METRE).sub(localOrigin);return {p:v.toArray(),c:[1,.61,.23],b:rand(.1,.48)};},{pointSize:20*METRE,priority:7,minDistance:.05});
     }
+
     function buildGalaxy(body,count){
       const R=body.radius;
       cloud(body,count,()=>{
@@ -743,26 +918,30 @@
     }
     function navigationAnchor(distance,out){
       const keys=[
-        [5,homeCenter],[35,homeCenter],[250,earthCenter],[1050,earthCenter],[9000,sunCenter],
+        [MIN_DISTANCE,openingAnchor],[14*METRE,openingAnchor],[24*METRE,vector(0,0,.6*METRE)],[100*METRE,homeCenter],
+        [35,homeCenter],[250,earthCenter],[1050,earthCenter],[9000,sunCenter],
         [105000,sunCenter],[440000,milkyCenter],[1350000,groupCenter],[3600000,laniakeaCenter],[10000000,homeCenter]
       ];
       const log=Math.log(distance);
-      for(let i=0;i<keys.length-1;i++){
-        if(distance<=keys[i+1][0]){
-          const t=smooth((log-Math.log(keys[i][0]))/(Math.log(keys[i+1][0])-Math.log(keys[i][0])));
-          return out.copy(keys[i][1]).lerp(keys[i+1][1],t);
-        }
+      for(let i=0;i<keys.length-1;i++)if(distance<=keys[i+1][0]){
+        const t=smooth((log-Math.log(keys[i][0]))/(Math.log(keys[i+1][0])-Math.log(keys[i][0])));
+        return out.copy(keys[i][1]).lerp(keys[i+1][1],t);
       }
       return out.copy(homeCenter);
     }
+
     function updateCamera(){
       // OrbitControls only drives this unit-radius proxy. It never writes the rendering camera.
+      if(!state.angleTaken){
+        const blend=smooth(Math.log(state.distance/(14*METRE))/Math.log(75/14));
+        orbitCamera.position.copy(initialDirection).lerp(vector(0,0,1),blend).normalize().add(controls.target);
+      }
       controls.update();
       controls.target.clampLength(0,.12);
       direction.copy(orbitCamera.position).sub(controls.target).normalize();
       navigationAnchor(state.distance,anchor);
       anchor.addScaledVector(controls.target,state.distance);
-      anchor.x-=1.1*introAmount;
+      anchor.x-=.50*METRE*introAmount*(innerWidth>900?1:0);
       logicalCamera.copy(anchor).addScaledVector(direction,state.distance);
       // All logical coordinates remain unchanged. Subtraction happens in JS double precision.
       renderOrigin.copy(logicalCamera);
@@ -770,15 +949,15 @@
       camera.up.copy(orbitCamera.up);
       tempVector.copy(direction).multiplyScalar(-1);
       camera.lookAt(tempVector);
-      camera.near=Math.max(.002,state.distance*.0003);
-      camera.far=Math.min(45000000,Math.max(1000,state.distance*14));
+      camera.near=Math.max(METRE*.005,state.distance*.03);
+      camera.far=Math.min(45000000,Math.max(500*METRE,state.distance*14));
       camera.updateProjectionMatrix();camera.updateMatrixWorld(true);
       projectionView.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);
       frustum.setFromProjectionMatrix(projectionView);
       lightDirection.copy(sunCenter).sub(earthCenter).normalize().transformDirection(camera.matrixWorldInverse);
     }
     const preferredDistances={
-      'room':5,'heart':5,'taiwan':18,'asteroid-belt':7500,'kuiper-belt':10000,'oort':35000,'stars':110000,
+      'room':MIN_DISTANCE,'heart':MIN_DISTANCE,'streetlights':100*METRE,'taiwan':18,'asteroid-belt':7500,'kuiper-belt':10000,'oort':35000,'stars':110000,
       'milky-way':350000,'andromeda':1150000,'laniakea':3400000,'universe':10000000
     };
     function updateRendering(){
@@ -793,6 +972,22 @@
         boundSphere.center.copy(mesh.position);boundSphere.radius=entry.radius;
         entry.candidate=entry.screenRadius>=entry.minPixels&&frustum.intersectsSphere(boundSphere);
         let opacity=entry.opacity*smooth((entry.screenRadius-entry.minPixels)/Math.max(1,entry.minPixels*2));
+        if(entry.minDistance)opacity*=smooth(Math.log(state.distance/entry.minDistance)/.6);
+        if(entry.maxDistance)opacity*=1-smooth(Math.log(state.distance/entry.maxDistance)/.8);
+        if(entry.cutaway){
+          const closed=smooth(Math.log(state.distance/(15*METRE))/Math.log(45/15));
+          const inside=1-smooth(Math.log(state.distance/(4.2*METRE))/Math.log(7.0/4.2));
+          const cut=entry.wallNormal?lerp(1-smooth((direction.dot(entry.wallNormal)+.15)/.45),1,closed):closed;
+          opacity*=lerp(cut,1,inside);
+        }
+        if(entry.roof){
+          const inside=1-smooth(Math.log(state.distance/(4.2*METRE))/Math.log(7.0/4.2));
+          opacity*=Math.max(inside,smooth(Math.log(state.distance/(18*METRE))/Math.log(45/18)));
+        }
+        if(entry.terrain)opacity*=1-smooth(Math.log(state.distance/.055)/Math.log(.34/.055));
+        if(body.id==='earth')opacity*=smooth(Math.log(state.distance/.035)/Math.log(.10/.035));
+        if(body.id==='atmosphere')opacity*=smooth(Math.log(state.distance/3)/Math.log(16/3));
+        if(entry.type==='island-surface'||entry.islandCoast)opacity*=smooth(Math.log(state.distance/.04)/Math.log(.22/.04));
         if(entry.type==='cmb'){
           opacity=smooth((state.logDistance-Math.log(2700000))/(LOG_MAX-Math.log(2700000)))*.62;
           entry.candidate=opacity>.001;
@@ -813,6 +1008,7 @@
           if(u.uViewport)u.uViewport.value.set(innerWidth*state.dpr,innerHeight*state.dpr);
         }
         mesh.visible=entry.candidate&&opacity>.001;
+        if(entry.type==='surface-detail')mesh.material.depthWrite=opacity>.98;
         if(entry.count){
           entry.desired=0;entry.allocation=0;
           if(!mesh.visible)continue;
@@ -861,13 +1057,14 @@
           const fadeIn=index===0?1:smooth((state.logDistance-Math.log(handoffs[index-1])+.09)/.18);
           const fadeOut=index===homeKeys.length-1?1:1-smooth((state.logDistance-Math.log(handoffs[index])+.09)/.18);
           opacity=.83*fadeIn*fadeOut;
+          if(index===0)opacity*=smooth(Math.log(d/(12*METRE))/Math.log(30/12));
         }
         else if(label.range){
           const log=state.logDistance,min=Math.log(label.range[0]),max=Math.log(label.range[1]);
           opacity=smooth((log-min)/.25)*smooth((max-log)/.25)*.72;
         }
         if(label.key==='home'){
-          label.span.textContent=d<10?'ROOM · 起點':'TAIWAN · 起點';
+          label.span.textContent=d<28*METRE?'ROOM · 起點':d<8000*METRE?'HOME · 我們的房子':'TAIWAN · 起點';
           if(d>40&&vector(0,0,1).dot(tempVector.copy(logicalCamera).sub(earthCenter))<0)opacity=0;
         }
         if(opacity<=.001){label.element.style.opacity='0';continue;}
@@ -935,12 +1132,12 @@
       $('sound-toggle').setAttribute('aria-label',(enabled?'關閉':'開啟')+'音效（M）');
     }
     function ensureAudio(){
-      try{if(!audio)audio=new Soundscape();audio.setMuted(state.muted);audio.resume().catch(()=>toast('請再按一次音效按鈕以啟動音訊'));syncSoundButton();}
-      catch(error){state.muted=true;syncSoundButton();toast('此裝置無法啟用 Web Audio；仍可探索連續宇宙。');}
+      try{if(!audio)audio=new Soundscape();audio.setMuted(state.muted);audio.resume().catch(()=>toast('請再按一次音效按鈕以啟動音訊'));syncSoundButton();return true;}
+      catch(error){state.muted=true;syncSoundButton();toast('此裝置無法啟用 Web Audio；仍可探索連續宇宙。');return false;}
     }
     function toggleSound(){
       if(!state.started){pendingSound=audio?state.muted:true;state.muted=!pendingSound;ensureAudio();return;}
-      state.muted=audio?!state.muted:false;ensureAudio();wakeHUD();toast(state.muted?'音效已關閉':'鋼琴與宇宙回音已開啟');
+      state.muted=audio?!state.muted:false;const enabled=ensureAudio();wakeHUD();if(enabled)toast(state.muted?'音效已關閉':'鋼琴與宇宙回音已開啟');
     }
     function setAuto(enabled,announce=true){
       if(enabled&&!state.auto){
@@ -968,6 +1165,7 @@
     }
     function jumpTo(index){
       if(!state.started)return;
+      state.angleTaken=true;
       setAuto(false,false);
       state.targetLogDistance=Math.log(stages[clamp(index,0,stages.length-1)].distance);
       if(state.targetLogDistance<state.logDistance)stopWarp();
@@ -975,6 +1173,7 @@
     }
     function travel(delta){
       if(!state.started||dialogOpen())return;
+      state.angleTaken=true;
       setAuto(false,false);
       state.targetLogDistance=clamp(state.targetLogDistance+delta,LOG_MIN,LOG_MAX);
       if(delta<0)stopWarp();
@@ -993,7 +1192,11 @@
       }
       const normalized=(state.logDistance-LOG_MIN)/LOG_SPAN,ruler=document.querySelector('.ruler');
       $('ruler-marker').style.top=(16+(ruler.clientHeight-32)*normalized)+'px';
-      $('display-distance').textContent=state.distance<100?state.distance.toFixed(2):state.distance.toLocaleString('en-US',{maximumFractionDigits:0});
+      $('display-distance').textContent=state.distance<.01?state.distance.toExponential(2):state.distance<100?state.distance.toFixed(2):state.distance.toLocaleString('en-US',{maximumFractionDigits:0});
+      if(index<2){
+        $('chapter-english').textContent=state.distance<28*METRE?'THE MOONLIT ROOM':state.distance<1800*METRE?'OUR NEIGHBOURHOOD':'OUR ISLAND HOME';
+        $('scale-value').textContent=state.distance<.3?'地表觀景距離 ≈ '+(state.distance/METRE).toLocaleString('zh-TW',{maximumFractionDigits:1})+' m':s.astro;
+      }
       $('loop-count').textContent=String(state.loops+1).padStart(2,'0');$('flight-phase').textContent=state.phase;
       $('whisper').classList.toggle('visible',state.auto&&state.flightTime>158&&state.flightTime<168);
       if(audio){
@@ -1039,33 +1242,52 @@
       }
       frameId=requestAnimationFrame(animate);
     }
+    function layoutRuler(){
+      const ruler=document.querySelector('.ruler'),h=ruler.clientHeight,w=ruler.clientWidth;
+      const ticks=stages.map(s=>16+(h-32)*(Math.log(s.distance)-LOG_MIN)/LOG_SPAN),positions=ticks.slice();
+      for(let i=positions.length-2;i>=0;i--)positions[i]=Math.min(positions[i],positions[i+1]-44);
+      for(let i=0;i<positions.length;i++)positions[i]=Math.max(16+i*44,positions[i]);
+      const show=getComputedStyle(ui.nodes[0]).display!=='none';
+      let links=ruler.querySelector('.ruler-links');
+      if(!links){links=document.createElementNS('http://www.w3.org/2000/svg','svg');links.classList.add('ruler-links');links.setAttribute('aria-hidden','true');ruler.prepend(links);}
+      links.setAttribute('viewBox','0 0 '+w+' '+h);links.setAttribute('width',w);links.setAttribute('height',h);
+      // Only label rows move to avoid overlap; ticks and the marker retain their exact logarithmic position.
+      links.innerHTML=ticks.map((tick,i)=>'<line x1="'+(w-9)+'" y1="'+tick+'" x2="'+(w-2)+'" y2="'+tick+'"/>'+(show?'<line x1="'+(w-24)+'" y1="'+positions[i]+'" x2="'+(w-6)+'" y2="'+tick+'"/>':'')).join('');
+      ui.nodes.forEach((node,i)=>node.style.top=positions[i]+'px');
+    }
     function resize(){
       if(!renderer)return;
       state.dpr=Math.min(state.dpr||devicePixelRatio,devicePixelRatio,1.5);
       renderer.setPixelRatio(state.dpr);renderer.setSize(innerWidth,innerHeight);
       camera.aspect=innerWidth/innerHeight;
       // Responsive field of view is changed only on resize, never as a navigation effect.
-      camera.fov=Math.min(112,2*Math.atan(Math.tan(55*Math.PI/360)/Math.min(1,camera.aspect))*180/Math.PI);
-      camera.updateProjectionMatrix();orbitCamera.aspect=camera.aspect;orbitCamera.updateProjectionMatrix();
+      camera.fov=Math.min(100,2*Math.atan(Math.tan(55*Math.PI/360)/Math.min(1,camera.aspect/.62))*180/Math.PI);
+      camera.clearViewOffset();
+      if(camera.aspect<.8)camera.setViewOffset(innerWidth,innerHeight,0,-innerHeight*.07,innerWidth,innerHeight);
+      camera.updateProjectionMatrix();orbitCamera.aspect=camera.aspect;orbitCamera.updateProjectionMatrix();layoutRuler();
     }
     function initScene(){
       try{renderer=new THREE.WebGLRenderer({canvas:ui.canvas,antialias:false,alpha:false,powerPreference:'high-performance'});}
       catch(error){throw new Error('無法啟用 WebGL。請確認瀏覽器硬體加速已開啟，或改用支援 WebGL 的瀏覽器。');}
       renderer.setClearColor(0x05080d,1);state.dpr=Math.min(devicePixelRatio,1.5);
       scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.002,1000);
-      orbitCamera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.01,10);orbitCamera.position.set(0,0,1);
+      orbitCamera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.01,10);initialDirection=vector(.27,-.80,.52).normalize();orbitCamera.position.copy(initialDirection);
+      // Z is the room vertical; a small north component keeps the later +Z overview well-defined.
+      orbitCamera.up.set(0,.10,1).normalize();
       controls=new THREE.OrbitControls(orbitCamera,ui.canvas);controls.enableZoom=false;controls.enableDamping=true;controls.dampingFactor=.06;
       controls.rotateSpeed=.45;controls.panSpeed=.3;controls.screenSpacePanning=true;controls.enabled=false;controls.autoRotate=false;
       controls.minPolarAngle=.001;controls.maxPolarAngle=Math.PI-.001;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_PAN;
       logicalCamera=vector();anchor=vector();renderOrigin=vector();direction=vector(0,0,1);tempVector=vector();lightDirection=vector();
       frustum=new THREE.Frustum();projectionView=new THREE.Matrix4();boundSphere=new THREE.Sphere();
-      sprite=buildSprite();earthMap=buildEarthMap();buildWorld();resize();updateCamera();
+      sprite=buildSprite();earthMap=buildEarthMap();buildWorld();
+      stages.forEach((s,i)=>ui.nodes[i].style.setProperty('--at',(Math.log(s.distance)-LOG_MIN)/LOG_SPAN));
+      resize();updateCamera();
       // Compile all materials and upload every geometry before enabling navigation.
       renderer.compile(scene,camera);
       const warmup=new THREE.WebGLRenderTarget(1,1);renderer.setRenderTarget(warmup);renderer.render(scene,camera);renderer.setRenderTarget(null);warmup.dispose();
       updateRendering();renderer.render(scene,camera);
       if((renderer.info.programs||[]).some(program=>program.diagnostics&&!program.diagnostics.runnable))throw new Error('顯示卡無法編譯宇宙材質，請更新瀏覽器或顯示卡驅動程式後重試。');
-      controls.addEventListener('start',()=>{pointerActive=true;wakeHUD();});
+      controls.addEventListener('start',()=>{state.angleTaken=true;pointerActive=true;wakeHUD();});
       controls.addEventListener('end',()=>{pointerActive=false;ui.cursor.classList.remove('dragging');$('cursor-label').textContent='';wakeHUD();});
       ui.canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();state.contextLost=true;cancelAnimationFrame(frameId);audio?.suspend();toast('顯示裝置暫停，等待恢復…');});
       ui.canvas.addEventListener('webglcontextrestored',()=>{state.contextLost=false;resize();audio?.resume().catch(()=>{});scheduleFrame();toast('星光已恢復');});
@@ -1166,13 +1388,14 @@
     function snapshot(){
       const gl=renderer?.getContext(),debug=gl?.getExtension('WEBGL_debug_renderer_info');
       return {
-        version:'3.0',ready:state.ready,started:state.started,distance:state.distance,logDistance:state.logDistance,targetDistance:Math.exp(state.targetLogDistance),
+        version:'3.1',ready:state.ready,started:state.started,distance:state.distance,logDistance:state.logDistance,targetDistance:Math.exp(state.targetLogDistance),
         stage:state.stage,stageName:stages[state.stage].short,auto:state.auto,phase:state.phase,flightTime:state.flightTime,loops:state.loops,warp:!!state.warp,warpCount:state.warpCount,
         cameraPosition:logicalCamera?.toArray(),navigationAnchor:anchor?.toArray(),orbitDirection:direction?.toArray(),renderOrigin:renderOrigin?.toArray(),
         cameraRelativePosition:camera?.position.toArray(),fov:camera?.fov,zoom:camera?.zoom,near:camera?.near,far:camera?.far,
         particleBudget:PARTICLE_BUDGET,visibleParticles:state.visibleParticles,drawCalls:state.drawCalls,fps:Math.round(state.fps),pixelRatio:state.dpr,detailDensity:state.quality,
         geometries:renderer?.info.memory.geometries||0,textures:renderer?.info.memory.textures||0,logicalObjects:world.size,
         audioState:audio?.ctx.state||'locked',activeAudioSources:audio?.sources.size||0,audioSchedulers:audio?.timer?1:0,muted:state.muted,grain:state.grain,reducedMotion,
+        surfaceMetresPerDisplayUnit:1/METRE,distanceLimits:[MIN_DISTANCE,MAX_DISTANCE],angleTaken:state.angleTaken,
         viewport:[innerWidth,innerHeight],nativeDPR:devicePixelRatio,browser:navigator.userAgent,gpu:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):'unavailable',
         degradations:state.degradations.map(item=>({...item}))
       };
@@ -1181,6 +1404,25 @@
       getState:snapshot,
       getWorld:()=>[...world.values()].map(body=>({id:body.id,parent:body.parent,kind:body.kind,center:body.center.toArray(),localCenter:body.localCenter.toArray(),radius:body.radius,rotation:body.quaternion.toArray(),localRotation:body.localRotation.toArray(),metadata:body.metadata})),
       getPerformance:()=>performanceLog.map(item=>({...item})),
+      getRoomBounds:()=>{
+        if(!camera||!renderOrigin)return null;
+        const points=[];
+        for(const x of [-2.46,2.46])for(const y of [-2.96,2.96])points.push(vector(x*METRE,y*METRE,.05*METRE));
+        for(const y of [-2.96,2.96])points.push(vector(-2.46*METRE,y*METRE,3.40*METRE));
+        for(const x of [-2.46,2.46])points.push(vector(x*METRE,2.96*METRE,3.40*METRE));
+        points.forEach(v=>v.sub(renderOrigin).project(camera));
+        const xs=points.map(v=>(v.x*.5+.5)*innerWidth),ys=points.map(v=>(-v.y*.5+.5)*innerHeight);
+        const bounds={left:Math.min(...xs),right:Math.max(...xs),top:Math.min(...ys),bottom:Math.max(...ys)};
+        return {...bounds,heightRatio:(bounds.bottom-bounds.top)/innerHeight,fullyVisible:bounds.left>=0&&bounds.right<=innerWidth&&bounds.top>=0&&bounds.bottom<=innerHeight};
+      },
+      getOpeningBounds:()=>{
+        if(!camera||!renderOrigin)return null;
+        const points=[];
+        for(const x of [-.7,.7])for(const y of [-1.19,1.19])for(const z of [.1,1.17])points.push(vector(x*METRE+bedCenter.x,y*METRE+bedCenter.y,z*METRE).sub(renderOrigin).project(camera));
+        const xs=points.map(v=>(v.x*.5+.5)*innerWidth),ys=points.map(v=>(-v.y*.5+.5)*innerHeight);
+        const bounds={left:Math.min(...xs),right:Math.max(...xs),top:Math.min(...ys),bottom:Math.max(...ys)};
+        return {...bounds,heightRatio:(bounds.bottom-bounds.top)/innerHeight,fullyVisible:bounds.left>=0&&bounds.right<=innerWidth&&bounds.top>=0&&bounds.bottom<=innerHeight};
+      },
       getProjection:id=>{
         const body=world.get(id);if(!body||!camera)return null;
         const relative=body.center.clone().sub(renderOrigin),v=relative.clone().project(camera);
