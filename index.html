@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Cosmic Drift: Powers of Scale (宇宙漂移：尺度之能)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Three.js (r128) & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #010206;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #e2e8f0;
+    }
+    #webgl-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+    }
+
+    /* Glassmorphism Classes */
+    .glass-panel {
+      background: rgba(8, 14, 28, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+    .glass-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Custom range input styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: transparent;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 10px #38bdf8, 0 0 20px rgba(56, 189, 248, 0.6);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -6px;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      background: #7dd3fc;
+    }
+
+    /* Modal Backdrop */
+    .modal-overlay {
+      background: rgba(2, 6, 18, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Pulse animation */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 8px #38bdf8); }
+    }
+    .pulse-glow {
+      animation: subtlePulse 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="relative w-screen h-screen overflow-hidden bg-[#010206]">
+
+  <!-- 3D Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Top Information Bar -->
+  <header class="absolute top-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+    
+    <!-- Left: Title & Info Trigger -->
+    <div class="glass-panel px-4 py-2.5 rounded-2xl flex items-center gap-3 pointer-events-auto">
+      <div class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_#38bdf8] pulse-glow"></div>
+      <div class="flex flex-col">
+        <span class="text-xs font-bold tracking-widest uppercase text-cyan-400">Cosmic Drift</span>
+        <span class="text-[10px] text-slate-400 font-mono">Powers of Scale · 尺度之能</span>
+      </div>
+      <button id="btn-info" class="glass-btn ml-2 p-1.5 rounded-xl text-slate-300 hover:text-white" title="專案資訊與操作說明">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke-width="2"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16v-4m0-4h.01"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Center: Current Scale Badge -->
+    <div class="glass-panel px-5 py-2.5 rounded-2xl flex items-center gap-3 pointer-events-auto">
+      <div class="flex flex-col items-center">
+        <div class="flex items-center gap-2">
+          <span id="hud-scale-power" class="text-xs font-mono font-semibold px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">10⁰ m</span>
+          <span id="hud-scale-name" class="text-sm font-semibold tracking-wide text-slate-100">房間中的自己 (微觀個體)</span>
+        </div>
+        <span id="hud-scale-value" class="text-[10px] font-mono text-slate-400 mt-0.5">Scale S: 0.00 / 5.00</span>
+      </div>
+    </div>
+
+    <!-- Right: Mode Badge & Quick Toggles -->
+    <div class="glass-panel px-4 py-2.5 rounded-2xl flex items-center gap-3 pointer-events-auto">
+      <div id="badge-mode" class="flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1 rounded-xl">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block"></span>
+        <span id="badge-mode-text">自動巡航中</span>
+      </div>
+
+      <!-- Audio Mute Button -->
+      <button id="btn-audio" class="glass-btn p-2 rounded-xl text-slate-300 hover:text-white" title="開啟/靜音合成音訊">
+        <svg id="icon-sound-on" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg id="icon-sound-off" class="w-4 h-4 text-slate-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <line x1="1" y1="1" x2="23" y2="23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="19" x2="12" y2="23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="8" y1="23" x2="16" y2="23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <!-- Fullscreen Button -->
+      <button id="btn-fullscreen" class="glass-btn p-2 rounded-xl text-slate-300 hover:text-white" title="全螢幕切換">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Bottom Interactive HUD -->
+  <footer class="absolute bottom-4 left-4 right-4 z-20 pointer-events-none flex flex-col items-center">
+    <div class="glass-panel w-full max-w-4xl p-4 sm:p-5 rounded-3xl pointer-events-auto flex flex-col gap-3">
+      
+      <!-- Top Row: Cruise Button, Scale Slider, Volume Slider -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Play / Pause Autoplay -->
+        <button id="btn-cruise" class="glass-btn px-4 py-2.5 rounded-2xl flex items-center gap-2 text-cyan-300 hover:text-white font-medium text-xs sm:text-sm shrink-0">
+          <svg id="icon-pause" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="6" y="4" width="4" height="16" rx="1" stroke-width="2"/>
+            <rect x="14" y="4" width="4" height="16" rx="1" stroke-width="2"/>
+          </svg>
+          <svg id="icon-play" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="text-cruise-btn">暫停巡航</span>
+        </button>
+
+        <!-- Scale Progress Slider -->
+        <div class="flex-1 flex flex-col gap-1">
+          <div class="flex justify-between items-center text-[11px] font-mono text-slate-400">
+            <span>◀ 微觀 (10⁰)</span>
+            <span class="text-cyan-400 font-semibold tracking-wider">尺度調製器 (滾輪或滑桿)</span>
+            <span>宏觀 (10²⁶) ▶</span>
+          </div>
+          <input id="slider-scale" type="range" min="0" max="5" step="0.001" value="0.000" class="w-full">
+        </div>
+
+        <!-- Volume Slider -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/5 border border-white/10 shrink-0">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-width="2"/>
+          </svg>
+          <input id="slider-volume" type="range" min="0" max="1" step="0.01" value="0.75" class="w-16 sm:w-20">
+        </div>
+      </div>
+
+      <!-- Middle Row: 5 Quick Scale Jumps -->
+      <div class="grid grid-cols-5 gap-1.5 sm:gap-2">
+        <button class="scale-jump-btn glass-btn py-1.5 px-1 sm:px-2 rounded-xl text-center flex flex-col items-center" data-scale="0.0">
+          <span class="text-[10px] sm:text-xs font-mono text-cyan-400 font-bold">10⁰ m</span>
+          <span class="text-[9px] sm:text-[11px] text-slate-300 truncate">房間臥室</span>
+        </button>
+        <button class="scale-jump-btn glass-btn py-1.5 px-1 sm:px-2 rounded-xl text-center flex flex-col items-center" data-scale="1.0">
+          <span class="text-[10px] sm:text-xs font-mono text-emerald-400 font-bold">10⁶ m</span>
+          <span class="text-[9px] sm:text-[11px] text-slate-300 truncate">地球大氣</span>
+        </button>
+        <button class="scale-jump-btn glass-btn py-1.5 px-1 sm:px-2 rounded-xl text-center flex flex-col items-center" data-scale="2.0">
+          <span class="text-[10px] sm:text-xs font-mono text-amber-400 font-bold">10¹³ m</span>
+          <span class="text-[9px] sm:text-[11px] text-slate-300 truncate">太陽系</span>
+        </button>
+        <button class="scale-jump-btn glass-btn py-1.5 px-1 sm:px-2 rounded-xl text-center flex flex-col items-center" data-scale="3.0">
+          <span class="text-[10px] sm:text-xs font-mono text-purple-400 font-bold">10²¹ m</span>
+          <span class="text-[9px] sm:text-[11px] text-slate-300 truncate">銀河星系</span>
+        </button>
+        <button class="scale-jump-btn glass-btn py-1.5 px-1 sm:px-2 rounded-xl text-center flex flex-col items-center" data-scale="4.0">
+          <span class="text-[10px] sm:text-xs font-mono text-rose-400 font-bold">10²⁶ m</span>
+          <span class="text-[9px] sm:text-[11px] text-slate-300 truncate">宇宙網/閉環</span>
+        </button>
+      </div>
+
+      <!-- Bottom Row: Audio Waveform Visualizer & Narrative Subtext -->
+      <div class="flex items-center justify-between gap-3 pt-1 border-t border-white/10 text-xs">
+        <div class="flex items-center gap-3">
+          <canvas id="waveform-canvas" width="130" height="28" class="rounded-lg bg-black/40 border border-cyan-500/20 shadow-inner"></canvas>
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono text-slate-400">PROCEDURAL AUDIO SYNTHESIS</span>
+            <span id="hud-audio-info" class="text-[11px] font-mono text-cyan-300">Heartbeat Pulse (60Hz)</span>
+          </div>
+        </div>
+        <div class="hidden md:flex text-right flex-1 pl-4 truncate">
+          <p id="hud-narrative" class="text-xs text-slate-300 italic truncate">
+            微觀房間：身處靜謐臥室，心跳在胸腔中共鳴，微塵於光柱中緩緩浮動...
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Start Experience Overlay (Browser Audio Autoplay policy helper) -->
+  <div id="start-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="glass-panel max-w-lg w-full p-8 rounded-3xl flex flex-col items-center text-center gap-6 border border-cyan-500/30 shadow-[0_0_80px_rgba(56,189,248,0.25)]">
+      
+      <div class="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-400/40 flex items-center justify-center shadow-[0_0_30px_#38bdf8]">
+        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke-width="1.5"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-width="1.5"/>
+          <path d="M2 12h20" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wider text-white">COSMIC DRIFT</h1>
+        <h2 class="text-sm sm:text-base font-semibold text-cyan-400 tracking-widest uppercase">Powers of Scale · 宇宙漂移：尺度之能</h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+          一場從個體房間（10⁰ m）拉升至可觀測宇宙網（10²⁶ m）的 3D 粒子視聽升騰之旅。
+          <br>
+          <span class="text-slate-400 text-xs">40,000 顆即時粒子形變 · Web Audio 演算法即時音效合成 · 銜尾蛇無限循環</span>
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3 w-full">
+        <button id="btn-start" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold tracking-wider text-sm shadow-[0_0_25px_rgba(56,189,248,0.5)] transition duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+          ✨ 進入宇宙體驗 (開啟聲景)
+        </button>
+        <span class="text-[11px] text-slate-400 font-mono">支援滑鼠滾輪縮放、按住拖曳旋轉視野、空白鍵巡航</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Project Info Modal -->
+  <div id="modal-info" class="modal-overlay fixed inset-0 z-40 hidden flex items-center justify-center p-4">
+    <div class="glass-panel max-w-2xl w-full p-6 sm:p-8 rounded-3xl flex flex-col gap-6 max-h-[85vh] overflow-y-auto border border-white/20">
+      
+      <div class="flex justify-between items-center border-b border-white/10 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]"></div>
+          <h2 class="text-lg font-bold text-white tracking-wide">關於 Cosmic Drift (宇宙漂移)</h2>
+        </div>
+        <button id="btn-close-info" class="glass-btn p-2 rounded-xl text-slate-400 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <div>
+          <h3 class="text-cyan-400 font-semibold text-sm mb-1">🌌 專案理念與哲學閉環 (Ouroboros Loop)</h3>
+          <p>
+            本專案靈感源於經典紀錄片《十的冪次》(Powers of Ten)。使用者從最親近的個人空間（房間臥室 10⁰m），隨著滾輪拉升穿越地球大氣、太陽系重力軌道、銀河漩渦，最終到達暗物質宇宙網（10²⁶m）。
+            當尺度逼近 5.0 極限時，宇宙網纖維收攏重構為微觀個體的心跳與房間，展現「宇宙即你，你即宇宙」的永恆輪迴。
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-cyan-400 font-semibold text-sm mb-1">⚡ 核心技術特色</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+            <li><strong>零外部素材、零構建 (Zero-build)</strong>：不依賴任何外部 3D 模型與音檔，單一 HTML 檔案隨開隨用。</li>
+            <li><strong>40,000 顆 GPU 粒子形變</strong>：透過自訂 WebGL 著色器（GLSL），五大尺度即時內插形變，維持 60 FPS 絲滑流暢度。</li>
+            <li><strong>即時程式化音訊 (Web Audio Procedural Synthesis)</strong>：依尺度動態調製心跳雙震盪器、大氣破空嘯叫濾波器、太陽系五聲音階八音盒及銀河氛圍長音。</li>
+            <li><strong>物理緩衝與相機跟隨</strong>：平滑阻尼插值與全角度 3D OrbitControls 旋轉觀察。</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-cyan-400 font-semibold text-sm mb-1">🎮 操作指南</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono bg-black/40 p-3 rounded-2xl border border-white/5">
+            <div>🖱️ <span class="text-white font-bold">滑鼠滾輪 / 捏合</span>：調節尺度 S (0.0 ~ 5.0)</div>
+            <div>🖐️ <span class="text-white font-bold">按住滑鼠左鍵拖曳</span>：3D 全方位視角旋轉</div>
+            <div>⌨️ <span class="text-white font-bold">空白鍵 (Space)</span>：切換自動巡航 / 暫停</div>
+            <div>🔘 <span class="text-white font-bold">點擊尺度藥丸按鈕</span>：瞬間跳躍至特定尺度</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button id="btn-modal-ok" class="glass-btn px-6 py-2.5 rounded-2xl text-cyan-300 hover:text-white font-semibold text-xs tracking-wider">
+          開始探索
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main Application Logic -->
+  <script>
+    /* ==========================================================================
+       1. GLOBAL CONSTANTS & CONFIGURATION
+       ========================================================================== */
+    const PARTICLE_COUNT = 40000;
+    let currentScale = 0.0;
+    let targetScale = 0.0;
+    let isAutoplay = true;
+    let isAudioActive = false;
+    let audioContext = null;
+    let masterGain = null;
+    let analyserNode = null;
+
+    // Narrative text corresponding to the 5 scale domains
+    const scaleDescriptions = [
+      { max: 1.0, power: "10⁰ m", name: "微觀個體 · 房間中的自己", audio: "低頻心跳脈動 (60Hz/72Hz)", text: "身處靜謐房間，微弱心跳在胸腔中共鳴，塵埃在夜色光束中緩緩浮動..." },
+      { max: 2.0, power: "10⁶ m", name: "大地邊界 · 地球與大氣層", audio: "破空大氣流體濾波噪訊", text: "脫離重力束縛，穿越蔚藍大氣層，俯瞰星球海岸、城市夜景燈火與流體氣旋..." },
+      { max: 3.0, power: "10¹³ m", name: "重力秩序 · 太陽系軌道音序", audio: "五聲音階重力音序八音盒", text: "太陽日冕噴湧熾熱火光，八大行星沿引力軌道公轉，奏響空靈的宇宙音序..." },
+      { max: 4.0, power: "10²¹ m", name: "宏觀漩渦 · 銀河星系旋臂", audio: "深空氛圍長音與多路 LFO 殘響", text: "億萬星辰匯聚成對數螺旋旋臂，獵戶座邊緣的光芒隨時間緩緩旋轉流轉..." },
+      { max: 5.0, power: "10²⁶ m", name: "生命閉環 · 宇宙網與心跳輪迴", audio: "浩瀚回響收攏為微觀心跳", text: "暗物質纖維編織成宇宙之網；當尺度到達極限，星系纖維收攏重構為個體心跳..." }
+    ];
+
+    /* ==========================================================================
+       2. PROCEDURAL PARTICLE GENERATION ENGINE (5 SCALES)
+       ========================================================================== */
+    function generateParticleDatasets() {
+      const pos0 = new Float32Array(PARTICLE_COUNT * 3);
+      const pos1 = new Float32Array(PARTICLE_COUNT * 3);
+      const pos2 = new Float32Array(PARTICLE_COUNT * 3);
+      const pos3 = new Float32Array(PARTICLE_COUNT * 3);
+      const pos4 = new Float32Array(PARTICLE_COUNT * 3);
+
+      const col0 = new Float32Array(PARTICLE_COUNT * 3);
+      const col1 = new Float32Array(PARTICLE_COUNT * 3);
+      const col2 = new Float32Array(PARTICLE_COUNT * 3);
+      const col3 = new Float32Array(PARTICLE_COUNT * 3);
+      const col4 = new Float32Array(PARTICLE_COUNT * 3);
+
+      // Meta: x: particleType, y: radius, z: phase/random, w: speed
+      const meta = new Float32Array(PARTICLE_COUNT * 4);
+
+      function randn() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+      }
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const i3 = i * 3;
+        const i4 = i * 4;
+
+        // ----------------------------------------------------
+        // SCALE 0: THE ROOM & THE SLEEPING SILHOUETTE (10⁰ m)
+        // ----------------------------------------------------
+        if (i < 12000) {
+          // 12,000 Human Body particles
+          if (i < 1000) {
+            // Heart: pulsating chest center
+            meta[i4 + 0] = 1.0; // Heart type flag
+            meta[i4 + 2] = Math.random() * Math.PI * 2;
+            const hr = Math.pow(Math.random(), 0.5) * 1.2;
+            const ha = Math.random() * Math.PI * 2;
+            const hu = Math.random() * 2 - 1;
+            pos0[i3 + 0] = 0.6 + hr * Math.sqrt(1 - hu * hu) * Math.cos(ha);
+            pos0[i3 + 1] = 3.2 + hr * Math.sqrt(1 - hu * hu) * Math.sin(ha);
+            pos0[i3 + 2] = 6.0 + hr * hu;
+            // Brilliant golden-yellow heartbeat
+            col0[i3 + 0] = 1.0; col0[i3 + 1] = 0.88; col0[i3 + 2] = 0.25;
+          } else if (i < 2800) {
+            // Head ellipsoid
+            const hr = Math.pow(Math.random(), 0.33) * 1.0;
+            const ha = Math.random() * Math.PI * 2;
+            const hu = Math.random() * 2 - 1;
+            pos0[i3 + 0] = hr * Math.sqrt(1 - hu * hu) * Math.cos(ha) * 1.6;
+            pos0[i3 + 1] = 2.8 + hr * Math.sqrt(1 - hu * hu) * Math.sin(ha) * 1.8;
+            pos0[i3 + 2] = 11.0 + hr * hu * 2.2;
+            col0[i3 + 0] = 0.22; col0[i3 + 1] = 0.78; col0[i3 + 2] = 1.0;
+          } else if (i < 3200) {
+            // Neck
+            const na = Math.random() * Math.PI * 2;
+            const nr = Math.random() * 0.9;
+            pos0[i3 + 0] = Math.cos(na) * nr;
+            pos0[i3 + 1] = 2.6 + Math.sin(na) * nr;
+            pos0[i3 + 2] = 8.5 + Math.random() * 1.0;
+            col0[i3 + 0] = 0.18; col0[i3 + 1] = 0.72; col0[i3 + 2] = 0.98;
+          } else if (i < 7000) {
+            // Torso / Chest / Abdomen
+            const tz = Math.random() * 8.5;
+            const w = 3.2 * (0.8 + 0.2 * Math.sin((tz / 8.5) * Math.PI));
+            pos0[i3 + 0] = (Math.random() - 0.5) * 2 * w;
+            pos0[i3 + 1] = 1.4 + Math.random() * 2.2;
+            pos0[i3 + 2] = tz;
+            col0[i3 + 0] = 0.15; col0[i3 + 1] = 0.70; col0[i3 + 2] = 0.95;
+          } else if (i < 9200) {
+            // Arms resting beside torso
+            const isLeft = Math.random() > 0.5;
+            const sign = isLeft ? -1 : 1;
+            const t = Math.random();
+            pos0[i3 + 0] = sign * (3.6 + (Math.random() - 0.5) * 0.8);
+            pos0[i3 + 1] = 2.4 - t * 0.6 + (Math.random() - 0.5) * 0.6;
+            pos0[i3 + 2] = 8.0 - t * 7.0 + (Math.random() - 0.5) * 0.8;
+            col0[i3 + 0] = 0.2; col0[i3 + 1] = 0.72; col0[i3 + 2] = 0.96;
+          } else {
+            // Pelvis & Legs
+            const isLeft = Math.random() > 0.5;
+            const lx = (isLeft ? -1 : 1) * (1.5 + (Math.random() - 0.5) * 1.0);
+            const lz = -Math.random() * 14.5;
+            const ly = 1.6 + (Math.random() - 0.5) * 1.2 + (lz < -13 ? 1.5 : 0);
+            pos0[i3 + 0] = lx;
+            pos0[i3 + 1] = ly;
+            pos0[i3 + 2] = lz;
+            col0[i3 + 0] = 0.18; col0[i3 + 1] = 0.68; col0[i3 + 2] = 0.95;
+          }
+        } else {
+          // 28,000 Room & Environment particles
+          if (i < 20000) {
+            // Bed frame & mattress
+            const bx = (Math.random() - 0.5) * 13.0;
+            const bz = (Math.random() - 0.5) * 32.0;
+            const by = (Math.random() < 0.3) ? 1.2 : (Math.random() * 2.2 - 1.0);
+            pos0[i3 + 0] = bx;
+            pos0[i3 + 1] = by;
+            pos0[i3 + 2] = bz;
+            col0[i3 + 0] = 0.32; col0[i3 + 1] = 0.34; col0[i3 + 2] = 0.42;
+          } else if (i < 30000) {
+            // Floor, walls, window moonlight beam & desk
+            const part = (i - 20000) % 4;
+            if (part === 0) {
+              // Floor grid
+              pos0[i3 + 0] = (Math.random() - 0.5) * 60;
+              pos0[i3 + 1] = -10.0;
+              pos0[i3 + 2] = (Math.random() - 0.5) * 60;
+              col0[i3 + 0] = 0.22; col0[i3 + 1] = 0.25; col0[i3 + 2] = 0.35;
+            } else if (part === 1) {
+              // Window moonlight beam
+              pos0[i3 + 0] = -29.5 + Math.random() * 10;
+              pos0[i3 + 1] = 2.0 + Math.random() * 16.0;
+              pos0[i3 + 2] = -8.0 + Math.random() * 18.0;
+              col0[i3 + 0] = 0.45; col0[i3 + 1] = 0.62; col0[i3 + 2] = 0.88;
+            } else if (part === 2) {
+              // Bedside table lamp
+              pos0[i3 + 0] = 10.0 + (Math.random() - 0.5) * 4;
+              pos0[i3 + 1] = 2.5 + Math.random() * 2.5;
+              pos0[i3 + 2] = 11.5 + (Math.random() - 0.5) * 4;
+              col0[i3 + 0] = 0.95; col0[i3 + 1] = 0.78; col0[i3 + 2] = 0.35;
+            } else {
+              // Room boundary outlines
+              const side = Math.floor(Math.random() * 3);
+              if (side === 0) { pos0[i3 + 0] = 29.5; pos0[i3 + 1] = (Math.random() - 0.5) * 36 + 8; pos0[i3 + 2] = (Math.random() - 0.5) * 60; }
+              else if (side === 1) { pos0[i3 + 0] = (Math.random() - 0.5) * 60; pos0[i3 + 1] = (Math.random() - 0.5) * 36 + 8; pos0[i3 + 2] = 29.5; }
+              else { pos0[i3 + 0] = (Math.random() - 0.5) * 60; pos0[i3 + 1] = (Math.random() - 0.5) * 36 + 8; pos0[i3 + 2] = -29.5; }
+              col0[i3 + 0] = 0.25; col0[i3 + 1] = 0.28; col0[i3 + 2] = 0.38;
+            }
+          } else {
+            // Floating room dust (Brownian motion)
+            meta[i4 + 0] = 2.0; // Room dust flag
+            meta[i4 + 2] = Math.random() * Math.PI * 2;
+            pos0[i3 + 0] = (Math.random() - 0.5) * 55;
+            pos0[i3 + 1] = -9.0 + Math.random() * 30;
+            pos0[i3 + 2] = (Math.random() - 0.5) * 55;
+            col0[i3 + 0] = 0.35; col0[i3 + 1] = 0.38; col0[i3 + 2] = 0.48;
+          }
+        }
+
+        // ----------------------------------------------------
+        // SCALE 1: EARTH & ATMOSPHERE (10⁶ m)
+        // ----------------------------------------------------
+        if (i < 25000) {
+          // Earth Surface (25,000 particles)
+          const phi = i * 2.3999632;
+          const y = 1 - (i / 24999) * 2;
+          const rAtY = Math.sqrt(Math.max(0, 1 - y * y));
+          const nx = Math.cos(phi) * rAtY;
+          const ny = y;
+          const nz = Math.sin(phi) * rAtY;
+          const R = 36.0;
+
+          pos1[i3 + 0] = nx * R;
+          pos1[i3 + 1] = ny * R;
+          pos1[i3 + 2] = nz * R;
+
+          // Procedural continents & oceans
+          const nv = Math.sin(2.3 * nx + Math.cos(2.5 * nz)) * Math.cos(2.3 * ny) +
+                     0.5 * Math.sin(4.8 * nx + 4.8 * ny + 4.8 * nz) +
+                     0.25 * Math.cos(9.5 * nx - 9.5 * nz);
+
+          if (nv > 0.16) {
+            // Continents
+            if (nv < 0.26 || Math.random() < 0.12) {
+              // Coastline / City night lights (amber gold)
+              col1[i3 + 0] = 1.0; col1[i3 + 1] = 0.82; col1[i3 + 2] = 0.28;
+            } else {
+              // Emerald landmass
+              col1[i3 + 0] = 0.12; col1[i3 + 1] = 0.68; col1[i3 + 2] = 0.38;
+            }
+          } else {
+            // Sapphire ocean
+            col1[i3 + 0] = 0.04; col1[i3 + 1] = 0.25; col1[i3 + 2] = 0.68;
+          }
+        } else {
+          // Atmosphere & Swirling Clouds (15,000 particles)
+          const phi = i * 2.3999632;
+          const y = 1 - ((i - 25000) / 14999) * 2;
+          const rAtY = Math.sqrt(Math.max(0, 1 - y * y));
+          const nx = Math.cos(phi) * rAtY;
+          const ny = y;
+          const nz = Math.sin(phi) * rAtY;
+          const Ratm = 36.0 * (1.05 + Math.random() * 0.04);
+
+          pos1[i3 + 0] = nx * Ratm;
+          pos1[i3 + 1] = ny * Ratm;
+          pos1[i3 + 2] = nz * Ratm;
+
+          meta[i4 + 0] = 3.0; // Atmosphere swirl flag
+          meta[i4 + 2] = Math.random() * Math.PI * 2;
+
+          col1[i3 + 0] = 0.95; col1[i3 + 1] = 0.98; col1[i3 + 2] = 1.0;
+        }
+
+        // ----------------------------------------------------
+        // SCALE 2: SOLAR SYSTEM (10¹³ m)
+        // ----------------------------------------------------
+        if (i < 8000) {
+          // The Sun & Coronal Flares (8,000 particles)
+          meta[i4 + 0] = 4.0; // Sun flare flag
+          meta[i4 + 2] = Math.random() * Math.PI * 2;
+          const sr = (i < 4000) ? Math.pow(Math.random(), 0.4) * 6.5 : (6.5 + Math.random() * 6.0);
+          const sa = Math.random() * Math.PI * 2;
+          const su = Math.random() * 2 - 1;
+          pos2[i3 + 0] = sr * Math.sqrt(1 - su * su) * Math.cos(sa);
+          pos2[i3 + 1] = sr * Math.sqrt(1 - su * su) * Math.sin(sa);
+          pos2[i3 + 2] = sr * su;
+
+          if (i < 4000) {
+            col2[i3 + 0] = 1.0; col2[i3 + 1] = 0.98; col2[i3 + 2] = 0.9;
+          } else {
+            col2[i3 + 0] = 1.0; col2[i3 + 1] = 0.48; col2[i3 + 2] = 0.06;
+          }
+        } else if (i < 28000) {
+          // 8 Concentric Orbits (20,000 particles)
+          const orbitRadii = [16, 24, 34, 44, 60, 76, 90, 104];
+          const orbitIdx = Math.floor((i - 8000) / 2500);
+          const rOrb = orbitRadii[Math.min(7, orbitIdx)];
+          const ang = Math.random() * Math.PI * 2;
+          const inc = 0.05 * Math.sin(orbitIdx);
+          pos2[i3 + 0] = Math.cos(ang) * rOrb + (Math.random() - 0.5) * 0.4;
+          pos2[i3 + 1] = Math.sin(ang) * rOrb * inc + (Math.random() - 0.5) * 0.3;
+          pos2[i3 + 2] = Math.sin(ang) * rOrb + (Math.random() - 0.5) * 0.4;
+
+          col2[i3 + 0] = 0.55; col2[i3 + 1] = 0.50; col2[i3 + 2] = 0.38;
+        } else {
+          // 8 Planets & Rings (12,000 particles)
+          const pIdx = Math.floor((i - 28000) / 1500);
+          const orbitRadii = [16, 24, 34, 44, 60, 76, 90, 104];
+          const orbitSpeeds = [1.2, 0.9, 0.7, 0.55, 0.35, 0.25, 0.18, 0.12];
+          const rOrb = orbitRadii[Math.min(7, pIdx)];
+          const spd = orbitSpeeds[Math.min(7, pIdx)];
+
+          meta[i4 + 0] = 10.0 + pIdx; // Planet flag
+          meta[i4 + 1] = rOrb;
+          meta[i4 + 3] = spd;
+
+          const isTrail = Math.random() < 0.4;
+          const trailAngle = isTrail ? -(Math.random() * 0.6) : 0.0;
+          const pr = (pIdx === 4 || pIdx === 5) ? (1.5 + Math.random() * 1.5) : (0.8 + Math.random() * 0.8);
+          const pa = Math.random() * Math.PI * 2;
+          const pu = Math.random() * 2 - 1;
+
+          pos2[i3 + 0] = rOrb * Math.cos(trailAngle) + pr * Math.sqrt(1 - pu * pu) * Math.cos(pa);
+          pos2[i3 + 1] = pr * Math.sqrt(1 - pu * pu) * Math.sin(pa);
+          pos2[i3 + 2] = rOrb * Math.sin(trailAngle) + pr * pu;
+
+          const pCols = [
+            [0.72, 0.70, 0.68], // Mercury
+            [0.92, 0.80, 0.52], // Venus
+            [0.22, 0.78, 1.00], // Earth
+            [0.95, 0.38, 0.18], // Mars
+            [0.88, 0.68, 0.42], // Jupiter
+            [0.94, 0.84, 0.58], // Saturn
+            [0.42, 0.86, 0.96], // Uranus
+            [0.18, 0.48, 0.96]  // Neptune
+          ];
+          const pc = pCols[Math.min(7, pIdx)];
+          col2[i3 + 0] = pc[0]; col2[i3 + 1] = pc[1]; col2[i3 + 2] = pc[2];
+        }
+
+        // ----------------------------------------------------
+        // SCALE 3: THE GALAXY (10²¹ m)
+        // ----------------------------------------------------
+        if (i < 10000) {
+          // Galactic Core (10,000 particles)
+          const cr = Math.pow(Math.random(), 0.5) * 16.0;
+          const ca = Math.random() * Math.PI * 2;
+          const cu = Math.random() * 2 - 1;
+          pos3[i3 + 0] = cr * Math.sqrt(1 - cu * cu) * Math.cos(ca);
+          pos3[i3 + 1] = cu * cr * 0.35;
+          pos3[i3 + 2] = cr * Math.sqrt(1 - cu * cu) * Math.sin(ca);
+
+          meta[i4 + 1] = cr;
+          meta[i4 + 3] = 0.6 / Math.sqrt(cr + 4.0);
+
+          col3[i3 + 0] = 1.0; col3[i3 + 1] = 0.92; col3[i3 + 2] = 0.65;
+        } else {
+          // 4 Spiral Arms (30,000 particles)
+          const armIdx = (i - 10000) % 4;
+          const baseAng = armIdx * (Math.PI / 2);
+          const u = Math.pow(Math.random(), 0.8);
+          const armAngle = u * 4.2 * Math.PI;
+          const totalAngle = baseAng + armAngle;
+          const r = 7.0 * Math.exp(0.23 * armAngle);
+          const rDisp = randn() * (2.0 + 0.12 * r);
+          const yDisp = randn() * (3.0 * Math.exp(-r / 50.0) + 0.6);
+
+          pos3[i3 + 0] = (r + rDisp) * Math.cos(totalAngle);
+          pos3[i3 + 1] = yDisp;
+          pos3[i3 + 2] = (r + rDisp) * Math.sin(totalAngle);
+
+          meta[i4 + 1] = r;
+          meta[i4 + 3] = 0.6 / Math.sqrt(r + 4.0);
+
+          if (r < 35.0) {
+            col3[i3 + 0] = 0.22; col3[i3 + 1] = 0.78; col3[i3 + 2] = 1.0;
+          } else if (r < 75.0) {
+            col3[i3 + 0] = 0.65; col3[i3 + 1] = 0.25; col3[i3 + 2] = 0.95;
+          } else {
+            col3[i3 + 0] = 1.0; col3[i3 + 1] = 0.35; col3[i3 + 2] = 0.72;
+          }
+        }
+
+        // ----------------------------------------------------
+        // SCALE 4: COSMIC WEB & OUROBOROS LOOP (10²⁶ m)
+        // ----------------------------------------------------
+        const nodeCount = 24;
+        const nodeIdx = i % nodeCount;
+        const ny = 1 - (nodeIdx / (nodeCount - 1)) * 2;
+        const nR = Math.sqrt(Math.max(0, 1 - ny * ny));
+        const nPhi = nodeIdx * 2.3999632;
+        const nodeRadius = 80.0;
+        const nX = Math.cos(nPhi) * nR * nodeRadius;
+        const nY = ny * nodeRadius;
+        const nZ = Math.sin(nPhi) * nR * nodeRadius;
+
+        const nextIdx = (nodeIdx + 1) % nodeCount;
+        const nextY = 1 - (nextIdx / (nodeCount - 1)) * 2;
+        const nextR = Math.sqrt(Math.max(0, 1 - nextY * nextY));
+        const nextPhi = nextIdx * 2.3999632;
+        const nextX = Math.cos(nextPhi) * nextR * nodeRadius;
+        const nextY_pos = nextY * nodeRadius;
+        const nextZ = Math.sin(nextPhi) * nextR * nodeRadius;
+
+        const t = Math.random();
+        const noiseDisp = 6.0;
+        pos4[i3 + 0] = nX * (1 - t) + nextX * t + randn() * noiseDisp;
+        pos4[i3 + 1] = nY * (1 - t) + nextY_pos * t + randn() * noiseDisp;
+        pos4[i3 + 2] = nZ * (1 - t) + nextZ * t + randn() * noiseDisp;
+
+        if (t < 0.1 || t > 0.9) {
+          col4[i3 + 0] = 1.0; col4[i3 + 1] = 0.88; col4[i3 + 2] = 0.45;
+        } else if (Math.random() < 0.5) {
+          col4[i3 + 0] = 0.18; col4[i3 + 1] = 0.45; col4[i3 + 2] = 0.92;
+        } else {
+          col4[i3 + 0] = 0.65; col4[i3 + 1] = 0.30; col4[i3 + 2] = 0.95;
+        }
+      }
+
+      return { pos0, pos1, pos2, pos3, pos4, col0, col1, col2, col3, col4, meta };
+    }
+
+    /* ==========================================================================
+       3. PROCEDURAL CIRCULAR SOFT-GLOW PARTICLE TEXTURE
+       ========================================================================== */
+    function createGlowPointTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      grad.addColorStop(0.2, 'rgba(235, 245, 255, 0.9)');
+      grad.addColorStop(0.5, 'rgba(90, 180, 255, 0.35)');
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    /* ==========================================================================
+       4. GLSL SHADER CODE (GPU MORPHING & REALTIME MOTION DYNAMICS)
+       ========================================================================== */
+    const vertexShader = `
+      attribute vec3 aPos0;
+      attribute vec3 aPos1;
+      attribute vec3 aPos2;
+      attribute vec3 aPos3;
+      attribute vec3 aPos4;
+
+      attribute vec3 aCol0;
+      attribute vec3 aCol1;
+      attribute vec3 aCol2;
+      attribute vec3 aCol3;
+      attribute vec3 aCol4;
+
+      attribute vec4 aMeta; // x: type, y: radius, z: phase, w: speed
+
+      uniform float uScale;
+      uniform float uTime;
+      uniform float uPixelRatio;
+
+      varying vec3 vColor;
+      varying float vAlpha;
+
+      void main() {
+        float s = clamp(uScale, 0.0, 5.0);
+        vec3 pA, pB;
+        vec3 cA, cB;
+        float t = 0.0;
+
+        if (s < 1.0) {
+          pA = aPos0; pB = aPos1;
+          cA = aCol0; cB = aCol1;
+          t = s;
+        } else if (s < 2.0) {
+          pA = aPos1; pB = aPos2;
+          cA = aCol1; cB = aCol2;
+          t = s - 1.0;
+        } else if (s < 3.0) {
+          pA = aPos2; pB = aPos3;
+          cA = aCol2; cB = aCol3;
+          t = s - 2.0;
+        } else if (s < 4.0) {
+          pA = aPos3; pB = aPos4;
+          cA = aCol3; cB = aCol4;
+          t = s - 3.0;
+        } else {
+          // Ouroboros Loop: Morphs from Cosmic Web back to Room & Human!
+          pA = aPos4; pB = aPos0;
+          cA = aCol4; cB = aCol0;
+          t = s - 4.0;
+        }
+
+        // --- Stage 0 Dynamics: Heartbeat & Room Dust ---
+        if (aMeta.x == 1.0) {
+          // Heartbeat pulse (lub-dub double oscillation)
+          float pulse = sin(uTime * 7.5) * exp(-mod(uTime * 1.6, 1.0) * 3.5);
+          pA += normalize(pA - vec3(0.6, 3.2, 6.0)) * (pulse * 0.9);
+        } else if (aMeta.x == 2.0) {
+          // Brownian dust floating in room
+          pA.x += sin(uTime * 0.4 + aMeta.z) * 0.5;
+          pA.y += cos(uTime * 0.3 + aMeta.z * 1.5) * 0.5;
+          pA.z += sin(uTime * 0.35 + aMeta.z * 2.0) * 0.5;
+        }
+
+        // --- Stage 1 Dynamics: Atmospheric Swirl & Planetary Rotation ---
+        if (aMeta.x == 3.0) {
+          float ang = uTime * 0.15 + aMeta.z * 0.1;
+          float c = cos(ang); float sn = sin(ang);
+          pB.xz = mat2(c, -sn, sn, c) * pB.xz;
+        }
+
+        // --- Stage 2 Dynamics: Solar Coronal Flares & Planetary Orbits ---
+        if (aMeta.x == 4.0) {
+          float flare = sin(uTime * 4.5 + aMeta.z * 8.0) * 0.8;
+          pA += normalize(pA) * flare;
+        } else if (aMeta.x >= 10.0) {
+          float orbAng = uTime * aMeta.w * 0.5;
+          float c = cos(orbAng); float sn = sin(orbAng);
+          pA.xz = mat2(c, -sn, sn, c) * pA.xz;
+        }
+
+        // --- Stage 3 Dynamics: Galactic Differential Rotation ---
+        if (s >= 2.0 && s <= 4.0) {
+          float galAng = uTime * aMeta.w * 0.4;
+          float cg = cos(galAng); float sg = sin(galAng);
+          if (s < 3.0) {
+            pB.xz = mat2(cg, -sg, sg, cg) * pB.xz;
+          } else {
+            pA.xz = mat2(cg, -sg, sg, cg) * pA.xz;
+          }
+        }
+
+        // Smooth cubic Hermite interpolation between scale stages
+        float smoothT = smoothstep(0.0, 1.0, t);
+        vec3 finalPos = mix(pA, pB, smoothT);
+        vColor = mix(cA, cB, smoothT);
+        vAlpha = 0.95;
+
+        vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0);
+        gl_Position = projectionMatrix * mvPosition;
+
+        // Dynamic Point Size with distance attenuation
+        float pSize = 16.0;
+        if (aMeta.x == 1.0) pSize = 30.0;
+        else if (aMeta.x == 4.0) pSize = 26.0;
+        else if (aMeta.x >= 10.0) pSize = 22.0;
+
+        gl_PointSize = pSize * (260.0 / -mvPosition.z) * (uPixelRatio / 1.0);
+        gl_PointSize = clamp(gl_PointSize, 1.2, 75.0);
+      }
+    `;
+
+    const fragmentShader = `
+      uniform sampler2D uPointTexture;
+      varying vec3 vColor;
+      varying float vAlpha;
+
+      void main() {
+        vec4 tex = texture2D(uPointTexture, gl_PointCoord);
+        if (tex.a < 0.03) discard;
+        gl_FragColor = vec4(vColor * tex.rgb, tex.a * vAlpha);
+      }
+    `;
+
+    /* ==========================================================================
+       5. WEB AUDIO API PROCEDURAL AUDIO ENGINE
+       ========================================================================== */
+    class ProceduralAudioEngine {
+      constructor() {
+        this.ctx = null;
+        this.master = null;
+        this.analyser = null;
+        this.isMuted = false;
+        this.baseVolume = 0.75;
+
+        // Sub-sound modules
+        this.heartbeatGain = null;
+        this.windGain = null;
+        this.windFilter = null;
+        this.chimeGain = null;
+        this.ambientGain = null;
+        this.nextHeartbeatTime = 0;
+        this.nextChimeTime = 0;
+      }
+
+      init() {
+        if (this.ctx) return;
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContextClass();
+
+        // Master Gain
+        this.master = this.ctx.createGain();
+        this.master.gain.setValueAtTime(this.baseVolume, this.ctx.currentTime);
+
+        // Analyser for HUD Waveform Visualizer
+        this.analyser = this.ctx.createAnalyser();
+        this.analyser.fftSize = 128;
+        this.analyser.smoothingTimeConstant = 0.8;
+
+        this.master.connect(this.analyser);
+        this.analyser.connect(this.ctx.destination);
+
+        // 1. Heartbeat Module
+        this.heartbeatGain = this.ctx.createGain();
+        this.heartbeatGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+        this.heartbeatGain.connect(this.master);
+
+        // 2. Wind / Atmospheric Sweep Module
+        this.windGain = this.ctx.createGain();
+        this.windGain.gain.setValueAtTime(0.0, this.ctx.currentTime);
+
+        this.windFilter = this.ctx.createBiquadFilter();
+        this.windFilter.type = 'bandpass';
+        this.windFilter.frequency.setValueAtTime(150, this.ctx.currentTime);
+        this.windFilter.Q.setValueAtTime(2.2, this.ctx.currentTime);
+
+        const noiseBuffer = this.createNoiseBuffer();
+        const noiseSource = this.ctx.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        noiseSource.loop = true;
+        noiseSource.connect(this.windFilter);
+        this.windFilter.connect(this.windGain);
+        this.windGain.connect(this.master);
+        noiseSource.start();
+
+        // 3. Solar System Pentatonic Chime Sequencer Module
+        this.chimeGain = this.ctx.createGain();
+        this.chimeGain.gain.setValueAtTime(0.0, this.ctx.currentTime);
+        this.chimeGain.connect(this.master);
+
+        // 4. Galactic & Deep Space Ambient Drone Module
+        this.ambientGain = this.ctx.createGain();
+        this.ambientGain.gain.setValueAtTime(0.0, this.ctx.currentTime);
+
+        this.createAmbientPad();
+        this.ambientGain.connect(this.master);
+
+        this.nextHeartbeatTime = this.ctx.currentTime;
+        this.nextChimeTime = this.ctx.currentTime + 1.0;
+      }
+
+      createNoiseBuffer() {
+        const bufferSize = this.ctx.sampleRate * 4;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const output = buffer.getChannelData(0);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          output[i] = (lastOut + (0.02 * white)) / 1.02; // Pinkish filter
+          lastOut = output[i];
+          output[i] *= 3.5;
+        }
+        return buffer;
+      }
+
+      createAmbientPad() {
+        // Ethereal chord oscillators: 55Hz, 82.4Hz, 110Hz, 164.8Hz
+        const freqs = [55.0, 82.4, 110.0, 164.8, 220.0];
+        const padFilter = this.ctx.createBiquadFilter();
+        padFilter.type = 'lowpass';
+        padFilter.frequency.setValueAtTime(650, this.ctx.currentTime);
+        padFilter.Q.setValueAtTime(3.0, this.ctx.currentTime);
+
+        // Delay for spatial dimension
+        const delay = this.ctx.createDelay();
+        delay.delayTime.setValueAtTime(0.38, this.ctx.currentTime);
+        const delayFeedback = this.ctx.createGain();
+        delayFeedback.gain.setValueAtTime(0.35, this.ctx.currentTime);
+
+        delay.connect(delayFeedback);
+        delayFeedback.connect(delay);
+        delay.connect(this.ambientGain);
+
+        freqs.forEach((freq, idx) => {
+          const osc = this.ctx.createOscillator();
+          osc.type = (idx % 2 === 0) ? 'triangle' : 'sine';
+          osc.frequency.setValueAtTime(freq + (Math.random() - 0.5) * 0.4, this.ctx.currentTime);
+          osc.connect(padFilter);
+          osc.start();
+        });
+
+        padFilter.connect(this.ambientGain);
+        padFilter.connect(delay);
+      }
+
+      triggerHeartbeat(time) {
+        if (!this.ctx) return;
+        // Pulse 1 (Lub)
+        const osc1 = this.ctx.createOscillator();
+        const oscGain1 = this.ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(58, time);
+        osc1.frequency.exponentialRampToValueAtTime(42, time + 0.12);
+
+        oscGain1.gain.setValueAtTime(0.001, time);
+        oscGain1.gain.linearRampToValueAtTime(0.65, time + 0.035);
+        oscGain1.gain.exponentialRampToValueAtTime(0.001, time + 0.14);
+
+        osc1.connect(oscGain1);
+        oscGain1.connect(this.heartbeatGain);
+        osc1.start(time);
+        osc1.stop(time + 0.16);
+
+        // Pulse 2 (Dub - 0.22s later)
+        const osc2 = this.ctx.createOscillator();
+        const oscGain2 = this.ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(70, time + 0.22);
+        osc2.frequency.exponentialRampToValueAtTime(50, time + 0.35);
+
+        oscGain2.gain.setValueAtTime(0.001, time + 0.22);
+        oscGain2.gain.linearRampToValueAtTime(0.45, time + 0.25);
+        oscGain2.gain.exponentialRampToValueAtTime(0.001, time + 0.38);
+
+        osc2.connect(oscGain2);
+        oscGain2.connect(this.heartbeatGain);
+        osc2.start(time + 0.22);
+        osc2.stop(time + 0.40);
+      }
+
+      triggerChime(time) {
+        if (!this.ctx) return;
+        // Pentatonic scale frequencies
+        const notes = [293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99];
+        const freq = notes[Math.floor(Math.random() * notes.length)];
+
+        // FM Bell Synthesis
+        const carrier = this.ctx.createOscillator();
+        const modulator = this.ctx.createOscillator();
+        const modGain = this.ctx.createGain();
+        const noteGain = this.ctx.createGain();
+
+        carrier.type = 'sine';
+        carrier.frequency.setValueAtTime(freq, time);
+
+        modulator.type = 'sine';
+        modulator.frequency.setValueAtTime(freq * 2.0, time);
+
+        modGain.gain.setValueAtTime(freq * 1.5, time);
+        modGain.gain.exponentialRampToValueAtTime(1.0, time + 1.2);
+
+        noteGain.gain.setValueAtTime(0.001, time);
+        noteGain.gain.linearRampToValueAtTime(0.25, time + 0.02);
+        noteGain.gain.exponentialRampToValueAtTime(0.0001, time + 1.8);
+
+        modulator.connect(modGain);
+        modGain.connect(carrier.frequency);
+        carrier.connect(noteGain);
+        noteGain.connect(this.chimeGain);
+
+        modulator.start(time);
+        carrier.start(time);
+        modulator.stop(time + 1.9);
+        carrier.stop(time + 1.9);
+      }
+
+      update(scale) {
+        if (!this.ctx || this.isMuted) return;
+        const now = this.ctx.currentTime;
+
+        // 1. Modulate Heartbeat Gain (peaks at S=0, returns at S>4.5)
+        let hbTarget = 0.0;
+        if (scale < 1.0) {
+          hbTarget = Math.max(0.0, 1.0 - scale * 1.2);
+        } else if (scale > 4.5) {
+          hbTarget = (scale - 4.5) / 0.5; // Ouroboros return!
+        }
+        this.heartbeatGain.gain.setTargetAtTime(hbTarget * 0.7, now, 0.1);
+
+        if (hbTarget > 0.05 && now >= this.nextHeartbeatTime) {
+          this.triggerHeartbeat(now);
+          this.nextHeartbeatTime = now + 0.9;
+        }
+
+        // 2. Modulate Wind & Liftoff Sweep (peaks during S: 0.8 -> 2.0)
+        let windTarget = 0.0;
+        let windFreq = 160;
+        if (scale >= 0.5 && scale <= 2.2) {
+          const factor = Math.sin(((scale - 0.5) / 1.7) * Math.PI);
+          windTarget = factor * 0.45;
+          windFreq = 150 + factor * 1400; // 150Hz -> 1550Hz roar
+        }
+        this.windGain.gain.setTargetAtTime(windTarget, now, 0.1);
+        this.windFilter.frequency.setTargetAtTime(windFreq, now, 0.1);
+
+        // 3. Modulate Solar Chimes (peaks at S: 1.8 -> 3.2)
+        let chimeTarget = 0.0;
+        if (scale >= 1.6 && scale <= 3.3) {
+          chimeTarget = Math.sin(((scale - 1.6) / 1.7) * Math.PI) * 0.4;
+        }
+        this.chimeGain.gain.setTargetAtTime(chimeTarget, now, 0.1);
+        if (chimeTarget > 0.05 && now >= this.nextChimeTime) {
+          this.triggerChime(now);
+          this.nextChimeTime = now + 1.2 + Math.random() * 0.8;
+        }
+
+        // 4. Modulate Galactic & Cosmic Drone (peaks at S: 2.8 -> 5.0)
+        let ambientTarget = 0.0;
+        if (scale >= 2.6) {
+          ambientTarget = Math.min(0.55, (scale - 2.6) * 0.35);
+        }
+        this.ambientGain.gain.setTargetAtTime(ambientTarget, now, 0.1);
+      }
+
+      setVolume(val) {
+        this.baseVolume = val;
+        if (this.master && !this.isMuted) {
+          this.master.gain.setTargetAtTime(val, this.ctx.currentTime, 0.05);
+        }
+      }
+
+      toggleMute() {
+        this.isMuted = !this.isMuted;
+        if (this.master) {
+          this.master.gain.setTargetAtTime(this.isMuted ? 0 : this.baseVolume, this.ctx.currentTime, 0.05);
+        }
+        return this.isMuted;
+      }
+    }
+
+    const audioEngine = new ProceduralAudioEngine();
+
+    /* ==========================================================================
+       6. THREE.JS INITIALIZATION & SCENE SETUP
+       ========================================================================== */
+    const canvas = document.getElementById('webgl-canvas');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x010206, 0.0018);
+
+    const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(0, 7.5, 23.0);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.enableZoom = false; // We handle zoom via Scale S modulation!
+    controls.target.set(0, 2.0, 0);
+
+    // Build Particle Geometry with 40,000 Points
+    const datasets = generateParticleDatasets();
+    const geometry = new THREE.BufferGeometry();
+
+    // Standard position attribute
+    geometry.setAttribute('position', new THREE.BufferAttribute(datasets.pos0, 3));
+
+    // Custom Scale positions & colors
+    geometry.setAttribute('aPos0', new THREE.BufferAttribute(datasets.pos0, 3));
+    geometry.setAttribute('aPos1', new THREE.BufferAttribute(datasets.pos1, 3));
+    geometry.setAttribute('aPos2', new THREE.BufferAttribute(datasets.pos2, 3));
+    geometry.setAttribute('aPos3', new THREE.BufferAttribute(datasets.pos3, 3));
+    geometry.setAttribute('aPos4', new THREE.BufferAttribute(datasets.pos4, 3));
+
+    geometry.setAttribute('aCol0', new THREE.BufferAttribute(datasets.col0, 3));
+    geometry.setAttribute('aCol1', new THREE.BufferAttribute(datasets.col1, 3));
+    geometry.setAttribute('aCol2', new THREE.BufferAttribute(datasets.col2, 3));
+    geometry.setAttribute('aCol3', new THREE.BufferAttribute(datasets.col3, 3));
+    geometry.setAttribute('aCol4', new THREE.BufferAttribute(datasets.col4, 3));
+
+    geometry.setAttribute('aMeta', new THREE.BufferAttribute(datasets.meta, 4));
+
+    const particleTexture = createGlowPointTexture();
+    const shaderMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uScale: { value: 0.0 },
+        uTime: { value: 0.0 },
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2.0) },
+        uPointTexture: { value: particleTexture }
+      },
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particleSystem = new THREE.Points(geometry, shaderMaterial);
+    scene.add(particleSystem);
+
+    /* ==========================================================================
+       7. DYNAMIC CAMERA TARGETS ACCORDING TO SCALE
+       ========================================================================== */
+    const cameraWaypoints = [
+      { pos: new THREE.Vector3(0, 7.5, 23.0), target: new THREE.Vector3(0, 2.2, 0) },     // 0: Room
+      { pos: new THREE.Vector3(0, 24.0, 85.0), target: new THREE.Vector3(0, 0, 0) },     // 1: Earth
+      { pos: new THREE.Vector3(0, 110.0, 165.0), target: new THREE.Vector3(0, 0, 0) },   // 2: Solar System
+      { pos: new THREE.Vector3(0, 125.0, 180.0), target: new THREE.Vector3(0, 0, 0) },   // 3: Galaxy
+      { pos: new THREE.Vector3(0, 75.0, 175.0), target: new THREE.Vector3(0, 0, 0) },    // 4: Cosmic Web
+      { pos: new THREE.Vector3(0, 7.5, 23.0), target: new THREE.Vector3(0, 2.2, 0) }      // 5: Loop back to Room
+    ];
+
+    function updateCameraForScale(scale) {
+      const s = Math.max(0, Math.min(5.0, scale));
+      const idx = Math.min(4, Math.floor(s));
+      const t = s - idx;
+      const smoothT = t * t * (3 - 2 * t);
+
+      const pA = cameraWaypoints[idx].pos;
+      const pB = cameraWaypoints[idx + 1].pos;
+      const tA = cameraWaypoints[idx].target;
+      const tB = cameraWaypoints[idx + 1].target;
+
+      const targetPos = new THREE.Vector3().lerpVectors(pA, pB, smoothT);
+      const targetLook = new THREE.Vector3().lerpVectors(tA, tB, smoothT);
+
+      // Smoothly update controls target
+      controls.target.lerp(targetLook, 0.08);
+
+      // Adjust camera distance to match current scale while preserving user's current azimuth & elevation
+      const currentDir = camera.position.clone().sub(controls.target);
+      const desiredDist = targetPos.length();
+      if (currentDir.length() > 0.01) {
+        currentDir.setLength(THREE.MathUtils.lerp(currentDir.length(), desiredDist, 0.06));
+        camera.position.copy(controls.target).add(currentDir);
+      }
+    }
+
+    /* ==========================================================================
+       8. HUD & UI INTERACTION CONTROLS
+       ========================================================================== */
+    const hudScalePower = document.getElementById('hud-scale-power');
+    const hudScaleName = document.getElementById('hud-scale-name');
+    const hudScaleValue = document.getElementById('hud-scale-value');
+    const hudNarrative = document.getElementById('hud-narrative');
+    const hudAudioInfo = document.getElementById('hud-audio-info');
+    const sliderScale = document.getElementById('slider-scale');
+    const sliderVolume = document.getElementById('slider-volume');
+    const btnCruise = document.getElementById('btn-cruise');
+    const iconPause = document.getElementById('icon-pause');
+    const iconPlay = document.getElementById('icon-play');
+    const textCruiseBtn = document.getElementById('text-cruise-btn');
+    const badgeMode = document.getElementById('badge-mode');
+    const badgeModeText = document.getElementById('badge-mode-text');
+    const btnAudio = document.getElementById('btn-audio');
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+    const btnInfo = document.getElementById('btn-info');
+    const modalInfo = document.getElementById('modal-info');
+    const btnCloseInfo = document.getElementById('btn-close-info');
+    const btnModalOk = document.getElementById('btn-modal-ok');
+    const startOverlay = document.getElementById('start-overlay');
+    const btnStart = document.getElementById('btn-start');
+    const waveformCanvas = document.getElementById('waveform-canvas');
+    const waveCtx = waveformCanvas.getContext('2d');
+
+    function updateHud(scale) {
+      hudScaleValue.textContent = `Scale S: ${scale.toFixed(3)} / 5.00`;
+      sliderScale.value = scale.toFixed(3);
+
+      // Determine current stage
+      let currentDesc = scaleDescriptions[0];
+      for (let i = 0; i < scaleDescriptions.length; i++) {
+        if (scale <= scaleDescriptions[i].max || i === scaleDescriptions.length - 1) {
+          currentDesc = scaleDescriptions[i];
+          break;
+        }
+      }
+
+      hudScalePower.textContent = currentDesc.power;
+      hudScaleName.textContent = currentDesc.name;
+      hudNarrative.textContent = currentDesc.text;
+      hudAudioInfo.textContent = currentDesc.audio;
+    }
+
+    function setAutoplay(state) {
+      isAutoplay = state;
+      if (isAutoplay) {
+        iconPause.classList.remove('hidden');
+        iconPlay.classList.add('hidden');
+        textCruiseBtn.textContent = '暫停巡航';
+        badgeMode.className = 'flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1 rounded-xl';
+        badgeModeText.textContent = '自動巡航中';
+      } else {
+        iconPause.classList.add('hidden');
+        iconPlay.classList.remove('hidden');
+        textCruiseBtn.textContent = '繼續巡航';
+        badgeMode.className = 'flex items-center gap-1.5 text-xs font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 px-2.5 py-1 rounded-xl';
+        badgeModeText.textContent = '自由探索中';
+      }
+    }
+
+    btnCruise.addEventListener('click', () => {
+      setAutoplay(!isAutoplay);
+    });
+
+    sliderScale.addEventListener('input', (e) => {
+      targetScale = parseFloat(e.target.value);
+      setAutoplay(false);
+    });
+
+    document.querySelectorAll('.scale-jump-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        targetScale = parseFloat(btn.getAttribute('data-scale'));
+        setAutoplay(false);
+      });
+    });
+
+    sliderVolume.addEventListener('input', (e) => {
+      audioEngine.setVolume(parseFloat(e.target.value));
+    });
+
+    btnAudio.addEventListener('click', () => {
+      audioEngine.init();
+      const muted = audioEngine.toggleMute();
+      if (muted) {
+        iconSoundOn.classList.add('hidden');
+        iconSoundOff.classList.remove('hidden');
+      } else {
+        iconSoundOn.classList.remove('hidden');
+        iconSoundOff.classList.add('hidden');
+      }
+    });
+
+    btnFullscreen.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    btnInfo.addEventListener('click', () => {
+      modalInfo.classList.remove('hidden');
+    });
+    btnCloseInfo.addEventListener('click', () => {
+      modalInfo.classList.add('hidden');
+    });
+    btnModalOk.addEventListener('click', () => {
+      modalInfo.classList.add('hidden');
+    });
+
+    // Start Overlay Experience Button
+    btnStart.addEventListener('click', () => {
+      audioEngine.init();
+      isAudioActive = true;
+      startOverlay.style.opacity = '0';
+      startOverlay.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => {
+        startOverlay.classList.add('hidden');
+      }, 600);
+    });
+
+    // Spacebar toggles autoplay
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        setAutoplay(!isAutoplay);
+      }
+    });
+
+    // Wheel zooms scale S with inertia damping
+    window.addEventListener('wheel', (e) => {
+      setAutoplay(false);
+      const delta = e.deltaY * 0.0016;
+      targetScale = Math.max(0.0, Math.min(5.0, targetScale + delta));
+    }, { passive: true });
+
+    // Touch pinch for mobile scale zoom
+    let initialTouchDist = 0;
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        initialTouchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2 && initialTouchDist > 0) {
+        setAutoplay(false);
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const delta = (initialTouchDist - dist) * 0.004;
+        targetScale = Math.max(0.0, Math.min(5.0, targetScale + delta));
+        initialTouchDist = dist;
+      }
+    }, { passive: true });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+      shaderMaterial.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2.0);
+    });
+
+    /* ==========================================================================
+       9. LIVE AUDIO WAVEFORM VISUALIZER
+       ========================================================================== */
+    const waveBuffer = new Uint8Array(64);
+    function renderWaveform() {
+      waveCtx.clearRect(0, 0, waveformCanvas.width, waveformCanvas.height);
+      if (audioEngine.analyser && isAudioActive && !audioEngine.isMuted) {
+        audioEngine.analyser.getByteTimeDomainData(waveBuffer);
+
+        waveCtx.beginPath();
+        waveCtx.lineWidth = 1.8;
+        waveCtx.strokeStyle = '#38bdf8';
+        waveCtx.shadowBlur = 4;
+        waveCtx.shadowColor = '#0284c7';
+
+        const sliceWidth = waveformCanvas.width / waveBuffer.length;
+        let x = 0;
+        for (let i = 0; i < waveBuffer.length; i++) {
+          const v = waveBuffer[i] / 128.0;
+          const y = (v * waveformCanvas.height) / 2;
+          if (i === 0) waveCtx.moveTo(x, y);
+          else waveCtx.lineTo(x, y);
+          x += sliceWidth;
+        }
+        waveCtx.stroke();
+      } else {
+        // Subtle resting sine wave
+        const t = performance.now() * 0.003;
+        waveCtx.beginPath();
+        waveCtx.lineWidth = 1.2;
+        waveCtx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+        for (let x = 0; x < waveformCanvas.width; x++) {
+          const y = (waveformCanvas.height / 2) + Math.sin(x * 0.1 + t) * 3;
+          if (x === 0) waveCtx.moveTo(x, y);
+          else waveCtx.lineTo(x, y);
+        }
+        waveCtx.stroke();
+      }
+    }
+
+    /* ==========================================================================
+       10. MAIN ANIMATION & RENDER LOOP
+       ========================================================================== */
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const delta = clock.getDelta();
+      const elapsedTime = clock.getElapsedTime();
+
+      // Autoplay progression: Delta S = 0.0018 per frame (~46s per full loop)
+      if (isAutoplay) {
+        targetScale += delta * 0.11;
+        // Ouroboros Loop: Seamless modulo reset
+        if (targetScale >= 5.0) {
+          targetScale -= 5.0;
+          currentScale -= 5.0;
+        }
+      }
+
+      // Smooth inertia interpolation for scale S
+      currentScale += (targetScale - currentScale) * 0.08;
+
+      // Update Shader uniforms
+      shaderMaterial.uniforms.uScale.value = currentScale;
+      shaderMaterial.uniforms.uTime.value = elapsedTime;
+
+      // Update Audio Engine and HUD
+      audioEngine.update(currentScale);
+      updateHud(currentScale);
+      updateCameraForScale(currentScale);
+      renderWaveform();
+
+      // Controls update with smooth damping
+      controls.update();
+
+      // Render 3D Scene
+      renderer.render(scene, camera);
+    }
+
+    // Start loop
+    animate();
+  </script>
+</body>
+</html>
