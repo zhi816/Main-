@@ -226,7 +226,7 @@
     <div class="help-row"><span>自動漫遊</span><kbd>Space</kbd></div>
     <div class="help-row"><span>音效 / 膠卷質感 / 說明</span><span><kbd>M</kbd> <kbd>G</kbd> <kbd>H</kbd></span></div>
     <div class="help-row"><span>回到起點</span><span>左上角標誌 · <kbd>Home</kbd></span></div>
-<p class="credits">地表比例保持一致；跨天文尺度距離經展示壓縮，天體位置與宇宙結構為示意。DU 是固定的展示世界單位，與天文尺度分開標示。微光定位點不代表天體大小。<br><br>奧爾特雲為推定結構；CMB 的程序斑駁與顏色為視覺轉譯，球面表現觀測視界，並非宇宙的實體外牆或實測貼圖。<br><a href="https://science.nasa.gov/solar-system/oort-cloud/facts/" target="_blank" rel="noopener noreferrer">NASA · Oort Cloud</a> · <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background" target="_blank" rel="noopener noreferrer">ESA · CMB</a><br><br>CHOPIN · BALLADE NO. 4, OP. 52<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>內嵌音符，以程序鋼琴演繹。首次需連網載入 Three.js；無外部圖片、模型或音訊。</p>
+<p class="credits">地表比例保持一致；跨天文尺度距離經展示壓縮，天體位置與宇宙結構為示意。DU 是固定的展示世界單位，與天文尺度分開標示。微光定位點不代表天體大小。<br><br>奧爾特雲為推定結構；CMB 的程序斑駁與顏色為視覺轉譯，球面表現觀測視界，並非宇宙的實體外牆或實測貼圖。<br><a href="https://science.nasa.gov/solar-system/oort-cloud/facts/" target="_blank" rel="noopener noreferrer">NASA · Oort Cloud</a> · <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_and_the_cosmic_microwave_background" target="_blank" rel="noopener noreferrer">ESA · CMB</a><br><br>CHOPIN · BALLADE NO. 4, OP. 52<br>依 <a href="https://www.ibiblio.org/mutopia/ftp/ChopinFF/O52/ballade-4/ballade-4-a4.pdf" target="_blank" rel="noopener noreferrer">Mutopia 公開領域樂譜</a>內嵌前奏與主題編排，以程序鋼琴及弦樂演繹。首次需連網載入 Three.js；無外部圖片、模型或音訊。</p>
   </dialog>
 
   <dialog id="route-dialog" aria-labelledby="route-title"><button id="route-close" class="icon-button dialog-close" aria-label="關閉路線">×</button><h2 id="route-title">Our place in everything.</h2><p class="dialog-subtitle">三段序章，九層宇宙。每一站，都與家園相連。</p><div id="route-list"><button data-route="0"><span>0A</span>ROOM</button><button data-route="1"><span>0B</span>TAIWAN</button><button data-route="2"><span>0C</span>ATMOS</button><button data-route="3"><span>01</span>EARTH</button><button data-route="4"><span>02</span>MOON</button><button data-route="5"><span>03</span>SOLAR</button><button data-route="6"><span>04</span>OORT</button><button data-route="7"><span>05</span>STARS</button><button data-route="8"><span>06</span>MILKY WAY</button><button data-route="9"><span>07</span>LOCAL GROUP</button><button data-route="10"><span>08</span>LANIAKEA</button><button data-route="11"><span>09</span>CMB</button></div><p class="credits">點選後，攝影機將沿連續航線前往該尺度。<br>跨尺度距離經展示壓縮；天體與宇宙結構為示意。</p></dialog>
@@ -352,9 +352,10 @@
     const $=id=>document.getElementById(id);
     // Fixed surface scale: Earth equatorial radius 80 DU = 6,378,000 m.
     const METRE=80/6378000;
-    const TAU=Math.PI*2, MIN_DISTANCE=3.8*METRE, MAX_DISTANCE=10000000;
+    const TAU=Math.PI*2, MIN_DISTANCE=4.4*METRE, MAX_DISTANCE=10000000;
     const LOG_MIN=Math.log(MIN_DISTANCE),LOG_MAX=Math.log(MAX_DISTANCE),LOG_SPAN=LOG_MAX-LOG_MIN;
     const PARTICLE_BUDGET=40000;
+    const SURFACE_TRANSIT={near:180*METRE,far:20000*METRE};
     const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
     const lerp=(a,b,t)=>a+(b-a)*t;
@@ -381,10 +382,10 @@
       {id:'cmb',name:'THE OBSERVABLE HORIZON',short:'CMB',title:'最古老的光，抵達此刻。',description:'暗紅與橙金，是 CMB 的程序示意。<br>這是觀測視界的表現，並非宇宙外牆。',astro:'CMB · 早期宇宙之光',distance:10000000,edge:5000000}
     ];
     const flightKeys=[
-      [0,MIN_DISTANCE],[4,MIN_DISTANCE],[10,14*METRE],[14,75*METRE],[18,500*METRE],[20,6000*METRE],
+      [0,MIN_DISTANCE],[4,MIN_DISTANCE],[10,14*METRE],[14,75*METRE],[16,SURFACE_TRANSIT.near],[17,SURFACE_TRANSIT.far],
       [24,18],[28,60],[34,240],[40,900],[44,900],[56,9500],[60,9500],[70,35000],[78,110000],
       [89,350000],[94,350000],[102,1150000],[109,3400000],[115,10000000],
-      [123,10000000],[165,MIN_DISTANCE],[170,MIN_DISTANCE]
+      [123,10000000],[149,SURFACE_TRANSIT.far],[150,SURFACE_TRANSIT.near],[158,14*METRE],[165,MIN_DISTANCE],[170,MIN_DISTANCE]
     ].map(([time,distance])=>({time,log:Math.log(distance)}));
     const state={ready:false,started:false,auto:false,muted:false,grain:true,logDistance:LOG_MIN,targetLogDistance:LOG_MIN,distance:MIN_DISTANCE,stage:0,
       flightTime:0,loops:0,phase:'OUTBOUND',warp:null,warpCount:0,warpIntensity:0,hidden:document.hidden,contextLost:false,disposed:false,
@@ -567,7 +568,7 @@
       const neighbourhood=register('neighbourhood','local-terrain',homeCenter,550*METRE,'residential-area',{schematic:true});
       const house=register('house','neighbourhood',homeCenter,5.5*METRE,'house',{dimensionsMetres:[5.2,6.2,3.50]});
       const room=register('room','house',homeCenter,5.2*METRE,'room',{dimensionsMetres:[4.8,5.8,3.40],metresToDisplayUnits:METRE,visualStyle:'Blue-violet gaming-room diorama, reconstructed procedurally from the supplied reference.'});
-      bedCenter=vector(-1.10*METRE,.20*METRE,.73*METRE);openingAnchor=vector((innerWidth/innerHeight<.8?-1.0:-.35)*METRE,.75*METRE,.80*METRE);
+      bedCenter=vector(-1.10*METRE,.20*METRE,.73*METRE);openingAnchor=vector((innerWidth/innerHeight<.8?-1.55:-.35)*METRE,.75*METRE,.80*METRE);
       const bed=register('bed','room',bedCenter,1.4*METRE,'bed',{dimensionsMetres:[1.3,2.2,.73]});
       register('sleeper','bed',vector(-1.10*METRE,.28*METRE,.86*METRE),.9*METRE,'person',{pose:'lying on back',heightMetres:1.67});
       const heart=register('heart','sleeper',vector(-1.165,.47,.867).multiplyScalar(METRE),.03*METRE,'heart',{frequencyHz:1});
@@ -773,7 +774,7 @@
       for(const [center,size,normal,color] of [[[-2.4,0,1.70],[.12,5.8,3.40],vector(-1,0,0),0x59358f],[[2.4,0,1.70],[.12,5.8,3.40],vector(1,0,0),0x283779],[[0,-2.9,1.70],[4.8,.12,3.40],vector(0,-1,0),0x353164]]){
         const wall=meshBatch();box(wall,center,size,color);box(wall,[center[0],center[1],.07],[size[0]+.035,size[1]+.035,.14],0x28204b);finishBatch(wall,room,{...roomOptions,wallNormal:normal,cutaway:true});
       }
-      const roof=meshBatch();box(roof,[0,0,3.46],[5.2,6.2,.15],0x334c54);finishBatch(roof,world.get('house'),{roof:true});
+      const roof=meshBatch();box(roof,[0,0,3.46],[5.2,6.2,.15],0x302450);finishBatch(roof,world.get('house'),{roof:true,roomMood:true});
       const monitorMaterial=mat(new THREE.ShaderMaterial({transparent:true,depthWrite:true,uniforms:{uOpacity:{value:1}},vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'precision highp float;uniform float uOpacity;varying vec2 vUv;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}void main(){vec2 p=vUv;float mist=.0;float amp=.54;vec2 q=p*vec2(5.2,3.7);for(int i=0;i<4;i++){vec2 cell=floor(q),f=fract(q);f=f*f*(3.0-2.0*f);float n=mix(mix(hash(cell),hash(cell+vec2(1,0)),f.x),mix(hash(cell+vec2(0,1)),hash(cell+vec2(1,1)),f.x),f.y);mist+=n*amp;q=mat2(1.6,1.2,-1.2,1.6)*q+vec2(13.1,7.4);amp*=.5;}mist=smoothstep(.24,.77,mist);vec3 c=mix(vec3(.015,.09,.18),vec3(.20,.79,.94),mist);c+=vec3(.34,.34,.38)*pow(mist,3.0);c+=step(.993,hash(floor(p*vec2(150.0,95.0))))*.7;gl_FragColor=vec4(c,uOpacity);}'}));
       for(const x of [.29,1.26]){const g=geo(new THREE.PlaneGeometry(.81*METRE,.45*METRE));g.rotateX(Math.PI/2);g.translate(x*METRE,2.244*METRE,1.20*METRE);attach(new THREE.Mesh(g,monitorMaterial),room,{type:'surface-detail',maxDistance:130*METRE});}
       const pools=[[[bx,by,.057],[2.10,2.75],[.42,.13,1.0],.22],[[.77,1.62,.057],[2.15,1.50],[.05,.43,1.0],.18],[[1.84,-.50,.057],[1.4,1.6],[1.0,.12,.47],.18],[[1.01,2.745,2.06],[1.60,1.05],[.65,.15,1.0],.25]];
@@ -962,6 +963,8 @@
     };
     function updateRendering(){
       const focal=innerHeight/(2*Math.tan(camera.fov*Math.PI/360));
+      // The initial enclosure stays solid. Manual viewpoints outside the room still use the cutaway.
+      const roomSeal=1-smooth(Math.max(Math.abs(logicalCamera.x/METRE)-2.34,Math.abs(logicalCamera.y/METRE)-2.84,.044-logicalCamera.z/METRE,logicalCamera.z/METRE-3.385)/.22);
       const active=[];let demand=0;
       for(const entry of renderables){
         const {mesh,body}=entry;
@@ -976,12 +979,12 @@
         if(entry.maxDistance)opacity*=1-smooth(Math.log(state.distance/entry.maxDistance)/.8);
         if(entry.cutaway){
           const closed=smooth(Math.log(state.distance/(15*METRE))/Math.log(45/15));
-          const inside=1-smooth(Math.log(state.distance/(4.2*METRE))/Math.log(7.0/4.2));
+          const inside=(1-smooth(Math.log(state.distance/(4.45*METRE))/Math.log(7.0/4.45)))*roomSeal;
           const cut=entry.wallNormal?lerp(1-smooth((direction.dot(entry.wallNormal)+.15)/.45),1,closed):closed;
           opacity*=lerp(cut,1,inside);
         }
         if(entry.roof){
-          const inside=1-smooth(Math.log(state.distance/(4.2*METRE))/Math.log(7.0/4.2));
+          const inside=(1-smooth(Math.log(state.distance/(4.45*METRE))/Math.log(7.0/4.45)))*roomSeal;
           opacity*=Math.max(inside,smooth(Math.log(state.distance/(18*METRE))/Math.log(45/18)));
         }
         if(entry.terrain)opacity*=1-smooth(Math.log(state.distance/.055)/Math.log(.34/.055));
@@ -1094,13 +1097,17 @@
       state.warp={elapsed:0,duration:1.5};
       $('warp-label').textContent=gate.text;$('warp-label').classList.add('visible');audio?.warp();
     }
+    function surfaceTransitWeight(logDistance){
+      const near=Math.log(SURFACE_TRANSIT.near),far=Math.log(SURFACE_TRANSIT.far),edge=.45;
+      return smooth((logDistance-near)/edge)*(1-smooth((logDistance-far+edge)/edge));
+    }
     function advance(dt){
       const previous=state.logDistance;
       if(state.auto){
         const acceleration=state.flightTime<115&&!reducedMotion?1+state.warpIntensity*.85:1;
         state.flightTime+=dt*acceleration;
         if(state.flightTime>=170){
-          state.flightTime-=170;state.loops++;audio?.restartTheme();
+          state.flightTime-=170;state.loops++;
         }
         state.phase=state.flightTime<115?'OUTBOUND':state.flightTime<123?'AT THE HORIZON':state.flightTime<165?'HOMEWARD':'AT HOME';
         state.returning=state.flightTime>=123&&state.flightTime<165;
@@ -1109,9 +1116,11 @@
         state.returning=state.targetLogDistance<state.logDistance-.001;
         state.phase=state.returning?'HOMEWARD':'EXPLORING';
       }
-      const alpha=1-Math.pow(.94,dt*60);
-      const boost=reducedMotion?1:1+state.warpIntensity*.65;
-      const step=clamp((state.targetLogDistance-state.logDistance)*alpha*boost,-2.3*dt,2.3*dt);
+      // Cross the sparse neighbourhood/terrain handoff briskly, in either direction.
+      const transit=reducedMotion?0:Math.max(surfaceTransitWeight(state.logDistance),surfaceTransitWeight(state.targetLogDistance));
+      const alpha=1-Math.pow(1-(.06+.22*transit),dt*60);
+      const boost=reducedMotion?1:1+state.warpIntensity*.65,maxLogSpeed=2.3+7.7*transit;
+      const step=clamp((state.targetLogDistance-state.logDistance)*alpha*boost,-maxLogSpeed*dt,maxLogSpeed*dt);
       state.logDistance=clamp(state.logDistance+step,LOG_MIN,LOG_MAX);
       if(Math.abs(state.targetLogDistance-state.logDistance)<1e-7)state.logDistance=state.targetLogDistance;
       state.distance=clamp(Math.exp(state.logDistance),MIN_DISTANCE,MAX_DISTANCE);
@@ -1137,7 +1146,7 @@
     }
     function toggleSound(){
       if(!state.started){pendingSound=audio?state.muted:true;state.muted=!pendingSound;ensureAudio();return;}
-      state.muted=audio?!state.muted:false;const enabled=ensureAudio();wakeHUD();if(enabled)toast(state.muted?'音效已關閉':'鋼琴與宇宙回音已開啟');
+      state.muted=audio?!state.muted:false;const enabled=ensureAudio();wakeHUD();if(enabled)toast(state.muted?'音效已關閉':'鋼琴、弦樂與宇宙回音已開啟');
     }
     function setAuto(enabled,announce=true){
       if(enabled&&!state.auto){
@@ -1175,7 +1184,8 @@
       if(!state.started||dialogOpen())return;
       state.angleTaken=true;
       setAuto(false,false);
-      state.targetLogDistance=clamp(state.targetLogDistance+delta,LOG_MIN,LOG_MAX);
+      const sensitivity=1+(reducedMotion?0:3*surfaceTransitWeight(state.targetLogDistance));
+      state.targetLogDistance=clamp(state.targetLogDistance+delta*sensitivity,LOG_MIN,LOG_MAX);
       if(delta<0)stopWarp();
       wakeHUD();zoomUntil=performance.now()+650;ui.cursor.classList.add('zooming');$('cursor-label').textContent='[ DOLLY ]';
     }
@@ -1261,9 +1271,8 @@
       renderer.setPixelRatio(state.dpr);renderer.setSize(innerWidth,innerHeight);
       camera.aspect=innerWidth/innerHeight;
       // Responsive field of view is changed only on resize, never as a navigation effect.
-      camera.fov=Math.min(100,2*Math.atan(Math.tan(55*Math.PI/360)/Math.min(1,camera.aspect/.62))*180/Math.PI);
+      camera.fov=Math.min(100,2*Math.atan(Math.tan(55*Math.PI/360)/Math.min(1,camera.aspect/.66))*180/Math.PI);
       camera.clearViewOffset();
-      if(camera.aspect<.8)camera.setViewOffset(innerWidth,innerHeight,0,-innerHeight*.07,innerWidth,innerHeight);
       camera.updateProjectionMatrix();orbitCamera.aspect=camera.aspect;orbitCamera.updateProjectionMatrix();layoutRuler();
     }
     function initScene(){
@@ -1437,35 +1446,130 @@
         initScene();state.ready=true;$('begin').disabled=false;$('load-status').textContent='點擊任意處啟程 · CLICK TO ENTER';scheduleFrame();
       }catch(error){console.error('Cosmic Drift initialization failed:',error);showError(error.message||'宇宙未能順利載入，請重新整理後再試一次。');}
     }
-    function introductionScore() {
-      const events=[];
-      function add(t,notes,length=2,velocity=.7){for(const note of notes)events.push({beat:t,midi:note,length,velocity});}
-      function melody(bar,notes){let beat=bar*12;for(const item of notes){const [pitches,length=2]=item;add(beat,pitches,length,.78);beat+=length;}}
-      const G=[67,79],F=[65,77],E=[64,76],D=[62,74],C=[60,72];
-      melody(0,[[G],[G],[G],[G],[G],[G]]);
-      melody(1,[[G],[G],[G],[G],[F],[E]]);
-      melody(2,[[E],[D],[C],[[76],6]]);
-      melody(3,[[[64,79]],[G],[G],[G],[F],[E]]);
-      melody(4,[[E],[D],[C],[[76],6]]);
-      melody(5,[[E],[D],[C],[[76],11]]);
-      function voice(bar,offset,sequence,velocity=.3){sequence.forEach((note,i)=>{if(note!==null)add(bar*12+offset+i,Array.isArray(note)?note:[note],1,velocity);});}
-      voice(0,6,[55,60,55,60,55,60]);
-      voice(1,0,[55,[58,60],55,[58,60],55,[58,60],55,[57,60],53,[57,60],52,[57,60]]);
-      const inner=[52,[55,59],50,[55,59],48,55,52,[55,60],52,[53,60],52,[55,60]];
-      voice(2,0,inner);
-      voice(3,0,[52,60,55,[58,60],55,[58,60],55,[57,60],53,[57,60],52,[57,60]]);
-      voice(4,0,inner);voice(5,0,inner);
-      voice(6,0,[52,[53,60],52,[55,60],52,[53,60]]);
-      add(78,[52,60],5,.35);
-      add(6,[64],2,.36);add(8,[64],2,.33);add(10,[62],2,.3);
-      add(12,[62],2,.31);add(14,[60],2,.28);
-      voice(1,6,[41,60,57,60,50,60],.31);
-      const bass=[43,55,[53,59],55,52,55,48,55,60,57,55,null];
-      voice(2,0,bass,.3);
-      voice(3,0,[36,55,60,62,null,null,41,60,57,60,50,60],.31);add(40,[64],2,.31);
-      voice(4,0,bass,.3);voice(5,0,[43,55,[53,59],55,52,55,48,55,60,57,55,48],.3);
-      voice(6,0,[60,57,55,48,60,57],.28);add(78,[48,55],5,.3);
-      return events.sort((a,b)=>a.beat-b.beat);
+    function balladeScore() {
+      const pianoEvents = [];
+      const stringEvents = [];
+
+      function addP(t, notes, length = 2, velocity = 0.7) {
+        for (const note of notes) pianoEvents.push({ beat: t, midi: note, length, velocity });
+      }
+      function addS(t, notes, length = 12, velocity = 0.6) {
+        stringEvents.push({ beat: t, notes, length, velocity });
+      }
+      function melody(bar, notes) {
+        let beat = bar * 12;
+        for (const item of notes) {
+          const pitches = Array.isArray(item[0]) ? item[0] : [item[0]];
+          const length = item[1] !== undefined ? item[1] : 2;
+          const vel = item[2] !== undefined ? item[2] : 0.70;
+          addP(beat, pitches, length, vel);
+          beat += length;
+        }
+      }
+      const G = [67, 79], F = [65, 77], E = [64, 76], D = [62, 74], C = [60, 72];
+
+      melody(0, [[G, 2, 0.58], [G, 2, 0.52], [G, 2, 0.48], [G, 2, 0.45], [G, 2, 0.43], [G, 2, 0.40]]);
+      melody(1, [[G, 2, 0.48], [G, 2, 0.46], [G, 2, 0.44], [G, 2, 0.42], [F, 2, 0.52], [E, 2, 0.56]]);
+      melody(2, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 6, 0.62]]);
+      melody(3, [[[64, 79], 2, 0.60], [G, 2, 0.50], [G, 2, 0.46], [G, 2, 0.44], [F, 2, 0.52], [E, 2, 0.56]]);
+      melody(4, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 6, 0.62]]);
+      melody(5, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 11, 0.66]]);
+      addP(72, [48], 2, 0.52); addP(74, [55], 2, 0.56); addP(76, [60], 2, 0.60);
+      addP(78, [64], 6, 0.70); addP(78, [67, 72], 6, 0.78); addP(78, [48, 55], 6, 0.66);
+
+      function voice(bar, offset, seq, vel = 0.32) {
+        seq.forEach((n, i) => { if (n !== null) addP(bar * 12 + offset + i, Array.isArray(n) ? n : [n], 1, vel); });
+      }
+      voice(0, 6, [55, 60, 55, 60, 55, 60]);
+      voice(1, 0, [55, [58, 60], 55, [58, 60], 55, [58, 60], 55, [57, 60], 53, [57, 60], 52, [57, 60]]);
+      const inner = [52, [55, 59], 50, [55, 59], 48, 55, 52, [55, 60], 52, [53, 60], 52, [55, 60]];
+      voice(2, 0, inner);
+      voice(3, 0, [52, 60, 55, [58, 60], 55, [58, 60], 55, [57, 60], 53, [57, 60], 52, [57, 60]]);
+      voice(4, 0, inner);
+      voice(5, 0, inner);
+      voice(6, 0, [52, [53, 60], 52, [55, 60]]);
+
+      addP(6, [64], 2, 0.36); addP(8, [64], 2, 0.33); addP(10, [62], 2, 0.30);
+      addP(12, [62], 2, 0.31); addP(14, [60], 2, 0.28);
+      voice(1, 6, [41, 60, 57, 60, 50, 60], 0.31);
+      const bass = [43, 55, [53, 59], 55, 52, 55, 48, 55, 60, 57, 55, null];
+      voice(2, 0, bass, 0.30);
+      voice(3, 0, [36, 55, 60, 62, null, null, 41, 60, 57, 60, 50, 60], 0.31); addP(40, [64], 2, 0.31);
+      voice(4, 0, bass, 0.30);
+      voice(5, 0, [43, 55, [53, 59], 55, 52, 55, 48, 55, 60, 57, 55, 48], 0.30);
+      voice(6, 0, [60, 57, 55, 48, 60, 57], 0.28);
+
+      addS(0,   [36, 48, 55, 60], 12, 0.50); // 第 1 小節：C 大調持續底音
+      addS(12,  [43, 53, 59, 65], 12, 0.55); // 第 2 小節：屬七和弦 G7
+      addS(24,  [45, 52, 57, 64], 12, 0.58); // 第 3 小節：A 小調下行
+      addS(36,  [36, 48, 55, 60, 67], 12, 0.62); // 第 4 小節：C 掛留和弦
+      addS(48,  [46, 55, 58, 64], 12, 0.65); // 第 5 小節：減七神祕和聲
+      addS(60,  [36, 48, 55, 58, 64], 12, 0.70); // 第 6 小節：C7 導向和聲
+      addS(72,  [36, 48, 55, 60, 64, 72], 12, 0.88); // 第 7 小節：宏偉燦爛的 C 大調全弦樂齊鳴！
+
+      addP(84, [60], 3, 0.45); addP(87, [60], 3, 0.48); addP(90, [60], 3, 0.52); addP(93, [60], 3, 0.56);
+
+      addP(96, [60], 3, 0.72); addP(99, [65], 3, 0.78); addP(102, [67], 2, 0.74); addP(104, [68], 4, 0.85);
+      addP(96, [41], 6, 0.60); addP(98, [48], 2, 0.40); addP(100, [56], 2, 0.42); addP(102, [60], 2, 0.44); addP(104, [48, 56], 4, 0.45);
+
+      addP(108, [70], 3, 0.76); addP(111, [72], 3, 0.82); addP(114, [73], 6, 0.88);
+      addP(108, [46], 6, 0.60); addP(110, [53], 2, 0.42); addP(112, [61], 2, 0.44); addP(114, [53, 61], 6, 0.48);
+
+      addP(120, [72], 2, 0.80); addP(122, [70], 2, 0.75); addP(124, [68], 2, 0.72); addP(126, [67], 3, 0.75); addP(129, [65], 3, 0.70);
+      addP(120, [43], 6, 0.58); addP(126, [41], 6, 0.58);
+
+      addP(132, [64], 4, 0.75); addP(136, [65], 2, 0.72); addP(138, [67], 6, 0.82);
+      addP(132, [36, 48], 6, 0.60); addP(138, [55, 60], 6, 0.50);
+
+      addP(144, [60], 2, 0.70); addP(146, [65], 2, 0.74); addP(148, [68], 2, 0.78); addP(150, [72], 3, 0.84); addP(153, [75], 3, 0.90);
+      addP(144, [44], 6, 0.62); addP(150, [51, 60], 6, 0.52);
+
+      addP(156, [73], 3, 0.88); addP(159, [72], 3, 0.82); addP(162, [70], 2, 0.78); addP(164, [68], 2, 0.75); addP(166, [67], 2, 0.72);
+      addP(156, [49], 6, 0.62); addP(162, [46, 53], 6, 0.52);
+
+      addP(168, [68], 4, 0.85); addP(172, [72], 2, 0.88); addP(174, [75], 6, 0.95);
+      addP(168, [44, 51], 6, 0.65); addP(174, [60, 63], 6, 0.55);
+
+      addP(180, [77], 3, 0.92); addP(183, [75], 3, 0.88); addP(186, [73], 6, 0.85);
+      addP(180, [49], 6, 0.65); addP(186, [56, 61], 6, 0.55);
+
+      addP(192, [72], 4, 0.85); addP(196, [70], 2, 0.80); addP(198, [68], 6, 0.88);
+      addP(192, [39, 51], 6, 0.65); addP(198, [58, 63], 6, 0.55);
+
+      addP(204, [67], 4, 0.82); addP(208, [68], 2, 0.85); addP(210, [70], 6, 0.90);
+      addP(204, [36, 48], 6, 0.65); addP(210, [55, 64], 6, 0.55);
+
+      addP(216, [72], 3, 0.92); addP(219, [73], 3, 0.95); addP(222, [75], 6, 1.00);
+      addP(216, [41, 53], 6, 0.75); addP(222, [60, 68], 6, 0.65);
+
+      addP(228, [77], 4, 1.00); addP(232, [76], 2, 0.95); addP(234, [77], 6, 1.00);
+      addP(228, [29, 41], 6, 0.85); addP(234, [53, 65], 6, 0.75);
+
+      addP(240, [79], 3, 0.95); addP(243, [77], 3, 0.90); addP(246, [76], 6, 0.92);
+      addP(240, [36, 48], 6, 0.75); addP(246, [55, 64, 70], 6, 0.68);
+
+      addP(252, [77], 6, 0.85); addP(258, [65, 68, 72], 6, 0.65);
+      addP(252, [29, 41, 48], 12, 0.70);
+
+      addS(84,  [29, 41, 53, 60], 12, 0.55); // 第 8 小節：神祕 F 小調起伏
+      addS(96,  [41, 48, 56, 65], 12, 0.68); // 第 9 小節：F 小調主和弦
+      addS(108, [46, 53, 61, 70], 12, 0.72); // 第 10 小節：Bb 小調弦樂交織
+      addS(120, [43, 52, 58, 67], 12, 0.68); // 第 11 小節：屬七和弦
+      addS(132, [36, 48, 55, 64], 12, 0.68); // 第 12 小節：C 大調
+      addS(144, [44, 51, 60, 68], 12, 0.78); // 第 13 小節：降 A 大調明亮開展
+      addS(156, [49, 56, 65, 73], 12, 0.78); // 第 14 小節：降 D 大調
+      addS(168, [32, 44, 51, 60, 68, 75], 12, 0.88); // 第 15 小節：全交響弦樂大齊奏！
+      addS(180, [37, 49, 56, 65, 73], 12, 0.82); // 第 16 小節：大提琴悠長歌唱
+      addS(192, [39, 51, 58, 67, 75], 12, 0.86); // 第 17 小節：Eb7
+      addS(204, [36, 48, 55, 64, 70], 12, 0.88); // 第 18 小節：C7
+      addS(216, [41, 53, 60, 68, 75], 12, 0.96); // 第 19 小節：極致史詩高潮
+      addS(228, [29, 41, 53, 65, 77], 12, 1.05); // 第 20 小節：全體雙倍低音大爆發！
+      addS(240, [36, 48, 55, 64, 70, 76], 12, 0.92); // 第 21 小節：九和弦壯闊終結
+      addS(252, [29, 41, 48, 53, 65], 12, 0.65); // 第 22 小節：沉入深空星塵
+
+      pianoEvents.sort((a, b) => a.beat - b.beat);
+      stringEvents.sort((a, b) => a.beat - b.beat);
+      return { pianoEvents, stringEvents };
     }
 
     class Soundscape {
@@ -1476,43 +1580,83 @@
         const ctx=this.ctx;
         this.master=ctx.createGain();this.master.gain.value=0;
         this.analyser=ctx.createAnalyser();this.analyser.fftSize=512;this.analyser.smoothingTimeConstant=.75;
-        this.compressor=ctx.createDynamicsCompressor();this.compressor.threshold.value=-18;this.compressor.knee.value=18;this.compressor.ratio.value=5;
+        this.compressor=ctx.createDynamicsCompressor();this.compressor.threshold.value=-18;this.compressor.knee.value=30;this.compressor.ratio.value=12;
         this.input=ctx.createGain();this.dry=ctx.createGain();this.wet=ctx.createGain();this.convolver=ctx.createConvolver();
         this.delay=ctx.createDelay(2);this.delay.delayTime.value=.43;this.feedback=ctx.createGain();this.feedback.gain.value=.25;this.echo=ctx.createGain();this.echo.gain.value=.16;
-        this.dry.gain.value=.9;this.wet.gain.value=.1;
+        this.dry.gain.value=.85;this.wet.gain.value=.18;
+        this.stringsBus=ctx.createGain();this.stringsBus.gain.value=1.20;
+        this.stringsBus.connect(this.dry);this.stringsBus.connect(this.convolver);this.stringsBus.connect(this.delay);
+        this.pianoBus=ctx.createGain();this.pianoBus.gain.value=1.30;
+        this.pianoBodyRes=ctx.createBiquadFilter();this.pianoBodyRes.type='peaking';this.pianoBodyRes.frequency.value=240;this.pianoBodyRes.Q.value=1.1;this.pianoBodyRes.gain.value=4.5;
+        this.pianoWoodCore=ctx.createBiquadFilter();this.pianoWoodCore.type='peaking';this.pianoWoodCore.frequency.value=620;this.pianoWoodCore.Q.value=1;this.pianoWoodCore.gain.value=2;
+        this.pianoFeltFilter=ctx.createBiquadFilter();this.pianoFeltFilter.type='lowpass';this.pianoFeltFilter.frequency.value=4600;this.pianoFeltFilter.Q.value=.7;
+        this.pianoBus.connect(this.pianoBodyRes);this.pianoBodyRes.connect(this.pianoWoodCore);this.pianoWoodCore.connect(this.pianoFeltFilter);this.pianoFeltFilter.connect(this.input);
         const ir=ctx.createBuffer(2,Math.floor(ctx.sampleRate*4.5),ctx.sampleRate);
         for(let channel=0;channel<2;channel++){
-          const samples=ir.getChannelData(channel);
-          for(let i=0;i<samples.length;i++){const t=i/samples.length;samples[i]=(random()*2-1)*Math.pow(1-t,3)*(.62+.38*Math.sin(i*.00041+channel));}
+          const samples=ir.getChannelData(channel);let previous=0;
+          for(let i=0;i<samples.length;i++){
+            const t=i/samples.length,raw=(Math.random()*2-1)*Math.pow(1-t,2.6)*(.62+.38*Math.sin(i*.00041+channel));
+            const smoothing=.72+.22*(1-Math.exp(-t*3));previous=previous*smoothing+raw*(1-smoothing);samples[i]=previous;
+          }
         }
         this.convolver.buffer=ir;
-        this.input.connect(this.dry);this.dry.connect(this.master);
-        this.input.connect(this.convolver);this.convolver.connect(this.wet);this.wet.connect(this.master);
-        this.wet.connect(this.delay);this.delay.connect(this.echo);this.echo.connect(this.master);
-        this.delay.connect(this.feedback);this.feedback.connect(this.delay);
+        this.input.connect(this.dry);this.dry.connect(this.master);this.input.connect(this.convolver);this.convolver.connect(this.wet);this.wet.connect(this.master);
+        this.wet.connect(this.delay);this.delay.connect(this.echo);this.echo.connect(this.master);this.delay.connect(this.feedback);this.feedback.connect(this.delay);
         this.master.connect(this.compressor);this.compressor.connect(this.analyser);this.analyser.connect(ctx.destination);
         this.noise=ctx.createBuffer(1,Math.ceil(ctx.sampleRate*1.6),ctx.sampleRate);
-        const noise=this.noise.getChannelData(0);for(let i=0;i<noise.length;i++)noise[i]=random()*2-1;
+        const noise=this.noise.getChannelData(0);for(let i=0;i<noise.length;i++)noise[i]=Math.random()*2-1;
         this.frequency=new Uint8Array(this.analyser.frequencyBinCount);
-        this.notes=introductionScore();this.noteIndex=0;this.eighth=.39;this.sixteenth=this.eighth/2;
-        this.phraseLength=84*this.sixteenth+2.5;this.phraseStart=ctx.currentTime+.15;this.heartTime=ctx.currentTime+.4;
+        const score=balladeScore();this.notes=score.pianoEvents;this.stringChords=score.stringEvents;
+        this.noteIndex=0;this.stringIndex=0;this.eighth=.64;this.sixteenth=this.eighth/2;
+        this.phraseLength=264*this.sixteenth+2.5;this.phraseStart=ctx.currentTime+.15;this.heartTime=ctx.currentTime+.4;
         this.sources=new Set();this.timer=0;this.enabled=true;
+        this.graph=[this.master,this.analyser,this.compressor,this.input,this.dry,this.wet,this.convolver,this.delay,this.feedback,this.echo,this.stringsBus,this.pianoBus,this.pianoBodyRes,this.pianoWoodCore,this.pianoFeltFilter];
       }
-      track(source,nodes) {
+      track(source,nodes,onEnd) {
         this.sources.add(source);
-        source.onended=()=>{this.sources.delete(source);source.disconnect();nodes.forEach(node=>node.disconnect());};
+        source.onended=()=>{this.sources.delete(source);source.disconnect();nodes.forEach(node=>node.disconnect());onEnd?.();};
       }
       piano(note,when) {
-        const ctx=this.ctx,f=440*Math.pow(2,(note.midi-69)/12),decay=2.6+(1-note.midi/100)*1.2;
-        [1,.34,.13,.06].forEach((weight,h)=>{
-          const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.type='sine';
-          oscillator.frequency.value=f*(h+1);oscillator.detune.value=h?rand(-1.1,1.1):0;
-          gain.gain.setValueAtTime(.00001,when);
-          gain.gain.exponentialRampToValueAtTime(.042*weight*note.velocity,when+.005);
-          gain.gain.exponentialRampToValueAtTime(.00001,when+decay/(1+h*.24));
-          oscillator.connect(gain);gain.connect(this.input);this.track(oscillator,[gain]);
-          oscillator.start(when);oscillator.stop(when+decay+.05);
-        });
+        if(!this.enabled||this.ctx.state!=='running')return;
+        const ctx=this.ctx,f=440*Math.pow(2,(note.midi-69)/12),velocity=clamp(note.velocity??.7,.1,1.2),decay=3.6+(1-note.midi/100)*1.6;
+        const filter=ctx.createBiquadFilter();filter.type='lowpass';filter.Q.value=1.1;
+        const attack=Math.min(5600,f*3.4+600+velocity*2200),sustain=Math.max(220,f*1.45+180);
+        filter.frequency.setValueAtTime(attack*.75,when);filter.frequency.linearRampToValueAtTime(attack,when+.012);filter.frequency.exponentialRampToValueAtTime(sustain,when+.38);
+        let panner=null;
+        if(ctx.createStereoPanner){panner=ctx.createStereoPanner();panner.pan.value=clamp((note.midi-60)/45*.35,-.35,.35);filter.connect(panner);panner.connect(this.pianoBus);}
+        else filter.connect(this.pianoBus);
+        const partials=[
+          [1,1,[-1.4,1.4],1],[2.001,.55,[0],.75],[3.003,.22,[-.8,.8],.50],
+          [4.006,.10,[0],.32],[5.010,.04,[0],.18],[6.015,.015,[0],.10]
+        ];
+        let remaining=partials.reduce((count,partial)=>count+partial[2].length,0);
+        // Shared voice nodes outlive all partials; the panner is not a scheduled source.
+        const release=()=>{if(--remaining===0){filter.disconnect();panner?.disconnect();}};
+        for(const [multiple,weight,detunes,decayScale] of partials){
+          const duration=Math.max(.18,decay*decayScale);
+          for(const detune of detunes){
+            const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.type='sine';
+            oscillator.frequency.setValueAtTime(f*multiple,when);oscillator.detune.setValueAtTime(detune,when);
+            gain.gain.setValueAtTime(.00001,when);gain.gain.linearRampToValueAtTime(.036*weight*velocity/detunes.length,when+.012);gain.gain.exponentialRampToValueAtTime(.00001,when+duration);
+            oscillator.connect(gain);gain.connect(filter);this.track(oscillator,[gain],release);oscillator.start(when);oscillator.stop(when+duration+.05);
+          }
+        }
+        const thump=ctx.createOscillator(),thumpGain=ctx.createGain(),thumpFilter=ctx.createBiquadFilter();
+        thump.type='sine';thump.frequency.setValueAtTime(175,when);thump.frequency.exponentialRampToValueAtTime(65,when+.026);
+        thumpFilter.type='bandpass';thumpFilter.frequency.value=145;thumpFilter.Q.value=1.3;
+        thumpGain.gain.setValueAtTime(.00001,when);thumpGain.gain.linearRampToValueAtTime(.015*velocity,when+.004);thumpGain.gain.exponentialRampToValueAtTime(.00001,when+.032);
+        thump.connect(thumpFilter);thumpFilter.connect(thumpGain);thumpGain.connect(this.pianoBus);this.track(thump,[thumpFilter,thumpGain]);thump.start(when);thump.stop(when+.036);
+      }
+      strings(notes,when,duration,velocity=.6) {
+        if(!this.enabled||this.ctx.state!=='running')return;
+        for(const midi of notes)for(const detune of [-2.2,2.2]){
+          const ctx=this.ctx,oscillator=ctx.createOscillator(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
+          oscillator.type=midi<48?'sawtooth':'triangle';oscillator.frequency.value=440*Math.pow(2,(midi-69)/12);oscillator.detune.value=detune;
+          filter.type='lowpass';filter.frequency.setValueAtTime(midi<48?750:midi<65?1600:2800,when);filter.Q.value=1.1;
+          const amplitude=.024*velocity*(midi<48?1.4:1),release=duration+3;
+          gain.gain.setValueAtTime(.00001,when);gain.gain.linearRampToValueAtTime(amplitude,when+.65);gain.gain.setValueAtTime(amplitude,when+duration);gain.gain.exponentialRampToValueAtTime(.00001,when+release);
+          oscillator.connect(filter);filter.connect(gain);gain.connect(this.stringsBus);this.track(oscillator,[filter,gain]);oscillator.start(when);oscillator.stop(when+release+.1);
+        }
       }
       heartbeat(when,volume) {
         [0,.16].forEach((offset,i)=>{
@@ -1532,39 +1676,55 @@
       scheduler() {
         if(this.ctx.state!=='running')return;
         const now=this.ctx.currentTime;
-        if(!this.enabled){this.phraseStart=now+.15;this.noteIndex=0;this.heartTime=now+.2;return;}
-        if(now-this.phraseStart>this.phraseLength){this.phraseStart=now+.1;this.noteIndex=0;}
-        let budget=40;
-        while(budget-->0){
+        if(!this.enabled){this.phraseStart=now+.15;this.noteIndex=0;this.stringIndex=0;this.heartTime=now+.2;return;}
+        if(now-this.phraseStart>=this.phraseLength){
+          this.phraseStart+=Math.floor((now-this.phraseStart)/this.phraseLength)*this.phraseLength;this.noteIndex=0;this.stringIndex=0;
+        }
+        let budget=60;
+        while(budget-->0&&this.noteIndex<this.notes.length){
           const note=this.notes[this.noteIndex],when=this.phraseStart+note.beat*this.sixteenth;
-          if(when>now+.14)break;
-          if(when>=now-.03)this.piano(note,Math.max(now+.005,when));
+          if(when>now+.18)break;
+          if(when>=now-.04)this.piano(note,Math.max(now+.005,when));
           this.noteIndex++;
-          if(this.noteIndex>=this.notes.length){this.noteIndex=0;this.phraseStart+=this.phraseLength;}
+        }
+        budget=8;
+        while(budget-->0&&this.stringIndex<this.stringChords.length){
+          const chord=this.stringChords[this.stringIndex],when=this.phraseStart+chord.beat*this.sixteenth;
+          if(when>now+.18)break;
+          if(when>=now-.04)this.strings(chord.notes,Math.max(now+.005,when),chord.length*this.sixteenth,chord.velocity);
+          this.stringIndex++;
         }
         if(this.heartTime<now)this.heartTime=now+.02;
-        if(this.heartTime<now+.14){const proximity=1-smooth((state.logDistance-LOG_MIN)/Math.log(5));if(proximity>.02)this.heartbeat(this.heartTime,.13*proximity);this.heartTime+=1;}
+        if(this.heartTime<now+.14){const proximity=1-smooth((state.logDistance-LOG_MIN)/Math.log(5));if(proximity>.02)this.heartbeat(this.heartTime,.14*proximity);this.heartTime+=1;}
       }
       setMuted(muted) {
-        this.enabled=!muted;
-        const now=this.ctx.currentTime;this.master.gain.cancelScheduledValues(now);this.master.gain.setTargetAtTime(muted?0:.7,now,.06);
-        if(!muted){this.phraseStart=now+.1;this.noteIndex=0;}
+        const changed=this.enabled===muted;this.enabled=!muted;
+        const now=this.ctx.currentTime;this.master.gain.cancelScheduledValues(now);
+        if(muted){
+          this.master.gain.setValueAtTime(this.master.gain.value,now);this.master.gain.linearRampToValueAtTime(0,now+.08);
+          for(const source of this.sources){try{source.stop(now+.1);}catch(error){/* already ended */}}
+        }else{
+          this.master.gain.setTargetAtTime(.75,now,.06);
+          if(changed){this.phraseStart=now+.1;this.noteIndex=0;this.stringIndex=0;this.heartTime=now+.2;}
+        }
       }
       update(s) {
         const cosmic=clamp(s,0,1),now=this.ctx.currentTime;
-        this.dry.gain.setTargetAtTime(.9-.75*cosmic,now,.2);this.wet.gain.setTargetAtTime(.1+.75*cosmic,now,.2);
-        this.feedback.gain.setTargetAtTime(.16+.24*cosmic,now,.2);this.echo.gain.setTargetAtTime(.08+.2*cosmic,now,.2);
+        this.dry.gain.setTargetAtTime(.85-.55*cosmic,now,.15);this.wet.gain.setTargetAtTime(.18+.68*cosmic,now,.15);
+        this.feedback.gain.setTargetAtTime(.20+.28*cosmic,now,.15);this.stringsBus.gain.setTargetAtTime(1.20+.45*cosmic,now,.2);
       }
-      restartTheme(){this.phraseStart=this.ctx.currentTime+.1;this.noteIndex=0;}
       async resume(){
-        if(state.hidden||state.contextLost||state.disposed)return;
+        if(state.hidden||state.contextLost||state.disposed||this.ctx.state==='closed')return;
         await this.ctx.resume();
+        if(state.hidden||state.contextLost||state.disposed){this.suspend();return;}
         if(!this.timer){this.scheduler();this.timer=setInterval(()=>this.scheduler(),45);}
       }
       suspend(){clearInterval(this.timer);this.timer=0;if(this.ctx.state==='running')this.ctx.suspend().catch(()=>{});}
-      dispose(){clearInterval(this.timer);this.timer=0;for(const source of this.sources){try{source.stop();}catch(error){/* already ended */}}this.sources.clear();if(this.ctx.state!=='closed')this.ctx.close().catch(()=>{});}
+      dispose(){
+        this.suspend();for(const source of this.sources){try{source.stop();}catch(error){/* already ended */}}this.sources.clear();
+        this.graph.forEach(node=>node.disconnect());if(this.ctx.state!=='closed')this.ctx.close().catch(()=>{});
+      }
     }
-
 
     boot();
   })();
