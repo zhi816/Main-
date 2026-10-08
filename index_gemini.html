@@ -354,159 +354,361 @@
     };
 
     /* --------------------------------------------------------------------------
-       2. Web Audio API：蕭邦第 4 號敘事曲 Op. 52 原版前奏 (84 音符) + 第一主題 + 交響弦樂
+       2. Web Audio API：蕭邦第 4 號敘事曲 Op. 52 原版完整樂譜 (24 小節，458 音符) + 動態交響弦樂
        -------------------------------------------------------------------------- */
     function balladeScore() {
       const pianoEvents = [];
       const stringEvents = [];
 
-      function addP(t, notes, length = 2, velocity = 0.7) {
-        for (const note of notes) pianoEvents.push({ beat: t, midi: note, length, velocity });
-      }
-      function addS(t, notes, length = 12, velocity = 0.6) {
-        stringEvents.push({ beat: t, notes, length, velocity });
-      }
-      function melody(bar, notes) {
-        let beat = bar * 12;
-        for (const item of notes) {
-          const pitches = Array.isArray(item[0]) ? item[0] : [item[0]];
-          const length = item[1] !== undefined ? item[1] : 2;
-          const vel = item[2] !== undefined ? item[2] : 0.70;
-          addP(beat, pitches, length, vel);
-          beat += length;
+      function addP(beat, notes, length = 2, velocity = 0.70) {
+        const list = Array.isArray(notes) ? notes : [notes];
+        for (const midi of list) {
+          pianoEvents.push({ beat, midi, length, velocity });
         }
       }
-      const G = [67, 79], F = [65, 77], E = [64, 76], D = [62, 74], C = [60, 72];
 
-      // ========================================================================
-      // 第一部分：Mutopia 公開領域樂譜前奏 (第 1 至 7 小節，共 84 個十六分音符時值)
-      // ========================================================================
-      // 第 1 小節 (拍 0-11)：高音 G 雙八度如遠古星空鐘聲般敲響 (溫柔微弱鋼琴 p，呼吸漸弱)
-      melody(0, [[G, 2, 0.58], [G, 2, 0.52], [G, 2, 0.48], [G, 2, 0.45], [G, 2, 0.43], [G, 2, 0.40]]);
-      // 第 2 小節 (拍 12-23)：G 雙八度平緩下行至 F、E
-      melody(1, [[G, 2, 0.48], [G, 2, 0.46], [G, 2, 0.44], [G, 2, 0.42], [F, 2, 0.52], [E, 2, 0.56]]);
-      // 第 3 小節 (拍 24-35)：旋律下行 E、D、C，隨後第 30 拍高音 E5 長音延留 6 拍
-      melody(2, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 6, 0.62]]);
-      // 第 4 小節 (拍 36-47)：第二句回響，E4/G5 展開，下行至 F、E
-      melody(3, [[[64, 79], 2, 0.60], [G, 2, 0.50], [G, 2, 0.46], [G, 2, 0.44], [F, 2, 0.52], [E, 2, 0.56]]);
-      // 第 5 小節 (拍 48-59)：E、D、C，高音 E5 再次悠揚懸浮
-      melody(4, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 6, 0.62]]);
-      // 第 6 小節 (拍 60-71)：下行後高音 E5 悠長延留整整 11 拍
-      melody(5, [[E, 2, 0.54], [D, 2, 0.50], [C, 2, 0.52], [76, 11, 0.66]]);
-      // 第 7 小節 (拍 72-83)：第 84 個十六分音符時值之大終止式，C 大調琶音與輝煌和弦！
-      addP(72, [48], 2, 0.52); addP(74, [55], 2, 0.56); addP(76, [60], 2, 0.60);
-      addP(78, [64], 6, 0.70); addP(78, [67, 72], 6, 0.78); addP(78, [48, 55], 6, 0.66);
-
-      // 前奏複調內聲部 (Inner polyphonic voices)
-      function voice(bar, offset, seq, vel = 0.32) {
-        seq.forEach((n, i) => { if (n !== null) addP(bar * 12 + offset + i, Array.isArray(n) ? n : [n], 1, vel); });
+      function addS(beat, notes, length = 12, velocity = 0.60) {
+        stringEvents.push({ beat, notes, length, velocity });
       }
-      voice(0, 6, [55, 60, 55, 60, 55, 60]);
-      voice(1, 0, [55, [58, 60], 55, [58, 60], 55, [58, 60], 55, [57, 60], 53, [57, 60], 52, [57, 60]]);
-      const inner = [52, [55, 59], 50, [55, 59], 48, 55, 52, [55, 60], 52, [53, 60], 52, [55, 60]];
-      voice(2, 0, inner);
-      voice(3, 0, [52, 60, 55, [58, 60], 55, [58, 60], 55, [57, 60], 53, [57, 60], 52, [57, 60]]);
-      voice(4, 0, inner);
-      voice(5, 0, inner);
-      voice(6, 0, [52, [53, 60], 52, [55, 60]]);
-
-      addP(6, [64], 2, 0.36); addP(8, [64], 2, 0.33); addP(10, [62], 2, 0.30);
-      addP(12, [62], 2, 0.31); addP(14, [60], 2, 0.28);
-      voice(1, 6, [41, 60, 57, 60, 50, 60], 0.31);
-      const bass = [43, 55, [53, 59], 55, 52, 55, 48, 55, 60, 57, 55, null];
-      voice(2, 0, bass, 0.30);
-      voice(3, 0, [36, 55, 60, 62, null, null, 41, 60, 57, 60, 50, 60], 0.31); addP(40, [64], 2, 0.31);
-      voice(4, 0, bass, 0.30);
-      voice(5, 0, [43, 55, [53, 59], 55, 52, 55, 48, 55, 60, 57, 55, 48], 0.30);
-      voice(6, 0, [60, 57, 55, 48, 60, 57], 0.28);
-
-      // 前奏交響弦樂聲部 (Symphonic Strings Bed for Introduction)
-      addS(0,   [36, 48, 55, 60], 12, 0.50); // 第 1 小節：C 大調持續底音
-      addS(12,  [43, 53, 59, 65], 12, 0.55); // 第 2 小節：屬七和弦 G7
-      addS(24,  [45, 52, 57, 64], 12, 0.58); // 第 3 小節：A 小調下行
-      addS(36,  [36, 48, 55, 60, 67], 12, 0.62); // 第 4 小節：C 掛留和弦
-      addS(48,  [46, 55, 58, 64], 12, 0.65); // 第 5 小節：減七神祕和聲
-      addS(60,  [36, 48, 55, 58, 64], 12, 0.70); // 第 6 小節：C7 導向和聲
-      addS(72,  [36, 48, 55, 60, 64, 72], 12, 0.88); // 第 7 小節：宏偉燦爛的 C 大調全弦樂齊鳴！
 
       // ========================================================================
-      // 第二部分：第一主題 (Mezzo voce, 第 8 至 22 小節，拍 84-263，完整篇幅還原)
+      // 第一部分：原版前奏 (Measures 1 - 7, beats 0 - 83)
       // ========================================================================
-      // 第 8 小節 (拍 84-95)：中央 C 孤獨微弱弱拍點擊，寧靜切入主部
-      addP(84, [60], 3, 0.45); addP(87, [60], 3, 0.48); addP(90, [60], 3, 0.52); addP(93, [60], 3, 0.56);
-      
-      // 第 9 小節 (拍 96-107)：F 小調第一主題著名核心動機 (C4 -> F4 -> G4 -> Ab4)
-      addP(96, [60], 3, 0.72); addP(99, [65], 3, 0.78); addP(102, [67], 2, 0.74); addP(104, [68], 4, 0.85);
-      addP(96, [41], 6, 0.60); addP(98, [48], 2, 0.40); addP(100, [56], 2, 0.42); addP(102, [60], 2, 0.44); addP(104, [48, 56], 4, 0.45);
+      // Measure 1
+      addP(0,  [67, 79], 2, 0.58);
+      addP(2,  [67, 79], 2, 0.52);
+      addP(4,  [67, 79], 2, 0.48);
+      addP(6,  [67, 79], 2, 0.45);
+      addP(8,  [67, 79], 2, 0.43);
+      addP(10, [67, 79], 2, 0.40);
+      addP(6,  [64], 2, 0.38);
+      addP(8,  [64], 2, 0.35);
+      addP(10, [62], 2, 0.32);
+      addP(6,  [67], 1, 0.30); addP(7,  [72], 1, 0.30);
+      addP(8,  [67], 1, 0.30); addP(9,  [72], 1, 0.30);
+      addP(10, [67], 1, 0.30); addP(11, [72], 1, 0.30);
 
-      // 第 10 小節 (拍 108-119)：旋律向上延伸 Bb4 -> C5 -> Db5
-      addP(108, [70], 3, 0.76); addP(111, [72], 3, 0.82); addP(114, [73], 6, 0.88);
-      addP(108, [46], 6, 0.60); addP(110, [53], 2, 0.42); addP(112, [61], 2, 0.44); addP(114, [53, 61], 6, 0.48);
+      // Measure 2
+      addP(12, [67, 79], 2, 0.48);
+      addP(14, [67, 79], 2, 0.46);
+      addP(16, [67, 79], 2, 0.44);
+      addP(18, [67, 79], 2, 0.46);
+      addP(20, [65, 77], 2, 0.54);
+      addP(22, [64, 76], 2, 0.58);
+      addP(12, [62], 2, 0.32);
+      addP(14, [60], 2, 0.30);
+      addP(16, [29], 1, 0.38);
+      addP(17, [60], 1, 0.28);
+      addP(18, [57], 1, 0.28);
+      addP(19, [60], 1, 0.28);
+      addP(20, [50], 1, 0.28);
+      addP(21, [60], 1, 0.28);
 
-      // 第 11 小節 (拍 120-131)：悲憫下行 C5 -> Bb4 -> Ab4 -> G4 -> F4
-      addP(120, [72], 2, 0.80); addP(122, [70], 2, 0.75); addP(124, [68], 2, 0.72); addP(126, [67], 3, 0.75); addP(129, [65], 3, 0.70);
-      addP(120, [43], 6, 0.58); addP(126, [41], 6, 0.58);
+      // Measure 3
+      addP(24, [64, 76], 2, 0.56);
+      addP(26, [62, 74], 2, 0.52);
+      addP(28, [60, 72], 2, 0.54);
+      addP(30, [76],     6, 0.65);
+      const lh3 = [31, 55, [53, 59], 55, 52, 55, 48, 55, 60, 57, 55];
+      lh3.forEach((p, i) => { if (p) addP(24 + i, p, 1, 0.30); });
 
-      // 第 12 小節 (拍 132-143)：導音迴旋 E4 -> F4 -> G4
-      addP(132, [64], 4, 0.75); addP(136, [65], 2, 0.72); addP(138, [67], 6, 0.82);
-      addP(132, [36, 48], 6, 0.60); addP(138, [55, 60], 6, 0.50);
+      // Measure 4
+      addP(36, [64, 79], 2, 0.60);
+      addP(38, [67, 79], 2, 0.50);
+      addP(40, [67, 79], 2, 0.46);
+      addP(42, [67, 79], 2, 0.44);
+      addP(44, [65, 77], 2, 0.52);
+      addP(46, [64, 76], 2, 0.56);
+      addP(36, [24], 1, 0.38); addP(37, [55], 1, 0.30); addP(38, [60], 1, 0.30); addP(39, [62], 1, 0.30); addP(40, [64], 2, 0.35);
+      addP(42, [29], 1, 0.36); addP(43, [60], 1, 0.28); addP(44, [57], 1, 0.28); addP(45, [60], 1, 0.28); addP(46, [50], 1, 0.28); addP(47, [60], 1, 0.28);
 
-      // 第 13 小節 (拍 144-155)：第二樂句展開，升向降 A 大調
-      addP(144, [60], 2, 0.70); addP(146, [65], 2, 0.74); addP(148, [68], 2, 0.78); addP(150, [72], 3, 0.84); addP(153, [75], 3, 0.90);
-      addP(144, [44], 6, 0.62); addP(150, [51, 60], 6, 0.52);
+      // Measure 5
+      addP(48, [64, 76], 2, 0.55);
+      addP(50, [62, 74], 2, 0.52);
+      addP(52, [60, 72], 2, 0.54);
+      addP(54, [76],     6, 0.65);
+      lh3.forEach((p, i) => { if (p) addP(48 + i, p, 1, 0.30); });
 
-      // 第 14 小節 (拍 156-167)：Db5 -> C5 -> Bb4 -> Ab4 -> G4
-      addP(156, [73], 3, 0.88); addP(159, [72], 3, 0.82); addP(162, [70], 2, 0.78); addP(164, [68], 2, 0.75); addP(166, [67], 2, 0.72);
-      addP(156, [49], 6, 0.62); addP(162, [46, 53], 6, 0.52);
+      // Measure 6
+      addP(60, [64, 76], 2, 0.56);
+      addP(62, [62, 74], 2, 0.52);
+      addP(64, [60, 72], 2, 0.54);
+      addP(66, [76],     6, 0.66);
+      lh3.forEach((p, i) => { if (p) addP(60 + i, p, 1, 0.30); });
 
-      // 第 15 小節 (拍 168-179)：降 A 大調如歌般極致抒情 (Cantabile)
-      addP(168, [68], 4, 0.85); addP(172, [72], 2, 0.88); addP(174, [75], 6, 0.95);
-      addP(168, [44, 51], 6, 0.65); addP(174, [60, 63], 6, 0.55);
+      // Measure 7 (Cadence to dominant C major)
+      addP(72, [76], 6, 0.62);
+      addP(72, [48], 2, 0.52); addP(74, [55], 2, 0.56); addP(76, [60], 2, 0.60);
+      addP(78, [64, 67, 72], 6, 0.75);
 
-      // 第 16 小節 (拍 180-191)：天籟對位 F5 -> Eb5 -> Db5
-      addP(180, [77], 3, 0.92); addP(183, [75], 3, 0.88); addP(186, [73], 6, 0.85);
-      addP(180, [49], 6, 0.65); addP(186, [56, 61], 6, 0.55);
+      // 前奏交響弦樂鋪底 (Symphonic Strings Introduction)
+      addS(0,   [36, 48, 55, 60], 12, 0.35);
+      addS(12,  [43, 53, 59, 65], 12, 0.40);
+      addS(24,  [45, 52, 57, 64], 12, 0.42);
+      addS(36,  [36, 48, 55, 60, 67], 12, 0.45);
+      addS(48,  [43, 53, 58, 64], 12, 0.48);
+      addS(60,  [36, 48, 55, 58, 64], 12, 0.50);
+      addS(72,  [36, 48, 55, 60, 64, 72], 12, 0.65);
 
-      // 第 17 小節 (拍 192-203)：C5 -> Bb4 -> Ab4
-      addP(192, [72], 4, 0.85); addP(196, [70], 2, 0.80); addP(198, [68], 6, 0.88);
-      addP(192, [39, 51], 6, 0.65); addP(198, [58, 63], 6, 0.55);
+      // ========================================================================
+      // 第二部分：原版第一主題 (Measures 8 - 22, beats 84 - 263)
+      // ========================================================================
+      // Measure 8
+      addP(84, [60], 2, 0.72);
+      addP(86, [61], 2, 0.75);
+      addP(88, [59], 2, 0.72);
+      addP(90, [59], 2, 0.68);
+      addP(92, [60], 2, 0.72);
+      addP(94, [65], 2, 0.82);
+      addP(90, [41], 2, 0.55);
+      addP(92, [60, 65, 68], 2, 0.45);
+      addP(94, [56, 60, 65], 2, 0.42);
 
-      // 第 18 小節 (拍 204-215)：G4 -> Ab4 -> Bb4 蓄勢待發
-      addP(204, [67], 4, 0.82); addP(208, [68], 2, 0.85); addP(210, [70], 6, 0.90);
-      addP(204, [36, 48], 6, 0.65); addP(210, [55, 64], 6, 0.55);
+      // Measure 9
+      addP(96,  [64], 2, 0.78);
+      addP(98,  [58], 2, 0.74);
+      addP(100, [61], 4, 0.85);
+      addP(104, [60], 2, 0.75);
+      addP(106, [65], 2, 0.82);
+      addP(96,  [41], 2, 0.55);
+      addP(98,  [61, 64, 67], 2, 0.45);
+      addP(100, [58, 61, 64], 2, 0.42);
+      addP(102, [41], 2, 0.55);
+      addP(104, [60, 65, 68], 2, 0.45);
+      addP(106, [56, 60, 65], 2, 0.42);
 
-      // 第 19 小節 (拍 216-227)：交響高潮 C5 -> Db5 -> Eb5
-      addP(216, [72], 3, 0.92); addP(219, [73], 3, 0.95); addP(222, [75], 6, 1.00);
-      addP(216, [41, 53], 6, 0.75); addP(222, [60, 68], 6, 0.65);
+      // Measure 10
+      addP(108, [64], 2, 0.78);
+      addP(110, [58], 2, 0.74);
+      addP(112, [61], 2, 0.76);
+      addP(116, [60], 1, 0.72);
+      addP(117, [61], 1, 0.75);
+      addP(118, [60], 1, 0.72);
+      addP(119, [61], 1, 0.76);
+      addP(108, [41], 2, 0.55);
+      addP(110, [61, 64, 67], 2, 0.45);
+      addP(112, [58, 61, 64], 2, 0.42);
+      addP(114, [41], 2, 0.55);
+      addP(116, [60, 65, 68], 2, 0.45);
+      addP(118, [56, 60, 65], 2, 0.42);
 
-      // 第 20 小節 (拍 228-239)：全管弦強音 F5 -> E5 -> F5
-      addP(228, [77], 4, 1.00); addP(232, [76], 2, 0.95); addP(234, [77], 6, 1.00);
-      addP(228, [29, 41], 6, 0.85); addP(234, [53, 65], 6, 0.75);
+      // Measure 11
+      addP(120, [63], 2, 0.78);
+      addP(122, [63], 2, 0.78);
+      addP(124, [63], 2, 0.76);
+      addP(126, [63], 2, 0.74);
+      addP(128, [61], 1, 0.72);
+      addP(129, [60], 1, 0.70);
+      addP(130, [58], 1, 0.68);
+      addP(131, [60], 1, 0.72);
+      addP(120, [39], 2, 0.55);
+      addP(122, [60, 68], 2, 0.45);
+      addP(124, [39], 2, 0.50);
+      addP(126, [27], 2, 0.58);
+      addP(128, [61, 63, 67], 2, 0.46);
+      addP(130, [55, 61, 63], 2, 0.42);
 
-      // 第 21 小節 (拍 240-251)：壯麗大終止 G5 -> F5 -> E5
-      addP(240, [79], 3, 0.95); addP(243, [77], 3, 0.90); addP(246, [76], 6, 0.92);
-      addP(240, [36, 48], 6, 0.75); addP(246, [55, 64, 70], 6, 0.68);
+      // Measure 12
+      addP(132, [56], 4, 0.75);
+      addP(132, [32], 2, 0.62);
+      addP(134, [56, 60, 63], 2, 0.45);
+      addP(136, [51, 56, 60], 2, 0.42);
+      addP(138, [56, 60, 65], 2, 0.46);
+      addP(140, [56, 60, 63], 2, 0.45);
+      addP(142, [51, 56, 60], 2, 0.42);
 
-      // 第 22 小節 (拍 252-263)：沉靜安詳之 F 小調宇宙餘波
-      addP(252, [77], 6, 0.85); addP(258, [65, 68, 72], 6, 0.65);
-      addP(252, [29, 41, 48], 12, 0.70);
+      // Measure 13
+      addP(146, [63], 2, 0.74);
+      addP(148, [68], 2, 0.82);
+      addP(150, [67], 2, 0.80);
+      addP(152, [61], 2, 0.76);
+      addP(154, [64], 2, 0.85);
+      addP(144, [32], 2, 0.62);
+      addP(146, [63, 68, 72], 2, 0.46);
+      addP(148, [60, 63, 68], 2, 0.42);
+      addP(150, [44], 2, 0.55);
+      addP(152, [64, 67, 70], 2, 0.46);
+      addP(154, [61, 64, 67], 2, 0.42);
 
-      // 第一主題交響弦樂聲部 (Symphonic Strings Bed for Theme 1)
-      addS(84,  [29, 41, 53, 60], 12, 0.55); // 第 8 小節：神祕 F 小調起伏
-      addS(96,  [41, 48, 56, 65], 12, 0.68); // 第 9 小節：F 小調主和弦
-      addS(108, [46, 53, 61, 70], 12, 0.72); // 第 10 小節：Bb 小調弦樂交織
-      addS(120, [43, 52, 58, 67], 12, 0.68); // 第 11 小節：屬七和弦
-      addS(132, [36, 48, 55, 64], 12, 0.68); // 第 12 小節：C 大調
-      addS(144, [44, 51, 60, 68], 12, 0.78); // 第 13 小節：降 A 大調明亮開展
-      addS(156, [49, 56, 65, 73], 12, 0.78); // 第 14 小節：降 D 大調
-      addS(168, [32, 44, 51, 60, 68, 75], 12, 0.88); // 第 15 小節：全交響弦樂大齊奏！
-      addS(180, [37, 49, 56, 65, 73], 12, 0.82); // 第 16 小節：大提琴悠長歌唱
-      addS(192, [39, 51, 58, 67, 75], 12, 0.86); // 第 17 小節：Eb7
-      addS(204, [36, 48, 55, 64, 70], 12, 0.88); // 第 18 小節：C7
-      addS(216, [41, 53, 60, 68, 75], 12, 0.96); // 第 19 小節：極致史詩高潮
-      addS(228, [29, 41, 53, 65, 77], 12, 1.05); // 第 20 小節：全體雙倍低音大爆發！
-      addS(240, [36, 48, 55, 64, 70, 76], 12, 0.92); // 第 21 小節：九和弦壯闊終結
-      addS(252, [29, 41, 48, 53, 65], 12, 0.65); // 第 22 小節：沉入深空星塵
+      // Measure 14
+      addP(156, [64], 2, 0.80);
+      addP(158, [63], 2, 0.76);
+      addP(160, [68], 2, 0.84);
+      addP(162, [67], 2, 0.80);
+      addP(164, [61], 2, 0.76);
+      addP(166, [64], 2, 0.82);
+      addP(156, [32], 2, 0.62);
+      addP(158, [63, 68, 72], 2, 0.46);
+      addP(160, [60, 63, 68], 2, 0.42);
+      addP(162, [44], 2, 0.55);
+      addP(164, [64, 67, 70], 2, 0.46);
+      addP(166, [58, 61, 67], 2, 0.42);
+
+      // Measure 15
+      addP(170, [63], 1, 0.72);
+      addP(171, [65], 1, 0.74);
+      addP(172, [63], 1, 0.72);
+      addP(173, [65], 1, 0.76);
+      addP(174, [66], 2, 0.85);
+      addP(176, [66], 2, 0.85);
+      addP(178, [66], 2, 0.88);
+      addP(168, [32], 2, 0.62);
+      addP(170, [63, 68, 72], 2, 0.46);
+      addP(172, [60, 63, 68], 2, 0.42);
+      addP(174, [27], 2, 0.62);
+      addP(176, [63, 66, 70], 2, 0.48);
+      addP(178, [58, 63, 66], 2, 0.44);
+
+      // Measure 16
+      addP(180, [66], 2, 0.84);
+      addP(182, [65], 1, 0.80);
+      addP(183, [60], 1, 0.72);
+      addP(184, [63], 1, 0.76);
+      addP(185, [61], 1, 0.74);
+      addP(186, [58], 4, 0.80);
+      addP(180, [29], 2, 0.60);
+      addP(182, [63, 69], 2, 0.46);
+      addP(184, [57, 63, 65], 2, 0.42);
+      addP(186, [34], 2, 0.62);
+      addP(188, [58, 61, 65], 2, 0.46);
+      addP(190, [53, 58, 61], 2, 0.42);
+
+      // Measure 17
+      addP(194, [61], 1, 0.74);
+      addP(195, [63], 1, 0.76);
+      addP(196, [61], 1, 0.74);
+      addP(197, [63], 1, 0.78);
+      addP(198, [65], 2, 0.85);
+      addP(200, [65], 2, 0.88);
+      addP(202, [65], 2, 0.90);
+      addP(192, [30], 2, 0.62);
+      addP(194, [58, 61, 66], 2, 0.48);
+      addP(196, [54, 58, 61], 2, 0.44);
+      addP(198, [25], 2, 0.62);
+      addP(200, [56, 61, 65], 2, 0.48);
+      addP(202, [53, 56, 61], 2, 0.44);
+
+      // Measure 18
+      addP(204, [65], 2, 0.86);
+      addP(206, [63], 1, 0.80);
+      addP(207, [58], 1, 0.74);
+      addP(208, [61], 1, 0.78);
+      addP(209, [60], 1, 0.76);
+      addP(210, [57], 2, 0.80);
+      addP(212, [60], 2, 0.82);
+      addP(214, [65], 2, 0.88);
+      addP(204, [27], 2, 0.62);
+      addP(206, [58, 60, 66], 2, 0.48);
+      addP(208, [54, 58, 63], 2, 0.44);
+      addP(210, [29], 2, 0.62);
+      addP(212, [60, 65, 69], 2, 0.50);
+      addP(214, [57, 60, 65], 2, 0.45);
+
+      // Measure 19
+      addP(216, [64], 2, 0.84);
+      addP(218, [58], 2, 0.80);
+      addP(220, [61], 4, 0.90);
+      addP(224, [60], 2, 0.84);
+      addP(226, [65], 2, 0.88);
+      addP(216, [41], 2, 0.58);
+      addP(218, [61, 64, 67], 2, 0.48);
+      addP(220, [58, 61, 64], 2, 0.44);
+      addP(222, [41], 2, 0.58);
+      addP(224, [60, 65, 69], 2, 0.48);
+      addP(226, [57, 60, 65], 2, 0.44);
+
+      // Measure 20
+      addP(228, [64], 2, 0.85);
+      addP(230, [58], 2, 0.80);
+      addP(232, [61], 2, 0.84);
+      addP(236, [60], 1, 0.78);
+      addP(237, [61], 1, 0.80);
+      addP(238, [60], 1, 0.78);
+      addP(239, [61], 1, 0.82);
+      addP(228, [41], 2, 0.58);
+      addP(230, [61, 64, 67], 2, 0.48);
+      addP(232, [58, 61, 64], 2, 0.44);
+      addP(234, [29], 2, 0.65);
+      addP(236, [60, 63, 66], 2, 0.50);
+      addP(238, [54, 58, 63], 2, 0.45);
+
+      // Measure 21
+      addP(240, [63], 2, 0.85);
+      addP(242, [63], 2, 0.85);
+      addP(244, [63], 2, 0.85);
+      addP(246, [63], 2, 0.85);
+      addP(248, [65], 1, 0.84);
+      addP(249, [60], 1, 0.78);
+      addP(250, [63], 1, 0.82);
+      addP(251, [61], 1, 0.80);
+      addP(240, [41], 2, 0.60);
+      addP(242, [63, 66, 70], 2, 0.50);
+      addP(244, [60, 63, 66], 2, 0.46);
+      addP(246, [29], 2, 0.65);
+      addP(248, [63, 69], 2, 0.50);
+      addP(250, [57, 63, 65], 2, 0.46);
+
+      // Measure 22
+      addP(252, [58], 6, 0.85);
+      addP(258, [55], 4, 0.78);
+      addP(252, [34], 2, 0.65);
+      addP(254, [58, 61, 65], 2, 0.50);
+      addP(256, [53, 58, 61], 2, 0.45);
+      addP(258, [36], 2, 0.62);
+      addP(260, [58, 60, 64], 2, 0.48);
+      addP(262, [55, 58, 60], 2, 0.44);
+
+      // ========================================================================
+      // 第三部分：第一主題變奏一 (Measures 23 - 24, beats 264 - 287)
+      // ========================================================================
+      // Measure 23
+      addP(266, [60], 2, 0.78);
+      addP(268, [65], 2, 0.84);
+      addP(270, [64], 2, 0.82);
+      addP(272, [58], 2, 0.78);
+      addP(274, [61], 2, 0.80);
+      addP(264, [29], 2, 0.65);
+      addP(266, [60, 65, 68], 2, 0.52);
+      addP(268, [56, 60, 65], 2, 0.48);
+      addP(270, [41], 2, 0.60);
+      addP(272, [61, 64, 67], 2, 0.50);
+      addP(274, [58, 61, 64], 2, 0.46);
+
+      // Measure 24
+      addP(276, [61], 2, 0.80);
+      addP(278, [60], 2, 0.76);
+      addP(280, [65], 2, 0.84);
+      addP(282, [65], 1, 0.82);
+      addP(283, [64], 1, 0.80);
+      addP(284, [58], 1, 0.76);
+      addP(285, [60], 1, 0.78);
+      addP(286, [63], 1, 0.82);
+      addP(287, [61], 1, 0.80);
+      addP(276, [29], 2, 0.65);
+      addP(278, [60, 65, 68], 2, 0.52);
+      addP(280, [56, 60, 65], 2, 0.48);
+      addP(282, [41], 2, 0.60);
+      addP(284, [61, 64, 67], 2, 0.50);
+      addP(286, [58, 61, 64], 2, 0.46);
+
+      // 第一主題與變奏交響弦樂聲部 (Symphonic Strings Bed)
+      addS(84,  [29, 41, 53, 56, 65], 12, 0.52);
+      addS(96,  [29, 41, 53, 56, 60, 65], 12, 0.62);
+      addS(108, [29, 41, 52, 58, 61, 67], 12, 0.68);
+      addS(120, [27, 39, 51, 55, 61, 63], 12, 0.72);
+      addS(132, [32, 44, 51, 56, 60, 63], 12, 0.76);
+      addS(144, [32, 44, 51, 56, 60, 68], 12, 0.82);
+      addS(156, [32, 44, 51, 56, 64, 68], 12, 0.85);
+      addS(168, [27, 39, 51, 58, 63, 66], 12, 0.90);
+      addS(180, [34, 46, 53, 58, 61, 65], 12, 0.92);
+      addS(192, [30, 42, 54, 58, 61, 66], 12, 0.95);
+      addS(204, [29, 41, 53, 57, 60, 65], 12, 0.98);
+      addS(216, [29, 41, 53, 58, 61, 64, 67], 12, 1.05);
+      addS(228, [29, 41, 53, 60, 63, 66], 12, 1.10);
+      addS(240, [29, 41, 53, 57, 63, 69], 12, 1.05);
+      addS(252, [34, 46, 53, 58, 61, 65], 12, 0.95);
+      addS(264, [29, 41, 53, 56, 60, 65], 12, 0.92);
+      addS(276, [29, 41, 53, 56, 60, 68, 72], 12, 1.00);
 
       pianoEvents.sort((a, b) => a.beat - b.beat);
       stringEvents.sort((a, b) => a.beat - b.beat);
@@ -604,7 +806,7 @@
         // 放慢節奏至悠遠宏偉行板 (Andante con moto, 48 bpm, 十六分音符 = 0.32 秒)
         this.eighth = 0.64;
         this.sixteenth = this.eighth / 2; // 0.32s
-        this.phraseLength = 264 * this.sixteenth + 2.5; // ~87 秒宏偉史詩篇幅
+        this.phraseLength = 288 * this.sixteenth + 3.0; // ~95 秒完整宏偉古典篇幅 (24 小節，458 音符)
         this.phraseStart = ctx.currentTime + .15;
         this.heartTime = ctx.currentTime + .4;
         this.sources = new Set();
@@ -648,20 +850,21 @@
           noteFilter.connect(this.pianoBus);
         }
 
-        // 2. 琴弦泛音結構與雙弦同音微音分干涉 (Unison Strings & Inharmonicity)
-        // 模擬真鋼琴三弦同音組 (Unison Strings) 產生的天然柔和「空氣吟唱」音差
+        // 2. 鋼弦剛性非諧波泛音 (Inharmonicity) + 三弦同音拍頻 (Unison Beating) + 雙階物理衰減 (Prompt + Aftersound)
+        const B = 0.00015 * Math.pow(Math.max(1, f0) / 261.63, 0.45);
         const partials = [
-          { mult: 1.000, weight: 1.00, detunes: [-1.4, 1.4], decayMul: 1.00 }, // 基頻：雙弦微調拍頻 (Beating)
-          { mult: 2.001, weight: 0.55, detunes: [0.0],        decayMul: 0.75 }, // 二次泛音 (八度)
-          { mult: 3.003, weight: 0.22, detunes: [-0.8, 0.8],  decayMul: 0.50 }, // 三次泛音 (五度)
-          { mult: 4.006, weight: 0.10, detunes: [0.0],        decayMul: 0.32 }, // 四次泛音 (雙八度)
-          { mult: 5.010, weight: 0.04, detunes: [0.0],        decayMul: 0.18 }, // 五次泛音 (擊弦銀光)
-          { mult: 6.015, weight: 0.015,detunes: [0.0],        decayMul: 0.10 }  // 六次泛音
+          { k: 1, weight: 1.00, detunes: [-1.4, 1.4], decayMul: 1.00 }, // 基頻：雙弦微調拍頻 (Beating)
+          { k: 2, weight: 0.55, detunes: [0.0],       decayMul: 0.78 }, // 二次泛音 (八度)
+          { k: 3, weight: 0.22, detunes: [-0.8, 0.8], decayMul: 0.52 }, // 三次泛音 (五度)
+          { k: 4, weight: 0.10, detunes: [0.0],       decayMul: 0.34 }, // 四次泛音 (雙八度)
+          { k: 5, weight: 0.04, detunes: [0.0],       decayMul: 0.20 }, // 五次泛音 (擊弦銀光)
+          { k: 6, weight: 0.015,detunes: [0.0],       decayMul: 0.12 }  // 六次泛音
         ];
 
         partials.forEach(p => {
-          const freq = f0 * p.mult;
-          const pDecay = Math.max(0.18, baseDecay * p.decayMul);
+          const freq = p.k * f0 * Math.sqrt(1 + B * p.k * p.k);
+          const pDecay = Math.max(0.20, baseDecay * p.decayMul);
+          const promptTime = Math.min(0.35, pDecay * 0.22);
 
           p.detunes.forEach(dt => {
             const osc = ctx.createOscillator();
@@ -671,9 +874,13 @@
             osc.detune.setValueAtTime(dt, when);
 
             const peakAmp = 0.036 * p.weight * vel * (1.0 / p.detunes.length);
+            const promptAmp = Math.max(0.00002, peakAmp * (p.k === 1 ? 0.45 : 0.30));
+
             gain.gain.setValueAtTime(0.00001, when);
-            // 溫和且乾淨的 12ms 羊毛氈緩衝起音 (無爆音、無尖銳刺耳點)
+            // 溫和且乾淨的 12ms 羊毛氈緩衝起音
             gain.gain.linearRampToValueAtTime(peakAmp, when + 0.012);
+            // 第一階段 Prompt 快速衰減，隨後進入悠長 Aftersound 鋼弦自振唱詠
+            gain.gain.exponentialRampToValueAtTime(promptAmp, when + promptTime);
             gain.gain.exponentialRampToValueAtTime(0.00001, when + pDecay);
 
             osc.connect(gain);
@@ -684,57 +891,60 @@
           });
         });
 
-        // 3. 實體琴槌木質打擊敲擊感 (Acoustic Hammer Felt Thump Transient)
-        // 賦予每一次琴鍵下壓時真實的木質機械重力與觸感
+        // 3. 實體琴槌木質打擊敲擊瞬態 (Acoustic Hammer Felt Thump Transient)
         const thumpOsc = ctx.createOscillator();
         const thumpGain = ctx.createGain();
         const thumpFilter = ctx.createBiquadFilter();
 
         thumpOsc.type = 'sine';
-        thumpOsc.frequency.setValueAtTime(175, when);
-        thumpOsc.frequency.exponentialRampToValueAtTime(65, when + 0.026);
+        thumpOsc.frequency.setValueAtTime(160, when);
+        thumpOsc.frequency.exponentialRampToValueAtTime(50, when + 0.024);
 
         thumpFilter.type = 'bandpass';
-        thumpFilter.frequency.value = 145;
-        thumpFilter.Q.value = 1.3;
+        thumpFilter.frequency.value = 135;
+        thumpFilter.Q.value = 1.4;
 
         thumpGain.gain.setValueAtTime(0.00001, when);
-        thumpGain.gain.linearRampToValueAtTime(0.015 * vel, when + 0.004);
-        thumpGain.gain.exponentialRampToValueAtTime(0.00001, when + 0.032);
+        thumpGain.gain.linearRampToValueAtTime(0.016 * vel, when + 0.003);
+        thumpGain.gain.exponentialRampToValueAtTime(0.00001, when + 0.030);
 
         thumpOsc.connect(thumpFilter);
         thumpFilter.connect(thumpGain);
         thumpGain.connect(this.pianoBus);
         this.track(thumpOsc, [thumpFilter, thumpGain]);
         thumpOsc.start(when);
-        thumpOsc.stop(when + 0.036);
+        thumpOsc.stop(when + 0.035);
       }
 
-      // 宏偉交響弦樂合成引擎 (Symphonic Strings Synthesis: Detuned Saw+Tri with Lowpass Resonance)
+      // 宏偉交響弦樂合成引擎 (Symphonic Strings Synthesis: Multi-Voice Detuned Saw+Tri Chorus)
       strings(chordNotes, when, duration, velocity = 0.6) {
         if (!this.enabled || this.ctx.state !== 'running') return;
         const ctx = this.ctx;
 
         chordNotes.forEach(midi => {
           const f = 440 * Math.pow(2, (midi - 69) / 12);
+          const isBass = midi < 48;
+          const isMid = midi >= 48 && midi < 65;
 
-          [-2.2, 2.2].forEach(detune => {
+          const detunes = isBass ? [-1.8, 1.8] : [-2.5, 0.0, 2.5];
+          detunes.forEach((dt, idx) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             const filter = ctx.createBiquadFilter();
 
-            osc.type = (midi < 48) ? 'sawtooth' : 'triangle';
-            osc.frequency.value = f;
-            osc.detune.value = detune;
+            osc.type = isBass ? 'sawtooth' : (idx === 1 ? 'triangle' : 'sawtooth');
+            osc.frequency.setValueAtTime(f, when);
+            osc.detune.setValueAtTime(dt, when);
 
             filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(midi < 48 ? 750 : (midi < 65 ? 1600 : 2800), when);
-            filter.Q.value = 1.1;
+            const cutoff = isBass ? 780 : (isMid ? 1800 : 3200);
+            filter.frequency.setValueAtTime(cutoff, when);
+            filter.Q.value = 1.2;
 
-            const attackTime = 0.65;
-            const releaseTime = 3.0;
+            const attackTime = isBass ? 0.85 : 0.65;
+            const releaseTime = 3.2;
             const totalDur = duration + releaseTime;
-            const amp = 0.024 * velocity * (midi < 48 ? 1.4 : 1.0);
+            const amp = 0.022 * velocity * (isBass ? 1.35 : (isMid ? 1.0 : 0.85)) / detunes.length;
 
             gain.gain.setValueAtTime(0.00001, when);
             gain.gain.linearRampToValueAtTime(amp, when + attackTime);
@@ -825,11 +1035,13 @@
       update(s) {
         const norm = Math.min(1.0, Math.max(0.0, s / 26.0));
         const now = this.ctx.currentTime;
-        this.dry.gain.setTargetAtTime(.85 - .55 * norm, now, .15);
-        this.wet.gain.setTargetAtTime(.18 + .68 * norm, now, .15);
-        this.feedback.gain.setTargetAtTime(.20 + .28 * norm, now, .15);
+        this.dry.gain.setTargetAtTime(0.85 - 0.45 * norm, now, 0.15);
+        this.wet.gain.setTargetAtTime(0.18 + 0.70 * norm, now, 0.15);
+        this.feedback.gain.setTargetAtTime(0.20 + 0.30 * norm, now, 0.15);
         if (this.stringsBus) {
-          this.stringsBus.gain.setTargetAtTime(1.20 + 0.45 * norm, now, 0.2);
+          // 動態弦樂團膨脹：房間內親密溫潤 (0.42)，隨鏡頭飛入宇宙膨脹至史詩交響齊鳴 (1.70)
+          const stringsScale = 0.42 + 1.28 * Math.pow(norm, 0.45);
+          this.stringsBus.gain.setTargetAtTime(stringsScale, now, 0.2);
         }
       }
 
@@ -2337,7 +2549,7 @@
       // 預編譯 WebGL 著色器，徹底消除首幀及視角切換掉幀卡頓 (Pre-warm WebGL shaders)
       renderer.compile(scene, camera);
 
-      window.__APP__ = { state, STAGES, jumpToStage, setAuto, updateHUD, camera, scene };
+      window.__APP__ = { state, STAGES, jumpToStage, setAuto, updateHUD, camera, scene, getAudio: () => audio };
     }
 
     /* --------------------------------------------------------------------------
