@@ -1,0 +1,669 @@
+{
+  "tool": "Built-in image_gen",
+  "version": "Current complete 502-second route",
+  "assets": [
+    {
+      "key": "wall_back",
+      "transparent": false,
+      "path": "assets/chamber/wall_back.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: A flat straight-on rectangular swatch of teal, olive and muted cobalt hand-painted plaster wall, fully edge-to-edge. Flowing directional long paint strokes, quieter broad brushwork in the middle, warm amber glaze near lower center as candle reflection. No windows, holes, furniture, flowers, masonry or objects. WIDE 2:1. This will map onto a real wall-shaped plane with a window hole in code."
+    },
+    {
+      "key": "wall_left",
+      "transparent": false,
+      "path": "assets/chamber/wall_left.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: A flat straight-on rectangular swatch of dark olive and muted cobalt hand-painted plaster wall. Long diagonal and vertical expressive brush strokes, golden ochre paint along the right edge, richly colored dark indigo left edge. Entire image is wall paint, NO stone tiles, no books or objects or room perspective. Square, edge-to-edge."
+    },
+    {
+      "key": "wall_right",
+      "transparent": false,
+      "path": "assets/chamber/wall_right.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: A flat straight-on rectangular swatch of teal/cobalt hand-painted plaster wall. Fine flowing directional paint marks, quiet olive-green and amber dry-brush highlights toward its left side, shadow-rich blue right edge. Entire image is wall paint, no objects, no masonry, no perspective. Square edge to edge."
+    },
+    {
+      "key": "floor",
+      "transparent": false,
+      "path": "assets/chamber/floor.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: Flat top-down rectangular surface painting of long old oak floorboards, ochre, burnt sienna, warm orange and muted cobalt shadows, very expressive long thick brush strokes running vertically down the image. Uneven indigo seams between 8 broad boards, wavy hand-drawn outlines. No furniture, no room, no rug, no perspective vanishing point. Entire image filled edge to edge. Portrait 2:3."
+    },
+    {
+      "key": "ceiling",
+      "transparent": false,
+      "path": "assets/chamber/ceiling.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: Flat straight-on rectangular painting of a dark timber ceiling surface. Long deep indigo, umber and cobalt strokes, warmer ochre ridges, very rich painted color but low brightness. No room perspective, no furniture, no sky. Wide 2:1 edge to edge."
+    },
+    {
+      "key": "bookcase_front",
+      "transparent": true,
+      "path": "assets/chamber/bookcase_front.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a tall old wooden bookcase FRONT FACE, perfectly straight-on elevation, all shelves and colorful books richly hand-painted. Five shelves of ochre/red/teal/cobalt books, ochre timber edges, gentle leaning hand-drawn lines. Candle highlights on right side. No visible side face or top face, no perspective beyond painterly skew. Entire bookcase isolated on actual transparent background, all edges visible with small clear margin. Portrait 1:2."
+    },
+    {
+      "key": "bookcase_side",
+      "transparent": false,
+      "path": "assets/chamber/bookcase_side.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY flat side-panel surface of the SAME ochre-brown wooden bookcase in reference. Narrow tall simple wooden rectangular side, long golden ochre and umber strokes with blue violet shadows, subtly wavy painted timber grain, no shelves, no books, no perspective. Edge-to-edge surface swatch. Portrait 1:3."
+    },
+    {
+      "key": "bookcase_top",
+      "transparent": false,
+      "path": "assets/chamber/bookcase_top.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY flat top-panel surface of the SAME old ochre wooden bookcase. A wide shallow wooden plank, painterly golden ochre / umber grain with bold indigo brush outlines at edges. No books, no perspective, no background objects. Wide 3:1 edge-to-edge surface swatch."
+    },
+    {
+      "key": "window_frame",
+      "transparent": true,
+      "path": "assets/chamber/window_frame.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a broad open arched wooden/plaster WINDOW FRAME viewed straight-on. Tall arched opening about 5:4 height to width; thin but expressive ochre/golden inner rim and teal-blue outer wooden strokes, softly skewed hand-drawn outlines, substantial bottom sill. Open center MUST be actual transparency, outside also transparent. No glass, scenery, shutters, stone blocks or room. Full frame all edges visible, centered, front elevation with no perspective, portrait."
+    },
+    {
+      "key": "window_shutter",
+      "transparent": true,
+      "path": "assets/chamber/window_shutter.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a tall blue-painted wooden OPEN WINDOW SHUTTER panel, front elevation. Cobalt and teal vertical boards with ochre edge highlights, dark blue inset panels, slightly irregular painterly lines. Transparent background, all edges visible; no window frame, no room or landscape. Tall portrait 1:3."
+    },
+    {
+      "key": "reader",
+      "transparent": true,
+      "path": "assets/chamber/reader-v2.png",
+      "editPrompt": "Use case: background-extraction. Edit target: the attached oil-painted reader and chair. Preserve EVERY painted detail of the red-haired man, cobalt coat, book, hands, chair and feet unchanged. Remove ALL brown/blue backdrop, ambient background haze, background vignette and surrounding candle halo. The entire area outside the actual reader, book and chair silhouettes, including gaps between chair legs and rungs, must be perfectly clear genuine alpha transparency. Retain a natural fine painted edge, but no large soft glow or shadow outside it. Keep original composition, complete body and chair, dimensions and colors. No new elements. This is a clean compositing cutout for layering over a separate painted room, not a portrait with a background.",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY the red-haired reader and his wooden chair from the reference, seen from behind and slightly from his right, warm candle light from his right. He wears a rich cobalt-blue jacket and reads an open cream/ochre book; vivid long curved blue brush strokes along shoulders, ochre flowing strokes in hair, hand-drawn wooden chair and legs. Seated figure and entire chair isolated on genuine transparency, head at top, chair feet at bottom, no table, candle, room, floor or scenery. Beautiful expressive Van Gogh figure painting, not a doll or 3D character. Portrait composition, entire silhouette visible."
+    },
+    {
+      "key": "table_top",
+      "transparent": true,
+      "path": "assets/chamber/table_top.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY the TOP of the round ochre wooden reading table in reference, seen from seated eye height as a wide horizontal ellipse with thin front edge. Bold golden ochre and orange curved concentric paint strokes, deep indigo irregular outline. No objects on it, no pedestal, no legs. Entire tabletop isolated on actual transparent background, centered with small margin. Wide 3:1."
+    },
+    {
+      "key": "table_legs",
+      "transparent": true,
+      "path": "assets/chamber/table_legs.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY the ornate dark ochre wooden pedestal and three curved legs supporting the round table from reference. Central upright pedestal, three curved feet splayed at bottom, rich umber/ochre/indigo flowing wood brushwork. NO tabletop; upper support joins just beyond top edge of the component. Front view, isolated transparent background, entire pedestal and feet visible, portrait."
+    },
+    {
+      "key": "candle_base",
+      "transparent": true,
+      "path": "assets/chamber/candle_base.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY an elegant small dark bronze/ochre candlestick holding a slender pale yellow wax candle, matching the reference reading table. Front view, thick expressive indigo and golden brushwork. No flame, no glowing halo, no table, no background; isolated on actual transparency. Candle wick ends at top, entire base visible. Narrow portrait."
+    },
+    {
+      "key": "flame",
+      "transparent": true,
+      "path": "assets/chamber/flame.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a tiny luminous candle FLAME painted with Van Gogh oil strokes: a graceful curved amber-orange outer flame, cream-gold interior, dark cobalt near wick at bottom, feathered brush tips. No candle, holder, scene or large halo. Entire flame isolated on genuine transparent background with clear margin. Narrow portrait."
+    },
+    {
+      "key": "book_stack",
+      "transparent": true,
+      "path": "assets/chamber/book_stack.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a small horizontal stack of three worn books from reference, slightly three-quarter view with spines facing left and page edges facing right. Ochre top, rust red middle and muted teal bottom, cream painted pages, lively thick indigo outlines. Entire stack isolated on actual transparent background, no table, reader, text, background, candle or flowers. Wide composition."
+    },
+    {
+      "key": "rug",
+      "transparent": true,
+      "path": "assets/chamber/rug.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a rectangular worn Persian-style rug from reference, viewed DIRECTLY TOP-DOWN with zero perspective. Ochre, terracotta, cobalt and olive hand-painted floral geometric motifs, irregular deep indigo outlines, expressive traditional oil paint strokes, fringe along short edges. Entire rug isolated on actual transparent background, no floor, furniture or other objects. Wide 4:3."
+    },
+    {
+      "key": "ceiling_beam",
+      "transparent": true,
+      "path": "assets/chamber/ceiling_beam.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a long horizontal old timber beam viewed from the front and slightly below, Van Gogh painted ochre ridges on dark umber/cobalt wood with irregular indigo outline. Entire beam isolated on genuine transparency, all ends visible, no ceiling, no brackets or other objects. Very wide 3:1."
+    },
+    {
+      "key": "sky",
+      "transparent": false,
+      "path": "assets/chamber/sky.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a wide panoramic STAR-NIGHT SKY continuing the reference style. Deep cobalt and ultramarine sky filled with LONG sweeping blue/cream/teal currents, many small golden stars with concentric hand-painted rings. Leave a quieter darker oval-blue area in center upper right so a separate golden spiral can be layered over it. Larger moving brush currents across upper region, soft calm cobalt near bottom. No land, silhouettes, mountains, trees, water, room, border or text. Full edge-to-edge landscape 2:1, high artistic oil painting."
+    },
+    {
+      "key": "sky_spiral",
+      "transparent": true,
+      "path": "assets/chamber/sky_spiral.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY one broad graceful STAR-NIGHT SPIRAL CLOUD in cobalt, cream, pale yellow-gold and teal, made of concentric flowing impasto oil strokes curling around a soft blue central opening, harmonious with reference sky. A circular but irregular swirling painted cloud with softly tapering brush-stroke edges; isolated on genuine transparency everywhere around the spiral. No black rectangular backdrop, no stars outside spiral, no landscape or text. Square, centered, full spiral visible, transparent outer corners."
+    },
+    {
+      "key": "banyan_trunk",
+      "transparent": true,
+      "path": "assets/chamber/banyan_trunk.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY the enormous old banyan TREE TRUNK, curved branches, spreading buttress roots and hanging aerial roots from reference. Sculptural twisting trunk with flame-like curving long ochre/umber/cobalt/teal oil brushwork and indigo outline, branches spread diagonally across upper half. NO green foliage, NO canopy, ground, sky or backdrop. Whole trunk and roots isolated on actual transparency, all roots visible, broad portrait. Beautiful painterly flowing tree anatomy, never a rigid cylinder."
+    },
+    {
+      "key": "banyan_crown",
+      "transparent": true,
+      "path": "assets/chamber/banyan_crown.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a broad graceful old banyan FOLIAGE CANOPY matching reference. Irregular flame-shaped clusters of expressive pointed curved emerald/teal/olive leaves, golden ochre and yellow stroke highlights, rich cobalt shadow gaps. Gently arching canopy broad across the top with hanging leaf sprays, plenty of real transparent gaps between clusters and at outer edge. No trunk, large branches, roots, ground or sky; all foliage isolated on actual transparency. Wide landscape 3:2. Highly expressive long brush marks, no ball-shaped bushes."
+    },
+    {
+      "key": "tree_secondary",
+      "transparent": true,
+      "path": "assets/chamber/tree_secondary.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY a smaller asymmetrical old banyan tree, entire twisting trunk, small hanging aerial roots and flame-shaped green/teal/ochre crown, richly oil-painted in reference style. Three-quarter hand-drawn sculptural silhouette, graceful flowing long directional strokes, no circular ball canopy. Isolated on true transparent background, no ground, sky, buildings or other tree. Entire tree visible, portrait."
+    },
+    {
+      "key": "cloud_band",
+      "transparent": true,
+      "path": "assets/chamber/cloud_band.png",
+      "prompt": "Use case: stylized-concept. Reference image: the attached master painting is ART DIRECTION ONLY. Match its Vincent van Gogh traditional oil-paint brush language exactly: bold long directional impasto, beautifully imperfect deep indigo outlines, ochre/apricot candle highlights, cobalt/teal/olive colored shadows, hand-drawn gentle perspective distortions, highly artistic rather than photoreal or CGI. Create ONE production-ready isolated component for a layered 2.5D stage, NOT the entire room or landscape. No lettering, UI, border, watermarks, no gritty photographic texture. Preserve coherent scale of brushwork.\nComponent specification: ONLY one wide airy flowing night-cloud ribbon made of long interwoven cobalt, teal, pale cream and ochre Van Gogh strokes. Sweeps from lower left to upper right and curls gently, irregular tapering ends and transparent gaps, thin semi-transparent stroke edges. Actual transparent background, NO landscape, star symbols, sun, moon, room or backdrop. Wide 3:1."
+    },
+    {
+      "key": "fort_hero",
+      "transparent": true,
+      "path": "assets/tamsui/fort_hero-v3.png",
+      "prompt": "Use case: stylized-concept. Production bitmap for a layered 2.5D Tamsui Taiwan night painting in Vincent van Gogh's expressive oil-paint language. Strong visible individually laid elongated brush marks, side-by-side rhythmic dashes and curved ribbons of paint. Every surface built out of directional one-stroke-after-another marks, not fine photographic texture or a realistic object with a texture overlay. Deep ultramarine/indigo outlines, emerald/olive, cobalt shadows, ochre moonlight, warm vermilion accents. Hand-drawn asymmetry, energetic simplified forms, thick impasto. Actual transparent background outside the subject. No canvas backdrop, haze, halo, text, signatures, UI, border, photography, CGI, rendered lighting or smooth gradients.\nSubject: a complete isolated oil-painted interpretation of Tamsui's red Fort San Domingo, as an imaginative expressive painter might see it at night. Keep recognizable tall compact vermilion main block, stepped flat parapet, small projecting corner turret, a few simple dark green window marks, lower adjoining terrace and broad blue-ochre stone foundation with central stairway. Three-quarter view with two sides visible. Architecture is only a memory of a place, NOT a measured tracing or photographic reproduction: freely bend and simplify the contours, make brickwork broad strokes, make roof edges irregular and expressive, compress perspective like Van Gogh's painted houses. Main walls should read as broad red/orange bands of LONG DISTINCT PAINT STROKES, indigo shadow marks and ochre highlights; small details subordinate. Stone base likewise grouped blue/violet/cream strokes rather than hundreds of realistically rendered masonry joints. Bold dark outline, emotional luminous vermilion. Whole building including stairs within a small transparent margin, gently asymmetric silhouette, 3:2 landscape. Absolutely NO sky, terrain, foliage, floor or added background. Image1 reference is only for stroke rhythm/color; Image2 reference only for loose recognition of the fort mass, actively depart from its realistic tiny architectural details.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png",
+        "C:/MyAdapter/Company/Main2/assets/tamsui/fort_hero.png"
+      ]
+    },
+    {
+      "key": "court_paving",
+      "transparent": true,
+      "path": "assets/tamsui/court_paving.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY a flat top-down irregular garden courtyard/paving PATCH of old stone slabs in blue gray/cream/ochre, thick softly curved hand-painted outlines, warm narrow ochre path through the middle and dark teal/olive grass fringe around the irregular boundary. Much more sweeping brushwork than regular repeating tile detail, no photorealism. Genuine transparent background outside this flat patch. No perspective, building, stairs, furniture, cast shadow, sky, horizon or other objects. Wide 4:3, all painted edges visible with small transparent margin."
+    },
+    {
+      "key": "guanyin_ridge",
+      "transparent": true,
+      "path": "assets/tamsui/guanyin_ridge.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY a broad low reclining Guanyin mountain RIDGE across the Tamsui estuary, Taiwan, gentle rounded shoulder-like mountain mass with one broad softly rounded crest and two lower rounded hills. NO sharp Alpine peaks, NO jagged mountains. Elegant winding long oil strokes following the slopes in ultramarine, cobalt, violet and muted teal, a thin quiet ochre moonlit upper edge. Lower blue hills continue to bottom edge. Genuine transparent SKY area above the irregular ridge. No sky paint, stars, water, buildings, plants or room. Panoramic 3:1."
+    },
+    {
+      "key": "taiwan_town",
+      "transparent": true,
+      "path": "assets/tamsui/taiwan_town.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY a long low Taiwan Tamsui waterfront TOWN STRIP: clusters of modest old Taiwanese brick and ochre houses, red/orange curved tiled roofs, a few two-story red-brick shophouses with narrow facades, small wooden shutters and warm golden windows, occasional dark emerald banyan foliage, low stone embankment at base. No church spires, no European medieval towers, no fantasy palace, no large temple. Rich hand-drawn Van Gogh brushwork. Actual transparency above the uneven roof/foliage silhouettes and outside entire strip. No sky, mountains, stars, water, people, signage or lettering. Broad landscape 3:1."
+    },
+    {
+      "key": "bluff_bank",
+      "transparent": true,
+      "path": "assets/tamsui/bluff_bank.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY a long low Taiwan coastal garden BLUFF/RIVERBANK of curving emerald/teal/olive grass and hanging leaf brushwork over a blue-gray rocky bank, subtle ochre-earth winding path, a few small red-orange flowers. Irregular soft rolling top silhouette, darker painted land continues to bottom edge. Genuine transparency above the ridge. No buildings, large trees, castle, river, sky, stars, scenery or room. Broad landscape 3:1. Quiet shadow-rich greens with sparse gold highlights, flowing long paint strokes, no regular stone-block pattern."
+    },
+    {
+      "key": "river_surface",
+      "transparent": false,
+      "path": "assets/tamsui/river_surface.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY flat top-down Tamsui river WATER SURFACE painting: deep ultramarine, cobalt and muted teal water, long flowing curving horizontal short impasto strokes with narrow scattered warm golden and pale cream broken reflections. Blue water covers at least 85 percent of image, gold reflections delicate and fragmented, no giant golden cloud spiral, no solid yellow stripe. Fully edge-to-edge water texture, no banks, rocks, trees, buildings, boats, sky, horizon or perspective. Wide 2:1, gentle fine-art oil painting rhythm."
+    },
+    {
+      "key": "wild_grass",
+      "transparent": true,
+      "path": "assets/tamsui/wild_grass.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY an asymmetrical low clump of Taiwan coastal tall grasses and broad leaves, flowing flame-like emerald/teal/olive leaves with sparse ochre tips, a few long curved grass blades, bold indigo shadow marks. Whole clump rooted at lower edge, spread out sideways, no circular ball shape. Rich Van Gogh expressive long brushwork. Actual transparent background everywhere outside painted leaves, no hazy backdrop or halo, no ground plane, sky, tree trunk, objects or flowers. Wide 3:2, all edges visible."
+    },
+    {
+      "key": "flower_shrub",
+      "transparent": true,
+      "path": "assets/tamsui/flower_shrub.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY one low Taiwan coastal garden SHRUB clump: graceful dark emerald/teal curling foliage with small warm vermilion/orange/gold flowers, mostly shadow-rich green, curved directional Van Gogh oil strokes, irregular branching silhouette, no ball-shaped bush. Entire clump isolated on genuine transparent background with gaps between leaf clusters, no halo, background haze, ground, sky, architecture or tree trunk. Wide 3:2, all edges visible."
+    },
+    {
+      "key": "fishing_boat",
+      "transparent": true,
+      "path": "assets/tamsui/fishing_boat.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual production artwork for a 2.5D layered Tamsui Taiwan world. The reference painting is ART DIRECTION ONLY: match its traditional Vincent van Gogh oil-paint style, expressive long directional impasto, imperfect deep-indigo outlines, rich teal/cobalt/ultramarine shadows, golden ochre night highlights and warm red/orange accents. Beautiful unified fine-art painting, no photographic material, no CGI, no text, UI, border, watermark or signature. Create ONLY the specified component, never a full landscape or a whole scene.\nComponent specification: ONLY one small traditional Taiwanese wooden fishing sampan seen obliquely from shore at eye level. Narrow gracefully curved dark ochre/umber wooden hull, single simple mast, small cream/ochre triangular sail, a tiny warm lamp at bow, thick artistic indigo outlines and expressive oil strokes. Whole boat and mast visible, isolated on real transparent background. No people, flags, writing, background haze, river water, reflection, shore, other boats, trees or sky. Landscape 3:2. Same painterly scale and night palette as the reference."
+    },
+    {
+      "key": "garden_mid",
+      "transparent": true,
+      "path": "assets/tamsui/garden_mid.png",
+      "prompt": "Use case: stylized-concept. Asset type: perspectival terrain cutout for a 2.5D Van Gogh oil-painted Tamsui stage. Reference painting is STYLE AND PERSPECTIVE direction only. Rich expressive long directional impasto, dark emerald/teal/olive night greens, warm ochre winding path, cobalt shadows, beautifully unified hand-painted fine art. This is a landscape painting seen from a standing eye-height CAMERA, not a top-down surface texture. Genuine transparent sky/background, no text/UI/frame/signature, no CGI.\nPaint ONLY the garden/terrace ground that leads toward the red fort (do NOT paint any fort or buildings). A graceful warm ochre STONE PATH begins at bottom center, winds gently to upper center-right, fading into a small landing. Deep emerald/olive/teal grasses and low shrubs surround it, scattered tiny red-orange flowers, blue-gray stones tucked into grass. Low gently rolling terrain silhouette along upper third; everything BELOW it is richly painted foreground terrain with directional strokes becoming smaller with distance. Everything ABOVE the low green ridge genuinely transparent. No sky, mountains, river, house, trees taller than shrubs, large architecture, shadows from missing buildings. No huge round tile disks. Composition wide 3:1, complete low ridge across the width, painterly foreground fills entire bottom edge. Strong artistic painted perspective, quiet dark greens, path is golden focal guide rather than a large yellow sheet."
+    },
+    {
+      "key": "garden_near",
+      "transparent": true,
+      "path": "assets/tamsui/garden_near.png",
+      "prompt": "Use case: stylized-concept. Asset type: perspectival terrain cutout for a 2.5D Van Gogh oil-painted Tamsui stage. Reference painting is STYLE AND PERSPECTIVE direction only. Rich expressive long directional impasto, dark emerald/teal/olive night greens, warm ochre winding path, cobalt shadows, beautifully unified hand-painted fine art. This is a landscape painting seen from a standing eye-height CAMERA, not a top-down surface texture. Genuine transparent sky/background, no text/UI/frame/signature, no CGI.\nPaint ONLY a FOREGROUND FRAME of two sweeping clumps of dark emerald/teal/olive grasses and broad pointed coastal leaves in the bottom-left and bottom-right corners, a few sparse red-orange flowers and warm ochre tips. The center 55 percent of the image must be completely TRANSPARENT with no painted path or ground, so we can see the separate fort and its steps through the center. Leaves rise a little at outer corners and trail down into bottom edge, graceful long curved flame-like strokes, irregular silhouette, no ball-shaped bush. Both corner plant masses painted in one wide 3:1 foreground framing asset; actual alpha transparency everywhere else and between leaves. No ground plane, background, sky, river, mountains, building, halo or haze."
+    },
+    {
+      "key": "foundation_grass",
+      "transparent": true,
+      "path": "assets/tamsui/foundation_grass.png",
+      "prompt": "Use case: stylized-concept. Production bitmap for a layered 2.5D Tamsui Taiwan night painting in Vincent van Gogh's expressive oil-paint language. Strong visible individually laid elongated brush marks, side-by-side rhythmic dashes and curved ribbons of paint. Every surface built out of directional one-stroke-after-another marks, not fine photographic texture or a realistic object with a texture overlay. Deep ultramarine/indigo outlines, emerald/olive, cobalt shadows, ochre moonlight, warm vermilion accents. Hand-drawn asymmetry, energetic simplified forms, thick impasto. Actual transparent background outside the subject. No canvas backdrop, haze, halo, text, signatures, UI, border, photography, CGI, rendered lighting or smooth gradients.\nSubject: ONLY a long low irregular ribbon of creeping Taiwan coastal grass at the foot of a stone foundation. Many small tufts growing in varied heights, dark emerald/teal/olive, individual elongated side-by-side curved brush dashes with a few golden tips, interspersed indigo earth strokes and a few small blue-ochre stones tucked under grass. Organic ragged LOWER edge as well as ragged upper edge. A continuous small ground-contact patch, elongated panorama about 4:1. Quiet shadow-rich colors. NOT a huge meadow, not a neat hedge, not a rectangular strip. All around the irregular silhouette and between outlying blades is genuine transparent alpha. No castle, path, stairs, tree, water, sky or background. Paint at eye height, low clumps enough to hide the bottom seam of a castle cutout. Reference for palette and long stroke style only.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "grass_lances",
+      "transparent": true,
+      "path": "assets/tamsui/grass_lances.png",
+      "prompt": "Use case: stylized-concept. Production bitmap for a layered 2.5D Tamsui Taiwan night painting in Vincent van Gogh's expressive oil-paint language. Strong visible individually laid elongated brush marks, side-by-side rhythmic dashes and curved ribbons of paint. Every surface built out of directional one-stroke-after-another marks, not fine photographic texture or a realistic object with a texture overlay. Deep ultramarine/indigo outlines, emerald/olive, cobalt shadows, ochre moonlight, warm vermilion accents. Hand-drawn asymmetry, energetic simplified forms, thick impasto. Actual transparent background outside the subject. No canvas backdrop, haze, halo, text, signatures, UI, border, photography, CGI, rendered lighting or smooth gradients.\nSubject: ONLY one asymmetric clump of tall flame-shaped Taiwan coastal grass. Individual long lance-shaped leaves sweep diagonally up toward the right, each leaf built from 2-4 clearly visible elongated oil brush marks, warm ochre tips and bold indigo negative gaps. Grass feels like energetic flowing brush strokes from Van Gogh's wheatfields/irises, not botanically detailed 3D plants. Dark jade, viridian, olive and cobalt with sparse yellow. Wide spread low root base, irregular ragged silhouette, actual transparent gaps. Landscape 3:2. No ground rectangle, soil plane, trees, flowers, building or backdrop. Whole clump visible. Reference for palette/stroke rhythm only.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "grass_sedge",
+      "transparent": true,
+      "path": "assets/tamsui/grass_sedge.png",
+      "prompt": "Use case: stylized-concept. Production bitmap for a layered 2.5D Tamsui Taiwan night painting in Vincent van Gogh's expressive oil-paint language. Strong visible individually laid elongated brush marks, side-by-side rhythmic dashes and curved ribbons of paint. Every surface built out of directional one-stroke-after-another marks, not fine photographic texture or a realistic object with a texture overlay. Deep ultramarine/indigo outlines, emerald/olive, cobalt shadows, ochre moonlight, warm vermilion accents. Hand-drawn asymmetry, energetic simplified forms, thick impasto. Actual transparent background outside the subject. No canvas backdrop, haze, halo, text, signatures, UI, border, photography, CGI, rendered lighting or smooth gradients.\nSubject: ONLY a separate small clump of windswept Taiwan sedge and thin coastal reed grasses, airier and thinner than broad-leaf plants. Thin curved segmented LONG oil-paint dashes arc LEFTWARD, some small golden seed heads, jade/teal/olive blades, indigo shadow outlines, a few short orange accents near root. Make visible individual strokes like a gestural oil painting, no photo texture, no realistic dense lawn. Irregular ragged rooted bottom, actual transparent space between blades and outside entire silhouette. Landscape 3:2, full clump visible, no soil rectangle, ground plane, sky, castle or backdrop. Reference for colors and stroke rhythm only.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "grass_iris",
+      "transparent": true,
+      "path": "assets/tamsui/grass_iris.png",
+      "prompt": "Use case: stylized-concept. Production bitmap for a layered 2.5D Tamsui Taiwan night painting in Vincent van Gogh's expressive oil-paint language. Strong visible individually laid elongated brush marks, side-by-side rhythmic dashes and curved ribbons of paint. Every surface built out of directional one-stroke-after-another marks, not fine photographic texture or a realistic object with a texture overlay. Deep ultramarine/indigo outlines, emerald/olive, cobalt shadows, ochre moonlight, warm vermilion accents. Hand-drawn asymmetry, energetic simplified forms, thick impasto. Actual transparent background outside the subject. No canvas backdrop, haze, halo, text, signatures, UI, border, photography, CGI, rendered lighting or smooth gradients.\nSubject: ONLY a low loose clump of curling blue-green iris-like leaves with just 3 small ochre-gold/orange wildflowers, an expressive Van Gogh plant study. Broad wavy flowing leaves fan outward, every leaf rendered as 2-3 long thick individual parallel paint strokes, jagged indigo outline and visible spaces between leaves. Emerald, teal, cobalt, olive, ochre tips. A ground-hugging asymmetrical sprawling patch, different from a round bush. Irregular ragged silhouette on ALL sides including the bottom; true transparent negative space and no halo or soil rectangle. Landscape 3:2, complete clump with margins. No pot, soil plane, ground background, path, castle or sky. Reference for paint language only.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "distant_valley",
+      "transparent": true,
+      "path": "assets/tamsui/distant_valley.png",
+      "prompt": "Use case: stylized-concept. Production artwork component for an immersive layered 2.5D Tamsui Taiwan landscape painted in Vincent van Gogh's expressive oil style. Long clearly separable directional impasto strokes, one stroke beside another, wavy blue-indigo outlines, cobalt and teal shadows, ochre moonlight, emerald/olive greens and quiet small vermilion roof accents. Individual brush ribbons and dashes follow land forms, lyrical irregular hand-painted contours, beautiful and carefully composed. Fine-art oil painting rather than realism, a game asset or photographic texture. No text, signatures, UI, frame or smooth CGI shading. True alpha outside the requested terrain silhouette.\nPaint ONLY a distant low landscape silhouette of Taiwan's reclining rounded coastal hills, 3 receding overlapping ranges, with a few tiny ochre/red tiled rooftops tucked among muted cypress/banyan-like brush forms near the lower edge. Gentle asymmetrical blue-violet ridgelines, dusky cobalt middle slopes, misty teal foothills. A small meandering valley opening at center-left suggests that a river continues far inland, but do not paint water or sky. This is a far-away atmospheric backdrop, lighter/softer and quieter than the foreground, with broad elongated Van Gogh brush rhythms still visible. Wide panorama 3:1, low irregular upper silhouette, ragged lower boundary. Whole connected group on transparent background with no rectangle, no hazy colored backdrop. No tall Alpine peaks, buildings in close-up, fort, sea, people, roads or modern city. Image reference only supplies color and stroke language.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "village_peninsula",
+      "transparent": true,
+      "path": "assets/tamsui/village_peninsula.png",
+      "prompt": "Use case: stylized-concept. Production artwork component for an immersive layered 2.5D Tamsui Taiwan landscape painted in Vincent van Gogh's expressive oil style. Long clearly separable directional impasto strokes, one stroke beside another, wavy blue-indigo outlines, cobalt and teal shadows, ochre moonlight, emerald/olive greens and quiet small vermilion roof accents. Individual brush ribbons and dashes follow land forms, lyrical irregular hand-painted contours, beautiful and carefully composed. Fine-art oil painting rather than realism, a game asset or photographic texture. No text, signatures, UI, frame or smooth CGI shading. True alpha outside the requested terrain silhouette.\nPaint ONLY a low irregular Taiwan riverbank PENINSULA terrain cutout viewed from across a river at eye height. A beautifully sinuous promontory starts thicker at LEFT and tapers toward RIGHT, its scalloped river edge forms a gentle S-shaped line; dark emerald/teal/olive tufted grasses painted with flowing long brush dashes, low banyan shrubs with curving trunk strokes, 3 to 5 SMALL modest brick/ochre houses with vermilion curved tile rooftops clustered into the land and a narrow gold footpath disappearing among them. Houses are distant picturesque details, not the main subject. A few blue-ochre rocks along the shoreline, warm window dots, varied small tree silhouettes, painterly compressed perspective. A connected long low composition 3:1 with lovely irregular upper AND lower shore silhouettes, whole peninsula visible, lower boundary NOT a straight rectangle. Genuine transparency everywhere beyond the land, including below the scalloped shore. NO water, sky, mountains, tall towers, church, modern buildings, boats, fort, people, paved modern road, halo or opaque backdrop. The reference is only for painterly strokes and harmonious colors.",
+      "referenceImages": [
+        "C:/MyAdapter/Company/Main2/assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "taiwan_land",
+      "path": "assets/ascent/taiwan_land.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint ONLY the complete recognizable island of TAIWAN seen from directly above, north at TOP, south at BOTTOM, long slender leaf-like silhouette, a slight northeast/southwest lean, narrower pointed southern tip and rounded northeast/north coast, broader western lowlands and a rugged eastern coast. Full island isolated, genuine transparent background beyond the coastline, no ocean rectangle or cast drop shadow. Portrait 2:3 composition, entire coastline visible with margins. Luminous dark emerald/olive forests and gold-ochre patchwork western plains, deep cobalt/teal contours, restrained blue-violet central uplands. Terrain is built from clear flowing elongated marks that trace the land, not a realistic relief map. The central mountain spine is suggested quietly as dark blue-green brush rhythms so separate mountain artwork can be layered on top; similarly suggest a few thin winding river marks and tiny warm clustered roof dots, subordinate to overall land shape. Rich, poetic night color, quiet coastline rim in ochre/teal. No clouds, sky, stars, sea, flags, borders, map markers, roads or surrounding countries. Keep silhouette unmistakably Taiwan, not a round fantasy island."
+    },
+    {
+      "key": "cloud_ribbon",
+      "path": "assets/ascent/cloud_ribbon.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint ONLY a long sweeping crescent of moonlit CLOUD, curling left to right with an open center and tapered wispy ends, distinct long curved cobalt/ultramarine/teal oil strokes edged in a little pale cream and ochre. Actual clouds in a Van Gogh night painting rather than gray photographic smoke. Wide 3:1 cutout. Keep central 55 percent mostly transparent, airy gaps between ribbons, irregular alpha on all sides including bottom, no opaque haze backdrop. No stars, land, buildings, sky rectangle, glowing sci-fi ring or graphic speed lines. Entire cloud visible with transparent margins. A production cloud layer the camera can pass above and between."
+    },
+    {
+      "key": "cloud_wisps",
+      "path": "assets/ascent/cloud_wisps.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint ONLY a loose group of thin broken drifting CLOUD WISPS sweeping diagonally from lower left toward upper right, mostly cobalt/teal/indigo with sparse cream-gold long stroke edges. A softer airier companion to a large crescent cloud, not a dense opaque cloud block. Wide 3:1, clear individual hand-laid paint ribbons with transparent gaps, each wisp has irregular tapered fringes. Genuine transparent alpha outside paint, no haze rectangle, smoke photography, stars, objects, landscape or black backdrop."
+    },
+    {
+      "key": "wind_strokes",
+      "path": "assets/ascent/wind_strokes.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint ONLY four to six very long slender gestural wind-brush ribbons, a few near-parallel flowing curves, predominantly cobalt and teal with restrained pale gold tips. Tall portrait 2:3. Separate ribbons with plenty of actual transparent negative space, taper organically at both ends, visible bristle and thick oil marks within each stroke. They feel like wind made from a Van Gogh brush, not white neon speed lines, particles, lightning, typography or a solid sheet. No background, sky, clouds, land or objects. Complete strokes within small transparent margins."
+    },
+    {
+      "key": "zenith_sky",
+      "path": "assets/ascent/zenith_sky.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint an edge-to-edge SQUARE oil painting of the sky viewed looking straight UP at the zenith. Deep ultramarine, cobalt, teal and indigo curved currents with distinct elongated impasto strokes, a graceful open central spiral, several small warm golden star disks with concentric rhythmic dashes, a few long ochre moonlit cloud strokes. Same flowing Starry Night visual language as reference. The CENTER should be beautiful blue curving paint, no glaring sun or large yellow vortex. Star brightness restrained and painterly. Whole canvas is sky, no horizon, land, buildings, trees or silhouettes. Maintain rich painted detail even in all corners, no vignette, no flat colored edges, no frame."
+    },
+    {
+      "key": "aerial_ocean",
+      "path": "assets/ascent/aerial_ocean.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production artwork for a layered 2.5D Taiwan landscape painted in Vincent van Gogh's expressive oil-paint language. Make individually visible elongated brush strokes, side-by-side rhythmic dashes, curved ribbons of impasto and irregular indigo outlines. Beautiful painterly simplification and emotional color, not a photograph, satellite image, 3D render, fantasy game asset or fine photographic texture. Reference image supplies palette and stroke language only. No text, labels, signatures, frame, UI, modern diagram lines or watermark.\nPaint an edge-to-edge wide 2:1 tileable ocean surface seen from HIGH ABOVE at night. Quiet rich cobalt, ultramarine, teal and indigo long flowing curved brush dashes form broad gentle currents, with very sparse thin broken ochre reflections. Mostly dark blue, quiet enough to frame a green-gold island. Each wave consists of individual elongated paint marks rather than photographic ripples or blue 3D water. Consistent paint scale and colors to all edges, suitable for repeating without conspicuous edge changes. No land, shore, boats, sky, white surf, giant golden spiral, clouds, labels or large stars."
+    },
+    {
+      "key": "mountain_spine",
+      "path": "assets/ascent/mountain_spine.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Separate transparent production oil-paint layer for a 2.5D aerial Taiwan. Image 1 is the already painted island: match its rich Van Gogh color palette and individually visible elongated directional impasto strokes. Use its north-up top-down view, NOT a photographic or CGI relief. Irregular hand-drawn contours and painterly simplification, dark indigo outlines, emerald/teal/cobalt shadows, sparse ochre highlights. All outside the requested terrain patch must be genuine alpha transparency, with organic ragged soft painted edges. No text, markers, frame, watermark, ocean rectangle or opaque haze.\nPaint ONLY a slender north-south Taiwan CENTRAL MOUNTAIN SPINE seen from ABOVE, composed of six to eight connected rolling folded ridges. Long curved cobalt, deep blue, teal, emerald and muted lilac brush ribbons trace crests and valleys, a little ochre moonlight on ridgelines. Slight northeast/southwest lean. Transparent outer contour and irregular gaps at ends, no rectangular ground. Portrait 1:3, whole mountain chain visible. Quietly luminous but mostly blue-green, coheres with the island base and can layer over its central/eastern uplands without an obvious separate border. No snowy white Alps, pointed fantasy peaks, forest cutout silhouettes viewed from the side, buildings, sky, landmass coastline or water."
+    },
+    {
+      "key": "river_valley",
+      "path": "assets/ascent/river_valley.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Separate transparent production oil-paint layer for a 2.5D aerial Taiwan. Image 1 is the already painted island: match its rich Van Gogh color palette and individually visible elongated directional impasto strokes. Use its north-up top-down view, NOT a photographic or CGI relief. Irregular hand-drawn contours and painterly simplification, dark indigo outlines, emerald/teal/cobalt shadows, sparse ochre highlights. All outside the requested terrain patch must be genuine alpha transparency, with organic ragged soft painted edges. No text, markers, frame, watermark, ocean rectangle or opaque haze.\nPaint ONLY an elongated Taiwan WESTERN LOWLANDS / RIVER VALLEY PATCH viewed directly from ABOVE. Two thin winding cobalt/turquoise rivers fork through small ochre-gold and olive fields, blue-green riparian trees painted as rhythmic long curved strokes, a few tiny warm ochre roof dots. Portrait 1:3 with north at top. A loose irregular connected terrain patch, its emerald/olive ragged perimeter dissolves into transparent brush marks to sit naturally over the already painted island. Keep the water narrow and the farmland warm but subdued. No entire island, coast, giant lake, sea, sky, clouds, grid roads, labels, background rectangle or camera-perspective town."
+    },
+    {
+      "key": "aerial_village",
+      "path": "assets/ascent/aerial_village.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Separate transparent production oil-paint layer for a 2.5D aerial Taiwan. Image 1 is the already painted island: match its rich Van Gogh color palette and individually visible elongated directional impasto strokes. Use its north-up top-down view, NOT a photographic or CGI relief. Irregular hand-drawn contours and painterly simplification, dark indigo outlines, emerald/teal/cobalt shadows, sparse ochre highlights. All outside the requested terrain patch must be genuine alpha transparency, with organic ragged soft painted edges. No text, markers, frame, watermark, ocean rectangle or opaque haze.\nPaint ONLY one SMALL LOOSE CLUSTER of Taiwanese red-tiled houses and warm window dabs seen directly from HIGH ABOVE: a handful of tiny irregular ochre/vermilion roof strokes among dark emerald and cobalt painted trees and little olive field marks. Tiny buildings read as short glowing paint dashes, not a detailed architectural rendering. Organic scattered grouping along a gently curving little footpath, connected by sparse painted greenery; irregular feathered brush-edge silhouette, genuine transparent gaps. Portrait 2:3, whole tiny village patch visible. No large landmark, city grid, precise modern roads, labels, coastline, ocean, sky or opaque ground rectangle."
+    },
+    {
+      "key": "sky_approach",
+      "path": "assets/ascent/sky_approach.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. An INDEPENDENT production painting of one section of Vincent van Gogh-inspired night sky for a 2.5D camera flight. Match the reference's cobalt/ultramarine/indigo palette, teal passages, restrained ochre-cream star halos, individually visible long directional impasto dashes and irregular hand-painted rhythms. This is a NEW distinct composition, not a crop or enlargement of the reference. Fine-art oil, not a realistic sky, CGI texture, neon or particle effect. Fill the center richly with blue painted sky; fade the OUTERMOST 12 percent on all four sides into genuine transparent irregular brush fringes, with no straight rectangle, matte background, signature, text or frame. Small stars and clear oil-bristle marks retain detail at close viewing; no enormous yellow disc or giant smooth spiral.\nSection for the camera as it first tilts UP from a red fort: wide 3:2, a gently rising diagonal blue/teal current from lower left to upper right, five to seven small golden star rings in the upper half, quieter deep cobalt spaces below. Restrained luminous ochre accents, distinct elongated small-to-medium brush marks. No land, buildings, trees, horizon or separate cloud silhouettes. Keep the central 75 percent opaque painted sky, ragged transparent fringe only at the outside.",
+      "referenceImages": [
+        "assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "sky_upper_left",
+      "path": "assets/ascent/sky_upper_left.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. An INDEPENDENT production painting of one section of Vincent van Gogh-inspired night sky for a 2.5D camera flight. Match the reference's cobalt/ultramarine/indigo palette, teal passages, restrained ochre-cream star halos, individually visible long directional impasto dashes and irregular hand-painted rhythms. This is a NEW distinct composition, not a crop or enlargement of the reference. Fine-art oil, not a realistic sky, CGI texture, neon or particle effect. Fill the center richly with blue painted sky; fade the OUTERMOST 12 percent on all four sides into genuine transparent irregular brush fringes, with no straight rectangle, matte background, signature, text or frame. Small stars and clear oil-bristle marks retain detail at close viewing; no enormous yellow disc or giant smooth spiral.\nSection for a close upward-flight view: SQUARE, an off-center swirling blue current toward the left with a scattering of eight SMALL ochre/cream stars arranged asymmetrically, a few long teal and pale-blue curved brush bands. Subtle circular brush halos around small stars, rich indigo negative spaces, many crisp individually laid elongated marks. Build an entirely new composition with small paint marks rather than a huge enlarged swirl. No sea, land, clouds cutout, horizon or objects.",
+      "referenceImages": [
+        "assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "sky_upper_right",
+      "path": "assets/ascent/sky_upper_right.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. An INDEPENDENT production painting of one section of Vincent van Gogh-inspired night sky for a 2.5D camera flight. Match the reference's cobalt/ultramarine/indigo palette, teal passages, restrained ochre-cream star halos, individually visible long directional impasto dashes and irregular hand-painted rhythms. This is a NEW distinct composition, not a crop or enlargement of the reference. Fine-art oil, not a realistic sky, CGI texture, neon or particle effect. Fill the center richly with blue painted sky; fade the OUTERMOST 12 percent on all four sides into genuine transparent irregular brush fringes, with no straight rectangle, matte background, signature, text or frame. Small stars and clear oil-bristle marks retain detail at close viewing; no enormous yellow disc or giant smooth spiral.\nSection at the ZENITH during an upward camera rush: SQUARE with a beautiful braided flowing cobalt/teal river of sky strokes curving around a dark blue central breathing space, a handful of restrained small golden star rings at top and right, quiet cream-gold ribbon highlights tracing two broad curves. Crisp short and long parallel impasto strokes within the currents. Different from the other sky references, no single dominating huge vortex. No land, sea, horizon or objects.",
+      "referenceImages": [
+        "assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "sky_return",
+      "path": "assets/ascent/sky_return.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. An INDEPENDENT production painting of one section of Vincent van Gogh-inspired night sky for a 2.5D camera flight. Match the reference's cobalt/ultramarine/indigo palette, teal passages, restrained ochre-cream star halos, individually visible long directional impasto dashes and irregular hand-painted rhythms. This is a NEW distinct composition, not a crop or enlargement of the reference. Fine-art oil, not a realistic sky, CGI texture, neon or particle effect. Fill the center richly with blue painted sky; fade the OUTERMOST 12 percent on all four sides into genuine transparent irregular brush fringes, with no straight rectangle, matte background, signature, text or frame. Small stars and clear oil-bristle marks retain detail at close viewing; no enormous yellow disc or giant smooth spiral.\nSection the camera encounters as it arcs OVERHEAD and turns back toward Taiwan: wide 3:2, an expansive gently undulating deep-blue night-sky current, small warm stars scattered across the upper left and center, sweeping cobalt/teal/ochre brush lines lead diagonally toward the lower right. Slightly quieter and darker lower half to ease toward the island reveal. Distinct crisp elongated paint marks, not blurry or smudged. No land, sea, horizon, objects or diagram.",
+      "referenceImages": [
+        "assets/chamber/sky.png"
+      ]
+    },
+    {
+      "key": "orbital_space",
+      "path": "assets/ascent/orbital_space.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Asset type: square oil-painted deep outer-space backdrop for a continuous 2.5D cinematic flight out of Van Gogh's Starry Night above Taiwan. Image 1 is STYLE REFERENCE ONLY: retain its distinct elongated individually laid impasto brush dashes, cobalt and muted ochre palette. Paint a NEW much quieter darker high orbital sky, 85 percent deep midnight indigo and Prussian blue, graceful very subtle sweeping paint currents, a handful of tiny remote muted golden stars, no giant stars, no bright full-canvas blue swirls. Rich visible hand-painted long brush strokes even in dark negative space. Edges filled with painted darkness. No planet, land, clouds, horizon, sun, moon, nebula photography, galaxies, UI, text, frame, signature or watermark. It must feel like empty poetic outer space rather than another close enlarged atmospheric sky painting."
+    },
+    {
+      "key": "atmosphere_paint",
+      "path": "assets/ascent/atmosphere_paint.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Asset type: wide 3:1 oil-paint atmospheric texture for a curved planet limb, to be wrapped on a thin spherical shell. Image 1 supplies only Van Gogh paint language, distinct elongated individually laid directional impasto dashes. Paint edge-to-edge flowing mostly horizontal bands of deep cobalt, luminous teal, blue-grey and restrained pale moonlit cream, with tiny ochre accents. Like airy extremely thin cloud strata over an indigo ocean viewed from the edge of space. Clearly separate long bristle strokes and broken ribbons, directional subtle waviness. Very low contrast dark cobalt at top and bottom edges, brighter teal streaks in middle, no white blown-out band. No horizon silhouette or curved planet baked into this texture, no stars, land, island, objects, text, frame, watermark, photoreal haze or neon gradients. This is a painterly atmospheric strip texture, not a complete scene."
+    },
+    {
+      "key": "ocean_streams",
+      "path": "assets/ascent/ocean_streams.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent oil-painted ocean-current overlay for a 2.5D aerial Taiwan scene. Paint ONLY three long gently curling S-shaped broken ribbons of cobalt, teal, pale muted turquoise and sparse ochre moonlit current strokes, seen from straight above. Wide 3:2 composition, loosely parallel ribbons separated by large genuinely transparent gaps, open meanders rather than closed spirals. Distinct elongated curved Van Gogh brush strokes, visible thick impasto bristle marks and ragged tapering ends. Quiet dark blue main strokes with a few thin brighter teal highlights. The entire ribbon group fits inside transparent margins. No ocean rectangle, no solid background, no land, no white foamy surf, no ships, no stars, no text, frame, watermark, realistic water or CGI. These independent painted currents will drift around an island, so all outside paint must be real alpha transparency."
+    },
+    {
+      "key": "asia_mainland",
+      "path": "assets/ascent/asia_mainland.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/taiwan_land.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 is STYLE AND TERRAIN COLOR REFERENCE only, do not copy its Taiwan outline. Paint ONLY a large top-down north-up EAST ASIAN CONTINENTAL LAND PATCH: broad mountainous mainland to LEFT, its irregular China east/southeast COAST running down the RIGHT side, recognizable Shandong-like bulge and bays at upper right, Korea-like long peninsula branching toward the lower right from the upper-right coast, broad southeastern coastal plain and South China shore curling southwest at lower right. Suggest inland folded mountain rhythms, thin winding river ribbons, scattered tiny warm settlement dots. Simplify geography lyrically, no need for precise map accuracy, but a large continental mass rather than another isolated leaf-shaped island. Portrait 3:4 shape, full outer irregular boundary within transparent margins. Right-hand coastal outline must be clear and organic; remaining outer inland edges are gently ragged paint boundaries for blending toward a distant hemisphere. Do not include Taiwan, Japan, the Philippines, ocean, clouds or stars. Much larger quieter landform than the hero island."
+    },
+    {
+      "key": "japan_chain",
+      "path": "assets/ascent/japan_chain.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/taiwan_land.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 is STYLE REFERENCE only. Paint ONLY the north-up JAPANESE ARCHIPELAGO viewed straight from above, a long graceful northeast-to-southwest curved chain: Hokkaido at upper right, long bent Honshu in middle, small Shikoku below its west, Kyushu at lower left, and a tapering sparse trail of small Ryukyu-like islets farther down-left. Recognizable approximate geographical silhouette with clearly separated islands and generous actual transparent channels; painterly expressive geography, no exact map requirement. Tall 3:4 composition with whole group and all tips inside margins. Deep blue-green mountain brush rhythms, muted ochre coastal plains, scattered tiny warm roof dots. Leave water between islands genuinely transparent. Do not include Taiwan, continental mainland, Korea, ocean rectangle, sky or clouds."
+    },
+    {
+      "key": "philippines_chain",
+      "path": "assets/ascent/philippines_chain.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/taiwan_land.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 is STYLE REFERENCE only. Paint ONLY a loosely recognizable north-up PHILIPPINES island cluster viewed directly from above: Luzon as the larger irregular island at top, scattered Visayan islands below center, larger Mindanao at bottom right, a thin Palawan-like chain down left. Lyrical approximate geography, not an exact map. Tall portrait 3:4, full complete group within clear transparent margins, airy transparent gaps between all islands. Quiet emerald/olive folded hills outlined by cobalt long directional strokes, a few ochre plains and subtle small warm settlement marks. No Taiwan, Japan, continent, ocean background, sky or clouds."
+    },
+    {
+      "key": "vortex_cloud_gold",
+      "path": "assets/ascent/vortex_cloud_gold.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/zenith_sky.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 supplies ONLY the Starry Night brush language. Paint ONLY an airy SQUARE spiral cloud wreath seen looking straight up, six loose curling cobalt and ochre cloud arms sweeping around a very large clear central opening (central 50 percent diameter genuinely empty alpha). The arms form a broken asymmetrical pinwheel, like clouds becoming a painterly kaleidoscope. Mostly blue with warm ochre tips, long hand-laid curved bristle strokes, airy gaps between arms, all outer edges ragged and tapered. It is an irregular natural cloud vortex, NOT a perfect circular ring, tunnel render, neon portal, gear, mandala or geometric ornament. Complete arms inside transparent margins. No stars, moon, opaque blue sky rectangle, land or objects."
+    },
+    {
+      "key": "vortex_cloud_cobalt",
+      "path": "assets/ascent/vortex_cloud_cobalt.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/zenith_sky.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 supplies ONLY Van Gogh sky stroke language. Paint ONLY a SQUARE broad loose whirling cloud wreath with eight overlapping broken petal-like cobalt/ultramarine/teal cloud ribbons, very sparse pale cream and muted ochre bristle tips. Clear transparent center opening diameter 46 percent of canvas, ample transparent gaps between curved arms and genuinely transparent outside the whole wreath. Stronger blue and denser sweeping paint than a gold wispy ring. Slight asymmetry and hand-painted variation, no perfect radial symmetry or hard circular boundary. Long thick directional paint strokes, organically ragged edges and tapered ends. Designed to rotate as an independent cloud layer in a kaleidoscopic upward flight. No opaque backdrop, stars, land, geometric mandala, sci-fi portal, neon, frame or text."
+    },
+    {
+      "key": "vortex_cloud_teal",
+      "path": "assets/ascent/vortex_cloud_teal.png",
+      "transparent": true,
+      "styleReference": "assets/ascent/zenith_sky.png",
+      "prompt": "Use case: stylized-concept. Production oil-paint asset for an immersive 2.5D Van Gogh world, distinct elongated individually laid directional impasto brush strokes, dark indigo contours, emerald and cobalt shadows, muted ochre highlights. Expressive hand-painted simplification, not a satellite photo, CGI model, textbook map or vector graphic. No text, borders, labels, flags, pins, frame, signature or watermark. Genuine transparent alpha outside all painted shapes, no background rectangle or glow. Image 1 supplies ONLY painterly stroke language. Paint ONLY a delicate SQUARE high-altitude cloud spiral with five long counterclockwise curling feathery teal, pale blue-grey, cobalt and restrained cream-gold brush arms. Large transparent central opening diameter 55 percent of image, wisps loosely grouped into an irregular broken wreath with transparent negative space between all arms. Airier and thinner than a dense cobalt cloud ring. Individual long oil-paint bristle strokes remain clear, natural broken uneven contours, no perfect hard circle or repeated identical petals. Complete vortex inside transparent margins, true alpha beyond paint and through center. No background, stars, moon, land, clouds filling the middle, mandala, geometric pattern, neon, portal or typography."
+    },
+    {
+      "key": "sun_core",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a large round SUN as a blazing SUNFLOWER heart, an expressive irregular golden/amber/orange oil-paint disk. Dense curved ochre and vermilion strokes swirl around a deep warm amber seed-like center, short inner petal flames and thick luminous cream-gold ridges, beautiful hand-painted irregularity. Intense fiery warmth yet visible pigment everywhere, no overexposed white center. Whole circle, no long outer corona (a separate layer will supply it), no stem/leaves, face, rays drawn as straight lines, stars or background. Square. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/sun_core.png"
+    },
+    {
+      "key": "sun_corona",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY the outer corona of a blazing sunflower SUN: a broad irregular wreath of curling gold, cream, ochre, vermilion and burnt-orange petal-like FLAMES, long energetic brush tongues sweeping outward. Very large genuinely transparent center hole diameter 50 percent of image, transparent gaps between flame tips, ragged alpha around all sides. Complete wreath in square canvas; flames distinct from a literal decorative sunflower border. No solid central disk, background, stars or neon glow. Thick elongated impasto ribbons. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/sun_corona.png"
+    },
+    {
+      "key": "sun_flare",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY two long asymmetrical solar flare tongues curling into a loose open crescent, warm gold/orange/vermilion and cream impasto ribbons. One broad curling painted arm and one thin counter-arm, with lots of real transparent space between. Wide 3:2, whole tips inside margins. They feel like living fire drawn by Van Gogh, not plasma photography, lightning, a circle, a closed ring, or a sun disk. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/sun_flare.png"
+    },
+    {
+      "key": "orbit_gold",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY ONE extremely thin hand-painted circular ORBIT ring in square canvas. Actual circle viewed head-on, slightly irregular and made of many short elongated ochre-gold brush dashes, interrupted airy gaps and a handful of brighter cream strokes. Ring band only 0.7 to 1 percent of canvas diameter, near outer 85 percent diameter; center entire disk truly transparent. A second very faint sparse parallel trace is allowed immediately beside it. Quiet elegant oil-paint line, no center object, arrow, dotted diagram marks, radial spokes, planet, stars, broad wreath or background. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/orbit_gold.png"
+    },
+    {
+      "key": "moon_orbit",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a delicate broken circular LUNAR ORBIT ring, head-on circle on square canvas, ultramarine and pale moonlit cream with restrained ochre brush marks. Extremely thin irregular ring band around 1 percent canvas diameter, composed of elongated paint dashes rather than a vector line, a few longer flowing accents. All inside circle and outside ring truly transparent. No moon, Earth, planet, text, arrows, spokes, UI or broad cloud wreath. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/moon_orbit.png"
+    },
+    {
+      "key": "moon",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a small complete round MOON seen from space, poetic blue-grey/lavender/cream crater disk with thick visible circular and curved oil strokes, darker indigo lower-left shadow and muted warm ochre upper-right highlights. Crisp hand-painted circular silhouette, no cast shadow or external glow. A few large crater bowls visible as curved directional paint, not photographic detail. Square. No stars, sky, Earth, other objects. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/moon.png"
+    },
+    {
+      "key": "earth_clouds",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint a flat wide 2:1 EQUIRECTANGULAR cloud-layer map for a rotating Earth. ONLY thin broken blue-white/cream/teal cloud ribbons and 3 loose spiral cloud systems, scattered across the map with about 80 percent genuinely transparent negative space. Upper/lower edges sparse feathery painted wisps; left and right edges quiet and matching. Each cloud follows long flowing individually visible impasto strokes. No land, ocean fill, round globe, shadow, text, stars or frame. All unpainted areas genuine transparent alpha; this will wrap onto a separate circular Earth painting.",
+      "path": "assets/solar/earth_clouds.png",
+      "equirectangular": true
+    },
+    {
+      "key": "earth_halo",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a very thin irregular round planetary ATMOSPHERE halo, face-on circle in square canvas, cobalt/ultramarine/teal and a little warm cream-gold rim paint, visible elongated tangential bristle strokes. Ring band roughly 2 percent diameter, naturally broken and feathery, genuinely empty transparent center of at least 88 percent diameter, transparent outside. Luminous oil-pigment rim, never neon or photographic airglow. No planet center, land, stars, broad cloudy disk or backdrop. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/earth_halo.png"
+    },
+    {
+      "key": "mercury",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round MERCURY planet disk, quietly warm grey, muted umber, slate-blue shadows and sparse ochre highlights. Broad crater bowls as expressive curved oil strokes, unmistakably rocky and subdued. Square. No rings, moons, stars or external glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/mercury.png"
+    },
+    {
+      "key": "venus",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round VENUS planet disk, dense flowing golden-cream, pale ochre, muted apricot and lavender shadow cloud ribbons curving around the sphere. Rich distinct long directional oil strokes, softly layered atmospheric appearance, no land. Square. No rings, stars, moons or external glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/venus.png"
+    },
+    {
+      "key": "mars",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round MARS planet disk, glowing terracotta, rusty vermilion, ochre and deep violet-blue shadows. Sweeping long curved impasto bands suggest rocky plains and a few broad dark markings; tiny muted cream polar accent. Distinct from a sun: restrained rust colors and no flames. Square. No rings, stars, moons or glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/mars.png"
+    },
+    {
+      "key": "jupiter",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round JUPITER disk, broad wavy cream, ochre, burnt sienna, orange and deep violet cloud belts, one large expressive rusty oval storm toward lower right. Thick long curved parallel oil strokes wrap around the round form, lyrically painted rather than photographic. Square. No rings, stars, moons or background. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/jupiter.png"
+    },
+    {
+      "key": "saturn_body",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY the complete round body of SATURN WITHOUT ANY RINGS. Quiet pale golden ochre, warm cream and muted slate-lilac cloud bands made of long curved parallel oil strokes. Subtle upper-right highlight and blue-violet lower-left shading, no sharp glossy reflections. Square. The ring system will be a separate image, so absolutely no ring, moons, stars or glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/saturn_body.png"
+    },
+    {
+      "key": "saturn_rings",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY SATURN'S RINGS as a very wide flattened elliptical annulus viewed obliquely, wide 2:1 composition, outer ellipse width about 90 percent canvas, ellipse height about 35 percent width. Thin many concentric ochre-gold, cream, umber and a few cobalt brush ribbons, uneven broken bristle strokes, airy gaps. Entire central oval opening truly transparent and large enough for a separately painted Saturn disk. Both front and rear halves of ring are present, no solid planet center, no stars, background or glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/saturn_rings.png"
+    },
+    {
+      "key": "uranus",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round URANUS disk, luminous muted turquoise, sea-green and pale blue-grey, subtle broad diagonal cloud bands made of individually clear curved oil strokes, indigo-blue shadow at lower left. Quiet icy palette distinctly greener/paler than Neptune. Square. No external rings, stars, moons or glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/uranus.png"
+    },
+    {
+      "key": "neptune",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a complete round NEPTUNE disk, deep saturated ultramarine/cobalt, violet shadow and a few long teal/cream cloud streaks, one small darker oval storm mark. Strong beautiful elongated Van Gogh impasto strokes wrapping the sphere. Distinctly darker bluer than Uranus. Square. No rings, stars, moons or external glow. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/neptune.png"
+    },
+    {
+      "key": "asteroid_belt",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a very thin broken circular arc belt of tiny scattered ochre, slate-blue and muted amber asteroid flecks seen face-on. Square canvas with a genuinely empty large center and transparent gaps everywhere; a loose broken orbit of tiny short hand-painted bristle marks and a few modest irregular pebble shapes, NOT a thick cloud ring or rocky wall. Sparse enough to remain subordinate to planets and gold orbit lines. No planets, sun, stars, labels or background. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/asteroid_belt.png"
+    },
+    {
+      "key": "solar_backdrop",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint an edge-to-edge wide 2:1 deep-space oil painting for a spherical background. Quiet rich midnight Prussian blue, indigo, deep ultramarine and violet long flowing paint currents, very restrained tiny warm gold stars, 2 faint broad blue curved dust ribbons receding diagonally. Most canvas is spacious dark pigment with visible long brush marks, no giant yellow spiral competing with the sunflower sun. Left/right edges similar dark blue texture. No sun, moon, planet, land, galaxy with a bright core, nebula photograph, text or border.",
+      "path": "assets/solar/solar_backdrop.png"
+    },
+    {
+      "key": "solar_stardust",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production artwork for an immersive 2.5D Van Gogh oil-painted cosmos. Style reference ONLY: individually visible elongated curved impasto brush strokes, bristle ridges, rhythmic hand-laid dashes, irregular indigo outlines. Rich poetic painterly simplification, never photographic, CGI, generic glossy 3D or flat vector. No words, labels, symbols, diagram marks, border, signature or watermark. Paint ONLY a sparse wide 3:2 field of about twenty tiny warm golden/cream and cobalt bristle flecks, several short curved golden painted commas and a few thin trailing oil-stroke motes, all scattered with 90 percent genuine transparent negative space. Subtle close stardust for parallax around painted planets, not uniform particles or photographic stars. Uneven hand-made sizes, restrained brightness, no huge stars, dense cloud, rectangle, object, ring or text. Isolated complete subject with generous transparent margins; real alpha outside paint, no black or colored rectangle, no drop shadow or opaque haze. ",
+      "path": "assets/solar/solar_stardust.png"
+    },
+    {
+      "key": "solar_earth_map",
+      "path": "assets/earth.png",
+      "transparent": false,
+      "equirectangular": true,
+      "provenance": "Original built-in image_gen Earth map; prompt in assets/prompts.json, key earth",
+      "prompt": "Use case: stylized-concept. Asset type: seamless 2:1 EQUIRECTANGULAR EARTH SURFACE TEXTURE, wide landscape. Flat rectangular world map used to texture a 3D sphere, whole planet surface from longitude -180 to180, latitude90 to-90, not a globe picture. Recognizable geographical coastlines: North and South America in LEFT third, Europe and Africa CENTER, Asia RIGHT third, Australia lower RIGHT, Pacific at far edges. Deep cobalt and ultramarine swirling oceans, muted emerald green ochre continents, subtle white swirling clouds. Entire texture hand painted Vincent van Gogh inspired tactile dense short oil brush strokes, rough impasto relief and blue gold brush highlights. Lighting even across the flat texture, left and right edges both matching Pacific ocean blue for seam wrapping. Upper and lower pole strips mostly muted pale blue white. No border, no text, no labels, no grids, no outer space background, no horizon, no round globe. Full edge-to-edge traditionally painted equirectangular earth map."
+    },
+    {
+      "key": "oort_ice",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2. Wispy crescent-shaped cold Oort cloud swept by the solar wind: 3 open pale lavender, cream and icy cobalt ribbons carrying tiny impasto ice flecks. Mostly empty center and 80% empty canvas. Delicate airy textured oil paint, long sweeping currents, not rocks filling the screen. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/oort_ice.png"
+    },
+    {
+      "key": "nebula_blue",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square open spiral nebula wreath, irregular two-armed swirling ultramarine cobalt and cream impasto clouds with gold accents. Clear transparent center 45% of diameter, long spiral tips curl around central opening, outer edge broken delicate strokes. Thick elongated individual paint strokes. Not a closed rigid torus. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/nebula_blue.png"
+    },
+    {
+      "key": "nebula_gold",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square open spiral nebula wreath, two offset spiraling comet-like arms in luminous cadmium gold and warm cream with indigo shadows. 55% clear center hole, 65% of whole canvas empty. Long independent curved thick bristle strokes. A celestial ocean of starlight surrounding a tunnel opening, not a solid metallic ring. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/nebula_gold.png"
+    },
+    {
+      "key": "nebula_teal",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square spiral star cloud, outer counterspiraling turbulent turquoise Prussian blue and lavender ribbons with sparse pale yellow ridge lights. Huge empty transparent center 55% diameter. Airy 70% empty canvas. Fine expressive long curved oil strokes, complete tips. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/nebula_teal.png"
+    },
+    {
+      "key": "star_crescent",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Portrait 3:4 one gorgeous golden crescent moon, thick curved ochre cream impasto strokes and irregular indigo painted contours, small flecks and short ripples close around its edge. Golden boat hanging among stars. No landscape, no background. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/star_crescent.png"
+    },
+    {
+      "key": "star_sirius",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square one brilliant icy azure-white star seen as a painterly concentric swirl disk, several broken cobalt and cream halo brush arcs around a small golden-white center. Hand-laid impasto strokes, complete irregular round halo isolated. No straight vector rays or lens flares. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/star_sirius.png"
+    },
+    {
+      "key": "star_betelgeuse",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square one warm orange-red giant star: dense rust vermilion apricot thick concentric curved oil strokes, soft cream heart, broken ochre and blue painted halo arcs, luminous red pearl. Entire halo and star isolated, small complete star not a sun with huge flames. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/star_betelgeuse.png"
+    },
+    {
+      "key": "galaxy_blue_arms",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 face-on grand two-armed spiral GALAXY, ONLY outer blue arms. Two graceful winding logarithmic spiral arms made of thousands of long ultramarine cobalt turquoise and violet impasto dashes with scattered cream young stars. Center 20% diameter transparent, no core. Outer tips very delicate broken individual strokes. Inter-arm gaps genuinely transparent. Celestial Milky Way as van Gogh might paint it. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/galaxy_blue_arms.png"
+    },
+    {
+      "key": "galaxy_gold_arms",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 face-on spiral galaxy, ONLY two fine warm gold inner spiral arm filaments, feathered broken threads of cream ochre and cadmium yellow curving clockwise from an empty center outward. 80% transparent overall, winding arms sparse and elegant, with isolated curved bristle dashes. No central disk or background. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/galaxy_gold_arms.png"
+    },
+    {
+      "key": "galaxy_core",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square isolated luminous spiral GALAXY CORE. Compact soft-edged oval honey gold, peach and cream heart built from dense distinct curved impasto strokes, short blue violet spiral wisps surrounding it. Center bright yet pigment visible, no blown white bloom. Entire subject fills middle 65% with delicate fully transparent fading paint tips. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/galaxy_core.png"
+    },
+    {
+      "key": "galaxy_dust",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 ONLY delicate curved shadow dust lanes of a face-on two-armed spiral galaxy, Prussian blue and deep violet intertwined long loose brushstroke filaments. Mostly transparent, 85% clear. Scattered cobalt highlights distinguish dark paint from space. No disk core or stars. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/galaxy_dust.png"
+    },
+    {
+      "key": "satellite_galaxy",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square one small elegant isolated tilted spiral galaxy seen at slight oblique angle, two luminous blue and gold arms with tiny cream core, entire complete shape and wispy tips. Dashes of tangible directional oil paint. No rectangular background, no extra galaxies. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/satellite_galaxy.png"
+    },
+    {
+      "key": "laniakea_gold",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 immense Laniakea supercluster gravitational cosmic web as a flowing golden feather: organic branching river-like filaments and junctions, threads made of individually visible gold ochre cream impasto dashes, tiny galaxy knots at intersections, sweeping flows converge off-center. 75% transparent empty voids. Irregular outer branch tips fully visible. Not a geometric polygon lattice, no lines drawn with ruler. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/laniakea_gold.png"
+    },
+    {
+      "key": "laniakea_blue",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 distant cosmic filament web: widely branching delicate ultramarine turquoise violet long feather-like brush threads, tiny cream galaxy flecks at a few junctions. Very sparse organic gravity filaments with large genuinely transparent cosmic voids, 85% clear. Complete branch tips, no geometric wireframe. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/laniakea_blue.png"
+    },
+    {
+      "key": "cmb_map",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 2:1 seamless EQUIRECTANGULAR full-sky cosmic microwave background painting. Dense all-over mottled patches of Prussian blue, turquoise, vermilion, muted ochre, cream, violet. Each patch made of elongated hand-laid curving Van Gogh oil strokes, not squares or pixel noise. Larger cold blue fields and smaller warm orange eddies, deeply beautiful woven painted primordial light. Edge-to-edge complete flat map, no globe shape, no black regions, no stars, no labels. Left and right edges visually continuous.",
+      "path": "assets/deep/cmb_map.png",
+      "equirectangular": true
+    },
+    {
+      "key": "ouroboros_paint",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square spectacular swirling wreath of primordial painted color, two interwoven streams of red ochre gold and cobalt turquoise violet curling into a continuous circular ouroboros-like flow. Abstract paint only, no literal snake or animal. Transparent central opening 45% diameter, outer tips feathered. Tangible long curved van Gogh bristle strokes. Complete luminous circle. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/ouroboros_paint.png"
+    },
+    {
+      "key": "return_book",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 3:2 close view of an open antique book held naturally in two human hands with deep blue nineteenth-century wool sleeve cuffs entering from lower corners. Warm ivory pages glow softly with candle-like gold paint, each page carries abstract short ochre handwritten-like brush dashes with NO legible letters. Book tilted slightly away from viewer, both page planes and thick aged spine visible. Thoughtful tranquil Van Gogh oil painting, visible long bristle strokes, natural anatomy. Full book and hands, no person face, no room, no candle or background. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/return_book.png"
+    },
+    {
+      "key": "return_sparks",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Square sparse spiral of tiny gold cream ochre impasto flecks drifting inward toward a small empty central point. 90% clear canvas, scattered single tapered oil brushstrokes, graceful airy swirl. No background, no large stars, no icons. Real transparent alpha outside the painted subject, complete unclipped subject with generous margins, no opaque background, no rectangular matte, no drop shadow. ",
+      "path": "assets/deep/return_sparks.png"
+    },
+    {
+      "key": "deep_sky",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production bitmap layer for a richly immersive 2.5D Vincent van Gogh cosmic world. Hand-painted traditional oil paint with long individual curved strokes, visible bristle ridges and impasto, rhythmic blue gold dashes, woven pigment, expressive imperfect forms. No glossy CGI, vector, photography, words, letters, diagrams, labels, frame, watermark. Wide 2:1 quietly magnificent interstellar night, edge-to-edge long curved Prussian blue indigo lavender and violet oil strokes, hundreds of tiny warm gold and icy cream star dashes. Broad quiet dark blue negative regions, gentle sweeping blue currents at edges. No main galaxy, no central spiral, no planets, no black void. Fine directional impasto marks with a much quieter center, profound enormous scale.",
+      "path": "assets/deep/deep_sky.png"
+    },
+    {
+      "key": "gold_streak",
+      "transparent": true,
+      "path": "assets/deep/gold_streak.png",
+      "prompt": "Use case: stylized-concept. One single long thin VERTICAL tapered brush stroke, portrait 1:3 canvas, thick Van Gogh oil paint cadmium gold and cream along a narrow central bristle ridge with indigo flecks along one edge, length 80% canvas height and width 12% canvas width, fine irregular fibrous feathered tips. Isolated whole stroke on genuinely transparent alpha, no other strokes, no ray burst, no sky, no words, no matte or glow rectangle. Production texture for tiny gold streaks flying past a 2.5D oil-painted star nebula."
+    }
+  ]
+}
