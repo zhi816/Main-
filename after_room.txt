@@ -52,7 +52,7 @@
       function addP(beat, notes, length = 2, velocity = 0.70) {
         const list = Array.isArray(notes) ? notes : [notes];
         for (const midi of list) {
-          pianoEvents.push({ beat, midi, length, velocity });
+          pianoEvents.push({ beat, midi, length, velocity 
         }
       }
 
