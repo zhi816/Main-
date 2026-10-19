@@ -96,6 +96,25 @@ if(typeof module!=='undefined'&&module.exports)module.exports=createWheelTravel;
 
 const wheelTravel=createWheelTravel({duration:RUN_SECONDS,boundaries:[19,32,52,172,212,246,282,316,350,394,418,446,466,490]});
 const FLIGHT={tilt:58,lower:78,upper:112,edge:136,coast:144,turn:160,reveal:168,end:172};
+const LOAD_WINDOWS={localDetail:12,ascent:52,solar:172,deep:282,solarEnd:320,return:464};
+const familyKeys=family=>Object.entries(CHAMBER_ART).filter(([,art])=>art.family===family).map(([key])=>key);
+const BOOT_REQUIRED_ART=new Set([
+ 'wall_back','wall_left','wall_right','floor','ceiling','rug','window_frame','window_shutter','ceiling_beam',
+ 'bookcase_front','bookcase_side','bookcase_top','reader','table_legs','table_top','book_stack','candle_base','flame',
+ 'zenith_sky','sky','sky_spiral','cloud_band','distant_valley','guanyin_ridge','taiwan_town','village_peninsula',
+ 'bluff_bank','river_surface','fishing_boat','garden_mid','fort_hero'
+]);
+const LOCAL_DETAIL_ART=new Set([
+ 'banyan_trunk','banyan_crown','tree_secondary','court_paving','garden_near','foundation_grass',
+ 'grass_lances','grass_sedge','grass_iris','wild_grass','flower_shrub'
+]);
+const CHAMBER_ART_KEYS=new Set(familyKeys('chamber'));
+const TAMSUI_ART_KEYS=new Set(familyKeys('tamsui'));
+const ASCENT_ART=new Set(familyKeys('ascent'));
+const SOLAR_ART=new Set([...familyKeys('solar'),'solar_earth_map']);
+const SOLAR_TRANSITION_ART=new Set(['vortex_cloud_gold','vortex_cloud_teal','vortex_cloud_cobalt','wind_strokes']);
+const DEEP_ART=new Set(familyKeys('deep'));
+const RETURN_ART=new Set([...familyKeys('chamber'),...familyKeys('tamsui'),'return_book','return_sparks','cmb_map','ouroboros_paint']);
 let cameraPose={pitch:0,yaw:0,roll:0};
 let orbitalSky,atmosphere;
 let stageFade=1,flightPhase='chamber';
@@ -103,9 +122,9 @@ let flight,portraitFlight,lookTrack,fortHeight=10;
 let renderer,scene,camera,spiral,canopy,flame,glow,previous=performance.now(),fpsStart=previous,frames=0,fps=60,renderScale=1,lastUI=0,toastTimer;
 const target=new THREE.Vector3(),euler=new THREE.Euler(0,0,0,'YXZ'),q=new THREE.Quaternion();
 const lamp=new THREE.Vector3(.75,2.30,.67);
-/* Bounded image residency; visible art is mandatory, nearby art is speculative. */
+/* Bounded image residency; the boot manifest is critical and stage assets are speculative. */
 const mobileDevice=matchMedia('(pointer:coarse)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||navigator.maxTouchPoints>1&&innerWidth<1100;
-const performanceProfile={tier:mobileDevice?'mobile':'desktop',concurrency:mobileDevice?2:3,textureBudget:(mobileDevice?48:160)*1024*1024,pixelBudget:mobileDevice?850000:1800000,maxDpr:1.5};
+const performanceProfile={tier:mobileDevice?'mobile':'desktop',downloadConcurrency:mobileDevice?4:6,decodeConcurrency:mobileDevice?1:2,uploadPerFrame:1,textureBudget:(mobileDevice?48:160)*1024*1024,pixelBudget:mobileDevice?850000:1800000,maxDpr:1.5};
 document.body.classList.toggle('performance-mobile',mobileDevice);
 let adaptiveScale=1,buffering=false,animationFrame=0,lastRendered=-Infinity,staticFrame='',lastArtUI=0,simulationFrames=0;
 const artFrustum=new THREE.Frustum(),artMatrix=new THREE.Matrix4();
@@ -118,75 +137,132 @@ function createArtStore(){
   if(['solar_earth_map','earth_clouds'].includes(key))texture.wrapS=THREE.RepeatWrapping;
   textures[key]=texture;return[key,{key,...variant,texture,state:'empty',image:null,used:0,error:null}];
  }));
- let required=new Set(),wanted=new Set(),running=0,queuedBytes=0,residentBytes=0,peakBytes=0,downloadedBytes=0,loads=0,evictions=0,disposed=false;
- const decoded=r=>r.width*r.height*4;
- function evict(r){
+ let required=new Set(),wanted=new Set(),prefetchBlocked=new Set(),downloadRunning=0,decodeRunning=0,queuedBytes=0,residentBytes=0,peakBytes=0,downloadedBytes=0,loads=0,evictions=0,disposed=false;
+ const decoded=r=>Math.max(0,(r.width||0)*(r.height||0)*4);
+ const pendingDecode=[],uploadQueue=[];
+ let pumping=false;
+ function clearImage(r){if(!r.image)return;r.image.onload=r.image.onerror=null;r.image.src='';r.image=null;}
+ function discard(r){queuedBytes=Math.max(0,queuedBytes-(r.reservedBytes||0));r.reservedBytes=0;clearImage(r);r.state='empty';r.error=null;}
+ function fail(r,error){queuedBytes=Math.max(0,queuedBytes-(r.reservedBytes||0));r.reservedBytes=0;clearImage(r);r.state='failed';r.failedAt=performance.now();r.error=error||'image-load-failed';}
+ function evict(r,blockPrefetch=false){
   if(r.state!=='ready')return;
-  residentBytes-=decoded(r);r.texture.dispose();r.texture.source=new THREE.Source(fallback);r.texture.needsUpdate=true;
-  r.image.onload=r.image.onerror=null;r.image.src='';r.image=null;r.state='empty';evictions++;
+  residentBytes=Math.max(0,residentBytes-decoded(r));r.texture.dispose();r.texture.source=new THREE.Source(fallback);r.texture.needsUpdate=true;
+  clearImage(r);r.state='empty';r.error=null;if(blockPrefetch)prefetchBlocked.add(r.key);evictions++;
  }
  function trim(){
   for(const r of records.values())if(r.state==='ready'&&!required.has(r.key)&&!wanted.has(r.key))evict(r);
   const spare=[...records.values()].filter(r=>r.state==='ready'&&!required.has(r.key)).sort((a,b)=>a.used-b.used);
-  for(const r of spare){if(residentBytes<=performanceProfile.textureBudget)break;evict(r);}
+  for(const r of spare){if(residentBytes<=performanceProfile.textureBudget*.86)break;evict(r,wanted.has(r.key));}
  }
- function pump(){
+ function nextQueued(queue){
+  for(let i=0;i<queue.length;i++){
+   const r=queue[i];
+   if(required.has(r.key)||wanted.has(r.key))return queue.splice(i,1)[0];
+   queue.splice(i,1);discard(r);i--;
+  }
+  return null;
+ }
+ function pumpDecodes(){
+  while(!disposed&&decodeRunning<performanceProfile.decodeConcurrency&&pendingDecode.length){
+   const r=nextQueued(pendingDecode);if(!r||r.state!=='decode-queued')continue;
+   r.state='decoding';decodeRunning++;
+   const image=r.image;
+   let decodeTimer;
+   const decodeTask=image?.decode?Promise.resolve().then(()=>image.decode()).catch(()=>undefined):Promise.resolve();
+   const decodeFallback=new Promise(resolve=>{decodeTimer=setTimeout(resolve,700);});
+   Promise.race([decodeTask,decodeFallback]).then(()=>{
+    clearTimeout(decodeTimer);
+    decodeRunning--;
+    if(disposed){fail(r,'disposed');pump();return;}
+    if(r.state!=='decoding'){pump();return;}
+    if(!required.has(r.key)&&!wanted.has(r.key)){discard(r);pump();return;}
+    r.width=image.naturalWidth||r.width;r.height=image.naturalHeight||r.height;r.state='upload-queued';uploadQueue.push(r);pump();
+   },error=>{decodeRunning--;fail(r,error?.message||'image-decode-failed');pump();});
+  }
+ }
+ function pumpDownloads(){
   if(disposed||document.hidden||S.contextLost)return;
-  trim();
-  for(const key of [...required,...wanted]){
-   if(running>=performanceProfile.concurrency)break;
+  const keys=[...required,...wanted];
+  for(const key of keys){
+   if(downloadRunning>=performanceProfile.downloadConcurrency)break;
    const r=records.get(key);if(!r||!['empty','failed'].includes(r.state)||r.state==='failed'&&performance.now()-r.failedAt<2000)continue;
-   if(!required.has(key)&&(!S.ready||residentBytes+queuedBytes+decoded(r)>performanceProfile.textureBudget))continue;
-   const reserved=decoded(r);queuedBytes+=reserved;running++;r.state='loading';
-   const image=new Image();image.decoding='async';
-   image.onload=async()=>{
-    image.onload=image.onerror=null;
-    try{if(image.decode)await image.decode();}catch(e){/* onload already guarantees a usable image */}
-    queuedBytes-=reserved;
-    if(disposed){image.src='';running--;return;}
-    r.width=image.naturalWidth;r.height=image.naturalHeight;r.image=image;r.texture.dispose();r.texture.source=new THREE.Source(image);r.texture.needsUpdate=true;
-    r.state='ready';r.error=null;r.used=performance.now();residentBytes+=decoded(r);peakBytes=Math.max(peakBytes,residentBytes);downloadedBytes+=r.bytes;loads++;
-    if(renderer&&!S.contextLost)renderer.initTexture(r.texture);
-    running--;trim();pump();
-   };
-   image.onerror=()=>{queuedBytes-=reserved;r.state='failed';r.failedAt=performance.now();r.error='圖片暫時無法載入';image.onload=image.onerror=null;image.src='';running--;pump();};
+   if(!required.has(key)&&prefetchBlocked.has(key))continue;
+   const reserved=decoded(r),effectiveBudget=performanceProfile.textureBudget*.86;
+   if(!required.has(key)&&(!S.ready||residentBytes+queuedBytes+reserved>effectiveBudget))continue;
+   r.reservedBytes=reserved;queuedBytes+=reserved;downloadRunning++;r.state='loading';
+   const image=new Image();image.decoding='async';r.image=image;let settled=false;
+   const onError=()=>{if(settled)return;settled=true;downloadRunning--;fail(r,'image-load-failed');pump();};
+   image.onerror=onError;
+   image.onload=()=>{if(settled)return;settled=true;image.onload=image.onerror=null;downloadRunning--;r.state='decode-queued';pendingDecode.push(r);pump();};
    image.src=r.uri;
   }
  }
+ function pump(){
+  if(pumping)return;pumping=true;
+  try{trim();pumpDecodes();pumpDownloads();}
+  finally{pumping=false;}
+ }
+ function flushUploads(limit=performanceProfile.uploadPerFrame){
+  if(disposed||!renderer||S.contextLost)return;
+  let count=0;
+  while(uploadQueue.length&&(limit===Infinity||count<limit)){
+   const r=uploadQueue.shift();if(!r||r.state!=='upload-queued')continue;
+   if(!required.has(r.key)&&!wanted.has(r.key)){discard(r);continue;}
+   try{
+    r.texture.dispose();r.texture.source=new THREE.Source(r.image);r.texture.needsUpdate=true;renderer.initTexture(r.texture);
+    queuedBytes=Math.max(0,queuedBytes-(r.reservedBytes||0));r.reservedBytes=0;r.state='ready';r.error=null;r.used=performance.now();residentBytes+=decoded(r);peakBytes=Math.max(peakBytes,residentBytes);downloadedBytes+=r.bytes;loads++;count++;
+   }catch(error){fail(r,error?.message||'texture-upload-failed');}
+  }
+  trim();pump();
+ }
  return{
-  request(keys,prefetch=[]){required=new Set(keys);wanted=new Set(prefetch);const now=performance.now();for(const key of required){const r=records.get(key);if(r)r.used=now;}pump();return[...required].every(key=>records.get(key)?.state==='ready');},
-  status(){const pending=[...required].filter(key=>records.get(key)?.state!=='ready');return{tier:performanceProfile.tier,resident:[...records.values()].filter(r=>r.state==='ready').length,residentBytes,estimatedGpuBytes:Math.round(residentBytes*4/3),peakDecodedBytes:peakBytes,budgetBytes:performanceProfile.textureBudget,running,pending,required:required.size,loads,evictions,downloadedBytes,failed:pending.filter(key=>records.get(key)?.state==='failed')};},
+  request(keys,prefetch=[]){required=new Set(keys);wanted=new Set(prefetch);for(const key of [...prefetchBlocked])if(!wanted.has(key))prefetchBlocked.delete(key);const now=performance.now();for(const key of required){prefetchBlocked.delete(key);const r=records.get(key);if(r)r.used=now;}pump();flushUploads(S.ready?performanceProfile.uploadPerFrame:Infinity);return[...required].every(key=>records.get(key)?.state==='ready');},
+  flushUploads,
+  status(){const pending=[...required].filter(key=>records.get(key)?.state!=='ready');return{tier:performanceProfile.tier,resident:[...records.values()].filter(r=>r.state==='ready').length,residentBytes,estimatedGpuBytes:Math.round(residentBytes*4/3),peakDecodedBytes:peakBytes,budgetBytes:performanceProfile.textureBudget,downloadRunning,decodeRunning,uploadQueue:uploadQueue.length,queuedBytes,running:downloadRunning+decodeRunning,prefetchBlocked:[...prefetchBlocked],pending, pendingStates:pending.map(key=>key+':'+(records.get(key)?.state||'missing')),required:required.size,loads,evictions,downloadedBytes,failed:pending.filter(key=>records.get(key)?.state==='failed')};},
   restore(){for(const r of records.values())if(r.state==='ready')r.texture.needsUpdate=true;pump();},
-  dispose(){disposed=true;for(const r of records.values())evict(r);}
+  dispose(){disposed=true;for(const r of records.values()){if(r.state==='ready')evict(r);else clearImage(r);}pendingDecode.length=0;uploadQueue.length=0;}
  };
 }
 const artStore=createArtStore();
+function assetAllowedAt(key,seconds){
+ if(BOOT_REQUIRED_ART.has(key))return true;
+ if(LOCAL_DETAIL_ART.has(key))return seconds>=LOAD_WINDOWS.localDetail||seconds>=LOAD_WINDOWS.return;
+ if(SOLAR_TRANSITION_ART.has(key))return seconds>=LOAD_WINDOWS.ascent&&seconds<LOAD_WINDOWS.solarEnd;
+ if(SOLAR_ART.has(key))return seconds>=LOAD_WINDOWS.solar&&seconds<LOAD_WINDOWS.solarEnd;
+ if(ASCENT_ART.has(key))return seconds>=LOAD_WINDOWS.ascent&&seconds<LOAD_WINDOWS.return;
+ if(DEEP_ART.has(key))return seconds>=LOAD_WINDOWS.deep;
+ if((CHAMBER_ART_KEYS.has(key)||TAMSUI_ART_KEYS.has(key))&&seconds<LOAD_WINDOWS.localDetail)return false;
+ return true;
+}
+function stagePrefetch(seconds,targetSeconds=seconds){
+ const focus=Math.max(seconds,Number.isFinite(targetSeconds)?targetSeconds:seconds),keys=[],seen=new Set();
+ const add=items=>{for(const key of items)if(!seen.has(key)){seen.add(key);keys.push(key);}};
+ add(BOOT_REQUIRED_ART);
+ if(focus<LOAD_WINDOWS.ascent){add(LOCAL_DETAIL_ART);add(ASCENT_ART);}
+ else if(focus<LOAD_WINDOWS.solar){add(ASCENT_ART);add(SOLAR_ART);}
+ else if(focus<LOAD_WINDOWS.solarEnd){add(SOLAR_ART);add(SOLAR_TRANSITION_ART);add(DEEP_ART);}
+ else if(focus<LOAD_WINDOWS.return){add(DEEP_ART);add(RETURN_ART);}
+ else add(RETURN_ART);
+ return keys;
+}
 function visibleArt(){
  scene.updateMatrixWorld();camera.updateMatrixWorld();camera.matrixWorldInverse.copy(camera.matrixWorld).invert();
  artMatrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);artFrustum.setFromProjectionMatrix(artMatrix);
- const keys=new Set();
+ const seconds=S.t*RUN_SECONDS,keys=new Set(),addKey=key=>{if(key&&assetAllowedAt(key,seconds))keys.add(key);};
  scene.traverseVisible(object=>{
   if(!object.isMesh)return;
   const mat=object.material,u=mat?.uniforms;if(!u)return;
   const alpha=(u.uOpacity?.value??1)*(u.uStageFade?.value??1);
   if(alpha<.003){object.layers.disable(0);return;}object.layers.enable(0);
   if(object.frustumCulled&&!artFrustum.intersectsObject(object))return;
-  if(mat.userData.asset)keys.add(mat.userData.asset);
-  if(u.uIslandMask?.value>.5)keys.add('taiwan_land');
+  if(mat.userData.asset)addKey(mat.userData.asset);
+  if(u.uIslandMask?.value>.5)addKey('taiwan_land');
  });
  return keys;
 }
-function nearbyArt(seconds){
- const keys=new Set(),ranges=[];
- if(seconds<65||seconds>448)ranges.push('chamber','tamsui');
- if(seconds<205||seconds>475)ranges.push('ascent');
- if(seconds>150&&seconds<325)ranges.push('solar');
- if(seconds>265&&seconds<490)ranges.push('deep');
- for(const [key,art]of Object.entries(CHAMBER_ART))if(ranges.includes(art.family))keys.add(key);
- return keys;
-}
 function artReady(now){
- const ready=artStore.request(visibleArt(),nearbyArt(S.t*RUN_SECONDS));if(buffering&&ready){fpsStart=now;frames=0;}buffering=!ready;
+ const seconds=S.t*RUN_SECONDS,required=S.ready?visibleArt():BOOT_REQUIRED_ART,wanted=S.ready?stagePrefetch(seconds,S.target*RUN_SECONDS):[];
+ const ready=artStore.request(required,wanted);if(buffering&&ready){fpsStart=now;frames=0;}buffering=!ready;
  document.body.classList.toggle('buffering',S.ready&&buffering);
  if(buffering&&now-lastArtUI>250){const status=artStore.status();$('buffer-copy').textContent=status.failed.length?'圖片載入中，正在重試…':'正在鋪開下一段風景…';lastArtUI=now;}
  return ready;
@@ -1037,15 +1113,17 @@ async function boot(){
   document.body.classList.add('loaded');$('error').style.display='flex';$('error').textContent='請透過網站網址或本機伺服器開啟此版本，讓每一段風景能分別載入。';return;
  }
  try{
+   const started=performance.now();
+   artStore.request(BOOT_REQUIRED_ART,[]);
   setup();
-  const started=performance.now();
   while(!artReady(performance.now())){
    const status=artStore.status();$('loading-copy').textContent='正在鋪開書房與窗外的風景…';$('load-progress').style.width=((status.required-status.pending.length)/Math.max(1,status.required)*100)+'%';
-   if(performance.now()-started>60000)throw new Error('圖片載入較久，請確認網路後重新整理。');
+   if(performance.now()-started>60000){const status=artStore.status();throw new Error(`圖片載入較久，尚未完成：${status.pendingStates.join(', ')||'未知素材'}。`);}
    await new Promise(resolve=>setTimeout(resolve,40));
   }
-  if(renderer.compileAsync)await renderer.compileAsync(scene,camera);
-  renderer.render(scene,camera);S.ready=true;buffering=false;setAuto(!reduced);setMotion(!reduced);document.body.classList.add('loaded');previous=fpsStart=performance.now();animationFrame=requestAnimationFrame(animate);
+   $('load-progress').style.width='100%';renderer.render(scene,camera);S.ready=true;buffering=false;setAuto(!reduced);setMotion(!reduced);document.body.classList.add('loaded');previous=fpsStart=performance.now();animationFrame=requestAnimationFrame(animate);
+   const compileRemaining=()=>{if(renderer.compileAsync&&!S.contextLost)Promise.resolve(renderer.compileAsync(scene,camera)).catch(()=>{});};
+   if(window.requestIdleCallback)window.requestIdleCallback(compileRemaining,{timeout:1500});else setTimeout(compileRemaining,120);
  }catch(error){showFailure(error);}
 }
 boot();
