@@ -20,10 +20,10 @@
 <canvas id="painting" tabindex="0" aria-label="由獨立油畫構成的書房與淡水紅毛城。移動鼠標或拖曳可小幅環視，滾輪沿路線穿窗、接近紅毛城。"></canvas>
 <div class="vignette"></div><div class="linen"></div>
 <header class="top hud"><div><h1 class="title">窗外，淡水星夜。</h1><div class="title-sub">FROM A CANDLE TO THE COSMOS</div></div><div class="edition"><div id="shot-label">第一鏡 · 燭光書房</div><nav class="shot-nav" aria-label="鏡頭位置"><button id="scene-room" class="shot-button active" aria-pressed="true">書房</button><button id="scene-fort" class="shot-button" aria-pressed="false">紅毛城</button><button id="scene-ascent" class="shot-button" aria-pressed="false">升空</button><button id="scene-taiwan" class="shot-button" aria-pressed="false">台灣</button><button id="scene-solar" class="shot-button" aria-pressed="false">太陽系</button><button id="scene-starry" class="shot-button" aria-pressed="false">星雲</button><button id="scene-galaxy" class="shot-button" aria-pressed="false">銀河</button><button id="scene-cosmos" class="shot-button" aria-pressed="false">宇宙</button></nav></div></header>
-<nav id="chapters" class="chapter-ruler hud" aria-label="九大旅程章節"><span id="chapter-marker"></span></nav><div id="letter" class="letter hud"><div id="letter-cn"></div><div id="letter-en"></div></div><footer class="bottom hud"><div class="hint"><span id="hint-copy">沿著燭光，緩緩走近窗邊。</span><small>SCROLL TO TRAVEL · H TO HIDE</small></div><div class="controls"><button id="play" class="control active" aria-label="暫停攝影機" aria-pressed="true"><span id="play-icon" class="icon">Ⅱ</span><span id="play-text">鏡頭暫停</span></button><button id="motion" class="control active" aria-label="關閉局部動態" aria-pressed="true"><span class="icon">≈</span><span id="motion-text">動態開</span></button><button id="sound" class="control active" aria-pressed="true" aria-label="關閉古典三角鋼琴與大提琴（巴哈夏康舞曲）"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-text">CHACONNE</span></button><button id="texture" class="control" aria-pressed="true" aria-label="切換亞麻紋理">紋理</button><button id="home" class="control" aria-label="回到書房起點" title="回到書房">↶</button><button id="help" class="control" aria-label="操作說明">?</button></div><div class="status">FORT · RIVER · BANYAN · GUANYIN<br>ONE STARRY SKY / NINE CHAPTERS</div></footer>
+<nav id="chapters" class="chapter-ruler hud" aria-label="九大旅程章節"><span id="chapter-marker"></span></nav><div id="letter" class="letter hud"><div id="letter-cn"></div><div id="letter-en"></div></div><footer class="bottom hud"><div class="hint"><span id="hint-copy">沿著燭光，緩緩走近窗邊。</span><small>SCROLL TO TRAVEL · H TO HIDE</small></div><div class="controls"><button id="play" class="control active" aria-label="暫停攝影機" aria-pressed="true"><span id="play-icon" class="icon">Ⅱ</span><span id="play-text">鏡頭暫停</span></button><button id="motion" class="control active" aria-label="關閉局部動態" aria-pressed="true"><span class="icon">≈</span><span id="motion-text">動態開</span></button><button id="sound" class="control active" aria-pressed="true" aria-label="關閉古典三角鋼琴與大提琴（蕭邦第四號敘事曲 Op.52）"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-text">OP.52</span></button><button id="texture" class="control" aria-pressed="true" aria-label="切換亞麻紋理">紋理</button><button id="home" class="control" aria-label="回到書房起點" title="回到書房">↶</button><button id="help" class="control" aria-label="操作說明">?</button></div><div class="status">FORT · RIVER · BANYAN · GUANYIN<br>ONE STARRY SKY / NINE CHAPTERS</div></footer>
 <input id="route" type="range" min="0" max="1" step=".001" value="0" aria-label="書房、穿窗、紅毛城、升空與回望台灣的鏡頭進度">
 <div id="loading" role="status"><div class="loading-title">窗外，淡水星夜。</div><div class="loading-line"><span id="load-progress"></span></div><div id="loading-copy" class="loading-copy">正在鋪開油畫的每一層…</div></div>
-<dialog id="help-dialog"><button class="close" aria-label="關閉說明">×</button><h2>沿著星夜，走向深空。</h2><dl><dt>鼠標／單指拖曳</dt><dd>小幅環視，觀看前後景的視差</dd><dt>滾輪／底部進度條</dt><dd>沿攝影機路線前進或退回</dd><dt>書房／紅毛城</dt><dd>快速移到對應鏡頭的位置</dd><dt>升空</dt><dd>從紅毛城開始穿雲與回望</dd><dt>台灣</dt><dd>停留觀看山海全景</dd><dt>太陽系</dt><dd>從台灣繼續飛行，回望地月，再走向太陽火輪與八大行星</dd><dt>星雲／銀河／宇宙</dt><dd>跳到後半段旅程，宇宙最終會回到書房</dd><dt>右側刻度</dt><dd>定位九個章節</dd><dt>S</dt><dd>開啟／關閉三角鋼琴與大提琴（巴哈《夏康舞曲》BWV 1004）</dd><dt>Space</dt><dd>播放／暫停攝影機</dd><dt>M</dt><dd>開啟／關閉燭火、河流、天空與星球動態</dd><dt>↶／Home</dt><dd>回到書房起點</dd><dt>H</dt><dd>隱藏／顯示介面</dd></dl><p>全程約 8 分 22 秒，自動播放會循環回到書房。配樂預設自動播放（若瀏覽器限制自動發聲，於畫面任意點擊或互動後即會響起）；曲目為巴哈《D 小調夏康舞曲》BWV 1004（Busoni 古典三角鋼琴改編版，自 2 分鐘處展開）搭配溫暖大提琴低音鋪底。</p><p>停下鏡頭時，雲與水仍會流動，地球繼續自轉，月球與行星繼續繞行。</p><div class="quality-label"><label for="quality">畫面細緻度</label><span id="quality-value">標準</span></div><input id="quality" type="range" min=".65" max="1.5" step=".05" value="1"></dialog>
+<dialog id="help-dialog"><button class="close" aria-label="關閉說明">×</button><h2>沿著星夜，走向深空。</h2><dl><dt>鼠標／單指拖曳</dt><dd>小幅環視，觀看前後景的視差</dd><dt>滾輪／底部進度條</dt><dd>沿攝影機路線前進或退回</dd><dt>書房／紅毛城</dt><dd>快速移到對應鏡頭的位置</dd><dt>升空</dt><dd>從紅毛城開始穿雲與回望</dd><dt>台灣</dt><dd>停留觀看山海全景</dd><dt>太陽系</dt><dd>從台灣繼續飛行，回望地月，再走向太陽火輪與八大行星</dd><dt>星雲／銀河／宇宙</dt><dd>跳到後半段旅程，宇宙最終會回到書房</dd><dt>右側刻度</dt><dd>定位九個章節</dd><dt>S</dt><dd>開啟／關閉三角鋼琴與大提琴（蕭邦《第四號敘事曲》Op. 52）</dd><dt>Space</dt><dd>播放／暫停攝影機</dd><dt>M</dt><dd>開啟／關閉燭火、河流、天空與星球動態</dd><dt>↶／Home</dt><dd>回到書房起點</dd><dt>H</dt><dd>隱藏／顯示介面</dd></dl><p>全程約 8 分 22 秒，自動播放會循環回到書房。配樂預設自動播放（若瀏覽器限制自動發聲，於畫面任意點擊或互動後即會響起）；曲目為蕭邦《F 小調第四號敘事曲》Op. 52（古典三角鋼琴全曲實錄序列，自開頭展開）搭配溫暖大提琴低音鋪底。</p><p>停下鏡頭時，雲與水仍會流動，地球繼續自轉，月球與行星繼續繞行。</p><div class="quality-label"><label for="quality">畫面細緻度</label><span id="quality-value">標準</span></div><input id="quality" type="range" min=".65" max="1.5" step=".05" value="1"></dialog>
 <div id="buffer-copy" role="status" aria-live="polite">正在鋪開下一段風景…</div><div id="toast" role="status"></div><div id="error"></div><noscript>請開啟 JavaScript，讓油畫展開。</noscript>
 <!--
 The MIT License
@@ -1037,11 +1037,11 @@ function deepUI(seconds){
  }
 }
 
-/* Sampled classical Grand Piano (Salamander C5 voiced for warm Steinway-like timbre) & bowed Cello playing J.S. Bach / F. Busoni - Chaconne in D minor, BWV 1004 (from 2:00). */
+/* Sampled classical Grand Piano (Salamander C5 voiced for warm Steinway-like timbre) & bowed Cello playing Frédéric Chopin - Ballade No. 4 in F Minor, Op. 52 (from 0:00). */
 const PIANO_SAMPLES=[[21,'A0'],[24,'C1'],[27,'Ds1'],[30,'Fs1'],[33,'A1'],[36,'C2'],[39,'Ds2'],[42,'Fs2'],[45,'A2'],[48,'C3'],[51,'Ds3'],[54,'Fs3'],[57,'A3'],[60,'C4'],[63,'Ds4'],[66,'Fs4'],[69,'A4'],[72,'C5'],[75,'Ds5'],[78,'Fs5'],[81,'A5'],[84,'C6'],[87,'Ds6'],[90,'Fs6'],[93,'A6'],[96,'C7'],[99,'Ds7'],[102,'Fs7'],[105,'A7'],[108,'C8']];
 const CELLO_SAMPLES=[[36,'cello_C2'],[41,'cello_F2'],[45,'cello_A2'],[50,'cello_D3'],[55,'cello_G3'],[60,'cello_C4']];
-const CORE_SAMPLES=new Set(['C2','A2','Ds3','Fs3','A3','C4','Ds4','Fs4','A4','C5','Ds5','A5','cello_C2','cello_A2','cello_D3']);
-const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),celloBuffers:new Map(),rawCache:new Map(),active:new Set(),timer:null,note:0,noteIndex:0,celloIndex:0,offset:0,startTime:0,scoreNotes:null,celloNotes:null,scoreDuration:684.42,loadingPromise:null,ready:false,lastUI:0,
+const CORE_SAMPLES=new Set(['C3','A3','C4','Fs4','C5','Ds5','cello_C2','cello_A2']);
+const deepSound={ctx:null,on:true,started:false,buffers:new Map(),pianoBuffers:new Map(),celloBuffers:new Map(),rawCache:new Map(),active:new Set(),timer:null,note:0,noteIndex:0,celloIndex:0,offset:0,startTime:0,scoreNotes:null,celloNotes:null,scoreDuration:646.41,loadingPromise:null,ready:false,lastUI:0,
  random(seed){let n=seed>>>0;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};},
  fetchRaw(name){
   if(this.rawCache.has(name))return this.rawCache.get(name);
@@ -1049,7 +1049,7 @@ const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),cell
   this.rawCache.set(name,p);return p;
  },
  prefetch(){
-  this.fetchRaw('chaconne.json').catch(()=>{});
+  this.fetchRaw('ballade4.json').catch(()=>{});
   for(const[,name]of PIANO_SAMPLES)if(CORE_SAMPLES.has(name))this.fetchRaw(`${name}.mp3`).catch(()=>{});
   for(const[,name]of CELLO_SAMPLES)if(CORE_SAMPLES.has(name))this.fetchRaw(`${name}.mp3`).catch(()=>{});
  },
@@ -1058,26 +1058,32 @@ const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),cell
   const raw=await this.fetchRaw(`${name}.mp3`),buf=await this.ctx.decodeAudioData(raw.slice(0));
   targetMap.set(midi,buf);this.buffers.set(name,buf);return buf;
  },
+ async loadRemainingSamples(){
+  const queue=[
+   ...PIANO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>[m,n,this.pianoBuffers]),
+   ...CELLO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>[m,n,this.celloBuffers])
+  ];
+  for(let i=0;i<queue.length;i+=4){
+   await Promise.all(queue.slice(i,i+4).map(([m,n,map])=>this.decodeSample(m,n,map).catch(()=>{})));
+  }
+ },
  async ensureReady(){
   if(this.ready)return;
   if(this.loadingPromise)return this.loadingPromise;
   this.loadingPromise=(async()=>{
-   const scoreData=await this.fetchRaw('chaconne.json');
+   const scoreData=await this.fetchRaw('ballade4.json');
    if(!this.scoreNotes){
     let tMs=0;
     this.scoreNotes=scoreData.notes.map(n=>{tMs+=n[0];return[tMs/1000,n[1],n[2],n[3]/1000];});
     this.celloNotes=scoreData.cello||[];
-    this.scoreDuration=scoreData.duration||684.42;
+    this.scoreDuration=scoreData.duration||646.41;
    }
    const coreTasks=[];
    for(const[midi,name]of PIANO_SAMPLES)if(CORE_SAMPLES.has(name))coreTasks.push(this.decodeSample(midi,name,this.pianoBuffers));
    for(const[midi,name]of CELLO_SAMPLES)if(CORE_SAMPLES.has(name))coreTasks.push(this.decodeSample(midi,name,this.celloBuffers));
    await Promise.all(coreTasks);
    this.ready=true;
-   Promise.all([
-    ...PIANO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>this.decodeSample(m,n,this.pianoBuffers).catch(()=>{})),
-    ...CELLO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>this.decodeSample(m,n,this.celloBuffers).catch(()=>{}))
-   ]);
+   this.loadRemainingSamples();
   })().finally(()=>{this.loadingPromise=null;});
   return this.loadingPromise;
  },
@@ -1086,8 +1092,21 @@ const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),cell
   for(const[m,buf]of map){const d=Math.abs(midi-m);if(d<bestDist){bestDist=d;bestMidi=m;bestBuf=buf;}}
   return bestBuf?{sampleMidi:bestMidi,buffer:bestBuf}:null;
  },
+ initContext(){
+  if(this.ctx)return this.ctx;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return null;
+  this.ctx=new AC();this.setup();
+  this.ctx.onstatechange=()=>{
+   this.syncUI();
+   if(this.ctx.state==='running'&&this.on){
+    this.ensureReady().then(()=>{if(this.on&&this.ctx.state==='running')this.startPlayback();}).catch(()=>{});
+   }
+  };
+  return this.ctx;
+ },
  async unlock(){
-  if(!this.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){tell('此瀏覽器無法播放音樂');return;}this.ctx=new AC();this.setup();}
+  if(!this.initContext()){tell('此瀏覽器無法播放音樂');return;}
   if(this.ctx.state==='suspended')await this.ctx.resume();
  },
  setup(){
@@ -1141,80 +1160,96 @@ const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),cell
  },
  schedule(){
   if(!this.on||!this.ready||!this.scoreNotes||this.ctx.state!=='running')return;
-  const c=this.ctx,elapsed=c.currentTime-this.startTime;
-  if(elapsed>this.offset+.75||elapsed<-.5)this.startTime=c.currentTime-this.offset;
-  const horizon=(c.currentTime-this.startTime)+.26;
+  const c=this.ctx,now=c.currentTime;
+  if(this.lastTickTime>0&&now-this.lastTickTime>.6)this.startTime+=now-this.lastTickTime;
+  this.lastTickTime=now;
+  this.offset=Math.max(0,now-this.startTime);
+  const horizon=this.offset+.26;
   while(this.noteIndex<this.scoreNotes.length&&this.scoreNotes[this.noteIndex][0]<=horizon){
    const[t,midi,vel,dur]=this.scoreNotes[this.noteIndex++];
    this.piano(midi,this.startTime+t,vel,dur);
-   this.offset=t;this.note++;
+   this.note++;
   }
   while(this.celloIndex<this.celloNotes.length&&this.celloNotes[this.celloIndex][0]<=horizon){
    const[t,midi,vel,dur]=this.celloNotes[this.celloIndex++];
    this.cello(midi,this.startTime+t,vel,dur);
   }
-  if(this.noteIndex>=this.scoreNotes.length&&(c.currentTime-this.startTime)>=this.scoreDuration+1.2){
-   this.noteIndex=0;this.celloIndex=0;this.offset=0;this.startTime=c.currentTime+.35;
+  if(this.noteIndex>=this.scoreNotes.length&&this.offset>=this.scoreDuration+1.2){
+   this.noteIndex=0;this.celloIndex=0;this.offset=0;this.startTime=now+.35;
   }
  },
  syncUI(){
+  const running=Boolean(this.on&&this.ctx&&this.ctx.state==='running');
   $('sound').classList.toggle('active',this.on);
   $('sound').setAttribute('aria-pressed',String(this.on));
-  $('sound').setAttribute('aria-label',this.on?'關閉古典三角鋼琴與大提琴（巴哈夏康舞曲）':'開啟古典三角鋼琴與大提琴（巴哈夏康舞曲）');
-  $('sound-text').textContent=this.on?'CHACONNE':'音樂';
+  $('sound').setAttribute('aria-label',this.on?'關閉古典三角鋼琴與大提琴（蕭邦第四號敘事曲 Op.52）':'開啟古典三角鋼琴與大提琴（蕭邦第四號敘事曲 Op.52）');
+  $('sound-text').textContent=!this.on?'音樂':(running?'OP.52':'點擊發聲');
  },
  startPlayback(){
-  if(!this.ctx||!this.on)return;
+  if(!this.ctx||!this.on||this.ctx.state!=='running')return;
   const now=this.ctx.currentTime;
   this.master.gain.cancelScheduledValues(now);
   this.master.gain.setTargetAtTime(.62,now,.25);
-  this.startTime=now+.12-this.offset;
+  if(!this.started){
+   this.startTime=now+.08-this.offset;
+   this.lastTickTime=now;
+   this.started=true;
+  }
+  this.syncUI();
   this.schedule();
  },
+ bindGestureUnlock(){
+  if(this.gestureBound)return;
+  this.gestureBound=true;
+  const events=['pointerdown','pointerup','mousedown','mouseup','touchstart','touchend','keydown','click'];
+  const unlockOnGesture=(e)=>{
+   if(e&&e.target&&e.target.closest&&e.target.closest('#sound'))return;
+   if(!this.on){cleanup();return;}
+   const c=this.initContext();
+   if(!c)return;
+   if(c.state==='suspended')c.resume().catch(()=>{});
+   this.ensureReady().then(()=>{
+    if(this.on&&c.state==='running'){
+     cleanup();
+     this.startPlayback();
+    }
+   }).catch(()=>{});
+  };
+  const cleanup=()=>{events.forEach(ev=>window.removeEventListener(ev,unlockOnGesture,true));};
+  events.forEach(ev=>window.addEventListener(ev,unlockOnGesture,{capture:true,passive:true}));
+ },
  async autoStart(){
-  this.on=true;this.syncUI();
+  this.on=true;this.bindGestureUnlock();
   try{
-   const AC=window.AudioContext||window.webkitAudioContext;
-   if(!AC)return;
-   if(!this.ctx){this.ctx=new AC();this.setup();}
-   if(this.ctx.state==='suspended')this.ctx.resume().catch(()=>{});
+   const c=this.initContext();
+   if(!c)return;
+   if(c.state==='suspended')c.resume().catch(()=>{});
+   this.syncUI();
    await this.ensureReady();
    if(!this.on)return;
-   if(this.ctx.state==='running'){
+   if(c.state==='running'){
     this.startPlayback();
    }else{
-    const unlockOnGesture=(e)=>{
-     if(e&&e.target&&e.target.closest&&e.target.closest('#sound'))return;
-     if(!this.on){cleanup();return;}
-     this.ctx.resume().then(()=>{
-      if(this.ctx.state==='running'){
-       cleanup();
-       if(this.on)this.startPlayback();
-      }
-     }).catch(()=>{});
-    };
-    const events=['pointerdown','touchstart','mousedown','keydown','wheel','click'];
-    const cleanup=()=>{events.forEach(ev=>window.removeEventListener(ev,unlockOnGesture,true));};
-    events.forEach(ev=>window.addEventListener(ev,unlockOnGesture,{capture:true,passive:true}));
+    this.syncUI();
+    setTimeout(()=>{if(this.on&&this.ctx&&this.ctx.state!=='running')tell('點擊畫面任意處，即可響起蕭邦《第四號敘事曲》');},500);
    }
   }catch(e){console.warn(e);}
  },
  async toggle(){
   try{
-   const wasSuspended=this.ctx&&this.ctx.state!=='running';
+   const wasNotRunning=!this.ctx||this.ctx.state!=='running'||!this.started;
    await this.unlock();if(!this.ctx)return;
    if(!this.ready){
     $('sound-text').textContent='載入中';
     await this.ensureReady();
    }
-   if(this.on&&wasSuspended&&this.note===0){
-    this.syncUI();
+   if(this.on&&wasNotRunning){
     this.startPlayback();
     return;
    }
    this.on=!this.on;const now=this.ctx.currentTime;
    this.master.gain.cancelScheduledValues(now);this.master.gain.setTargetAtTime(this.on?.62:0,now,.25);
-   if(this.on)this.startPlayback();
+   if(this.on){this.startPlayback();}else{this.started=false;}
    this.syncUI();
   }catch(e){$('sound-text').textContent='音樂';tell('音樂暫時無法開啟');console.warn(e);}
  },
@@ -1224,8 +1259,9 @@ const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),cell
   this.dry.gain.setTargetAtTime(mix(.86,.34,scale),t,.35);this.wet.gain.setTargetAtTime(mix(.20,.88,scale),t,.4);this.strings.gain.setTargetAtTime(mix(.065,.18,scale),t,.5);
   if(now-this.lastUI>90){this.analyser.getByteFrequencyData(this.data);document.querySelectorAll('.eq i').forEach((bar,i)=>{let value=0;for(let k=2+i*8;k<10+i*8;k++)value+=this.data[k];bar.style.height=(this.on?3+value/8/255*13:3)+'px';});this.lastUI=now;}
  },
- diagnostics(){return{enabled:this.on,state:this.ctx?.state||'not-started',buffers:this.buffers.size,activeVoices:this.active.size,notesPlayed:this.note,offsetSeconds:Math.round(this.offset*10)/10,energy:this.data?Math.max(...this.data):0,dry:this.dry?.gain.value,wet:this.wet?.gain.value,strings:this.strings?.gain.value,description:'Sampled classical Grand Piano and bowed Cello playing J.S. Bach / F. Busoni - Chaconne in D minor, BWV 1004 (from 2:00).'};}
+ diagnostics(){return{enabled:this.on,state:this.ctx?.state||'not-started',buffers:this.buffers.size,activeVoices:this.active.size,notesPlayed:this.note,offsetSeconds:Math.round(this.offset*10)/10,energy:this.data?Math.max(...this.data):0,dry:this.dry?.gain.value,wet:this.wet?.gain.value,strings:this.strings?.gain.value,description:'Sampled classical Grand Piano and bowed Cello playing Frédéric Chopin - Ballade No. 4 in F Minor, Op. 52 (Complete, from 0:00).'};}
 };
+deepSound.bindGestureUnlock();
 $('sound').onclick=()=>deepSound.toggle();
 window.addEventListener('keydown',e=>{if(e.code==='KeyS'&&!dialog.open&&e.target.tagName!=='INPUT')deepSound.toggle();});
 document.addEventListener('visibilitychange',()=>{if(!deepSound.ctx)return;if(document.hidden)deepSound.ctx.suspend().catch(()=>{});else if(deepSound.on)deepSound.ctx.resume().then(()=>{deepSound.startTime=deepSound.ctx.currentTime-deepSound.offset+.08;}).catch(()=>{});});
@@ -1241,13 +1277,13 @@ async function boot(){
    const started=performance.now();
    artStore.request(BOOT_REQUIRED_ART,[]);
   setup();
-  deepSound.prefetch();
   while(!artReady(performance.now())){
    const status=artStore.status();$('loading-copy').textContent='正在鋪開書房與窗外的風景…';$('load-progress').style.width=((status.required-status.pending.length)/Math.max(1,status.required)*100)+'%';
    if(performance.now()-started>60000){const status=artStore.status();throw new Error(`圖片載入較久，尚未完成：${status.pendingStates.join(', ')||'未知素材'}。`);}
    await new Promise(resolve=>setTimeout(resolve,40));
   }
    $('load-progress').style.width='100%';renderer.render(scene,camera);S.ready=true;buffering=false;setAuto(!reduced);setMotion(!reduced);document.body.classList.add('loaded');previous=fpsStart=performance.now();animationFrame=requestAnimationFrame(animate);
+   deepSound.prefetch();
    deepSound.autoStart();
    const compileRemaining=()=>{if(renderer.compileAsync&&!S.contextLost)Promise.resolve(renderer.compileAsync(scene,camera)).catch(()=>{});};
    if(window.requestIdleCallback)window.requestIdleCallback(compileRemaining,{timeout:1500});else setTimeout(compileRemaining,120);
