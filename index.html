@@ -20,10 +20,10 @@
 <canvas id="painting" tabindex="0" aria-label="由獨立油畫構成的書房與淡水紅毛城。移動鼠標或拖曳可小幅環視，滾輪沿路線穿窗、接近紅毛城。"></canvas>
 <div class="vignette"></div><div class="linen"></div>
 <header class="top hud"><div><h1 class="title">窗外，淡水星夜。</h1><div class="title-sub">FROM A CANDLE TO THE COSMOS</div></div><div class="edition"><div id="shot-label">第一鏡 · 燭光書房</div><nav class="shot-nav" aria-label="鏡頭位置"><button id="scene-room" class="shot-button active" aria-pressed="true">書房</button><button id="scene-fort" class="shot-button" aria-pressed="false">紅毛城</button><button id="scene-ascent" class="shot-button" aria-pressed="false">升空</button><button id="scene-taiwan" class="shot-button" aria-pressed="false">台灣</button><button id="scene-solar" class="shot-button" aria-pressed="false">太陽系</button><button id="scene-starry" class="shot-button" aria-pressed="false">星雲</button><button id="scene-galaxy" class="shot-button" aria-pressed="false">銀河</button><button id="scene-cosmos" class="shot-button" aria-pressed="false">宇宙</button></nav></div></header>
-<nav id="chapters" class="chapter-ruler hud" aria-label="九大旅程章節"><span id="chapter-marker"></span></nav><div id="letter" class="letter hud"><div id="letter-cn"></div><div id="letter-en"></div></div><footer class="bottom hud"><div class="hint"><span id="hint-copy">沿著燭光，緩緩走近窗邊。</span><small>SCROLL TO TRAVEL · H TO HIDE</small></div><div class="controls"><button id="play" class="control active" aria-label="暫停攝影機" aria-pressed="true"><span id="play-icon" class="icon">Ⅱ</span><span id="play-text">鏡頭暫停</span></button><button id="motion" class="control active" aria-label="關閉局部動態" aria-pressed="true"><span class="icon">≈</span><span id="motion-text">動態開</span></button><button id="sound" class="control" aria-pressed="false" aria-label="開啟合成鋼琴與弦樂"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-text">音樂</span></button><button id="texture" class="control" aria-pressed="true" aria-label="切換亞麻紋理">紋理</button><button id="home" class="control" aria-label="回到書房起點" title="回到書房">↶</button><button id="help" class="control" aria-label="操作說明">?</button></div><div class="status">FORT · RIVER · BANYAN · GUANYIN<br>ONE STARRY SKY / NINE CHAPTERS</div></footer>
+<nav id="chapters" class="chapter-ruler hud" aria-label="九大旅程章節"><span id="chapter-marker"></span></nav><div id="letter" class="letter hud"><div id="letter-cn"></div><div id="letter-en"></div></div><footer class="bottom hud"><div class="hint"><span id="hint-copy">沿著燭光，緩緩走近窗邊。</span><small>SCROLL TO TRAVEL · H TO HIDE</small></div><div class="controls"><button id="play" class="control active" aria-label="暫停攝影機" aria-pressed="true"><span id="play-icon" class="icon">Ⅱ</span><span id="play-text">鏡頭暫停</span></button><button id="motion" class="control active" aria-label="關閉局部動態" aria-pressed="true"><span class="icon">≈</span><span id="motion-text">動態開</span></button><button id="sound" class="control active" aria-pressed="true" aria-label="關閉古典三角鋼琴與大提琴（巴哈夏康舞曲）"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-text">CHACONNE</span></button><button id="texture" class="control" aria-pressed="true" aria-label="切換亞麻紋理">紋理</button><button id="home" class="control" aria-label="回到書房起點" title="回到書房">↶</button><button id="help" class="control" aria-label="操作說明">?</button></div><div class="status">FORT · RIVER · BANYAN · GUANYIN<br>ONE STARRY SKY / NINE CHAPTERS</div></footer>
 <input id="route" type="range" min="0" max="1" step=".001" value="0" aria-label="書房、穿窗、紅毛城、升空與回望台灣的鏡頭進度">
 <div id="loading" role="status"><div class="loading-title">窗外，淡水星夜。</div><div class="loading-line"><span id="load-progress"></span></div><div id="loading-copy" class="loading-copy">正在鋪開油畫的每一層…</div></div>
-<dialog id="help-dialog"><button class="close" aria-label="關閉說明">×</button><h2>沿著星夜，走向深空。</h2><dl><dt>鼠標／單指拖曳</dt><dd>小幅環視，觀看前後景的視差</dd><dt>滾輪／底部進度條</dt><dd>沿攝影機路線前進或退回</dd><dt>書房／紅毛城</dt><dd>快速移到對應鏡頭的位置</dd><dt>升空</dt><dd>從紅毛城開始穿雲與回望</dd><dt>台灣</dt><dd>停留觀看山海全景</dd><dt>太陽系</dt><dd>從台灣繼續飛行，回望地月，再走向太陽火輪與八大行星</dd><dt>星雲／銀河／宇宙</dt><dd>跳到後半段旅程，宇宙最終會回到書房</dd><dt>右側刻度</dt><dd>定位九個章節</dd><dt>S</dt><dd>開啟／關閉合成鋼琴與弦樂</dd><dt>Space</dt><dd>播放／暫停攝影機</dd><dt>M</dt><dd>開啟／關閉燭火、河流、天空與星球動態</dd><dt>↶／Home</dt><dd>回到書房起點</dd><dt>H</dt><dd>隱藏／顯示介面</dd></dl><p>全程約 8 分 22 秒，自動播放會循環回到書房。音樂需要點擊後才會開啟；為原創古典風格合成配樂。</p><p>停下鏡頭時，雲與水仍會流動，地球繼續自轉，月球與行星繼續繞行。</p><div class="quality-label"><label for="quality">畫面細緻度</label><span id="quality-value">標準</span></div><input id="quality" type="range" min=".65" max="1.5" step=".05" value="1"></dialog>
+<dialog id="help-dialog"><button class="close" aria-label="關閉說明">×</button><h2>沿著星夜，走向深空。</h2><dl><dt>鼠標／單指拖曳</dt><dd>小幅環視，觀看前後景的視差</dd><dt>滾輪／底部進度條</dt><dd>沿攝影機路線前進或退回</dd><dt>書房／紅毛城</dt><dd>快速移到對應鏡頭的位置</dd><dt>升空</dt><dd>從紅毛城開始穿雲與回望</dd><dt>台灣</dt><dd>停留觀看山海全景</dd><dt>太陽系</dt><dd>從台灣繼續飛行，回望地月，再走向太陽火輪與八大行星</dd><dt>星雲／銀河／宇宙</dt><dd>跳到後半段旅程，宇宙最終會回到書房</dd><dt>右側刻度</dt><dd>定位九個章節</dd><dt>S</dt><dd>開啟／關閉三角鋼琴與大提琴（巴哈《夏康舞曲》BWV 1004）</dd><dt>Space</dt><dd>播放／暫停攝影機</dd><dt>M</dt><dd>開啟／關閉燭火、河流、天空與星球動態</dd><dt>↶／Home</dt><dd>回到書房起點</dd><dt>H</dt><dd>隱藏／顯示介面</dd></dl><p>全程約 8 分 22 秒，自動播放會循環回到書房。配樂預設自動播放（若瀏覽器限制自動發聲，於畫面任意點擊或互動後即會響起）；曲目為巴哈《D 小調夏康舞曲》BWV 1004（Busoni 古典三角鋼琴改編版，自 2 分鐘處展開）搭配溫暖大提琴低音鋪底。</p><p>停下鏡頭時，雲與水仍會流動，地球繼續自轉，月球與行星繼續繞行。</p><div class="quality-label"><label for="quality">畫面細緻度</label><span id="quality-value">標準</span></div><input id="quality" type="range" min=".65" max="1.5" step=".05" value="1"></dialog>
 <div id="buffer-copy" role="status" aria-live="polite">正在鋪開下一段風景…</div><div id="toast" role="status"></div><div id="error"></div><noscript>請開啟 JavaScript，讓油畫展開。</noscript>
 <!--
 The MIT License
@@ -1038,72 +1038,198 @@ function deepUI(seconds){
  }
 }
 
-/* Optional synthesized piano and strings. Original accompaniment, not a score transcription. */
-const deepSound={ctx:null,on:false,buffers:new Map(),active:new Set(),timer:null,note:0,next:0,lastUI:0,
+/* Sampled classical Grand Piano (Salamander C5 voiced for warm Steinway-like timbre) & bowed Cello playing J.S. Bach / F. Busoni - Chaconne in D minor, BWV 1004 (from 2:00). */
+const PIANO_SAMPLES=[[21,'A0'],[24,'C1'],[27,'Ds1'],[30,'Fs1'],[33,'A1'],[36,'C2'],[39,'Ds2'],[42,'Fs2'],[45,'A2'],[48,'C3'],[51,'Ds3'],[54,'Fs3'],[57,'A3'],[60,'C4'],[63,'Ds4'],[66,'Fs4'],[69,'A4'],[72,'C5'],[75,'Ds5'],[78,'Fs5'],[81,'A5'],[84,'C6'],[87,'Ds6'],[90,'Fs6'],[93,'A6'],[96,'C7'],[99,'Ds7'],[102,'Fs7'],[105,'A7'],[108,'C8']];
+const CELLO_SAMPLES=[[36,'cello_C2'],[41,'cello_F2'],[45,'cello_A2'],[50,'cello_D3'],[55,'cello_G3'],[60,'cello_C4']];
+const CORE_SAMPLES=new Set(['C2','A2','Ds3','Fs3','A3','C4','Ds4','Fs4','A4','C5','Ds5','A5','cello_C2','cello_A2','cello_D3']);
+const deepSound={ctx:null,on:false,buffers:new Map(),pianoBuffers:new Map(),celloBuffers:new Map(),rawCache:new Map(),active:new Set(),timer:null,note:0,noteIndex:0,celloIndex:0,offset:0,startTime:0,scoreNotes:null,celloNotes:null,scoreDuration:684.42,loadingPromise:null,ready:false,lastUI:0,
  random(seed){let n=seed>>>0;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};},
+ fetchRaw(name){
+  if(this.rawCache.has(name))return this.rawCache.get(name);
+  const p=fetch(`assets/runtime-v1/piano/${name}`).then(r=>{if(!r.ok)throw new Error(name);return name.endsWith('.json')?r.json():r.arrayBuffer();}).catch(e=>{this.rawCache.delete(name);throw e;});
+  this.rawCache.set(name,p);return p;
+ },
+ prefetch(){
+  this.fetchRaw('chaconne.json').catch(()=>{});
+  for(const[,name]of PIANO_SAMPLES)if(CORE_SAMPLES.has(name))this.fetchRaw(`${name}.mp3`).catch(()=>{});
+  for(const[,name]of CELLO_SAMPLES)if(CORE_SAMPLES.has(name))this.fetchRaw(`${name}.mp3`).catch(()=>{});
+ },
+ async decodeSample(midi,name,targetMap){
+  if(targetMap.has(midi))return targetMap.get(midi);
+  const raw=await this.fetchRaw(`${name}.mp3`),buf=await this.ctx.decodeAudioData(raw.slice(0));
+  targetMap.set(midi,buf);this.buffers.set(name,buf);return buf;
+ },
+ async ensureReady(){
+  if(this.ready)return;
+  if(this.loadingPromise)return this.loadingPromise;
+  this.loadingPromise=(async()=>{
+   const scoreData=await this.fetchRaw('chaconne.json');
+   if(!this.scoreNotes){
+    let tMs=0;
+    this.scoreNotes=scoreData.notes.map(n=>{tMs+=n[0];return[tMs/1000,n[1],n[2],n[3]/1000];});
+    this.celloNotes=scoreData.cello||[];
+    this.scoreDuration=scoreData.duration||684.42;
+   }
+   const coreTasks=[];
+   for(const[midi,name]of PIANO_SAMPLES)if(CORE_SAMPLES.has(name))coreTasks.push(this.decodeSample(midi,name,this.pianoBuffers));
+   for(const[midi,name]of CELLO_SAMPLES)if(CORE_SAMPLES.has(name))coreTasks.push(this.decodeSample(midi,name,this.celloBuffers));
+   await Promise.all(coreTasks);
+   this.ready=true;
+   Promise.all([
+    ...PIANO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>this.decodeSample(m,n,this.pianoBuffers).catch(()=>{})),
+    ...CELLO_SAMPLES.filter(([,n])=>!CORE_SAMPLES.has(n)).map(([m,n])=>this.decodeSample(m,n,this.celloBuffers).catch(()=>{}))
+   ]);
+  })().finally(()=>{this.loadingPromise=null;});
+  return this.loadingPromise;
+ },
+ findNearest(map,midi){
+  let bestMidi=60,bestBuf=null,bestDist=999;
+  for(const[m,buf]of map){const d=Math.abs(midi-m);if(d<bestDist){bestDist=d;bestMidi=m;bestBuf=buf;}}
+  return bestBuf?{sampleMidi:bestMidi,buffer:bestBuf}:null;
+ },
  async unlock(){
-  if(!this.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){tell('此瀏覽器無法播放合成音樂');return;}this.ctx=new AC();this.setup();}
+  if(!this.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){tell('此瀏覽器無法播放音樂');return;}this.ctx=new AC();this.setup();}
   if(this.ctx.state==='suspended')await this.ctx.resume();
  },
  setup(){
   const c=this.ctx;this.master=c.createGain();this.master.gain.value=0;
-  const comp=c.createDynamicsCompressor();comp.threshold.value=-18;comp.knee.value=16;comp.ratio.value=3;
+  const comp=c.createDynamicsCompressor();comp.threshold.value=-16;comp.knee.value=18;comp.ratio.value=2.4;comp.attack.value=.018;comp.release.value=.28;
   this.analyser=c.createAnalyser();this.analyser.fftSize=512;this.data=new Uint8Array(this.analyser.frequencyBinCount);
   this.master.connect(comp);comp.connect(this.analyser);this.analyser.connect(c.destination);
   this.dry=c.createGain();this.wet=c.createGain();this.dry.connect(this.master);this.wet.connect(this.master);
-  const rev=c.createConvolver(),length=Math.floor(c.sampleRate*4.5),impulse=c.createBuffer(2,length,c.sampleRate),random=this.random(127);
-  for(let channel=0;channel<2;channel++){const a=impulse.getChannelData(channel);for(let i=0;i<length;i++)a[i]=(random()*2-1)*Math.pow(1-i/length,3.1)*.22;}rev.buffer=impulse;rev.connect(this.wet);
-  const bass=c.createBiquadFilter();bass.type='peaking';bass.frequency.value=240;bass.Q.value=.7;bass.gain.value=4.5;
-  const warm=c.createBiquadFilter();warm.type='peaking';warm.frequency.value=620;warm.Q.value=.8;warm.gain.value=2;
-  const soft=c.createBiquadFilter();soft.type='lowpass';soft.frequency.value=4600;
-  bass.connect(warm);warm.connect(soft);soft.connect(this.dry);soft.connect(rev);this.pianoBus=bass;
-  this.strings=c.createGain();this.strings.connect(this.dry);this.strings.connect(rev);this.strings.gain.value=.045;
-  this.next=c.currentTime+.15;this.timer=setInterval(()=>this.schedule(),75);
- },
- buffer(midi){
-  if(this.buffers.has(midi))return this.buffers.get(midi);
-  const rate=22050,length=Math.floor(rate*4.1),b=this.ctx.createBuffer(1,length,rate),out=b.getChannelData(0),f=440*Math.pow(2,(midi-69)/12),B=.00015*Math.pow(f/261.63,.45);
-  const partials=Math.min(10,Math.floor(rate*.43/f));
-  for(let k=1;k<=partials;k++)for(let detune=-1;detune<=1;detune++){
-   const omega=2*Math.PI*k*f*Math.sqrt(1+B*k*k)*Math.pow(2,detune*1.4/1200)/rate,coefficient=2*Math.cos(omega),decay=Math.exp(-(1.7+k*.44+f*.0006)/rate);
-   let previous=0,current=Math.sin(omega),env=Math.pow(k,-1.65)*.15;
-   for(let i=0;i<length;i++){out[i]+=current*env;const value=coefficient*current-previous;previous=current;current=value;env*=decay;}
+  const rev=c.createConvolver(),length=Math.floor(c.sampleRate*4.6),impulse=c.createBuffer(2,length,c.sampleRate),random=this.random(127);
+  for(let channel=0;channel<2;channel++){
+   const a=impulse.getChannelData(channel);let lp=0,lp2=0;
+   for(let i=0;i<length;i++){
+    const p=i/length,raw=(random()*2-1)*Math.pow(1-p,3.0)*.24,damp=.14+(1-p)*.28;
+    lp+=damp*(raw-lp);lp2+=.38*(lp-lp2);a[i]=lp2;
+   }
   }
-  const random=this.random(midi*91);
-  for(let i=0;i<length;i++){const t=i/rate;out[i]*=Math.min(1,t/.006)*clamp((4.1-t)/.25);if(t<.026)out[i]+=(random()*2-1)*.012*(1-t/.026)+Math.sin(2*Math.PI*(160-110*t/.026)*t)*.025*(1-t/.026);}
-  this.buffers.set(midi,b);return b;
+  rev.buffer=impulse;rev.connect(this.wet);
+  const bass=c.createBiquadFilter();bass.type='peaking';bass.frequency.value=210;bass.Q.value=.7;bass.gain.value=3.2;
+  const warm=c.createBiquadFilter();warm.type='peaking';warm.frequency.value=540;warm.Q.value=.75;warm.gain.value=2.2;
+  const velvet=c.createBiquadFilter();velvet.type='peaking';velvet.frequency.value=2500;velvet.Q.value=1.0;velvet.gain.value=-2.8;
+  const soft=c.createBiquadFilter();soft.type='lowpass';soft.frequency.value=4100;soft.Q.value=.5;
+  bass.connect(warm);warm.connect(velvet);velvet.connect(soft);soft.connect(this.dry);soft.connect(rev);this.pianoBus=bass;
+  this.strings=c.createGain();this.strings.connect(this.dry);this.strings.connect(rev);this.strings.gain.value=.075;
+  this.timer=setInterval(()=>this.schedule(),55);
  },
- piano(midi,time,velocity){
-  const c=this.ctx,s=c.createBufferSource(),g=c.createGain(),pan=c.createStereoPanner();s.buffer=this.buffer(midi);g.gain.value=velocity;pan.pan.value=clamp((midi-60)/35,-.65,.65);
-  s.connect(g);g.connect(pan);pan.connect(this.pianoBus);this.active.add(s);s.start(Math.max(c.currentTime,time));s.onended=()=>{s.disconnect();g.disconnect();pan.disconnect();this.active.delete(s);};
+ piano(midi,time,vel,dur){
+  const found=this.findNearest(this.pianoBuffers,midi);if(!found)return;
+  const c=this.ctx,s=c.createBufferSource(),tone=c.createBiquadFilter(),g=c.createGain(),pan=c.createStereoPanner();
+  s.buffer=found.buffer;s.playbackRate.value=Math.pow(2,(midi-found.sampleMidi)/12);
+  const v=clamp((vel||64)/110,.08,1),amp=Math.pow(v,1.52)*.46,start=Math.max(c.currentTime,time),hold=clamp(dur||1.1,.14,5.4),release=midi<48?.58:(midi<72?.44:.62);
+  const bright=660+Math.pow(v,1.38)*3100+Math.max(0,(66-midi)*14);
+  tone.type='lowpass';tone.Q.value=.45;tone.frequency.setValueAtTime(bright,start);
+  tone.frequency.exponentialRampToValueAtTime(Math.max(460,bright*.56),start+Math.min(2.4,hold+.45));
+  g.gain.setValueAtTime(.0001,start);g.gain.linearRampToValueAtTime(amp,start+.005);g.gain.setValueAtTime(amp,start+hold);g.gain.exponentialRampToValueAtTime(.0001,start+hold+release);
+  pan.pan.value=clamp((midi-60)/38,-.58,.58);
+  s.connect(tone);tone.connect(g);g.connect(pan);pan.connect(this.pianoBus);this.active.add(s);
+  s.start(start);s.stop(start+hold+release+.04);
+  s.onended=()=>{s.disconnect();tone.disconnect();g.disconnect();pan.disconnect();this.active.delete(s);};
  },
- chord(notes,time){
-  const c=this.ctx;notes.forEach((midi,j)=>{const o=c.createOscillator(),g=c.createGain(),filter=c.createBiquadFilter(),pan=c.createStereoPanner();o.type='sawtooth';o.frequency.value=440*Math.pow(2,(midi-69)/12);o.detune.value=(j-1.5)*3;
-   filter.type='lowpass';filter.frequency.value=850+j*210;pan.pan.value=(j-1.5)*.2;g.gain.setValueAtTime(0,time);g.gain.linearRampToValueAtTime(.13,time+1.1);g.gain.linearRampToValueAtTime(.09,time+3.1);g.gain.linearRampToValueAtTime(0,time+4.9);
-   o.connect(filter);filter.connect(g);g.connect(pan);pan.connect(this.strings);this.active.add(o);o.start(time);o.stop(time+5);o.onended=()=>{o.disconnect();filter.disconnect();g.disconnect();pan.disconnect();this.active.delete(o);};});
+ cello(midi,time,vel,dur){
+  const found=this.findNearest(this.celloBuffers,midi);if(!found)return;
+  const c=this.ctx,s=c.createBufferSource(),filter=c.createBiquadFilter(),g=c.createGain(),pan=c.createStereoPanner();
+  s.buffer=found.buffer;s.playbackRate.value=Math.pow(2,(midi-found.sampleMidi)/12);
+  const v=clamp((vel||60)/95,.18,1),amp=Math.pow(v,1.25)*.26,start=Math.max(c.currentTime,time),durSec=clamp(dur||3.2,2.2,5.5),attack=Math.min(1.15,durSec*.36),release=1.4;
+  filter.type='lowpass';filter.Q.value=.5;filter.frequency.setValueAtTime(480+v*520,start);
+  g.gain.setValueAtTime(.0001,start);g.gain.linearRampToValueAtTime(amp,start+attack);g.gain.linearRampToValueAtTime(amp*.78,start+durSec);g.gain.exponentialRampToValueAtTime(.0001,start+durSec+release);
+  pan.pan.value=clamp((midi-45)/30,-.35,.35);
+  s.connect(filter);filter.connect(g);g.connect(pan);pan.connect(this.strings);this.active.add(s);
+  s.start(start);s.stop(start+durSec+release+.05);
+  s.onended=()=>{s.disconnect();filter.disconnect();g.disconnect();pan.disconnect();this.active.delete(s);};
  },
  schedule(){
-  if(!this.on||this.ctx.state!=='running')return;
-  const c=this.ctx;if(this.next<c.currentTime-.3)this.next=c.currentTime+.10;
-  const melody=[67,79,77,75,74,72,70,67,72,73,71,71,72,77,75,73,72,70,68,67,68,72,75,77,80,79,77,75,73,72,70,68,65,68,72,73,72,70,68,67,65,67,68,72,75,73,72,70,68,65,67,68,72,70,68,67,65,63,65,68,67,65,63,60],harmony=[[41,48,56,60],[37,44,53,56],[44,51,60,63],[36,43,52,55]];
-  while(this.next<c.currentTime+.25){const i=this.note%melody.length,j=Math.floor(i/16)%4;this.piano(melody[i],this.next,.36+(i%8===0?.15:0));if(i%2===0)this.piano(harmony[j][(i/2)%4],this.next,.24);if(i%8===0){this.piano(harmony[j][0]-12,this.next,.32);this.chord(harmony[j],this.next);}this.note++;this.next+=.48+(i%8===7?.24:0);}
+  if(!this.on||!this.ready||!this.scoreNotes||this.ctx.state!=='running')return;
+  const c=this.ctx,elapsed=c.currentTime-this.startTime;
+  if(elapsed>this.offset+.75||elapsed<-.5)this.startTime=c.currentTime-this.offset;
+  const horizon=(c.currentTime-this.startTime)+.26;
+  while(this.noteIndex<this.scoreNotes.length&&this.scoreNotes[this.noteIndex][0]<=horizon){
+   const[t,midi,vel,dur]=this.scoreNotes[this.noteIndex++];
+   this.piano(midi,this.startTime+t,vel,dur);
+   this.offset=t;this.note++;
+  }
+  while(this.celloIndex<this.celloNotes.length&&this.celloNotes[this.celloIndex][0]<=horizon){
+   const[t,midi,vel,dur]=this.celloNotes[this.celloIndex++];
+   this.cello(midi,this.startTime+t,vel,dur);
+  }
+  if(this.noteIndex>=this.scoreNotes.length&&(c.currentTime-this.startTime)>=this.scoreDuration+1.2){
+   this.noteIndex=0;this.celloIndex=0;this.offset=0;this.startTime=c.currentTime+.35;
+  }
+ },
+ syncUI(){
+  $('sound').classList.toggle('active',this.on);
+  $('sound').setAttribute('aria-pressed',String(this.on));
+  $('sound').setAttribute('aria-label',this.on?'關閉古典三角鋼琴與大提琴（巴哈夏康舞曲）':'開啟古典三角鋼琴與大提琴（巴哈夏康舞曲）');
+  $('sound-text').textContent=this.on?'CHACONNE':'音樂';
+ },
+ startPlayback(){
+  if(!this.ctx||!this.on)return;
+  const now=this.ctx.currentTime;
+  this.master.gain.cancelScheduledValues(now);
+  this.master.gain.setTargetAtTime(.62,now,.25);
+  this.startTime=now+.12-this.offset;
+  this.schedule();
+ },
+ async autoStart(){
+  this.on=true;this.syncUI();
+  try{
+   const AC=window.AudioContext||window.webkitAudioContext;
+   if(!AC)return;
+   if(!this.ctx){this.ctx=new AC();this.setup();}
+   if(this.ctx.state==='suspended')this.ctx.resume().catch(()=>{});
+   await this.ensureReady();
+   if(!this.on)return;
+   if(this.ctx.state==='running'){
+    this.startPlayback();
+   }else{
+    const unlockOnGesture=(e)=>{
+     if(e&&e.target&&e.target.closest&&e.target.closest('#sound'))return;
+     if(!this.on){cleanup();return;}
+     this.ctx.resume().then(()=>{
+      if(this.ctx.state==='running'){
+       cleanup();
+       if(this.on)this.startPlayback();
+      }
+     }).catch(()=>{});
+    };
+    const events=['pointerdown','touchstart','mousedown','keydown','wheel','click'];
+    const cleanup=()=>{events.forEach(ev=>window.removeEventListener(ev,unlockOnGesture,true));};
+    events.forEach(ev=>window.addEventListener(ev,unlockOnGesture,{capture:true,passive:true}));
+   }
+  }catch(e){console.warn(e);}
  },
  async toggle(){
-  try{await this.unlock();if(!this.ctx)return;this.on=!this.on;const now=this.ctx.currentTime;this.master.gain.cancelScheduledValues(now);this.master.gain.setTargetAtTime(this.on?.56:0,now,.23);if(this.on)this.next=now+.15;
-   $('sound').setAttribute('aria-pressed',String(this.on));$('sound').setAttribute('aria-label',this.on?'關閉合成鋼琴與弦樂':'開啟合成鋼琴與弦樂');$('sound-text').textContent=this.on?'PIANO':'音樂';
-  }catch(e){tell('音樂暫時無法開啟');console.warn(e);}
+  try{
+   const wasSuspended=this.ctx&&this.ctx.state!=='running';
+   await this.unlock();if(!this.ctx)return;
+   if(!this.ready){
+    $('sound-text').textContent='載入中';
+    await this.ensureReady();
+   }
+   if(this.on&&wasSuspended&&this.note===0){
+    this.syncUI();
+    this.startPlayback();
+    return;
+   }
+   this.on=!this.on;const now=this.ctx.currentTime;
+   this.master.gain.cancelScheduledValues(now);this.master.gain.setTargetAtTime(this.on?.62:0,now,.25);
+   if(this.on)this.startPlayback();
+   this.syncUI();
+  }catch(e){$('sound-text').textContent='音樂';tell('音樂暫時無法開啟');console.warn(e);}
  },
  tick(seconds,now){
   if(!this.ctx)return;
   const scale=clamp(seconds/446)*(1-fade(446,490,seconds)),t=this.ctx.currentTime;
-  this.dry.gain.setTargetAtTime(mix(.85,.30,scale),t,.35);this.wet.gain.setTargetAtTime(mix(.18,.88,scale),t,.4);this.strings.gain.setTargetAtTime(mix(.045,.15,scale),t,.5);
+  this.dry.gain.setTargetAtTime(mix(.86,.34,scale),t,.35);this.wet.gain.setTargetAtTime(mix(.20,.88,scale),t,.4);this.strings.gain.setTargetAtTime(mix(.065,.18,scale),t,.5);
   if(now-this.lastUI>90){this.analyser.getByteFrequencyData(this.data);document.querySelectorAll('.eq i').forEach((bar,i)=>{let value=0;for(let k=2+i*8;k<10+i*8;k++)value+=this.data[k];bar.style.height=(this.on?3+value/8/255*13:3)+'px';});this.lastUI=now;}
  },
- diagnostics(){return{enabled:this.on,state:this.ctx?.state||'not-started',buffers:this.buffers.size,activeVoices:this.active.size,notesPlayed:this.note,energy:this.data?Math.max(...this.data):0,dry:this.dry?.gain.value,wet:this.wet?.gain.value,strings:this.strings?.gain.value,description:'Original synthesized classical-style piano and strings; not an authenticated Chopin Op.52 transcription.'};}
+ diagnostics(){return{enabled:this.on,state:this.ctx?.state||'not-started',buffers:this.buffers.size,activeVoices:this.active.size,notesPlayed:this.note,offsetSeconds:Math.round(this.offset*10)/10,energy:this.data?Math.max(...this.data):0,dry:this.dry?.gain.value,wet:this.wet?.gain.value,strings:this.strings?.gain.value,description:'Sampled classical Grand Piano and bowed Cello playing J.S. Bach / F. Busoni - Chaconne in D minor, BWV 1004 (from 2:00).'};}
 };
 $('sound').onclick=()=>deepSound.toggle();
 window.addEventListener('keydown',e=>{if(e.code==='KeyS'&&!dialog.open&&e.target.tagName!=='INPUT')deepSound.toggle();});
-document.addEventListener('visibilitychange',()=>{if(!deepSound.ctx)return;if(document.hidden)deepSound.ctx.suspend().catch(()=>{});else if(deepSound.on)deepSound.ctx.resume().then(()=>{deepSound.next=deepSound.ctx.currentTime+.1;}).catch(()=>{});});
+document.addEventListener('visibilitychange',()=>{if(!deepSound.ctx)return;if(document.hidden)deepSound.ctx.suspend().catch(()=>{});else if(deepSound.on)deepSound.ctx.resume().then(()=>{deepSound.startTime=deepSound.ctx.currentTime-deepSound.offset+.08;}).catch(()=>{});});
 window.addEventListener('pagehide',()=>{if(deepSound.timer)clearInterval(deepSound.timer);deepSound.ctx?.close().catch(()=>{});});
 
 
@@ -1116,12 +1242,14 @@ async function boot(){
    const started=performance.now();
    artStore.request(BOOT_REQUIRED_ART,[]);
   setup();
+  deepSound.prefetch();
   while(!artReady(performance.now())){
    const status=artStore.status();$('loading-copy').textContent='正在鋪開書房與窗外的風景…';$('load-progress').style.width=((status.required-status.pending.length)/Math.max(1,status.required)*100)+'%';
    if(performance.now()-started>60000){const status=artStore.status();throw new Error(`圖片載入較久，尚未完成：${status.pendingStates.join(', ')||'未知素材'}。`);}
    await new Promise(resolve=>setTimeout(resolve,40));
   }
    $('load-progress').style.width='100%';renderer.render(scene,camera);S.ready=true;buffering=false;setAuto(!reduced);setMotion(!reduced);document.body.classList.add('loaded');previous=fpsStart=performance.now();animationFrame=requestAnimationFrame(animate);
+   deepSound.autoStart();
    const compileRemaining=()=>{if(renderer.compileAsync&&!S.contextLost)Promise.resolve(renderer.compileAsync(scene,camera)).catch(()=>{});};
    if(window.requestIdleCallback)window.requestIdleCallback(compileRemaining,{timeout:1500});else setTimeout(compileRemaining,120);
  }catch(error){showFailure(error);}
