@@ -114,7 +114,7 @@ const ASCENT_ART=new Set(familyKeys('ascent'));
 const SOLAR_ART=new Set([...familyKeys('solar'),'solar_earth_map']);
 const SOLAR_TRANSITION_ART=new Set(['vortex_cloud_gold','vortex_cloud_teal','vortex_cloud_cobalt','wind_strokes']);
 const DEEP_ART=new Set(familyKeys('deep'));
-const RETURN_ART=new Set([...familyKeys('chamber'),...familyKeys('tamsui'),'return_book','return_sparks','cmb_map','ouroboros_paint']);
+const RETURN_ART=new Set([...familyKeys('chamber'),...familyKeys('tamsui'),'zenith_sky','return_book','return_sparks','cmb_map','ouroboros_paint']);
 let cameraPose={pitch:0,yaw:0,roll:0};
 let orbitalSky,atmosphere;
 let stageFade=1,flightPhase='chamber';
@@ -237,8 +237,7 @@ function assetAllowedAt(key,seconds){
 function stagePrefetch(seconds,targetSeconds=seconds){
  const focus=Math.max(seconds,Number.isFinite(targetSeconds)?targetSeconds:seconds),keys=[],seen=new Set();
  const add=items=>{for(const key of items)if(!seen.has(key)){seen.add(key);keys.push(key);}};
- add(BOOT_REQUIRED_ART);
- if(focus<LOAD_WINDOWS.ascent){add(LOCAL_DETAIL_ART);add(ASCENT_ART);}
+ if(focus<LOAD_WINDOWS.ascent){add(BOOT_REQUIRED_ART);add(LOCAL_DETAIL_ART);add(ASCENT_ART);}
  else if(focus<LOAD_WINDOWS.solar){add(ASCENT_ART);add(SOLAR_ART);}
  else if(focus<LOAD_WINDOWS.solarEnd){add(SOLAR_ART);add(SOLAR_TRANSITION_ART);add(DEEP_ART);}
  else if(focus<LOAD_WINDOWS.return){add(DEEP_ART);add(RETURN_ART);}
